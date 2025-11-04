@@ -1,8 +1,13 @@
 class_name House
 extends StaticBody2D
 
-func _on_mouse_entered() -> void:
-	print("in")
+var selected: bool = false
 
-func _on_mouse_exited() -> void:
-	print("out")
+var index: int
+
+signal house_selected(house: House)
+
+func _on_pick_collider_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("left_click"):
+		selected = not selected
+		house_selected.emit(self)

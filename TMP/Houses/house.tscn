@@ -1,26 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv3qps6uuw6w1"]
+[gd_scene load_steps=5 format=3 uid="uid://cv3qps6uuw6w1"]
 
 [ext_resource type="Script" uid="uid://cwec3ta8am1vr" path="res://TMP/Houses/house.gd" id="1_q7a5p"]
 [ext_resource type="Texture2D" uid="uid://dhdo30gjlucc5" path="res://TMP/Houses/houses.png" id="2_oqvp5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_up67m"]
-radius = 6.0
+radius = 7.0
 height = 20.0
 
-[node name="Houses" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7a5p"]
+size = Vector2(32, 32)
+
+[node name="House" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_q7a5p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -16)
 texture = ExtResource("2_oqvp5")
 hframes = 20
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_up67m")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[node name="PickCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickCollider"]
+shape = SubResource("RectangleShape2D_q7a5p")
+
+[connection signal="input_event" from="PickCollider" to="." method="_on_pick_collider_input_event"]
