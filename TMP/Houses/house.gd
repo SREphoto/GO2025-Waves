@@ -1,4 +1,3 @@
-class_name House
 extends StaticBody2D
 
 @onready var rays: Node2D = $Rays
@@ -58,7 +57,7 @@ func _push(dir: String) -> void:
 	target_pos = global_position + (ray.target_position.rotated(ray.rotation))
 	
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "global_position", target_pos, 0.05)
+	tween.set_trans(Tween.TRANS_CUBIC).tween_property(self, "global_position", target_pos, 1.05)
 
 func _ghost_push(dir: String) -> void:
 	var ray: RayCast2D = rays.find_child(dir + "Ray")

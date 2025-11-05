@@ -1,4 +1,3 @@
-class_name HouseGrid
 extends Node2D
 
 @onready var tilemap: CustomTilemap = $Tilemap
@@ -16,7 +15,7 @@ func _ready() -> void:
 
 func _on_tile_data_changed(pos: Vector2i, data: int) -> void:
 	if data > -1:
-		var house : House = HOUSE.instantiate()
+		var house = HOUSE.instantiate()
 		house.global_position = tilemap.map_to_local(pos)
 		house.index = data
 		add_child(house)

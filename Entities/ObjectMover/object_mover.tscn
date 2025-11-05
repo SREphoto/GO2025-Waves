@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgox6pb4mrk00"]
+
+[ext_resource type="Script" uid="uid://ebsyyytx7rlp" path="res://Entities/ObjectMover/object_mover.gd" id="1_457pi"]
+[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/House/houses.tres" id="2_ru6bx"]
+
+[node name="ObjectMover" type="Node2D"]
+script = ExtResource("1_457pi")
+
+[node name="Ghosts" type="Node2D" parent="."]
+
+[node name="GhostObject" type="Sprite2D" parent="Ghosts"]
+modulate = Color(1, 1, 1, 0.47058824)
+z_index = -4
+position = Vector2(0, -16)
+texture = ExtResource("2_ru6bx")
+hframes = 6
+vframes = 2
+
+[node name="Rays" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Left" type="Node2D" parent="Rays"]
+
+[node name="Up" type="Node2D" parent="Rays"]
+
+[node name="Right" type="Node2D" parent="Rays"]
+
+[node name="Down" type="Node2D" parent="Rays"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0uhpkk600xsk"]
+
+[ext_resource type="Script" uid="uid://nnrk4hj6mlce" path="res://Assets/Globals/GlobalNames/global_names.gd" id="1_uyeyi"]
+[ext_resource type="Resource" uid="uid://2pjoxcxqxjkk" path="res://Assets/Globals/GlobalNames/AnimationNames/standard_animation_names.tres" id="2_kki8l"]
+[ext_resource type="Resource" uid="uid://cenejd38jwxk3" path="res://Assets/Globals/GlobalNames/InputNames/standard_input_names.tres" id="3_d8yh1"]
+
+[node name="GlobalNames" type="Node2D"]
+script = ExtResource("1_uyeyi")
+animations = ExtResource("2_kki8l")
+inputs = ExtResource("3_d8yh1")

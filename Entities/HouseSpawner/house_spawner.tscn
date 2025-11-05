@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ojq4l5xe2pib"]
+
+[ext_resource type="Script" uid="uid://khlp2qwdl0us" path="res://Entities/HouseSpawner/house_spawner.gd" id="1_omncj"]
+
+[node name="HouseSpawner" type="Node2D"]
+script = ExtResource("1_omncj")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=4 uid="uid://cxkp8l2y2mw4"]
+
+[ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
+[ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
+[ext_resource type="PackedScene" uid="uid://ojq4l5xe2pib" path="res://Entities/HouseSpawner/house_spawner.tscn" id="3_82fsj"]
+
+[node name="Start" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAMAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+
+[node name="HouseSpawner" parent="." node_paths=PackedStringArray("sand_tilemap") instance=ExtResource("3_82fsj")]
+sand_tilemap = NodePath("../SandTileMapLayer")
+
+[node name="Selector" parent="." node_paths=PackedStringArray("object_grid") instance=ExtResource("1_82fsj")]
+object_grid = NodePath("../ObjectGrid")
+
+[node name="ObjectGrid" type="Node2D" parent="."]
+unique_name_in_owner = true

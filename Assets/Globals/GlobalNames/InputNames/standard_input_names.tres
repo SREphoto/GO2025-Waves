@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InputNames" load_steps=2 format=3 uid="uid://cenejd38jwxk3"]
+
+[ext_resource type="Script" uid="uid://oyoqiy6xfwh2" path="res://Assets/Globals/GlobalNames/InputNames/input_names.gd" id="1_s3yb4"]
+
+[resource]
+script = ExtResource("1_s3yb4")
+metadata/_custom_type_script = "uid://oyoqiy6xfwh2"

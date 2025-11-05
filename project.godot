@@ -11,14 +11,26 @@ config_version=5
 [application]
 
 config/name="GO2025-Waves"
-run/main_scene="uid://cicjnt7omvrsv"
+run/main_scene="uid://cxkp8l2y2mw4"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalNames="*res://Assets/Globals/GlobalNames/global_names.tscn"
+GlobalConfigs="*res://Assets/Globals/GlobalConfigs/global_configs.gd"
 
 [display]
 
 window/size/viewport_width=1440
 window/size/viewport_height=810
+
+[file_customization]
+
+folder_colors={
+"res://Assets/Globals/": "green",
+"res://Assets/Globals/GlobalNames/": "green"
+}
 
 [input]
 
@@ -41,7 +53,9 @@ space={
 [layer_names]
 
 2d_physics/layer_1="World"
+2d_navigation/layer_1="Sand"
 2d_physics/layer_2="Houses"
+2d_physics/layer_3="Water"
 
 [rendering]
 
