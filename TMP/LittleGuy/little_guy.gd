@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name LittleGuy
+extends RigidBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
@@ -7,7 +7,7 @@ class_name LittleGuy
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const SPEED = 10
-const PANIC_SPEED = 20
+const PANIC_SPEED = SPEED * 2
 
 enum State { IDLE, ROAMING, PANIC }
 var current_state = State.IDLE
@@ -78,10 +78,9 @@ func set_panic_target():
 func move_toward_target(_delta, speed: float):
 	var next_position = navigation_agent.get_next_path_position()
 	var direction = (next_position - global_position).normalized()
-	if !velocity.is_zero_approx():
-		last_velocity = velocity
-	velocity = direction * speed
-	move_and_slide()
+	if !linear_velocity.is_zero_approx():
+		last_velocity = linear_velocity
+	apply_central_impulse(direction * speed)
 
 func get_random_position_in_range() -> Vector2:
 	var random_direction = Vector2.RIGHT.rotated(randf() * TAU)
@@ -107,4 +106,4 @@ func hit_by_block(direction: Vector2, force_magnitude: float):
 	start_panic(randf_range(2.0, 4.0))  # Panic for 2-4 seconds
 	
 	# Optional: apply knockback
-	velocity = direction * force_magnitude * 0.3
+	apply_central_force(direction * force_magnitude * 0.3)

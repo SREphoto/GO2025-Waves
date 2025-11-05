@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv3qps6uuw6w1"]
+[gd_scene load_steps=6 format=3 uid="uid://cv3qps6uuw6w1"]
 
 [ext_resource type="Script" uid="uid://cwec3ta8am1vr" path="res://TMP/Houses/house.gd" id="1_q7a5p"]
 [ext_resource type="Texture2D" uid="uid://dhdo30gjlucc5" path="res://TMP/Houses/houses.png" id="2_oqvp5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q7a5p"]
+load_path = "res://.godot/imported/houses.png-2a2087ea73d6bd47e5636c19a43e06b2.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_up67m"]
 radius = 7.0
@@ -20,14 +23,58 @@ texture = ExtResource("2_oqvp5")
 hframes = 20
 vframes = 2
 
+[node name="Ghosts" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ghosts"]
+self_modulate = Color(1, 1, 1, 0.47058824)
+position = Vector2(0, -16)
+texture = SubResource("CompressedTexture2D_q7a5p")
+hframes = 20
+vframes = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_up67m")
 
 [node name="PickCollider" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickCollider"]
 shape = SubResource("RectangleShape2D_q7a5p")
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="LeftRay" type="RayCast2D" parent="Rays"]
+position = Vector2(-32, 0)
+target_position = Vector2(0, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="UpRay" type="RayCast2D" parent="Rays"]
+position = Vector2(0, -32)
+rotation = 1.5707964
+target_position = Vector2(0, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="RightRay" type="RayCast2D" parent="Rays"]
+position = Vector2(32, 0)
+rotation = 3.1415927
+target_position = Vector2(0, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="DownRay" type="RayCast2D" parent="Rays"]
+position = Vector2(0, 32)
+rotation = -1.5707964
+target_position = Vector2(0, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="input_event" from="PickCollider" to="." method="_on_pick_collider_input_event"]

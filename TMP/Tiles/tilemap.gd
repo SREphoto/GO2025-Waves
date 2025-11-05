@@ -34,6 +34,7 @@ func _set_tile_data_key_array() -> void:
 	tile_data_key_array.clear()
 	for key in tile_data_dict.keys():
 		tile_data_key_array.append(key)
+	tile_data_key_array.shuffle()
 
 func get_tile_data(pos: Vector2):
 	var tile_pos = local_to_map(pos)
@@ -56,5 +57,5 @@ func _process(_delta: float) -> void:
 		#if Input.is_action_just_pressed("left_click"):
 			#set_tile_data(get_global_mouse_position(), not get_tile_data(get_global_mouse_position()))
 		if Input.is_action_just_pressed("space"):
-			var rand_tile = tile_data_key_array.pick_random()
+			var rand_tile = tile_data_key_array.pop_back()
 			set_tile_data(rand_tile, house_idx + 1)

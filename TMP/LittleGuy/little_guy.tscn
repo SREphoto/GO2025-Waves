@@ -122,8 +122,12 @@ _data = {
 &"new_animation": SubResource("Animation_p47oe")
 }
 
-[node name="LittleGuy" type="CharacterBody2D"]
+[node name="LittleGuy" type="RigidBody2D"]
 collision_layer = 4
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp_mode = 1
+linear_damp = 20.0
 script = ExtResource("1_nbkvw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
