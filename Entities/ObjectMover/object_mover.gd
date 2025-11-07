@@ -5,8 +5,9 @@ extends Node2D
 
 @onready var ghosts: Node2D = $Ghosts
 
-var object_to_move: GridObject:
+var object_to_move: MovableGridObject:
 	set = set_object_to_move
+var mouse_outside_of_object: bool = false
 
 var target_pos: Vector2
 
@@ -22,6 +23,8 @@ const CHECK_RAY = preload("uid://cf7275hbjmdnq")
 func set_object_to_move(value) -> void:
 	object_to_move = value
 	global_position = object_to_move.position
+	object_to_move.selectable.mouse_exited.connect(_on_object_to_move_mouse_exited)
+	object_to_move.selectable.mouse_entered.connect(_on_object_to_move_mouse_entered)
 	await ready
 	_create_raycasts()
 	_expand_raycasts()
@@ -67,19 +70,30 @@ func _input(_event: InputEvent) -> void:
 	if locked:
 		return
 	
-	var mouse_dir = get_global_mouse_position() - global_position
-	if abs(mouse_dir.length()) > 16:
-		var mouse_dir_angle = rad_to_deg(mouse_dir.angle())
-		if (mouse_dir_angle > 135 and mouse_dir_angle < 180) or (mouse_dir_angle < -135 and mouse_dir_angle > -180) :
-			_ghost_push("Left")
-		if mouse_dir_angle > -135 and mouse_dir_angle < -45 :
-			_ghost_push("Up")
-		if mouse_dir_angle > -45 and mouse_dir_angle < 45 :
-			_ghost_push("Right")
-		if mouse_dir_angle > 45 and mouse_dir_angle < 135 :
-			_ghost_push("Down")
+	var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
+	if mouse_outside_of_object:
+		match mouse_dir:
+			Vector2i.LEFT:
+				_ghost_push("Left")
+			Vector2i.UP:
+				_ghost_push("Up")
+			Vector2i.RIGHT:
+				_ghost_push("Right")
+			Vector2i.DOWN:
+				_ghost_push("Down")
 	else:
 		_ghost_reset()
+
+func _get_vector_cardinal_dir(vec: Vector2) -> Vector2i:
+	var dir: Vector2 = vec - (global_position + object_to_move.mid_pos)
+	if abs(dir.x) < abs(dir.y):
+		dir.x = 0
+		dir = dir.normalized()
+	else:
+		dir.y = 0
+		dir = dir.normalized()
+		
+	return dir
 
 func object_deselected() -> void:
 	locked = true
@@ -91,3 +105,9 @@ func _move_grid_object() -> void:
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
 	await tween.finished
 	queue_free()
+
+func _on_object_to_move_mouse_exited() -> void:
+	mouse_outside_of_object = true
+
+func _on_object_to_move_mouse_entered() -> void:
+	mouse_outside_of_object = false

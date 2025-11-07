@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ojq4l5xe2pib"]
+[gd_scene load_steps=3 format=3 uid="uid://ojq4l5xe2pib"]
 
 [ext_resource type="Script" uid="uid://khlp2qwdl0us" path="res://Entities/HouseSpawner/house_spawner.gd" id="1_omncj"]
+[ext_resource type="Script" uid="uid://c3sbbr8rbai44" path="res://Entities/CheckRays/check_ray.gd" id="2_o080a"]
 
 [node name="HouseSpawner" type="Node2D"]
 script = ExtResource("1_omncj")
+
+[node name="CheckRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 6
+hit_from_inside = true
+script = ExtResource("2_o080a")
+metadata/_custom_type_script = "uid://c3sbbr8rbai44"

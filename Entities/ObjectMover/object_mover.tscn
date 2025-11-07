@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgox6pb4mrk00"]
 
 [ext_resource type="Script" uid="uid://ebsyyytx7rlp" path="res://Entities/ObjectMover/object_mover.gd" id="1_457pi"]
-[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/House/houses.tres" id="2_ru6bx"]
+[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/MovableGridObject/House/houses.tres" id="2_ru6bx"]
 
 [node name="ObjectMover" type="Node2D"]
 script = ExtResource("1_457pi")

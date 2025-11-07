@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2avbu36bburo"]
 
-[ext_resource type="Script" uid="uid://b8aejd3gvq730" path="res://Entities/GridObject/House/house.gd" id="1_43mev"]
+[ext_resource type="Script" uid="uid://b8aejd3gvq730" path="res://Entities/GridObject/MovableGridObject/House/house.gd" id="1_43mev"]
 [ext_resource type="PackedScene" uid="uid://qonal3ap3hqv" path="res://Entities/Selectable/selectable.tscn" id="2_n30bu"]
-[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/House/houses.tres" id="3_4s58c"]
+[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/MovableGridObject/House/houses.tres" id="3_4s58c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s58c"]
 size = Vector2(32, 32)

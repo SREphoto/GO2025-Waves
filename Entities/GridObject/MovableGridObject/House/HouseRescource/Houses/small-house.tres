@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HouseRescource" load_steps=2 format=3 uid="uid://bhf2eld78b6wl"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/house_res.gd" id="1_tor2v"]
+
+[resource]
+script = ExtResource("1_tor2v")
+size = Array[Vector2i]([Vector2i(0, 0)])
+frames = Array[int]([0, 1, 2, 3, 4])
+metadata/_custom_type_script = "uid://bnh0p2fra6uo8"
