@@ -21,6 +21,7 @@ func _spawn_house():
 		house.set_grid_pos(rand)
 		house.res = SMALL_HOUSE
 		object_grid.add_child(house)
+		
 
 func _rand_vect_on_grid() -> Vector2i:
 	var all_pos_cop = sand_tilemap.all_pos.duplicate_deep()

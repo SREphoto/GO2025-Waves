@@ -4,6 +4,7 @@ extends Node2D
 @onready var rays: Node2D = %Rays
 
 @onready var ghosts: Node2D = $Ghosts
+@onready var ghost_object: Sprite2D = $Ghosts/GhostObject
 
 var object_to_move: MovableGridObject:
 	set = set_object_to_move
@@ -26,6 +27,9 @@ func set_object_to_move(value) -> void:
 	object_to_move.selectable.mouse_exited.connect(_on_object_to_move_mouse_exited)
 	object_to_move.selectable.mouse_entered.connect(_on_object_to_move_mouse_entered)
 	await ready
+	var house = object_to_move as House
+	if is_instance_valid(house):
+		ghost_object.frame = house.sprite_2d.frame
 	_create_raycasts()
 	_expand_raycasts()
 
