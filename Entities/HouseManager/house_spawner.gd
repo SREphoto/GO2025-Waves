@@ -23,7 +23,9 @@ func _spawn_house():
 		house.set_grid_pos(rand)
 		house.res = SMALL_HOUSE
 		object_grid.add_child(house)
-		
+		# TEMPORARY
+		house.flag.color = randi_range(0, 2)
+		house.flag.set_flag_color(house.flag.color)
 
 func _rand_vect_on_grid() -> Vector2i:
 	var all_pos_cop = sand_tilemap.all_pos.duplicate_deep()
@@ -32,6 +34,21 @@ func _rand_vect_on_grid() -> Vector2i:
 		if not _house_on_pos(pos):
 			return pos
 	return Vector2i(-100, -100)
+
+func get_houses_on_grid() -> Dictionary[Vector2i, House]:
+	var grid_vectors = sand_tilemap.all_pos
+	var house_dict : Dictionary[Vector2i, House]
+	for vector in grid_vectors:
+		if _house_on_pos(vector):
+			var house = _get_house_on_pos(vector) as House
+			house_dict.get_or_add(vector, house)
+	return house_dict
+
+func _get_house_on_pos(pos: Vector2) -> House:
+	check_ray.set_grid_pos(pos + Vector2(0.5, 0.5))
+	check_ray.force_raycast_update()
+	#Because the collider is a child of the house!
+	return check_ray.get_collider().get_parent() as House
 
 func _house_on_pos(pos: Vector2) -> bool:
 	check_ray.set_grid_pos(pos + Vector2(0.5, 0.5))

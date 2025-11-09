@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=12 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
 [ext_resource type="PackedScene" uid="uid://sdtrsmptps5x" path="res://Entities/ZoomCamera/zoom_camera.tscn" id="1_iab6p"]
 [ext_resource type="Script" uid="uid://bk8gi0hs2mbum" path="res://Stages/Start/start.gd" id="1_ukrqe"]
 [ext_resource type="Script" uid="uid://dm8gqgmifdq3x" path="res://Entities/ZoomCamera/zoom_camera.gd" id="2_fndtm"]
-[ext_resource type="PackedScene" uid="uid://ojq4l5xe2pib" path="res://Entities/HouseSpawner/house_spawner.tscn" id="3_82fsj"]
+[ext_resource type="PackedScene" uid="uid://ojq4l5xe2pib" path="res://Entities/HouseManager/house_manager.tscn" id="3_82fsj"]
 [ext_resource type="PackedScene" uid="uid://cv74d6obju0wx" path="res://Stages/Tileset/Water/water_tile_map_layer.tscn" id="4_by1kx"]
 [ext_resource type="Script" uid="uid://c0gp2tgae7p72" path="res://Stages/Tileset/Water/water_tile_map_layer.gd" id="5_nu5yo"]
-[ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="8_nu5yo"]
+[ext_resource type="PackedScene" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="8_nu5yo"]
 [ext_resource type="Script" uid="uid://c0ftynxcwywnr" path="res://Entities/WaveSpawner/wave_spawner.gd" id="9_sixc0"]
+[ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
 
 [node name="Start" type="Node2D"]
 script = ExtResource("1_ukrqe")
@@ -22,7 +23,7 @@ sand_tile_map_layer = NodePath("../SandTileMapLayer")
 [node name="WaveMarkerTileMapLayer" parent="." instance=ExtResource("8_nu5yo")]
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAMAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//7/AAAAAAEAAAD+//7/AAABAAEAAAD///7/AAABAAMAAAAAAP7/AAABAAMAAAABAP7/AAABAAMAAAACAP7/AAACAAEAAAD9/wEAAAAAAAEAAAD+/wEAAAABAAMAAAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAD9//3/AAAAAAAAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAEAAAAAAP//AAABAAMAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -30,7 +31,7 @@ tile_map_data = PackedByteArray("AAD+//7/AAAAAAMAAAD+////AAAAAAMAAAD+/wAAAAAAAAM
 script = ExtResource("5_nu5yo")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
-[node name="HouseSpawner" parent="." node_paths=PackedStringArray("sand_tilemap") instance=ExtResource("3_82fsj")]
+[node name="HouseManager" parent="." node_paths=PackedStringArray("sand_tilemap") instance=ExtResource("3_82fsj")]
 sand_tilemap = NodePath("../SandTileMapLayer")
 
 [node name="Selector" parent="." node_paths=PackedStringArray("object_grid") instance=ExtResource("1_82fsj")]
@@ -42,3 +43,6 @@ script = ExtResource("9_sixc0")
 [node name="ObjectGrid" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
+
+[node name="ScoreManager" parent="." node_paths=PackedStringArray("house_manager") instance=ExtResource("11_j28wf")]
+house_manager = NodePath("../HouseManager")

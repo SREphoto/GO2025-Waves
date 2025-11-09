@@ -1,7 +1,8 @@
 class_name House
 extends MovableGridObject
 
-@onready var flagpole: Flag = $Flagpole
+@onready var flag: Flag = $Flagpole
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var res: HouseRescource:
 	set(value):
@@ -10,4 +11,8 @@ var res: HouseRescource:
 		size = res.size
 		sprite_2d.frame = res.frames.pick_random()
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+func set_color(col : int):
+	flag.color
+
+func get_color():
+	return flag.color
