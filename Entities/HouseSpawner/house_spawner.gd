@@ -10,8 +10,10 @@ const HOUSE = preload("uid://b2avbu36bburo")
 
 const SMALL_HOUSE = preload("uid://bhf2eld78b6wl")
 
+var active: bool = true
+
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(GlobalNames.inputs.space):
+	if event.is_action_pressed(GlobalNames.inputs.space) and active:
 		_spawn_house()
 
 func _spawn_house():

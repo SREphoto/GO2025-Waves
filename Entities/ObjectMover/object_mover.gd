@@ -10,6 +10,7 @@ var object_to_move: MovableGridObject:
 	set = set_object_to_move
 var mouse_outside_of_object: bool = false
 
+var last_mouse_dir: Vector2i
 var target_pos: Vector2
 
 var shortest_rays: Dictionary[String, CheckRay] = {}
@@ -68,25 +69,28 @@ func _ghost_reset() -> void:
 
 func _tween_ghost_to_pos() -> void:
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_QUINT).tween_property(ghosts, "global_position", target_pos, 0.05)
+	tween.set_trans(Tween.TRANS_QUINT).tween_property(ghosts, "global_position", target_pos, 0.2)
 
 func _input(_event: InputEvent) -> void:
 	if locked:
 		return
 	
 	var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
-	if mouse_outside_of_object:
-		match mouse_dir:
-			Vector2i.LEFT:
-				_ghost_push("Left")
-			Vector2i.UP:
-				_ghost_push("Up")
-			Vector2i.RIGHT:
-				_ghost_push("Right")
-			Vector2i.DOWN:
-				_ghost_push("Down")
-	else:
-		_ghost_reset()
+	if last_mouse_dir != mouse_dir:
+		if mouse_outside_of_object:
+			last_mouse_dir = mouse_dir
+			match mouse_dir:
+				Vector2i.LEFT:
+					_ghost_push("Left")
+				Vector2i.UP:
+					_ghost_push("Up")
+				Vector2i.RIGHT:
+					_ghost_push("Right")
+				Vector2i.DOWN:
+					_ghost_push("Down")
+		elif last_mouse_dir != Vector2i.ZERO:
+			last_mouse_dir = Vector2i.ZERO
+			_ghost_reset()
 
 func _get_vector_cardinal_dir(vec: Vector2) -> Vector2i:
 	var dir: Vector2 = vec - (global_position + object_to_move.mid_pos)
@@ -103,10 +107,12 @@ func object_deselected() -> void:
 	locked = true
 	if target_pos != Vector2.ZERO:
 		_move_grid_object()
+	else:
+		queue_free()
 
 func _move_grid_object() -> void:
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_ELASTIC).tween_property(object_to_move, "global_position", target_pos, 0.5)
+	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
 	await tween.finished
 	queue_free()
 

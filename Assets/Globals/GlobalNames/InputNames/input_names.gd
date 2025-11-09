@@ -6,4 +6,5 @@ extends Resource
 @export var right_click	: StringName = "right_click"
 @export var space	 	: StringName = "space"
 @export var spawn 		: StringName = "spawn"
+@export var waves		: StringName = "waves"
 @export var menu 		: StringName = "menu"
