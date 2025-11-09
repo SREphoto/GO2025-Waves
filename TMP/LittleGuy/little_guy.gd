@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var little_hat: Sprite2D = $Sprite2D/LittleHat
 
 const SPEED = 10
 const PANIC_SPEED = SPEED * 2
@@ -90,8 +91,10 @@ func get_random_position_in_range() -> Vector2:
 func _animate() -> void:
 	if last_velocity.x < 0.0:
 		sprite_2d.flip_h = true
+		little_hat.flip_h = true
 	else:
 		sprite_2d.flip_h = false
+		little_hat.flip_h = false
 	
 	match current_state:
 		State.IDLE:
