@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl8c4gngtw1hd"]
+
+[ext_resource type="Texture2D" uid="uid://o1njhir3ahs2" path="res://Entities/Flag/Flagpole.png" id="1_wpnrq"]
+[ext_resource type="Script" uid="uid://by1d3djoskbof" path="res://Entities/Flag/flagpole.gd" id="2_1jp6d"]
+[ext_resource type="StyleBox" uid="uid://d2u7pjgqkhni1" path="res://Entities/Flag/Styleboxes/FlagStyleR.tres" id="3_1jp6d"]
+[ext_resource type="FontFile" uid="uid://c7ov6yg6gek8u" path="res://Entities/Flag/FlagFont.ttf" id="4_1jp6d"]
+
+[node name="Flagpole" type="Sprite2D"]
+position = Vector2(0, -9)
+texture = ExtResource("1_wpnrq")
+script = ExtResource("2_1jp6d")
+
+[node name="Flag" type="PanelContainer" parent="."]
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 13.0
+offset_bottom = 1.0
+theme_override_styles/panel = ExtResource("3_1jp6d")
+
+[node name="Label" type="Label" parent="Flag"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_1jp6d")
+theme_override_font_sizes/font_size = 8
+text = "1"
+horizontal_alignment = 1
