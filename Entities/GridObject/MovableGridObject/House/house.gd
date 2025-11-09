@@ -1,6 +1,8 @@
 class_name House
 extends MovableGridObject
 
+@onready var flagpole: Flag = $Flagpole
+
 var res: HouseRescource:
 	set(value):
 		res = value
