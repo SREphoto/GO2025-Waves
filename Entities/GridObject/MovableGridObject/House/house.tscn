@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2avbu36bburo"]
+[gd_scene load_steps=7 format=3 uid="uid://b2avbu36bburo"]
 
 [ext_resource type="Script" uid="uid://b8aejd3gvq730" path="res://Entities/GridObject/MovableGridObject/House/house.gd" id="1_43mev"]
 [ext_resource type="PackedScene" uid="uid://qonal3ap3hqv" path="res://Entities/Selectable/selectable.tscn" id="2_n30bu"]
 [ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/MovableGridObject/House/houses.tres" id="3_4s58c"]
+[ext_resource type="PackedScene" uid="uid://bl8c4gngtw1hd" path="res://Entities/Flag/flagpole.tscn" id="4_8u6ha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s58c"]
 size = Vector2(32, 32)
@@ -34,3 +35,6 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4s58c")
+
+[node name="Flagpole" parent="." instance=ExtResource("4_8u6ha")]
+position = Vector2(0, -23)
