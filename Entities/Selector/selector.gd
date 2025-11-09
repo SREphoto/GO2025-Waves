@@ -20,7 +20,7 @@ func _on_selectable_selected(grid_object: GridObject, selected: bool) -> void:
 		if not object_mover:
 			object_mover = OBJECT_MOVER.instantiate()
 			object_mover.object_to_move = grid_object
-			add_child(object_mover)
+			object_grid.add_child(object_mover)
 	else:
 		if object_mover:
 			object_mover.object_deselected()

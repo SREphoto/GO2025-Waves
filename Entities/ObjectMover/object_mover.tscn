@@ -10,7 +10,6 @@ script = ExtResource("1_457pi")
 
 [node name="GhostObject" type="Sprite2D" parent="Ghosts"]
 modulate = Color(1, 1, 1, 0.47058824)
-z_index = -4
 position = Vector2(0, -16)
 texture = ExtResource("2_ru6bx")
 hframes = 6

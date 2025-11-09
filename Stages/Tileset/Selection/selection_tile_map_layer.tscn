@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=4 uid="uid://bmh6xe7gqlu65"]
-
-[ext_resource type="TileSet" uid="uid://oa7et43meing" path="res://Stages/Tileset/Selection/selection_tileset.tres" id="1_nt3yc"]
-
-[node name="SelectionTileMapLayer" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAAAAP//AAACAAEAAAAAAP7/AAACAAAAAAD//wAAAAABAAIAAAD/////AAABAAEAAAD///7/AAABAAAAAAD+/wAAAAAAAAIAAAD+////AAAAAAEAAAD+//7/AAAAAAAAAAA=")
-tile_set = ExtResource("1_nt3yc")
