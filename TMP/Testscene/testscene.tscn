@@ -19,7 +19,7 @@ script = ExtResource("4_wgax2")
 [node name="Tilemap" type="TileMapLayer" parent="HouseGrid"]
 z_index = -1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAEAAAD+//7/AAABAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAD///7/AAABAAMAAAAAAP7/AAABAAEAAAD+/wEAAAABAAMAAAD//wEAAAABAAMAAAAAAAEAAAABAAEAAAABAP7/AAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAABAAEAAAABAAMAAAD9//7/AAAAAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD9/wEAAAAAAAEAAAD+//3/AAABAAAAAAD///3/AAABAAAAAAAAAP3/AAABAAAAAAABAP3/AAABAAAAAAD9/wIAAAAAAAIAAAD+/wIAAAABAAIAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAD9//3/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD+//7/AAABAAMAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAD///7/AAABAAEAAAAAAP7/AAABAAMAAAD+/wEAAAABAAMAAAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAP7/AAABAAMAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAABAAEAAAABAAEAAAD9//7/AAAAAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD9/wEAAAAAAAEAAAD+//3/AAABAAAAAAD///3/AAABAAAAAAAAAP3/AAABAAAAAAABAP3/AAABAAAAAAD9/wIAAAAAAAIAAAD+/wIAAAABAAIAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAD9//3/AAAAAAAAAAA=")
 tile_set = ExtResource("1_hn586")
 script = ExtResource("2_hn586")
 
@@ -39,6 +39,42 @@ position = Vector2(13, -8)
 
 [node name="LittleGuy6" parent="." instance=ExtResource("1_3um58")]
 position = Vector2(11, 7)
+
+[node name="LittleGuy7" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-28, 37)
+
+[node name="LittleGuy8" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-42, 31)
+
+[node name="LittleGuy9" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-40, 45)
+
+[node name="LittleGuy10" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-28, 22)
+
+[node name="LittleGuy11" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-15, 29)
+
+[node name="LittleGuy12" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(-17, 44)
+
+[node name="LittleGuy13" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(19, 42)
+
+[node name="LittleGuy14" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(5, 36)
+
+[node name="LittleGuy15" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(7, 50)
+
+[node name="LittleGuy16" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(19, 27)
+
+[node name="LittleGuy17" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(32, 34)
+
+[node name="LittleGuy18" parent="." instance=ExtResource("1_3um58")]
+position = Vector2(30, 49)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

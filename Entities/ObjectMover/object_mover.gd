@@ -106,7 +106,7 @@ func object_deselected() -> void:
 
 func _move_grid_object() -> void:
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
+	tween.set_trans(Tween.TRANS_ELASTIC).tween_property(object_to_move, "global_position", target_pos, 0.5)
 	await tween.finished
 	queue_free()
 
