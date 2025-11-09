@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://fwmogwn3o8ul"]
+[gd_scene load_steps=9 format=3 uid="uid://fwmogwn3o8ul"]
 
 [ext_resource type="Texture2D" uid="uid://bq58dcggow4yl" path="res://Stages/Tileset/WaveMarker/WaveMarker.png" id="1_ue5nu"]
 [ext_resource type="Texture2D" uid="uid://bs1tedbuhp1oe" path="res://Stages/Tileset/WaveMarker/WaveMarkerWavy.png" id="2_2vyo8"]
 [ext_resource type="Texture2D" uid="uid://bqt55ay6iysnd" path="res://Stages/Tileset/WaveMarker/WaveMarkerRED.png" id="3_efncp"]
+[ext_resource type="Script" uid="uid://bfd5166kwa7ll" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.gd" id="4_2vyo8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6etu"]
 texture = ExtResource("1_ue5nu")
@@ -491,3 +492,4 @@ sources/2 = SubResource("TileSetAtlasSource_sfkjc")
 [node name="WaveMarkerTileMapLayer" type="TileMapLayer"]
 z_index = -4
 tile_set = SubResource("TileSet_be7bo")
+script = ExtResource("4_2vyo8")

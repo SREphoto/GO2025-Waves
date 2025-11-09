@@ -4,7 +4,7 @@ extends Node2D
 enum GAME_STATES {SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES:
 	set = _set_game_state
-	
+
 @onready var selector: Selector = $Selector
 
 func _ready() -> void:

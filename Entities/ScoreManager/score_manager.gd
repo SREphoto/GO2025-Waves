@@ -1,9 +1,9 @@
 class_name ScoreManager
 extends Node2D
 
-@export var house_manager : HouseSpawner
+@export var house_manager : HouseManager
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	score()
 
 func score():
@@ -12,7 +12,7 @@ func score():
 	print(groups)
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
-	var visited: Dictionary = {}  # Vector2i -> bool
+	var visited: Dictionary[Vector2i, bool] = {}
 	var groups: Array[Array] = []
 	
 	for pos in house_dict.keys():

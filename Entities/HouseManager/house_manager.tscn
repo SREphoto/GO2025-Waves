@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ojq4l5xe2pib"]
 
-[ext_resource type="Script" uid="uid://khlp2qwdl0us" path="res://Entities/HouseManager/house_spawner.gd" id="1_omncj"]
+[ext_resource type="Script" uid="uid://khlp2qwdl0us" path="res://Entities/HouseManager/house_manager.gd" id="1_omncj"]
 [ext_resource type="Script" uid="uid://c3sbbr8rbai44" path="res://Entities/CheckRays/check_ray.gd" id="2_o080a"]
 
 [node name="HouseManager" type="Node2D"]

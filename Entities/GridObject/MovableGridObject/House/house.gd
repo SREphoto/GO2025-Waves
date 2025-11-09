@@ -16,3 +16,6 @@ func set_color(col : int):
 
 func get_color():
 	return flag.color
+
+func destroy():
+	queue_free()
