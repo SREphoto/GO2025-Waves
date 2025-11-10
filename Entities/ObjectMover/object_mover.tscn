@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/MovableGridObject/House/houses.tres" id="2_ru6bx"]
 
 [node name="ObjectMover" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_457pi")
 
 [node name="Ghosts" type="Node2D" parent="."]
@@ -13,7 +14,6 @@ modulate = Color(1, 1, 1, 0.47058824)
 position = Vector2(0, -16)
 texture = ExtResource("2_ru6bx")
 hframes = 6
-vframes = 2
 
 [node name="Rays" type="Node2D" parent="."]
 unique_name_in_owner = true

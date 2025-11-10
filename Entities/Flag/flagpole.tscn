@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://c7ov6yg6gek8u" path="res://Entities/Flag/FlagFont.ttf" id="4_1jp6d"]
 
 [node name="Flagpole" type="Sprite2D"]
-position = Vector2(0, -9)
 texture = ExtResource("1_wpnrq")
 script = ExtResource("2_1jp6d")
 

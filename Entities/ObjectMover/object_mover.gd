@@ -30,7 +30,10 @@ func set_object_to_move(value) -> void:
 	await ready
 	var house = object_to_move as House
 	if is_instance_valid(house):
+		ghost_object.texture = house.sprite_2d.texture
+		ghost_object.hframes = house.sprite_2d.hframes
 		ghost_object.frame = house.sprite_2d.frame
+		ghost_object.position = house.sprite_2d.position
 	_create_raycasts()
 	_expand_raycasts()
 

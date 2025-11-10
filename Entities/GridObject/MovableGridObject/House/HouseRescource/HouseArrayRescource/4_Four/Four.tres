@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=6 format=3 uid="uid://cf3qyt0uhvo80"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/house_res.gd" id="1_2s1aj"]
+[ext_resource type="Script" uid="uid://cemxtf4jcadr" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/house_array_res.gd" id="2_lqg7t"]
+[ext_resource type="Resource" uid="uid://ba8lmcf3pmvtk" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/4_Four/1_Four.tres" id="2_xr87p"]
+[ext_resource type="Resource" uid="uid://w8oo2vqudlhd" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/4_Four/2_Four.tres" id="3_btiu0"]
+[ext_resource type="Texture2D" uid="uid://e7cse4h255h" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/3_Three/houses2x2.tres" id="4_mwf7g"]
+
+[resource]
+script = ExtResource("2_lqg7t")
+houses_tile_atlas = ExtResource("4_mwf7g")
+h_frames = 7
+offset = Vector2i(16, -32)
+house_res_array = Array[ExtResource("1_2s1aj")]([ExtResource("2_xr87p"), ExtResource("3_btiu0")])
+metadata/_custom_type_script = "uid://cemxtf4jcadr"

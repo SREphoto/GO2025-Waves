@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=8 format=3 uid="uid://bbv6w31svdaei"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/house_res.gd" id="1_gijr5"]
+[ext_resource type="Script" uid="uid://cemxtf4jcadr" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/house_array_res.gd" id="2_c845g"]
+[ext_resource type="Resource" uid="uid://dfm1wyfmthv5v" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/1_One.tres" id="2_p1is2"]
+[ext_resource type="Resource" uid="uid://c4mrm8p404hyc" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/2_One.tres" id="3_lf8al"]
+[ext_resource type="Resource" uid="uid://by0qkxxrvy400" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/3_One.tres" id="4_ddsvr"]
+[ext_resource type="Resource" uid="uid://dyvmnosarsy8a" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/4_One.tres" id="5_phh8m"]
+[ext_resource type="Texture2D" uid="uid://dshls0iyeucby" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/houses1x1.tres" id="6_a1mqn"]
+
+[resource]
+script = ExtResource("2_c845g")
+houses_tile_atlas = ExtResource("6_a1mqn")
+h_frames = 5
+offset = Vector2i(0, -16)
+house_res_array = Array[ExtResource("1_gijr5")]([ExtResource("2_p1is2"), ExtResource("3_lf8al"), ExtResource("4_ddsvr"), ExtResource("5_phh8m")])
+metadata/_custom_type_script = "uid://cemxtf4jcadr"
