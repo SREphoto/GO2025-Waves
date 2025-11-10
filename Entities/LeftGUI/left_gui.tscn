@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr4k3yko610j3"]
+
+[ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="1_xsxfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sel63"]
+atlas = ExtResource("1_xsxfq")
+region = Rect2(128, 0, 32, 64)
+margin = Rect2(0, -4, 0, 0)
+
+[node name="LeftGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.26
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="M"]
+layout_mode = 2
+
+[node name="WaveBoss" type="MarginContainer" parent="M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="M/V/WaveBoss"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="M/V/WaveBoss/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="M/V/WaveBoss/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_sel63")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="M/V/WaveBoss/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 128
+text = "$300"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Points" type="MarginContainer" parent="M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="M/V/Points"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="M/V/Points/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="M/V/Points/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Round
+Points"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/Points/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/normal_font_size = 128
+text = "$100"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsNext" type="MarginContainer" parent="M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="M/V/PointsNext"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="M/V/PointsNext/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="M/V/PointsNext/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Points
+Next"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/PointsNext/Panel/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/normal_font_size = 128
+text = "$12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WavesRemaining" type="MarginContainer" parent="M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="M/V/WavesRemaining"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="M/V/WavesRemaining/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="M/V/WavesRemaining/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 128
+text = "5 "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Waves remaining"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="M/V/WavesRemaining/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 128
+text = "5 "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "House Switches"
+vertical_alignment = 1

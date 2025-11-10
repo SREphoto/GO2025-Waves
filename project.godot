@@ -35,6 +35,11 @@ folder_colors={
 "res://Assets/Globals/GlobalNames/": "green"
 }
 
+[gui]
+
+theme/custom="uid://cr714kf24h3q2"
+theme/custom_font="uid://bcpecvhk7jj24"
+
 [input]
 
 left_click={

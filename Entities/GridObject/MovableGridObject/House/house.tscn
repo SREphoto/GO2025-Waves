@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8aejd3gvq730" path="res://Entities/GridObject/MovableGridObject/House/house.gd" id="1_43mev"]
 [ext_resource type="PackedScene" uid="uid://qonal3ap3hqv" path="res://Entities/Selectable/selectable.tscn" id="2_n30bu"]
-[ext_resource type="Texture2D" uid="uid://duhn37ur3uldw" path="res://Entities/GridObject/MovableGridObject/House/houses.tres" id="3_4s58c"]
+[ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="3_8u6ha"]
 [ext_resource type="PackedScene" uid="uid://bl8c4gngtw1hd" path="res://Entities/Flag/flagpole.tscn" id="4_8u6ha"]
 
 [node name="House" type="Node2D"]
@@ -14,8 +14,8 @@ grid_object = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("3_4s58c")
-hframes = 6
+texture = ExtResource("3_8u6ha")
+hframes = 5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3

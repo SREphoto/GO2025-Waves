@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cr714kf24h3q2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lohmq"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8033249, 0.8033249, 0.8033249, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+anti_aliasing = false
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_lohmq")
+RichTextLabel/font_sizes/normal_font_size = 64
