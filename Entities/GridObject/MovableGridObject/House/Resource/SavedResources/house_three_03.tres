@@ -1,15 +1,16 @@
 [gd_resource type="Resource" script_class="HouseRescource" load_steps=3 format=3 uid="uid://dixl6nxbk3bhx"]
 
 [ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_kdj6e"]
-[ext_resource type="Texture2D" uid="uid://t4ppy1wxtxgf" path="res://Entities/GridObject/MovableGridObject/House/Houses2x2.png" id="2_kdj6e"]
+[ext_resource type="Texture2D" uid="uid://da80p8vrq1g0s" path="res://Entities/GridObject/MovableGridObject/House/Houses2x2-Front.png" id="2_kdj6e"]
 
 [resource]
 script = ExtResource("1_kdj6e")
 size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, -1)])
-sprite_offset = Vector2i(16, -32)
+sprite_offset = Vector2i(16, -36)
 sprite_sheet = ExtResource("2_kdj6e")
 hframes = 7
 frame = 2
+frame_back = true
 sel_poly = PackedVector2Array(-16, 16, 48, 16, 48, -16, 16, -16, 16, -48, -16, -48)
 stat_poly = PackedVector2Array(-9, 12, 41, 12, 45, 8, 45, 3, 41, -1, 13, -1, 13, -30, 9, -33, -9, -33, -13, -29, -13, -24, -13, -20, -13, 8)
 flag_pos = Vector2i(0, -15)

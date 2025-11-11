@@ -15,7 +15,7 @@ func on_object_move_finished() -> void:
 func score():
 	var house_grid = house_manager.get_houses_on_grid()
 	var groups = _group_houses_by_color(house_grid)
-	print(groups)
+	_set_flag_values(groups)
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}
@@ -71,3 +71,8 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 			groups.append(group)
 	
 	return groups
+
+func _set_flag_values(groups: Array[Array]) -> void:
+	for group in groups:
+		for house : House in group:
+			house.flag.current_value = group.size()

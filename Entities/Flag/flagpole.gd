@@ -6,7 +6,10 @@ extends Node2D
 
 @export var color : COLORS = COLORS.RED
 @export var standard_value : int = 1
-@export var current_value : int = 1
+@export var current_value : int = 1:
+	set(value):
+		current_value = value
+		set_flag_value(str(current_value))
 
 enum COLORS {
 	RED,

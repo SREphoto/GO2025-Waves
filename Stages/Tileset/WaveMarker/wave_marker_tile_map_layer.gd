@@ -1,3 +1,4 @@
+@tool
 class_name WaveMarkerTileMap
 extends TileMapLayer
 
@@ -22,16 +23,16 @@ func _set_tilemap(dir: WaveManager.DIRECTIONS) -> void:
 					wave_manager.DIRECTIONS.LEFT:
 						row = grid_bounds.x + depth
 					wave_manager.DIRECTIONS.RIGHT:
-						row = grid_bounds.z - depth
-				for col in range(grid_bounds.y, grid_bounds.w + 1):
+						row = grid_bounds.z - 1 - depth
+				for col in range(grid_bounds.y, grid_bounds.w):
 					set_cell(Vector2i(row, col), 2, Vector2(0, 0))
 		_:
-			for row in range(grid_bounds.x, grid_bounds.z + 1):
+			for row in range(grid_bounds.x, grid_bounds.z):
 				for depth in range(wave_manager.depth):
 					var col: int
 					match dir:
 						wave_manager.DIRECTIONS.UP:
-							col = grid_bounds.w - depth
+							col = grid_bounds.w - 1 - depth
 						wave_manager.DIRECTIONS.DOWN:
 							col = grid_bounds.y + depth
 					set_cell(Vector2i(row, col), 2, Vector2(0, 0))

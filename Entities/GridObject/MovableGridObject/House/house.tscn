@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2avbu36bburo"]
+[gd_scene load_steps=5 format=3 uid="uid://b2avbu36bburo"]
 
 [ext_resource type="Script" uid="uid://b8aejd3gvq730" path="res://Entities/GridObject/MovableGridObject/House/house.gd" id="1_43mev"]
 [ext_resource type="PackedScene" uid="uid://qonal3ap3hqv" path="res://Entities/Selectable/selectable.tscn" id="2_n30bu"]
+[ext_resource type="Texture2D" uid="uid://dvbbv0m712xyt" path="res://Entities/GridObject/MovableGridObject/House/Houses2x2-Back.png" id="3_8u6ha"]
 [ext_resource type="PackedScene" uid="uid://bl8c4gngtw1hd" path="res://Entities/Flag/flagpole.tscn" id="4_8u6ha"]
 
-[node name="House" type="Node2D"]
+[node name="House" type="Node2D" groups=["navigation"]]
 y_sort_enabled = true
 script = ExtResource("1_43mev")
 size = Array[Vector2i]([Vector2i(0, 0)])
@@ -15,16 +16,20 @@ grid_object = NodePath("..")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Selectable"]
 
 [node name="SpritesFront" type="Node2D" parent="."]
+position = Vector2(0, 4)
 
 [node name="Front" type="Sprite2D" parent="SpritesFront"]
 position = Vector2(0, -16)
 hframes = 5
 
 [node name="SpritesBack" type="Node2D" parent="."]
+position = Vector2(0, -25)
 
 [node name="Back" type="Sprite2D" parent="SpritesBack"]
-position = Vector2(0, -16)
-hframes = 5
+visible = false
+position = Vector2(16, -7)
+texture = ExtResource("3_8u6ha")
+hframes = 7
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3

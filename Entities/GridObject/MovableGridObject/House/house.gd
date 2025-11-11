@@ -3,7 +3,8 @@ class_name House
 extends MovableGridObject
 
 @onready var flag: Flag = $Flagpole
-@onready var sprite_2d: Sprite2D = $SpritesFront/Front
+@onready var front: Sprite2D = $SpritesFront/Front
+@onready var back: Sprite2D = $SpritesBack/Back
 
 const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 
@@ -16,12 +17,18 @@ const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 	set(value):
 		res = value
 		if res:
-			await ready
+			if not Engine.is_editor_hint():
+				await ready
 			size = res.size
-			sprite_2d.position = res.sprite_offset
-			sprite_2d.texture = res.sprite_sheet
-			sprite_2d.hframes = res.hframes
-			sprite_2d.frame = res.frame
+			front.position = res.sprite_offset
+			front.texture = res.sprite_sheet
+			front.hframes = res.hframes
+			front.frame = res.frame
+			if res.frame_back:
+				back.visible = true
+				back.frame = res.frame
+			else:
+				back.visible = false
 			sel_coll_poly.polygon = res.sel_poly
 			stat_coll_poly.polygon = res.stat_poly
 			flag.position =  res.flag_pos

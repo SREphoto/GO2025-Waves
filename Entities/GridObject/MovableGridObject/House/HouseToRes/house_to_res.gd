@@ -26,10 +26,10 @@ func _save() -> void:
 		dir.remove(file_name)
 	
 	res.size = house.size
-	res.sprite_offset = house.sprite_2d.position
-	res.sprite_sheet = house.sprite_2d.texture
-	res.hframes = house.sprite_2d.hframes
-	res.frame = house.sprite_2d.frame
+	res.sprite_offset = house.front.position
+	res.sprite_sheet = house.front.texture
+	res.hframes = house.front.hframes
+	res.frame = house.front.frame
 	res.sel_poly = house.sel_coll_poly.polygon
 	res.stat_poly = house.stat_coll_poly.polygon
 	res.flag_pos = house.flag.position

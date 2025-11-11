@@ -29,4 +29,7 @@ func set_all_pos() -> void:
 			all_pos.append(Vector2i(row, col))
 
 func get_grid_bounds() -> Vector4i:
-	return Vector4i(floori(-float(grid_size.x)/2.0), floori(-float(grid_size.y)/2.0), floori(float(grid_size.x)/2.0) - 1, floori(float(grid_size.y)/2.0) - 1)
+	return Vector4i(floori(-float(grid_size.x)/2.0), floori(-float(grid_size.y)/2.0), floori(float(grid_size.x)/2.0), floori(float(grid_size.y)/2.0))
+
+func _test() -> void:
+	pass

@@ -23,35 +23,35 @@ func _ready():
 	start_panic(randf_range(1.0, 3.0))
 
 func _physics_process(delta):
-	position = get_global_mouse_position()
-	#match current_state:
-		#State.IDLE:
-			#idle_timer -= delta
-			#if idle_timer <= 0:
-				#start_roaming()
-		#
-		#State.ROAMING:
-			#if navigation_agent.is_navigation_finished():
-				#start_idle()
-			#else:
-				#move_toward_target(delta, SPEED)
-		#
-		#State.PANIC:
-			#panic_timer -= delta
-			#panic_retarget_timer -= delta
-			#
-			## Check if panic is over
-			#if panic_timer <= 0:
-				#start_idle()
-			#else:
-				## Rapidly change targets while panicking
-				#if panic_retarget_timer <= 0 or navigation_agent.is_navigation_finished():
-					#set_panic_target()
-					#panic_retarget_timer = randf_range(0.3, 0.8)
-				#
-				#move_toward_target(delta, PANIC_SPEED)
-	#
-	#_animate()
+	#position = get_global_mouse_position()
+	match current_state:
+		State.IDLE:
+			idle_timer -= delta
+			if idle_timer <= 0:
+				start_roaming()
+		
+		State.ROAMING:
+			if navigation_agent.is_navigation_finished():
+				start_idle()
+			else:
+				move_toward_target(delta, SPEED)
+		
+		State.PANIC:
+			panic_timer -= delta
+			panic_retarget_timer -= delta
+			
+			# Check if panic is over
+			if panic_timer <= 0:
+				start_idle()
+			else:
+				# Rapidly change targets while panicking
+				if panic_retarget_timer <= 0 or navigation_agent.is_navigation_finished():
+					set_panic_target()
+					panic_retarget_timer = randf_range(0.3, 0.8)
+				
+				move_toward_target(delta, PANIC_SPEED)
+	
+	_animate()
 
 func start_roaming():
 	navigation_agent.path_desired_distance = randf() * 1.5 + 0.5

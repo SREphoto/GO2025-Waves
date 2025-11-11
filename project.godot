@@ -32,7 +32,8 @@ window/stretch/mode="viewport"
 
 folder_colors={
 "res://Assets/Globals/": "green",
-"res://Assets/Globals/GlobalNames/": "green"
+"res://Assets/Globals/GlobalNames/": "green",
+"res://TMP/": "purple"
 }
 
 [gui]
