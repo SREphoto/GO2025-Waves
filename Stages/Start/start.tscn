@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=13 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://c0ftynxcwywnr" path="res://Entities/WaveManager/wave_manager.gd" id="9_sixc0"]
 [ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
 [ext_resource type="PackedScene" uid="uid://cr4k3yko610j3" path="res://Entities/LeftGUI/left_gui.tscn" id="12_2kib8"]
-[ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="13_da7wy"]
 
 [node name="Start" type="Node2D"]
 script = ExtResource("1_ukrqe")
@@ -27,7 +26,7 @@ wave_manager = NodePath("../WaveManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAEAAAAAAP//AAABAAMAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAEAAAAAAP//AAABAAMAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAMAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -35,9 +34,8 @@ tile_map_data = PackedByteArray("AAD5//v/AAAAAAMAAAD5//z/AAAAAAMAAAD5//3/AAAAAAM
 script = ExtResource("5_nu5yo")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
-[node name="HouseManager" parent="." node_paths=PackedStringArray("sand_tilemap", "score_manager") instance=ExtResource("3_82fsj")]
+[node name="HouseManager" parent="." node_paths=PackedStringArray("sand_tilemap") instance=ExtResource("3_82fsj")]
 sand_tilemap = NodePath("../SandTileMapLayer")
-score_manager = NodePath("../ScoreManager")
 
 [node name="Selector" parent="." node_paths=PackedStringArray("object_grid", "score_manager") instance=ExtResource("1_82fsj")]
 object_grid = NodePath("../ObjectGrid")
@@ -51,8 +49,6 @@ wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 [node name="ObjectGrid" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
-
-[node name="LittleGuy" parent="ObjectGrid" instance=ExtResource("13_da7wy")]
 
 [node name="ScoreManager" parent="." node_paths=PackedStringArray("house_manager") instance=ExtResource("11_j28wf")]
 house_manager = NodePath("../HouseManager")

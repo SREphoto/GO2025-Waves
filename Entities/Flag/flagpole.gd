@@ -1,5 +1,5 @@
-extends Sprite2D
 class_name Flag
+extends Node2D
 
 @onready var flag: PanelContainer = $Sprite/Flag
 @onready var label: Label = $Sprite/Flag/Label
