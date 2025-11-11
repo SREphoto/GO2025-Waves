@@ -22,6 +22,8 @@ const DIR_NAMES: Dictionary[Vector2i, String] = {Vector2i.LEFT : "Left", Vector2
 
 const CHECK_RAY = preload("uid://cf7275hbjmdnq")
 
+signal object_move_finished()
+
 func set_object_to_move(value) -> void:
 	object_to_move = value
 	global_position = object_to_move.position
@@ -117,6 +119,7 @@ func _move_grid_object() -> void:
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
 	await tween.finished
+	object_move_finished.emit()
 	queue_free()
 
 func _on_object_to_move_mouse_exited() -> void:

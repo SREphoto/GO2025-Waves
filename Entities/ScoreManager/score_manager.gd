@@ -3,13 +3,16 @@ extends Node2D
 
 @export var house_manager : HouseManager
 
-func _process(_delta: float) -> void:
+func on_house_spawned() -> void:
+	score()
+
+func on_object_move_finished() -> void:
 	score()
 
 func score():
 	var house_grid = house_manager.get_houses_on_grid()
 	var groups = _group_houses_by_color(house_grid)
-	#print(groups)
+	print(groups)
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}

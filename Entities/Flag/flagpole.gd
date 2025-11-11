@@ -1,8 +1,8 @@
 extends Sprite2D
 class_name Flag
 
-@onready var flag: PanelContainer = $Flag
-@onready var label: Label = $Flag/Label
+@onready var flag: PanelContainer = $Sprite/Flag
+@onready var label: Label = $Sprite/Flag/Label
 
 @export var color : COLORS = COLORS.RED
 @export var standard_value : int = 1
