@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=7 format=3 uid="uid://c3lrp7xjq6rsk"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_i1nwa"]
+[ext_resource type="Resource" uid="uid://p6oqlvse6tss" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_01.tres" id="2_2n3ec"]
+[ext_resource type="Script" uid="uid://cemxtf4jcadr" path="res://Entities/GridObject/MovableGridObject/House/Resource/Array/house_array_res.gd" id="2_qroy2"]
+[ext_resource type="Resource" uid="uid://ntu1nhh1ggm8" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_02.tres" id="3_7x3lr"]
+[ext_resource type="Resource" uid="uid://rlyy3nmn44u" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_03.tres" id="4_1so70"]
+[ext_resource type="Resource" uid="uid://mngysai4e7lr" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_04.tres" id="5_6tdec"]
+
+[resource]
+script = ExtResource("2_qroy2")
+house_res_array = Array[ExtResource("1_i1nwa")]([ExtResource("2_2n3ec"), ExtResource("3_7x3lr"), ExtResource("4_1so70"), ExtResource("5_6tdec")])
+metadata/_custom_type_script = "uid://cemxtf4jcadr"

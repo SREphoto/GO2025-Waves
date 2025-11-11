@@ -10,10 +10,10 @@ enum HOUSE_SIZES{ONE = 1, TWO = 2, THREE = 3, FOUR = 4}
 
 const HOUSE = preload("uid://b2avbu36bburo")
 
-const ONE: HouseArrayRescource = preload("uid://bbv6w31svdaei")
-const TWO: HouseArrayRescource = preload("uid://eju5yj8xtp40")
-const THREE: HouseArrayRescource = preload("uid://684uhs5wswfg")
-const FOUR: HouseArrayRescource = preload("uid://cf3qyt0uhvo80")
+const HOUSE_ARRAY_RES_ONE: HouseArrayRescource = preload("uid://c3lrp7xjq6rsk")
+const HOUSE_ARRAY_RES_TWO: HouseArrayRescource = preload("uid://ttgp1nmc6xx3")
+const HOUSE_ARRAY_RES_THREE: HouseArrayRescource = preload("uid://ccydnracsqhx3")
+const HOUSE_ARRAY_RES_FOUR: HouseArrayRescource = preload("uid://4ifk5bscputi")
 
 var active: bool = true
 
@@ -25,11 +25,13 @@ var house_size_to_grid_size: Dictionary = {
 	}
 
 var house_size_dict: Dictionary[HOUSE_SIZES, HouseArrayRescource] = {
-	HOUSE_SIZES.ONE : ONE,
-	HOUSE_SIZES.TWO : TWO,
-	HOUSE_SIZES.THREE : THREE,
-	HOUSE_SIZES.FOUR: FOUR
+	HOUSE_SIZES.ONE : HOUSE_ARRAY_RES_ONE,
+	HOUSE_SIZES.TWO : HOUSE_ARRAY_RES_TWO,
+	HOUSE_SIZES.THREE : HOUSE_ARRAY_RES_THREE,
+	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR
 	}
+
+signal house_spawned()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.space) and active:
@@ -57,17 +59,19 @@ func _spawn_house():
 		house_res = house_size_array.house_res_array.pick_random()
 		rand = _check_free_grid_pos_for_size(house_res.size)
 	
-	
 	var house: House = HOUSE.instantiate()
 	house.set_grid_pos(rand)
-	object_grid.add_child(house)
-	house.sprite_2d.texture = house_size_array.houses_tile_atlas
-	house.sprite_2d.hframes = house_size_array.h_frames
-	house.sprite_2d.position = house_size_array.offset
 	house.res = house_res
+	object_grid.add_child(house)
 	# TEMPORARY
 	house.flag.color = randi_range(0, 2)
 	house.flag.set_flag_color(house.flag.color)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	house_spawned.emit()
+	
 
 func _check_free_grid_pos_for_size(house_res_size: Array[Vector2i]) -> Vector2i:
 	var all_pos_cop = sand_tilemap.all_pos.duplicate_deep()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgox6pb4mrk00"]
 
 [ext_resource type="Script" uid="uid://ebsyyytx7rlp" path="res://Entities/ObjectMover/object_mover.gd" id="1_457pi"]
-[ext_resource type="Texture2D" uid="uid://dshls0iyeucby" path="res://Entities/GridObject/MovableGridObject/House/HouseRescource/HouseArrayRescource/1_One/houses1x1.tres" id="2_ru6bx"]
+[ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="2_ru6bx"]
 
 [node name="ObjectMover" type="Node2D"]
 y_sort_enabled = true

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=5 format=3 uid="uid://4ifk5bscputi"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_nml8q"]
+[ext_resource type="Script" uid="uid://cemxtf4jcadr" path="res://Entities/GridObject/MovableGridObject/House/Resource/Array/house_array_res.gd" id="2_4jal2"]
+[ext_resource type="Resource" uid="uid://ckgvlls4pbbqv" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_four_01.tres" id="2_vs8hi"]
+[ext_resource type="Resource" uid="uid://cehcpqgiphkn6" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_four_02.tres" id="3_5wb0p"]
+
+[resource]
+script = ExtResource("2_4jal2")
+house_res_array = Array[ExtResource("1_nml8q")]([ExtResource("2_vs8hi"), ExtResource("3_5wb0p")])
+metadata/_custom_type_script = "uid://cemxtf4jcadr"

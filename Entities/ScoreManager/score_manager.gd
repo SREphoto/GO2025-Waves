@@ -3,6 +3,9 @@ extends Node2D
 
 @export var house_manager : HouseManager
 
+func _ready() -> void:
+	house_manager.house_spawned.connect(on_house_spawned)
+
 func on_house_spawned() -> void:
 	score()
 

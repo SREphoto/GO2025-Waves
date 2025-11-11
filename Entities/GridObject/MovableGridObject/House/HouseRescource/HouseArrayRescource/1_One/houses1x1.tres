@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dshls0iyeucby"]
-
-[ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="1_26ttn"]
-
-[resource]
-atlas = ExtResource("1_26ttn")
-region = Rect2(0, 0, 160, 64)
