@@ -38,7 +38,6 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var groups: Array[Array] = []
 	
 	var danger_cells : Array[Vector2i] = wave_manager.wave_marker_tile_map_layer.get_danger_cells()
-	print(danger_cells)
 	
 	for pos in house_dict.keys():
 		var house: House = house_dict[pos]

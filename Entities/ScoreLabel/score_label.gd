@@ -7,8 +7,11 @@ var score: int:
 		score = value
 		_set_label(score)
 
+func _ready() -> void:
+	score = reset_score
+
 func _set_label(score: int) -> void:
 	if score > 0:
-		text = '$' + str(score)
+		text = str(score)
 	else:
 		text = '-'
