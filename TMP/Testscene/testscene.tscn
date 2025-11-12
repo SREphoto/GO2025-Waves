@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cicjnt7omvrsv"]
+[gd_scene load_steps=6 format=4 uid="uid://cicjnt7omvrsv"]
 
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="1_3um58"]
 [ext_resource type="TileSet" uid="uid://djn7q4wyqrl2j" path="res://TMP/Tiles/tileset_sand.tres" id="1_hn586"]
 [ext_resource type="Script" uid="uid://csjhgumh28tox" path="res://TMP/Tiles/tilemap.gd" id="2_hn586"]
 [ext_resource type="Script" uid="uid://bv1uff8omox8w" path="res://TMP/Houses/Grid/house_grid.gd" id="4_wgax2"]
+[ext_resource type="PackedScene" uid="uid://b7u082mj0h155" path="res://TMP/Wave/wave_row.tscn" id="5_ba3v1"]
 
 [node name="Testscene" type="Node2D"]
 y_sort_enabled = true
@@ -19,7 +20,7 @@ script = ExtResource("4_wgax2")
 [node name="Tilemap" type="TileMapLayer" parent="HouseGrid"]
 z_index = -1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD+//7/AAABAAMAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAD///7/AAABAAEAAAAAAP7/AAABAAMAAAD+/wEAAAABAAMAAAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAP7/AAABAAMAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAABAAEAAAABAAEAAAD9//7/AAAAAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD9/wEAAAAAAAEAAAD+//3/AAABAAAAAAD///3/AAABAAAAAAAAAP3/AAABAAAAAAABAP3/AAABAAAAAAD9/wIAAAAAAAIAAAD+/wIAAAABAAIAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAD9//3/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD+//7/AAABAAMAAAD+////AAABAAEAAAD+/wAAAAABAAEAAAD///7/AAABAAEAAAAAAP7/AAABAAMAAAD+/wEAAAABAAMAAAD//wEAAAABAAMAAAAAAAEAAAABAAMAAAABAP7/AAABAAMAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAMAAAD9//7/AAAAAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD9/wEAAAAAAAEAAAD+//3/AAABAAAAAAD///3/AAABAAAAAAAAAP3/AAABAAAAAAABAP3/AAABAAAAAAD9/wIAAAAAAAIAAAD+/wIAAAABAAIAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAD9//3/AAAAAAAAAAA=")
 tile_set = ExtResource("1_hn586")
 script = ExtResource("2_hn586")
 
@@ -78,3 +79,23 @@ position = Vector2(30, 49)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+
+[node name="WaveRows" type="Node2D" parent="."]
+
+[node name="WaveRow0" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, -80)
+
+[node name="WaveRow1" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, -48)
+
+[node name="WaveRow2" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, -16)
+
+[node name="WaveRow3" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, 16)
+
+[node name="WaveRow4" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, 48)
+
+[node name="WaveRow5" parent="WaveRows" instance=ExtResource("5_ba3v1")]
+position = Vector2(-80, 80)

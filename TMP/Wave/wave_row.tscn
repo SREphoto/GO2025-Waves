@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7u082mj0h155"]
+
+[ext_resource type="Script" uid="uid://h0767epawyac" path="res://TMP/Wave/wave_row.gd" id="1_b4e5m"]
+[ext_resource type="PackedScene" uid="uid://dcxb4urngk4lc" path="res://TMP/Wave/wave_tile.tscn" id="1_pty62"]
+
+[node name="WaveRow" type="Node2D"]
+script = ExtResource("1_b4e5m")
+
+[node name="DoubleTile" parent="." instance=ExtResource("1_pty62")]
+animation = &"Water"
+
+[node name="FirstTile" parent="." instance=ExtResource("1_pty62")]
+animation = &"Water"
+offset = Vector2(32, 0)
+
+[node name="SecondTile" parent="." instance=ExtResource("1_pty62")]
+animation = &"Water"
+offset = Vector2(64, 0)
+
+[node name="ThirdTile" parent="." instance=ExtResource("1_pty62")]
+position = Vector2(96, 0)
+animation = &"Water"
+
+[node name="Timer" type="Timer" parent="."]

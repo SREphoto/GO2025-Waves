@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwk8jdehquus4"]
+
+[ext_resource type="Script" uid="uid://bte3n5rqfrvu3" path="res://TMP/Wave/wave_displayer.gd" id="1_63o3a"]
+
+[node name="WaveDisplayer" type="Node2D"]
+script = ExtResource("1_63o3a")
+
+[node name="WaveRows" type="Node2D" parent="."]
