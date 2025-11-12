@@ -53,4 +53,8 @@ func _state_send() -> void:
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):
 			house_manager.get_house_on_pos(pos).destroy()
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
 	send_wave.emit()
