@@ -4,6 +4,9 @@ extends Node2D
 @export var house_manager : HouseManager
 @export var wave_manager: WaveManager
 
+var houses_scoring_dict: Dictionary[House, ScoringResource]
+
+var house_grid: Dictionary[Vector2i, House]
 var biggest_color_groups: Array[Array] = []
 
 signal score_changed()
@@ -26,8 +29,9 @@ func on_object_move_finished() -> void:
 	score()
 
 func score():
-	var house_grid = house_manager.get_houses_on_grid()
+	house_grid = house_manager.get_houses_on_grid()
 	var groups = _group_houses_by_color(house_grid)
+	_set_house_scoring_dict(groups)
 	_set_flag_values(groups)
 	biggest_color_groups = _get_biggest_color_groups(groups)
 	_set_falg_modulate()
@@ -93,6 +97,41 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	
 	return groups
 
+#@export var color: COLORS
+#@export var group: Array[Vector2i]
+#@export var house_size: int
+#@export var danger: bool
+func _set_house_scoring_dict(groups: Array[Array]) -> void:
+	houses_scoring_dict = {}
+	var danger_cells : Array[Vector2i] = wave_manager.wave_marker_tile_map_layer.get_danger_cells()
+	
+	for pos in house_grid.keys():
+		var house: House = house_grid[pos]
+		
+		var scoring_res: ScoringResource = ScoringResource.new()
+		scoring_res = houses_scoring_dict.get_or_add(house, scoring_res)
+		
+		scoring_res.color = house.get_color()
+		scoring_res.size.append(pos)
+		
+		if danger_cells.has(pos):
+			scoring_res.danger = true
+
+func _group_houses_by_color_new() -> void:
+	for house in houses_scoring_dict.keys():
+		for pos in houses_scoring_dict[house].size:
+			var neighbors = [
+				pos + Vector2i(1, 0),   # right
+				pos + Vector2i(-1, 0),  # left
+				pos + Vector2i(0, 1),   # down
+				pos + Vector2i(0, -1)   # up
+			]
+			for neighbor in neighbors:
+				var neighbor_house: House = house_grid.get(pos) as House
+				if not neighbor_house or neighbor_house == house:
+					continue
+				
+
 func _get_biggest_color_groups(groups: Array[Array]) -> Array[Array]:
 	var biggest_groups: Array[Array] = []
 	for group: Array[House] in groups:
@@ -112,6 +151,10 @@ func _color_group_in_groups(groups: Array[Array], color: int) -> Array[House]:
 	return []
 
 func _set_flag_values(groups: Array[Array]) -> void:
+	for house : House in house_grid.values():
+		house.flag.current_value = 0
+		house.flag.set_flag_opacity(false)
+	
 	for group in groups:
 		for house : House in group:
 			house.flag.current_value = group.size()

@@ -9,7 +9,12 @@ extends Node2D
 @export var current_value : int = 1:
 	set(value):
 		current_value = value
-		set_flag_value(str(current_value))
+		var value_str: String
+		if value > 0:
+			value_str = str(current_value)
+		else:
+			value_str = '-'
+		set_flag_value(value_str)
 
 enum COLORS {
 	RED,
