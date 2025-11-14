@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://da6w2wbihv15v"]
+
+[ext_resource type="Script" uid="uid://c0ftynxcwywnr" path="res://Entities/WaveManager/wave_manager.gd" id="1_nojun"]
+[ext_resource type="PackedScene" uid="uid://bwrpuiw6tamaf" path="res://Entities/WaveManager/Wave/all_waves_one_side.tscn" id="2_klap7"]
+
+[node name="WaveManager" type="Node2D"]
+script = ExtResource("1_nojun")
+
+[node name="AllWavesLeft" parent="." instance=ExtResource("2_klap7")]
+
+[node name="AllWavesUp" parent="." instance=ExtResource("2_klap7")]
+rotation = -1.5707964
+
+[node name="AllWavesRight" parent="." instance=ExtResource("2_klap7")]
+rotation = 3.1415927
+
+[node name="AllWavesDown" parent="." instance=ExtResource("2_klap7")]
+rotation = 1.5707964

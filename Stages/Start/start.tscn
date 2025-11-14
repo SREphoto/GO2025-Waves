@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=17 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
@@ -10,10 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://cv74d6obju0wx" path="res://Stages/Tileset/Water/water_tile_map_layer.tscn" id="4_by1kx"]
 [ext_resource type="Script" uid="uid://c0gp2tgae7p72" path="res://Stages/Tileset/Water/water_tile_map_layer.gd" id="5_nu5yo"]
 [ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="8_nu5yo"]
-[ext_resource type="Script" uid="uid://c0ftynxcwywnr" path="res://Entities/WaveManager/wave_manager.gd" id="9_sixc0"]
+[ext_resource type="PackedScene" uid="uid://da6w2wbihv15v" path="res://Entities/WaveManager/wave_manager.tscn" id="11_1sd34"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="11_da7wy"]
 [ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
 [ext_resource type="PackedScene" uid="uid://hcvs21v24lv8" path="res://Entities/NavigationRegion/navigation_region.tscn" id="14_vi0pu"]
+[ext_resource type="Texture2D" uid="uid://devg5a33nhxel" path="res://icon.svg" id="14_wa302"]
 [ext_resource type="PackedScene" uid="uid://c5tubgyxsf3es" path="res://Entities/UI/ui.tscn" id="16_wa302"]
 
 [node name="Start" type="Node2D"]
@@ -33,7 +34,7 @@ wave_manager = NodePath("../WaveManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAEAAAAAAP//AAABAAMAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAMAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAEAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAABAP//AAABAAMAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -49,8 +50,7 @@ object_grid = NodePath("../ObjectGrid")
 score_manager = NodePath("../ScoreManager")
 navigation_region = NodePath("../NavigationRegion")
 
-[node name="WaveManager" type="Node2D" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer")]
-script = ExtResource("9_sixc0")
+[node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer") instance=ExtResource("11_1sd34")]
 house_manager = NodePath("../HouseManager")
 wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 
@@ -95,6 +95,8 @@ house_manager = NodePath("../HouseManager")
 wave_manager = NodePath("../WaveManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.09375, 0.09375)
+texture = ExtResource("14_wa302")
 
 [node name="NavigationRegion" parent="." node_paths=PackedStringArray("house_manager", "sand_tile_map_layer", "wave_manager") instance=ExtResource("14_vi0pu")]
 house_manager = NodePath("../HouseManager")

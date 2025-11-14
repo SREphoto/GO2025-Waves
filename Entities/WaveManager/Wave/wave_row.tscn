@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7u082mj0h155"]
 
-[ext_resource type="Script" uid="uid://h0767epawyac" path="res://TMP/Wave/wave_row.gd" id="1_b4e5m"]
-[ext_resource type="PackedScene" uid="uid://dcxb4urngk4lc" path="res://TMP/Wave/wave_tile.tscn" id="1_pty62"]
+[ext_resource type="Script" uid="uid://h0767epawyac" path="res://Entities/WaveManager/Wave/wave_row.gd" id="1_b4e5m"]
+[ext_resource type="PackedScene" uid="uid://dcxb4urngk4lc" path="res://Entities/WaveManager/Wave/wave_tile.tscn" id="1_pty62"]
 
 [node name="WaveRow" type="Node2D"]
 script = ExtResource("1_b4e5m")

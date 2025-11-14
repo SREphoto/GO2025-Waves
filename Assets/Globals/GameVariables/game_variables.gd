@@ -39,6 +39,11 @@ func on_wave_sent() -> void:
 	if remaining_waves <= 0:
 		next_game()
 	values_changed.emit()
+	
+	_prepare_new_wave()
+
+func _prepare_new_wave():
+	remaining_time = wave_time
 
 func on_score_changed() -> void:
 	var points: int = 0
@@ -48,6 +53,7 @@ func on_score_changed() -> void:
 	values_changed.emit()
 
 func _on_second_passed() -> void:
+	return
 	remaining_time -= 1
 	values_changed.emit()
 	if remaining_time < 0:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=121 format=3 uid="uid://dcxb4urngk4lc"]
 
-[ext_resource type="Texture2D" uid="uid://b7jumfb56xuvh" path="res://TMP/Wave/wave.png" id="1_3s8q0"]
+[ext_resource type="Texture2D" uid="uid://b7jumfb56xuvh" path="res://Entities/WaveManager/Wave/wave.png" id="1_3s8q0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ouc6"]
 atlas = ExtResource("1_3s8q0")

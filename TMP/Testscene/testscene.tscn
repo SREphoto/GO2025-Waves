@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://djn7q4wyqrl2j" path="res://TMP/Tiles/tileset_sand.tres" id="1_hn586"]
 [ext_resource type="Script" uid="uid://csjhgumh28tox" path="res://TMP/Tiles/tilemap.gd" id="2_hn586"]
 [ext_resource type="Script" uid="uid://bv1uff8omox8w" path="res://TMP/Houses/Grid/house_grid.gd" id="4_wgax2"]
-[ext_resource type="PackedScene" uid="uid://b7u082mj0h155" path="res://TMP/Wave/wave_row.tscn" id="5_ba3v1"]
+[ext_resource type="PackedScene" uid="uid://b7u082mj0h155" path="res://Entities/WaveManager/Wave/wave_row.tscn" id="5_ba3v1"]
 
 [node name="Testscene" type="Node2D"]
 y_sort_enabled = true

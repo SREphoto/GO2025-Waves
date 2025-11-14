@@ -19,8 +19,6 @@ func _ready() -> void:
 	first_tile.visible = false
 	second_tile.visible = false
 	third_tile.visible = false
-	
-	start_wave()
 
 func start_wave():
 	await _wave_in()

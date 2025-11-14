@@ -4,6 +4,11 @@ extends Node2D
 @export var house_manager: HouseManager
 @export var wave_marker_tile_map_layer: WaveMarkerTileMap
 
+@onready var wave_left: Node2D = $AllWavesLeft
+@onready var wave_up: Node2D = $AllWavesUp
+@onready var wave_right: Node2D = $AllWavesRight
+@onready var wave_down: Node2D = $AllWavesDown
+
 enum STATES {MARK, SEND}
 var state: STATES = STATES.MARK
 
@@ -12,6 +17,7 @@ var directions: Array[DIRECTIONS]
 var last_dir: DIRECTIONS
 
 var depth: int = 2
+var radius : int = 32
 
 signal mark_wave()
 signal send_wave()
@@ -50,6 +56,32 @@ func state_mark() -> void:
 
 func state_send() -> void:
 	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
+	
+	# Get min & max x & y
+	var min_x = danger_cells.reduce(func(acc, pos): return min(acc, pos.x), danger_cells[0].x)
+	var max_x = danger_cells.reduce(func(acc, pos): return max(acc, pos.x), danger_cells[0].x)
+	var min_y = danger_cells.reduce(func(acc, pos): return min(acc, pos.y), danger_cells[0].y)
+	var max_y = danger_cells.reduce(func(acc, pos): return max(acc, pos.y), danger_cells[0].y)
+	
+	# Größter Pfusch aller Zeiten xD
+	radius = (max(max_x - min_x, max_y - min_y) - depth) * 32 + 48
+	print(depth)
+	print(radius)
+	for dir in directions:
+		match dir:
+			DIRECTIONS.LEFT:
+				wave_left.position.x = -radius
+				wave_left.start_wave()
+			DIRECTIONS.UP:
+				wave_up.position.y = radius
+				wave_up.start_wave()
+			DIRECTIONS.RIGHT:
+				wave_right.position.x = radius
+				wave_right.start_wave()
+			DIRECTIONS.DOWN:
+				wave_down.position.y = -radius
+				wave_down.start_wave()
+	
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):
 			house_manager.get_house_on_pos(pos).destroy()

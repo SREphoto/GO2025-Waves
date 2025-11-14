@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwrpuiw6tamaf"]
+
+[ext_resource type="Script" uid="uid://b18gbpl48rtqj" path="res://Entities/WaveManager/Wave/5_wave_group.gd" id="1_2hvu7"]
+[ext_resource type="Script" uid="uid://duysf68vetabd" path="res://Entities/WaveManager/Wave/all_waves_one_side.gd" id="1_q25tu"]
+[ext_resource type="PackedScene" uid="uid://b7u082mj0h155" path="res://Entities/WaveManager/Wave/wave_row.tscn" id="1_yrxuj"]
+
+[node name="AllWavesOneSide" type="Node2D"]
+script = ExtResource("1_q25tu")
+
+[node name="5WaveGroup" type="Node2D" parent="."]
+script = ExtResource("1_2hvu7")
+
+[node name="WaveRow" parent="5WaveGroup" instance=ExtResource("1_yrxuj")]
+
+[node name="WaveRow2a" parent="5WaveGroup" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 32)
+
+[node name="WaveRow2b" parent="5WaveGroup" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -32)
+
+[node name="WaveRow3a" parent="5WaveGroup" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 64)
+
+[node name="WaveRow3b" parent="5WaveGroup" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -64)
+
+[node name="5WaveGroup2" type="Node2D" parent="."]
+position = Vector2(0, 160)
+script = ExtResource("1_2hvu7")
+
+[node name="WaveRow" parent="5WaveGroup2" instance=ExtResource("1_yrxuj")]
+
+[node name="WaveRow2a" parent="5WaveGroup2" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 32)
+
+[node name="WaveRow2b" parent="5WaveGroup2" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -32)
+
+[node name="WaveRow3a" parent="5WaveGroup2" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 64)
+
+[node name="WaveRow3b" parent="5WaveGroup2" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -64)
+
+[node name="5WaveGroup3" type="Node2D" parent="."]
+position = Vector2(0, -160)
+script = ExtResource("1_2hvu7")
+
+[node name="WaveRow" parent="5WaveGroup3" instance=ExtResource("1_yrxuj")]
+
+[node name="WaveRow2a" parent="5WaveGroup3" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 32)
+
+[node name="WaveRow2b" parent="5WaveGroup3" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -32)
+
+[node name="WaveRow3a" parent="5WaveGroup3" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, 64)
+
+[node name="WaveRow3b" parent="5WaveGroup3" instance=ExtResource("1_yrxuj")]
+position = Vector2(0, -64)
