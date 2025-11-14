@@ -40,3 +40,28 @@ theme_override_font_sizes/font_size = 16
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Sprite2D"]
+offset_left = -44.800007
+offset_top = 3.62
+offset_right = 2.9999962
+offset_bottom = 27.819996
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jw1km")
+theme_override_font_sizes/font_size = 8
+text = "Waves
+Remaining"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TimeRemaining" type="Label" parent="Sprite2D"]
+offset_left = 10.2
+offset_top = 3.62
+offset_right = 41.79999
+offset_bottom = 27.900013
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jw1km")
+theme_override_font_sizes/font_size = 16
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

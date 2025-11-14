@@ -20,15 +20,15 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.waves):
 		match state:
 			STATES.MARK:
-				_state_mark()
+				state_mark()
 				state = STATES.SEND
 			STATES.SEND:
-				_state_send()
+				state_send()
 				state = STATES.MARK
 			_:
 				state = STATES.MARK
 
-func _state_mark() -> void:
+func state_mark() -> void:
 	var wave_count = randi_range(1, 3)
 	if wave_count > 1:
 		depth = 1
@@ -48,7 +48,7 @@ func _state_mark() -> void:
 	mark_wave.emit()
 	
 
-func _state_send() -> void:
+func state_send() -> void:
 	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):

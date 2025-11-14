@@ -6,10 +6,14 @@ extends Node2D
 
 @export var round_goal : int = 5
 @export var round_waves : int = 1
+@export var wave_time : int = 10
+
+@onready var second_timer: Timer = $SecondTimer
 
 var current_goal : int = round_goal
 var current_score : int = 0
 var remaining_waves : int = round_waves
+var remaining_time : int = wave_time
 
 var money : int = 0
 
@@ -20,6 +24,7 @@ func _ready() -> void:
 	wave_manager.send_wave.connect(on_wave_sent)
 	# So values get updated at the start
 	values_changed.emit()
+	second_timer.start()
 
 func on_wave_sent() -> void:
 	current_goal -= current_score
@@ -41,6 +46,12 @@ func on_score_changed() -> void:
 		points += group[0].flag.current_value
 	current_score = points
 	values_changed.emit()
+
+func _on_second_passed() -> void:
+	remaining_time -= 1
+	values_changed.emit()
+	if remaining_time < 0:
+		wave_manager.state_send()
 
 func next_game():
 	pass

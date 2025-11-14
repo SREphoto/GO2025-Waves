@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var goal: Label = $LeftTopUI/BG/Goal
 @onready var current_offering: Label = $LeftTopUI/BG/CurrentOffering
 @onready var waves_remaining: Label = $LeftBottomUI/Sprite2D/WavesRemaining
+@onready var time_remaining: Label = $LeftBottomUI/Sprite2D/TimeRemaining
 
 func _ready() -> void:
 	visible = true
@@ -15,3 +16,4 @@ func refresh():
 	goal.text = str(game_variables.current_goal)
 	current_offering.text = str(game_variables.current_score)
 	waves_remaining.text = str(game_variables.remaining_waves)
+	time_remaining.text = str(game_variables.remaining_time)
