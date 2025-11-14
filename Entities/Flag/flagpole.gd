@@ -33,3 +33,9 @@ func set_flag_color(col):
 
 func set_flag_value(value : String):
 	label.text = value
+
+func set_flag_opacity(in_biggest_group: bool) -> void:
+	if in_biggest_group:
+		flag.modulate = Color(1, 1, 1, 1)
+	else:
+		flag.modulate = Color(0.6, 0.6, 0.6, 1)

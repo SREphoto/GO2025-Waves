@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr4k3yko610j3"]
+[gd_scene load_steps=5 format=3 uid="uid://cr4k3yko610j3"]
 
+[ext_resource type="Script" uid="uid://cc62pp2f6nwmi" path="res://Entities/LeftGUI/left_gui.gd" id="1_sel63"]
 [ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="1_xsxfq"]
+[ext_resource type="PackedScene" uid="uid://bm6o12jp2kolp" path="res://Entities/ScoreLabel/score_label.tscn" id="3_qnv23"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sel63"]
 atlas = ExtResource("1_xsxfq")
@@ -15,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_sel63")
 
 [node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -86,16 +89,8 @@ Points"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/Points/Panel/H"]
+[node name="ScoreLabel" parent="M/V/Points/Panel/H" instance=ExtResource("3_qnv23")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/normal_font_size = 128
-text = "$100"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PointsNext" type="MarginContainer" parent="M/V"]
 layout_mode = 2
@@ -121,14 +116,8 @@ Next"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="M/V/PointsNext/Panel/H"]
+[node name="ScoreLabel" parent="M/V/PointsNext/Panel/H" instance=ExtResource("3_qnv23")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/normal_font_size = 128
-text = "$12"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="WavesRemaining" type="MarginContainer" parent="M/V"]
 layout_mode = 2
@@ -149,14 +138,9 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer"]
+[node name="ScoreLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer" instance=ExtResource("3_qnv23")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 128
-text = "5 "
-horizontal_alignment = 2
-vertical_alignment = 1
+reset_score = 5
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="M/V/WavesRemaining/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -10,5 +10,6 @@ script = ExtResource("1_omncj")
 target_position = Vector2(0, 0)
 collision_mask = 6
 hit_from_inside = true
+collide_with_areas = true
 script = ExtResource("2_o080a")
 metadata/_custom_type_script = "uid://c3sbbr8rbai44"

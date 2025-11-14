@@ -2,11 +2,24 @@ class_name ScoreManager
 extends Node2D
 
 @export var house_manager : HouseManager
+@export var wave_manager: WaveManager
+
+var biggest_color_groups: Array[Array] = []
+
+signal score_changed()
 
 func _ready() -> void:
 	house_manager.house_spawned.connect(on_house_spawned)
+	wave_manager.mark_wave.connect(on_wave_marked)
+	wave_manager.send_wave.connect(on_wave_sent)
 
 func on_house_spawned() -> void:
+	score()
+
+func on_wave_marked() -> void:
+	score()
+
+func on_wave_sent() -> void:
 	score()
 
 func on_object_move_finished() -> void:
@@ -16,13 +29,18 @@ func score():
 	var house_grid = house_manager.get_houses_on_grid()
 	var groups = _group_houses_by_color(house_grid)
 	_set_flag_values(groups)
+	biggest_color_groups = _get_biggest_color_groups(groups)
+	_set_falg_modulate()
+	score_changed.emit()
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}
 	var groups: Array[Array] = []
 	
+	var danger_cells : Array[Vector2i] = wave_manager.wave_marker_tile_map_layer.get_danger_cells()
+	
 	for pos in house_dict.keys():
-		var house = house_dict[pos]
+		var house: House = house_dict[pos]
 		
 		if visited.has(pos):
 			continue
@@ -50,6 +68,9 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 			if current_house.get_color() != color:
 				continue
 			
+			if danger_cells.has(current_pos):
+				continue
+			
 			# Add to group and mark as visited
 			visited[current_pos] = true
 			group.append(current_house)
@@ -72,7 +93,31 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	
 	return groups
 
+func _get_biggest_color_groups(groups: Array[Array]) -> Array[Array]:
+	var biggest_groups: Array[Array] = []
+	for group: Array[House] in groups:
+		var color_group: Array[House] = _color_group_in_groups(biggest_groups, group[0].flag.color)
+		if color_group != []:
+			if group[0].flag.current_value > color_group[0].flag.current_value:
+				biggest_groups.erase(color_group)
+				biggest_groups.append(group)
+		else:
+			biggest_groups.append(group)
+	return biggest_groups
+
+func _color_group_in_groups(groups: Array[Array], color: int) -> Array[House]:
+	for group: Array[House] in groups:
+		if group[0].flag.color == color:
+			return group
+	return []
+
 func _set_flag_values(groups: Array[Array]) -> void:
 	for group in groups:
 		for house : House in group:
 			house.flag.current_value = group.size()
+			house.flag.set_flag_opacity(false)
+
+func _set_falg_modulate() -> void:
+	for group in biggest_color_groups:
+		for house: House in group:
+			house.flag.set_flag_opacity(true)

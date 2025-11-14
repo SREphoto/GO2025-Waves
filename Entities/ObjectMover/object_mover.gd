@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var ghosts: Node2D = $Ghosts
 @onready var ghost_object: Sprite2D = $Ghosts/GhostObject
+@onready var ghost_back: Sprite2D = $Ghosts/GhostBack
 
 var object_to_move: MovableGridObject:
 	set = set_object_to_move
@@ -17,6 +18,8 @@ var shortest_rays: Dictionary[String, CheckRay] = {}
 
 var locked: bool = false
 
+var mouse_pressed_pos: Vector2
+
 const DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
 const DIR_NAMES: Dictionary[Vector2i, String] = {Vector2i.LEFT : "Left", Vector2i.UP : "Up", Vector2i.RIGHT : "Right", Vector2i.DOWN : "Down"}
 
@@ -27,18 +30,24 @@ signal object_move_finished()
 func set_object_to_move(value) -> void:
 	object_to_move = value
 	global_position = object_to_move.position
-	object_to_move.selectable.mouse_exited.connect(_on_object_to_move_mouse_exited)
-	object_to_move.selectable.mouse_entered.connect(_on_object_to_move_mouse_entered)
+	#object_to_move.selectable.mouse_exited.connect(_on_object_to_move_mouse_exited)
+	#object_to_move.selectable.mouse_entered.connect(_on_object_to_move_mouse_entered)
 	await ready
 	var house = object_to_move as House
 	if is_instance_valid(house):
 		ghost_object.texture = house.front.texture
 		ghost_object.hframes = house.front.hframes
 		ghost_object.frame = house.front.frame
+		if house.res.frame_back:
+			ghost_back.frame = house.back.frame
+			ghost_back.visible = true
+		else:
+			ghost_back.visible = false
 		ghost_object.position = house.front.position
 		ghost_object.position.y += 4
 	_create_raycasts()
 	_expand_raycasts()
+	mouse_pressed_pos = get_global_mouse_position()
 
 func _create_raycasts() -> void:
 	for size_pos: Vector2i in object_to_move.size:
@@ -83,7 +92,8 @@ func _input(_event: InputEvent) -> void:
 	
 	var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
 	if last_mouse_dir != mouse_dir:
-		if mouse_outside_of_object:
+		#if mouse_outside_of_object:
+		if _get_mouse_distance() > 8:
 			last_mouse_dir = mouse_dir
 			match mouse_dir:
 				Vector2i.LEFT:
@@ -99,7 +109,7 @@ func _input(_event: InputEvent) -> void:
 			_ghost_reset()
 
 func _get_vector_cardinal_dir(vec: Vector2) -> Vector2i:
-	var dir: Vector2 = vec - (global_position + object_to_move.mid_pos)
+	var dir: Vector2 = vec - mouse_pressed_pos #(global_position + object_to_move.mid_pos)
 	if abs(dir.x) < abs(dir.y):
 		dir.x = 0
 		dir = dir.normalized()
@@ -108,6 +118,10 @@ func _get_vector_cardinal_dir(vec: Vector2) -> Vector2i:
 		dir = dir.normalized()
 		
 	return dir
+
+func _get_mouse_distance() -> float:
+	var dist: float = abs((mouse_pressed_pos - get_global_mouse_position()).length())
+	return dist
 
 func object_deselected() -> void:
 	locked = true
