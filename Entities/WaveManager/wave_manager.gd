@@ -3,6 +3,7 @@ extends Node2D
 
 @export var house_manager: HouseManager
 @export var wave_marker_tile_map_layer: WaveMarkerTileMap
+@export var sand_tilemap_layer : SandTileMapLayer
 
 @onready var wave_left: Node2D = $AllWavesLeft
 @onready var wave_up: Node2D = $AllWavesUp
@@ -57,29 +58,26 @@ func state_mark() -> void:
 func state_send() -> void:
 	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
 	
-	# Get min & max x & y
-	var min_x = danger_cells.reduce(func(acc, pos): return min(acc, pos.x), danger_cells[0].x)
-	var max_x = danger_cells.reduce(func(acc, pos): return max(acc, pos.x), danger_cells[0].x)
-	var min_y = danger_cells.reduce(func(acc, pos): return min(acc, pos.y), danger_cells[0].y)
-	var max_y = danger_cells.reduce(func(acc, pos): return max(acc, pos.y), danger_cells[0].y)
-	
+	var bounds : Vector4i = sand_tilemap_layer.get_grid_bounds()
+	var grid_size : int = GlobalConfigs.GRID_SIZE
+	print(bounds)
 	# Größter Pfusch aller Zeiten xD
-	radius = (max(max_x - min_x, max_y - min_y) - depth) * 32 + 48
+
 	
 	for dir in directions:
 		match dir:
 			DIRECTIONS.LEFT:
-				wave_left.position.x = -radius
+				wave_left.position.x = bounds.x * grid_size + depth * grid_size - 80
 				wave_left.start_wave()
-			DIRECTIONS.UP:
-				wave_up.position.y = radius
-				wave_up.start_wave()
-			DIRECTIONS.RIGHT:
-				wave_right.position.x = radius
-				wave_right.start_wave()
 			DIRECTIONS.DOWN:
-				wave_down.position.y = -radius
+				wave_down.position.y = bounds.y * grid_size + depth * grid_size - 80
 				wave_down.start_wave()
+			DIRECTIONS.RIGHT:
+				wave_right.position.x = bounds.z * grid_size - depth * grid_size + 80
+				wave_right.start_wave()
+			DIRECTIONS.UP:
+				wave_up.position.y = bounds.w * grid_size - depth * grid_size + 80
+				wave_up.start_wave()
 		await get_tree().create_timer(0.5).timeout
 	
 	for pos: Vector2i in danger_cells:

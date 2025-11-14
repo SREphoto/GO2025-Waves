@@ -53,7 +53,6 @@ func on_score_changed() -> void:
 	values_changed.emit()
 
 func _on_second_passed() -> void:
-	return
 	remaining_time -= 1
 	values_changed.emit()
 	if remaining_time < 0:
