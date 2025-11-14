@@ -28,7 +28,7 @@ wave_manager = NodePath("../WaveManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAABAP//AAABAAMAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAEAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAABAP//AAABAAMAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -85,15 +85,18 @@ y_sort_enabled = true
 
 [node name="LittleGuy16" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
 
-[node name="ScoreManager" parent="." node_paths=PackedStringArray("house_manager") instance=ExtResource("11_j28wf")]
+[node name="ScoreManager" parent="." node_paths=PackedStringArray("house_manager", "wave_manager") instance=ExtResource("11_j28wf")]
 house_manager = NodePath("../HouseManager")
+wave_manager = NodePath("../WaveManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="LeftGUI" parent="CanvasLayer" instance=ExtResource("12_2kib8")]
+[node name="LeftGUI" parent="CanvasLayer" node_paths=PackedStringArray("score_manager", "wave_manager") instance=ExtResource("12_2kib8")]
+score_manager = NodePath("../../ScoreManager")
+wave_manager = NodePath("../../WaveManager")
 
 [node name="NavigationRegion" parent="." node_paths=PackedStringArray("house_manager", "sand_tile_map_layer", "wave_manager") instance=ExtResource("14_vi0pu")]
 house_manager = NodePath("../HouseManager")
