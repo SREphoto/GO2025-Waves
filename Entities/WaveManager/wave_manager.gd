@@ -65,8 +65,7 @@ func state_send() -> void:
 	
 	# Größter Pfusch aller Zeiten xD
 	radius = (max(max_x - min_x, max_y - min_y) - depth) * 32 + 48
-	print(depth)
-	print(radius)
+	
 	for dir in directions:
 		match dir:
 			DIRECTIONS.LEFT:
@@ -81,6 +80,7 @@ func state_send() -> void:
 			DIRECTIONS.DOWN:
 				wave_down.position.y = -radius
 				wave_down.start_wave()
+		await get_tree().create_timer(0.5).timeout
 	
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):

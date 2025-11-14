@@ -527,7 +527,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Foam",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -583,7 +583,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Water",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -639,7 +639,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"WaterLast",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -695,7 +695,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"WaveIn",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -751,7 +751,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"WaveInLast",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -807,7 +807,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"WaveOut",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -863,9 +863,9 @@ animations = [{
 }],
 "loop": false,
 "name": &"WaveOutLast",
-"speed": 15.0
+"speed": 25.0
 }]
 
 [node name="WaveTile" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_gypux")
-animation = &"WaveInLast"
+animation = &"WaveOutLast"
