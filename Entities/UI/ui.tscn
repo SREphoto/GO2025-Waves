@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5tubgyxsf3es"]
+
+[ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
+[ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
+[ext_resource type="PackedScene" uid="uid://bimqf8pw360of" path="res://Entities/UI/left_bottom_ui.tscn" id="3_irfo3"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_irfo3")
+
+[node name="LeftTopUI" parent="." instance=ExtResource("1_y56jo")]
+
+[node name="LeftBottomUI" parent="." instance=ExtResource("3_irfo3")]
+
+[editable path="LeftTopUI"]
+[editable path="LeftBottomUI"]

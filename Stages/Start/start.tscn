@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=16 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
 [ext_resource type="PackedScene" uid="uid://sdtrsmptps5x" path="res://Entities/ZoomCamera/zoom_camera.tscn" id="1_iab6p"]
 [ext_resource type="Script" uid="uid://bk8gi0hs2mbum" path="res://Stages/Start/start.gd" id="1_ukrqe"]
+[ext_resource type="PackedScene" uid="uid://chmd6hqbtkfm2" path="res://Assets/Globals/GameVariables/game_variables.tscn" id="2_1sd34"]
 [ext_resource type="Script" uid="uid://dm8gqgmifdq3x" path="res://Entities/ZoomCamera/zoom_camera.gd" id="2_fndtm"]
 [ext_resource type="PackedScene" uid="uid://ojq4l5xe2pib" path="res://Entities/HouseManager/house_manager.tscn" id="3_82fsj"]
 [ext_resource type="PackedScene" uid="uid://cv74d6obju0wx" path="res://Stages/Tileset/Water/water_tile_map_layer.tscn" id="4_by1kx"]
@@ -12,11 +13,15 @@
 [ext_resource type="Script" uid="uid://c0ftynxcwywnr" path="res://Entities/WaveManager/wave_manager.gd" id="9_sixc0"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="11_da7wy"]
 [ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
-[ext_resource type="PackedScene" uid="uid://cr4k3yko610j3" path="res://Entities/LeftGUI/left_gui.tscn" id="12_2kib8"]
 [ext_resource type="PackedScene" uid="uid://hcvs21v24lv8" path="res://Entities/NavigationRegion/navigation_region.tscn" id="14_vi0pu"]
+[ext_resource type="PackedScene" uid="uid://c5tubgyxsf3es" path="res://Entities/UI/ui.tscn" id="16_wa302"]
 
 [node name="Start" type="Node2D"]
 script = ExtResource("1_ukrqe")
+
+[node name="GameVariables" parent="." node_paths=PackedStringArray("score_manager", "wave_manager") instance=ExtResource("2_1sd34")]
+score_manager = NodePath("../ScoreManager")
+wave_manager = NodePath("../WaveManager")
 
 [node name="ZoomCamera" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("1_iab6p")]
 zoom = Vector2(5.625, 5.625)
@@ -28,7 +33,7 @@ wave_manager = NodePath("../WaveManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAEAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAMAAAABAP//AAABAAMAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAMAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -91,14 +96,10 @@ wave_manager = NodePath("../WaveManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="LeftGUI" parent="CanvasLayer" node_paths=PackedStringArray("score_manager", "wave_manager") instance=ExtResource("12_2kib8")]
-score_manager = NodePath("../../ScoreManager")
-wave_manager = NodePath("../../WaveManager")
-
 [node name="NavigationRegion" parent="." node_paths=PackedStringArray("house_manager", "sand_tile_map_layer", "wave_manager") instance=ExtResource("14_vi0pu")]
 house_manager = NodePath("../HouseManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 wave_manager = NodePath("../WaveManager")
+
+[node name="UI" parent="." node_paths=PackedStringArray("game_variables") instance=ExtResource("16_wa302")]
+game_variables = NodePath("../GameVariables")

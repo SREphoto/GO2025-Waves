@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://dc65yqhwpcwxr"]
+
+[ext_resource type="Texture2D" uid="uid://bujr7121kcsq3" path="res://Entities/UI/Assets/Top_BG.png" id="1_1b821"]
+[ext_resource type="Texture2D" uid="uid://dsu66dy7joevj" path="res://Entities/UI/Assets/King/King_FG.png" id="3_0a2xe"]
+[ext_resource type="Texture2D" uid="uid://eu3lloj2a5y3" path="res://Entities/UI/Assets/King/King.png" id="3_ko2ks"]
+[ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="4_0a2xe"]
+[ext_resource type="Texture2D" uid="uid://dtpoc47y22uuf" path="res://Entities/UI/Assets/King/King_BG.png" id="5_2w40q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a2xe"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmqt3"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axfr4"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13j2y"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkrta"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqccd"]
+atlas = ExtResource("3_ko2ks")
+region = Rect2(180, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idygs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a2xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmqt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axfr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13j2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkrta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqccd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LeftTopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BG" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(275, 195)
+scale = Vector2(5, 5)
+texture = ExtResource("1_1b821")
+
+[node name="KingBg" type="Sprite2D" parent="BG"]
+position = Vector2(7.6293945e-06, -11.999998)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_2w40q")
+
+[node name="King" type="AnimatedSprite2D" parent="BG"]
+position = Vector2(-28.000006, -12)
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_idygs")
+autoplay = "default"
+frame = 5
+frame_progress = 0.63354224
+
+[node name="KingFg" type="Sprite2D" parent="BG/King"]
+position = Vector2(28.000002, 0)
+texture = ExtResource("3_0a2xe")
+
+[node name="Goal" type="Label" parent="BG"]
+offset_left = -10.000009
+offset_top = -15.599999
+offset_right = 41.99999
+offset_bottom = 4.5999975
+theme_override_colors/font_color = Color(0.62352943, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_0a2xe")
+theme_override_font_sizes/font_size = 16
+text = "300$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OfferingLabel" type="Label" parent="BG"]
+offset_left = -44.800007
+offset_top = 5.2
+offset_right = -10.800007
+offset_bottom = 29.399998
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_0a2xe")
+theme_override_font_sizes/font_size = 8
+text = "Current
+Offering"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentOffering" type="Label" parent="BG"]
+offset_left = -10.200006
+offset_top = 7.199997
+offset_right = 41.79999
+offset_bottom = 27.399994
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_0a2xe")
+theme_override_font_sizes/font_size = 16
+text = "67$"
+horizontal_alignment = 1
+vertical_alignment = 1
