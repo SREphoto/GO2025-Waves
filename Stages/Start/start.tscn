@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=17 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://da6w2wbihv15v" path="res://Entities/WaveManager/wave_manager.tscn" id="11_1sd34"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="11_da7wy"]
 [ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
+[ext_resource type="Script" uid="uid://by7hpmg8n7cwh" path="res://Entities/Selector/selector.gd" id="11_wa302"]
 [ext_resource type="PackedScene" uid="uid://hcvs21v24lv8" path="res://Entities/NavigationRegion/navigation_region.tscn" id="14_vi0pu"]
 [ext_resource type="PackedScene" uid="uid://c5tubgyxsf3es" path="res://Entities/UI/ui.tscn" id="16_wa302"]
 
@@ -45,11 +46,13 @@ sand_tile_map_layer = NodePath("../SandTileMapLayer")
 sand_tilemap = NodePath("../SandTileMapLayer")
 wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 
-[node name="Selector" parent="." node_paths=PackedStringArray("object_grid") instance=ExtResource("1_82fsj")]
+[node name="Selector" parent="." node_paths=PackedStringArray("object_grid", "score_manager", "navigation_region") instance=ExtResource("1_82fsj")]
+script = ExtResource("11_wa302")
 object_grid = NodePath("../ObjectGrid")
+score_manager = NodePath("../ScoreManager")
+navigation_region = NodePath("../NavigationRegion")
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer", "sand_tilemap_layer") instance=ExtResource("11_1sd34")]
-visible = false
 house_manager = NodePath("../HouseManager")
 wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 sand_tilemap_layer = NodePath("../SandTileMapLayer")
