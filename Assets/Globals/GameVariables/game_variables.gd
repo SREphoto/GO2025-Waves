@@ -1,17 +1,13 @@
 class_name GameVariables
 extends Node2D
 
+@export var sand_tile_map_layer: SandTileMapLayer
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 
-@export var round_goal : int = 5:
-	set(value):
-		round_goal = value
-		current_goal = round_goal
-@export var round_waves : int = 2:
-	set(value):
-		round_waves = value
-		remaining_waves = round_waves
+@export var all_goals: Array[int] 		= [10, 25, 60, 110]
+@export var all_round_waves: Array[int] = [2, 3, 4, 5]
+
 @export var wave_time : int = 1000:
 	set(value):
 		wave_time = value
@@ -19,11 +15,9 @@ extends Node2D
 
 @onready var second_timer: Timer = $SecondTimer
 
-var current_goal : int = round_goal:
-	set(value):
-		current_goal = max(0, value)
+var current_goal : int
 var current_score : int = 0
-var remaining_waves : int = round_waves
+var remaining_waves : int
 var remaining_time : int = wave_time
 
 var money : int = 0
@@ -31,10 +25,14 @@ var money : int = 0
 var active: bool = true:
 	set = on_active
 
+var has_finished: bool = false
+
 signal values_changed
 signal counting_finished(won: bool)
 
 func _ready() -> void:
+	current_goal = all_goals.pop_front()
+	remaining_waves = all_round_waves.pop_front()
 	score_manager.score_changed.connect(on_score_changed)
 	wave_manager.finished_waves.connect(on_wave_finished)
 	# So values get updated at the start
@@ -48,11 +46,7 @@ func on_active(value: bool) -> void:
 	else:
 		second_timer.stop()
 
-func stop_timer() -> void:
-	pass
-
 func on_wave_finished() -> void:
-	var has_won: bool = false
 	current_goal -= current_score
 	current_score = 0
 	remaining_waves -= 1
@@ -60,11 +54,13 @@ func on_wave_finished() -> void:
 	if current_goal <= 0:
 		money += abs(current_goal)
 		current_goal = 0
-		has_won = true
-		_won()
 	# If all waves are completed
-	elif remaining_waves <= 0:
-		_lost()
+	if remaining_waves <= 0:
+		if current_goal <= 0:
+			has_finished = true
+			_won()
+		else:
+			_lost()
 	values_changed.emit()
 	
 	second_timer.stop()
@@ -73,7 +69,7 @@ func on_wave_finished() -> void:
 	add_child(timer)
 	timer.start(1)
 	await  timer.timeout
-	counting_finished.emit(has_won)
+	counting_finished.emit(has_finished)
 	
 	_prepare_new_wave()
 
@@ -99,7 +95,15 @@ func _won() -> void:
 func _lost() -> void:
 	print("LOST")
 
-func next_game():
-	round_goal += 1
-	round_waves = 2
+func next_game() -> void:
+	has_finished = false
+	sand_tile_map_layer.increase_grid_size()
+	if all_goals.is_empty():
+		game_finished()
+		return
+	current_goal = all_goals.pop_front()
+	remaining_waves = all_round_waves.pop_front()
 	values_changed.emit()
+
+func game_finished() -> void:
+	pass

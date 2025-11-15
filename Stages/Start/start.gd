@@ -7,6 +7,7 @@ var next_game_state: GAME_STATES
 
 @onready var selector: Selector = $Selector
 @onready var wave_manager: WaveManager = $WaveManager
+@onready var house_manager: HouseManager = $HouseManager
 
 @onready var game_variables: GameVariables = $GameVariables
 
@@ -14,18 +15,18 @@ var next_game_state: GAME_STATES
 @onready var shop: CanvasLayer = $Shop
 
 func _ready() -> void:
-	_game_state_sliding()
 	game_variables.counting_finished.connect(on_counting_finished)
+	_game_state_sliding()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.waves):
 		switch_game_state()
 
-func on_counting_finished(has_won: bool) -> void:
-	if has_won:
+func on_counting_finished(has_finished: bool) -> void:
+	if has_finished:
 		next_game_state = GAME_STATES.PAUSED
 	else:
-		next_game_state = GAME_STATES.SLIDING
+		next_game_state = GAME_STATES.SPAWNING
 	_game_state_counting()
 
 func switch_game_state(value = next_game_state) -> void:
@@ -49,14 +50,16 @@ func _game_state_paused() -> void:
 	game_variables.active = false
 	game_variables.next_game()
 	shop.visible = true
-	next_game_state = GAME_STATES.SLIDING
+	next_game_state = GAME_STATES.SPAWNING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
 
 func _game_state_expanding() -> void:
 	pass
 
 func _game_state_spawning() -> void:
-	pass
+	house_manager._spawn_house()
+	next_game_state = GAME_STATES.SLIDING
+	switch_game_state()
 
 func _game_state_sliding() -> void:
 	ui.visible = true
@@ -75,4 +78,6 @@ func _game_state_waves() -> void:
 	GlobalGameState.state = GlobalGameState.STATES.WAVE
 
 func _game_state_counting() -> void:
+	if next_game_state == GAME_STATES.COUNTING:
+		next_game_state = GAME_STATES.SPAWNING
 	switch_game_state()

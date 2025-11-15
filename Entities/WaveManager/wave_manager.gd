@@ -45,7 +45,7 @@ func next_state() -> void:
 				state = STATES.MARK
 
 func state_mark() -> void:
-	var wave_count = randi_range(1, 3)
+	var wave_count = randi_range(1, 2)
 	if wave_count > 1:
 		depth = 1
 	else:

@@ -7,7 +7,7 @@ extends Node2D
 @onready var check_ray: CheckRay = $CheckRay
 @onready var object_grid: Node2D = %ObjectGrid
 
-enum HOUSE_SIZES{ONE = 1, TWO = 2, THREE = 3, FOUR = 4}
+enum HOUSE_SIZES{ONE, TWO, THREE, FOUR}
 
 const HOUSE = preload("uid://b2avbu36bburo")
 
@@ -24,6 +24,7 @@ var house_size_to_grid_size: Dictionary = {
 	HOUSE_SIZES.THREE : [[Vector2i.ZERO], [Vector2.ONE]],
 	HOUSE_SIZES.FOUR : [[Vector2i.ZERO], [Vector2.ONE]]
 	}
+var weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0])
 
 var house_size_dict: Dictionary[HOUSE_SIZES, HouseArrayRescource] = {
 	HOUSE_SIZES.ONE : HOUSE_ARRAY_RES_ONE,
@@ -32,33 +33,51 @@ var house_size_dict: Dictionary[HOUSE_SIZES, HouseArrayRescource] = {
 	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR
 	}
 
+var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.ONE, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 signal house_spawned()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(GlobalNames.inputs.space) and active:
+func _ready() -> void:
+	var timer: Timer = Timer.new()
+	add_child(timer)
+	timer.start(1)
+	await timer.timeout
+	
+	while not start_house_sizes.is_empty():
+		timer.start(0.2)
+		await timer.timeout
 		_spawn_house()
 
 func _spawn_house():
-	var empty_grid: Array[Vector2i] = _get_empty_grid_tiles()
-	if empty_grid.is_empty():
-		return
+	var house_size: HOUSE_SIZES
+	if not start_house_sizes.is_empty():
+		house_size = start_house_sizes.pop_front()
+	else:
+		house_size = rng.rand_weighted(weights) as HOUSE_SIZES
 	
-	var house_size: HOUSE_SIZES = randi_range(1, HOUSE_SIZES.size()) as HOUSE_SIZES
-	while house_size > empty_grid.size():
-		house_size -= 1 as HOUSE_SIZES
-	
-	var house_size_array: HouseArrayRescource = house_size_dict[house_size]
-	var house_res: HouseRescource = house_size_array.house_res_array.pick_random()
+	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size].house_res_array).duplicate_deep()
+	house_size_res_array.shuffle()
+	var house_res: HouseRescource = house_size_res_array.pop_back()
 	
 	var rand: Vector2i = _check_free_grid_pos_for_size(house_res.size)
 	
-	while rand == Vector2i(-1000, -1000):
-		house_size -= 1 as HOUSE_SIZES
-		if house_size < 1:
+	while true:
+		var done: bool = false
+		if house_size < 0:
 			return
-		house_size_array = house_size_dict[house_size]
-		house_res = house_size_array.house_res_array.pick_random()
-		rand = _check_free_grid_pos_for_size(house_res.size)
+		house_size_res_array = (house_size_dict[house_size].house_res_array).duplicate_deep()
+		house_size_res_array.shuffle()
+		while not house_size_res_array.is_empty():
+			house_res = house_size_res_array.pop_back()
+			rand = _check_free_grid_pos_for_size(house_res.size)
+			if rand != Vector2i(-1000, -1000):
+				done = true
+				break
+		if done:
+			break
+		house_size -= 1 as HOUSE_SIZES
 	
 	var house: House = HOUSE.instantiate()
 	house.set_grid_pos(rand)

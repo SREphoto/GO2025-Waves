@@ -23,7 +23,7 @@ func on_changed_grid_size() -> void:
 	bake_navigation_polygon()
 
 func on_house_spawned() -> void:
-	if is_baking():
+	while is_baking():
 		await bake_finished
 	bake_navigation_polygon()
 
