@@ -1,0 +1,3 @@
+extends Node
+
+enum STATES {START, GAMELOOP, WAVE, SHOP, GAMEOVER}

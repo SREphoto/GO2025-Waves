@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp3e7502x8fav"]
+
+[ext_resource type="Script" uid="uid://bj5kjogayml4c" path="res://Assets/Globals/MusicManager/music_manager.gd" id="1_oijki"]
+[ext_resource type="AudioStream" uid="uid://dws8mqqc57qgo" path="res://Assets/Audio/Music/IslandTrack/IslandTrack_Ukulele.ogg" id="2_wx0e2"]
+[ext_resource type="AudioStream" uid="uid://dlvmw8uul0yk0" path="res://Assets/Audio/Music/IslandTrack/IslandTrack_Percussion.ogg" id="3_ei44j"]
+[ext_resource type="AudioStream" uid="uid://b3rpurs1n4y7w" path="res://Assets/Audio/Music/IslandTrack/IslandTrack_SteelDrum.ogg" id="4_iou0w"]
+[ext_resource type="AudioStream" uid="uid://dkkrl40msqfkk" path="res://Assets/Audio/Music/IslandTrack/IslandTrack_Ocarina.ogg" id="5_6fb1b"]
+[ext_resource type="AudioStream" uid="uid://dr5rplc5g25i" path="res://Assets/Audio/Music/IslandTrack/IslandTrack_Whistle.ogg" id="6_kh057"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_wx0e2"]
+stream_count = 2
+stream_0/stream = ExtResource("2_wx0e2")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_ei44j")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_oj780"]
+stream_count = 3
+stream_0/stream = ExtResource("2_wx0e2")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_ei44j")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("4_iou0w")
+stream_2/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ei44j"]
+stream_count = 4
+stream_0/stream = ExtResource("2_wx0e2")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_ei44j")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("5_6fb1b")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("6_kh057")
+stream_3/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_iou0w"]
+stream_count = 2
+stream_0/stream = ExtResource("2_wx0e2")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_ei44j")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_6fb1b"]
+stream_count = 3
+stream_0/stream = ExtResource("3_ei44j")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("4_iou0w")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("6_kh057")
+stream_2/volume = 0.0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_oijki"]
+clip_count = 8
+clip_0/name = &"START"
+clip_0/stream = SubResource("AudioStreamSynchronized_wx0e2")
+clip_0/auto_advance = 0
+clip_1/name = &"WAVE"
+clip_1/stream = ExtResource("3_ei44j")
+clip_1/auto_advance = 0
+clip_2/name = &"SHOP"
+clip_2/stream = ExtResource("4_iou0w")
+clip_2/auto_advance = 0
+clip_3/name = &"GAMEOVER"
+clip_3/stream = ExtResource("5_6fb1b")
+clip_3/auto_advance = 0
+clip_4/name = &"GAMELOOP1"
+clip_4/stream = SubResource("AudioStreamSynchronized_oj780")
+clip_4/auto_advance = 0
+clip_5/name = &"GAMELOOP2"
+clip_5/stream = SubResource("AudioStreamSynchronized_ei44j")
+clip_5/auto_advance = 0
+clip_6/name = &"GAMELOOP3"
+clip_6/stream = SubResource("AudioStreamSynchronized_iou0w")
+clip_6/auto_advance = 0
+clip_7/name = &"GAMELOOP4"
+clip_7/stream = SubResource("AudioStreamSynchronized_6fb1b")
+clip_7/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 0
+}
+}
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_oijki")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_oijki")
+autoplay = true
+
+[node name="MusicSwitchTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MusicSwitchTimer" to="." method="_switch_gameloop_music"]
