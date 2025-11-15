@@ -33,7 +33,7 @@ wave_manager = NodePath("../WaveManager")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
-tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAEAAAAAAP//AAABAAEAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAMAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAMAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAEAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
 grid_size = Vector2(4, 4)
 
 [node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
@@ -45,10 +45,8 @@ sand_tile_map_layer = NodePath("../SandTileMapLayer")
 sand_tilemap = NodePath("../SandTileMapLayer")
 wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 
-[node name="Selector" parent="." node_paths=PackedStringArray("object_grid", "score_manager", "navigation_region") instance=ExtResource("1_82fsj")]
+[node name="Selector" parent="." node_paths=PackedStringArray("object_grid") instance=ExtResource("1_82fsj")]
 object_grid = NodePath("../ObjectGrid")
-score_manager = NodePath("../ScoreManager")
-navigation_region = NodePath("../NavigationRegion")
 
 [node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer", "sand_tilemap_layer") instance=ExtResource("11_1sd34")]
 visible = false
