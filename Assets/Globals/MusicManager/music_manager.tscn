@@ -90,6 +90,7 @@ script = ExtResource("1_oijki")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_oijki")
+volume_db = -25.296
 autoplay = true
 
 [node name="MusicSwitchTimer" type="Timer" parent="."]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://cabe3uwecdiry"]
+[gd_scene load_steps=33 format=3 uid="uid://cabe3uwecdiry"]
 
 [ext_resource type="Texture2D" uid="uid://dvt66q5my43bn" path="res://TMP/Poseidon/Poseidon.png" id="1_i74po"]
 [ext_resource type="Texture2D" uid="uid://blcenqkl2n1wu" path="res://TMP/Poseidon/Turtle.png" id="2_3hu1p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hu1p"]
+radius = 23.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml0jo"]
 atlas = ExtResource("2_3hu1p")
@@ -236,7 +239,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Poseidon" type="Node2D"]
+[node name="Poseidon" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3hu1p")
 
 [node name="Turtle" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
