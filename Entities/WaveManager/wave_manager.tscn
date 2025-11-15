@@ -8,11 +8,11 @@ script = ExtResource("1_nojun")
 
 [node name="AllWavesLeft" parent="." instance=ExtResource("2_klap7")]
 
-[node name="AllWavesUp" parent="." instance=ExtResource("2_klap7")]
-rotation = -1.5707964
-
 [node name="AllWavesRight" parent="." instance=ExtResource("2_klap7")]
 rotation = 3.1415927
+
+[node name="AllWavesUp" parent="." instance=ExtResource("2_klap7")]
+rotation = -1.5707964
 
 [node name="AllWavesDown" parent="." instance=ExtResource("2_klap7")]
 rotation = 1.5707964

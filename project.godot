@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 GlobalNames="*res://Assets/Globals/GlobalNames/global_names.tscn"
 GlobalConfigs="*res://Assets/Globals/GlobalConfigs/global_configs.gd"
+GlobalGameState="*res://Assets/Globals/GameState/game_state.tscn"
+MusicManager="*res://Assets/Globals/MusicManager/music_manager.tscn"
 
 [display]
 

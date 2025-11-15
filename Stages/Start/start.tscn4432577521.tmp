@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=4 uid="uid://cxkp8l2y2mw4"]
+
+[ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="1_82fsj"]
+[ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="1_g1wyp"]
+[ext_resource type="PackedScene" uid="uid://sdtrsmptps5x" path="res://Entities/ZoomCamera/zoom_camera.tscn" id="1_iab6p"]
+[ext_resource type="Script" uid="uid://bk8gi0hs2mbum" path="res://Stages/Start/start.gd" id="1_ukrqe"]
+[ext_resource type="PackedScene" uid="uid://chmd6hqbtkfm2" path="res://Assets/Globals/GameVariables/game_variables.tscn" id="2_1sd34"]
+[ext_resource type="Script" uid="uid://dm8gqgmifdq3x" path="res://Entities/ZoomCamera/zoom_camera.gd" id="2_fndtm"]
+[ext_resource type="PackedScene" uid="uid://ojq4l5xe2pib" path="res://Entities/HouseManager/house_manager.tscn" id="3_82fsj"]
+[ext_resource type="PackedScene" uid="uid://cv74d6obju0wx" path="res://Stages/Tileset/Water/water_tile_map_layer.tscn" id="4_by1kx"]
+[ext_resource type="Script" uid="uid://c0gp2tgae7p72" path="res://Stages/Tileset/Water/water_tile_map_layer.gd" id="5_nu5yo"]
+[ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="8_nu5yo"]
+[ext_resource type="PackedScene" uid="uid://da6w2wbihv15v" path="res://Entities/WaveManager/wave_manager.tscn" id="11_1sd34"]
+[ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="11_da7wy"]
+[ext_resource type="PackedScene" uid="uid://ddjxi26134c4g" path="res://Entities/ScoreManager/score_manager.tscn" id="11_j28wf"]
+[ext_resource type="Script" uid="uid://by7hpmg8n7cwh" path="res://Entities/Selector/selector.gd" id="11_wa302"]
+[ext_resource type="PackedScene" uid="uid://hcvs21v24lv8" path="res://Entities/NavigationRegion/navigation_region.tscn" id="14_vi0pu"]
+[ext_resource type="PackedScene" uid="uid://c5tubgyxsf3es" path="res://Entities/UI/ui.tscn" id="16_wa302"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_ukrqe")
+
+[node name="GameVariables" parent="." node_paths=PackedStringArray("score_manager", "wave_manager") instance=ExtResource("2_1sd34")]
+score_manager = NodePath("../ScoreManager")
+wave_manager = NodePath("../WaveManager")
+
+[node name="ZoomCamera" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("1_iab6p")]
+zoom = Vector2(5.625, 5.625)
+script = ExtResource("2_fndtm")
+sand_tile_map_layer = NodePath("../SandTileMapLayer")
+
+[node name="WaveMarkerTileMapLayer" parent="." node_paths=PackedStringArray("wave_manager", "sand_tile_map_layer") instance=ExtResource("8_nu5yo")]
+wave_manager = NodePath("../WaveManager")
+sand_tile_map_layer = NodePath("../SandTileMapLayer")
+
+[node name="SandTileMapLayer" parent="." instance=ExtResource("1_g1wyp")]
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD+/wAAAAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAMAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAD9//3/AAAAAAAAAAD9//7/AAAAAAEAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAEAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAMAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAP3/AAACAAAAAAACAP7/AAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAA=")
+grid_size = Vector2(4, 4)
+
+[node name="WaterTileMapLayer" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("4_by1kx")]
+tile_map_data = PackedByteArray("AAD5//v/AAAAAAMAAAD5//z/AAAAAAMAAAD5//3/AAAAAAMAAAD5//7/AAAAAAMAAAD5////AAAAAAMAAAD5/wAAAAAAAAMAAAD5/wEAAAAAAAMAAAD5/wIAAAAAAAMAAAD5/wMAAAAAAAMAAAD5/wQAAAAAAAMAAAD6//v/AAAAAAMAAAD6//z/AAAAAAMAAAD6//3/AAAAAAMAAAD6//7/AAAAAAMAAAD6////AAAAAAMAAAD6/wAAAAAAAAMAAAD6/wEAAAAAAAMAAAD6/wIAAAAAAAMAAAD6/wMAAAAAAAMAAAD6/wQAAAAAAAMAAAD7//v/AAAAAAMAAAD7//z/AAAAAAMAAAD7//3/AAAAAAMAAAD7//7/AAAAAAMAAAD7////AAAAAAMAAAD7/wAAAAAAAAMAAAD7/wEAAAAAAAMAAAD7/wIAAAAAAAMAAAD7/wMAAAAAAAMAAAD7/wQAAAAAAAMAAAD8//v/AAAAAAMAAAD8//z/AAAAAAMAAAD8//3/AAAAAAMAAAD8//7/AAAAAAMAAAD8////AAAAAAMAAAD8/wAAAAAAAAMAAAD8/wEAAAAAAAMAAAD8/wIAAAAAAAMAAAD8/wMAAAAAAAMAAAD8/wQAAAAAAAMAAAD9//v/AAAAAAMAAAD9//z/AAAAAAMAAAD9//3/AAAAAAMAAAD9//7/AAAAAAMAAAD9////AAAAAAMAAAD9/wAAAAAAAAMAAAD9/wEAAAAAAAMAAAD9/wIAAAAAAAMAAAD9/wMAAAAAAAMAAAD9/wQAAAAAAAMAAAD+//v/AAAAAAMAAAD+//z/AAAAAAMAAAD+//3/AAAAAAMAAAD+//7/AAAAAAMAAAD+////AAAAAAMAAAD+/wAAAAAAAAMAAAD+/wEAAAAAAAMAAAD+/wIAAAAAAAMAAAD+/wMAAAAAAAMAAAD+/wQAAAAAAAMAAAD///v/AAAAAAMAAAD///z/AAAAAAMAAAD///3/AAAAAAMAAAD///7/AAAAAAMAAAD/////AAAAAAMAAAD//wAAAAAAAAMAAAD//wEAAAAAAAMAAAD//wIAAAAAAAMAAAD//wMAAAAAAAMAAAD//wQAAAAAAAMAAAAAAPv/AAAAAAMAAAAAAPz/AAAAAAMAAAAAAP3/AAAAAAMAAAAAAP7/AAAAAAMAAAAAAP//AAAAAAMAAAAAAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAABAPv/AAAAAAMAAAABAPz/AAAAAAMAAAABAP3/AAAAAAMAAAABAP7/AAAAAAMAAAABAP//AAAAAAMAAAABAAAAAAAAAAMAAAABAAEAAAAAAAMAAAABAAIAAAAAAAMAAAABAAMAAAAAAAMAAAABAAQAAAAAAAMAAAACAPv/AAAAAAMAAAACAPz/AAAAAAMAAAACAP3/AAAAAAMAAAACAP7/AAAAAAMAAAACAP//AAAAAAMAAAACAAAAAAAAAAMAAAACAAEAAAAAAAMAAAACAAIAAAAAAAMAAAACAAMAAAAAAAMAAAACAAQAAAAAAAMAAAADAPv/AAAAAAMAAAADAPz/AAAAAAMAAAADAP3/AAAAAAMAAAADAP7/AAAAAAMAAAADAP//AAAAAAMAAAADAAAAAAAAAAMAAAADAAEAAAAAAAMAAAADAAIAAAAAAAMAAAADAAMAAAAAAAMAAAADAAQAAAAAAAMAAAAEAPv/AAAAAAMAAAAEAPz/AAAAAAMAAAAEAP3/AAAAAAMAAAAEAP7/AAAAAAMAAAAEAP//AAAAAAMAAAAEAAAAAAAAAAMAAAAEAAEAAAAAAAMAAAAEAAIAAAAAAAMAAAAEAAMAAAAAAAMAAAAEAAQAAAAAAAMAAAAFAPv/AAAAAAMAAAAFAPz/AAAAAAMAAAAFAP3/AAAAAAMAAAAFAP7/AAAAAAMAAAAFAP//AAAAAAMAAAAFAAAAAAAAAAMAAAAFAAEAAAAAAAMAAAAFAAIAAAAAAAMAAAAFAAMAAAAAAAMAAAAFAAQAAAAAAAMAAAAGAPv/AAAAAAMAAAAGAPz/AAAAAAMAAAAGAP3/AAAAAAMAAAAGAP7/AAAAAAMAAAAGAP//AAAAAAMAAAAGAAAAAAAAAAMAAAAGAAEAAAAAAAMAAAAGAAIAAAAAAAMAAAAGAAMAAAAAAAMAAAAGAAQAAAAAAAMAAAD5//r/AAAAAAMAAAD5/wUAAAAAAAMAAAD6//r/AAAAAAMAAAD6/wUAAAAAAAMAAAD7//r/AAAAAAMAAAD7/wUAAAAAAAMAAAD8//r/AAAAAAMAAAD8/wUAAAAAAAMAAAD9//r/AAAAAAMAAAD9/wUAAAAAAAMAAAD+//r/AAAAAAMAAAD+/wUAAAAAAAMAAAD///r/AAAAAAMAAAD//wUAAAAAAAMAAAAAAPr/AAAAAAMAAAAAAAUAAAAAAAMAAAABAPr/AAAAAAMAAAABAAUAAAAAAAMAAAACAPr/AAAAAAMAAAACAAUAAAAAAAMAAAADAPr/AAAAAAMAAAADAAUAAAAAAAMAAAAEAPr/AAAAAAMAAAAEAAUAAAAAAAMAAAAFAPr/AAAAAAMAAAAFAAUAAAAAAAMAAAAGAPr/AAAAAAMAAAAGAAUAAAAAAAMAAAD4//r/AAAAAAMAAAD4//v/AAAAAAMAAAD4//z/AAAAAAMAAAD4//3/AAAAAAMAAAD4//7/AAAAAAMAAAD4////AAAAAAMAAAD4/wAAAAAAAAMAAAD4/wEAAAAAAAMAAAD4/wIAAAAAAAMAAAD4/wMAAAAAAAMAAAD4/wQAAAAAAAMAAAD4/wUAAAAAAAMAAAAHAPr/AAAAAAMAAAAHAPv/AAAAAAMAAAAHAPz/AAAAAAMAAAAHAP3/AAAAAAMAAAAHAP7/AAAAAAMAAAAHAP//AAAAAAMAAAAHAAAAAAAAAAMAAAAHAAEAAAAAAAMAAAAHAAIAAAAAAAMAAAAHAAMAAAAAAAMAAAAHAAQAAAAAAAMAAAAHAAUAAAAAAAMAAAA=")
+script = ExtResource("5_nu5yo")
+sand_tile_map_layer = NodePath("../SandTileMapLayer")
+
+[node name="HouseManager" parent="." node_paths=PackedStringArray("sand_tilemap", "wave_marker_tile_map_layer") instance=ExtResource("3_82fsj")]
+sand_tilemap = NodePath("../SandTileMapLayer")
+wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
+
+[node name="Selector" parent="." node_paths=PackedStringArray("object_grid", "score_manager", "navigation_region") instance=ExtResource("1_82fsj")]
+script = ExtResource("11_wa302")
+object_grid = NodePath("../ObjectGrid")
+score_manager = NodePath("../ScoreManager")
+navigation_region = NodePath("../NavigationRegion")
+
+[node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer", "sand_tilemap_layer") instance=ExtResource("11_1sd34")]
+house_manager = NodePath("../HouseManager")
+wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
+sand_tilemap_layer = NodePath("../SandTileMapLayer")
+
+[node name="ObjectGrid" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="LittleGuy" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy2" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy3" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy4" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy5" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy6" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy7" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy8" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy9" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy10" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy11" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy12" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy13" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy14" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy15" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="LittleGuy16" parent="ObjectGrid" instance=ExtResource("11_da7wy")]
+
+[node name="ScoreManager" parent="." node_paths=PackedStringArray("house_manager", "wave_manager") instance=ExtResource("11_j28wf")]
+house_manager = NodePath("../HouseManager")
+wave_manager = NodePath("../WaveManager")
+
+[node name="NavigationRegion" parent="." node_paths=PackedStringArray("house_manager", "sand_tile_map_layer", "wave_manager") instance=ExtResource("14_vi0pu")]
+house_manager = NodePath("../HouseManager")
+sand_tile_map_layer = NodePath("../SandTileMapLayer")
+wave_manager = NodePath("../WaveManager")
+
+[node name="UI" parent="." node_paths=PackedStringArray("game_variables") instance=ExtResource("16_wa302")]
+game_variables = NodePath("../GameVariables")

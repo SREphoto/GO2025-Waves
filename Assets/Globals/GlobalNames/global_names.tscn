@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://2pjoxcxqxjkk" path="res://Assets/Globals/GlobalNames/AnimationNames/standard_animation_names.tres" id="2_kki8l"]
 [ext_resource type="Resource" uid="uid://cenejd38jwxk3" path="res://Assets/Globals/GlobalNames/InputNames/standard_input_names.tres" id="3_d8yh1"]
 
-[node name="GlobalNames" type="Node2D"]
+[node name="GlobalNames" type="Node"]
 script = ExtResource("1_uyeyi")
 animations = ExtResource("2_kki8l")
 inputs = ExtResource("3_d8yh1")

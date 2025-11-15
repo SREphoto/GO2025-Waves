@@ -10,7 +10,7 @@ extends Node2D
 @onready var wave_right: Node2D = $AllWavesRight
 @onready var wave_down: Node2D = $AllWavesDown
 
-enum STATES {MARK, SEND}
+enum STATES {MARK, SEND, RUNNING, DONE}
 var state: STATES = STATES.MARK
 
 enum DIRECTIONS {LEFT, UP, RIGHT, DOWN}
@@ -20,18 +20,27 @@ var last_dir: DIRECTIONS
 var depth: int = 2
 var radius : int = 32
 
+var wave_side_count: int
+var wave_side_finished_count: int
+
 signal mark_wave()
 signal send_wave()
+signal running_wave()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(GlobalNames.inputs.waves):
-		match state:
+signal finished_waves()
+
+func _ready() -> void:
+	for wave_side: WaveSide in get_children():
+		wave_side.wave_side_finished.connect(on_wave_side_finished)
+
+func next_state() -> void:
+	match state:
 			STATES.MARK:
 				state_mark()
-				state = STATES.SEND
 			STATES.SEND:
 				state_send()
-				state = STATES.MARK
+			STATES.RUNNING:
+				state_running()
 			_:
 				state = STATES.MARK
 
@@ -53,7 +62,7 @@ func state_mark() -> void:
 			last_dir = directions[0]
 	
 	mark_wave.emit()
-	
+	state = STATES.SEND
 
 func state_send() -> void:
 	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
@@ -62,22 +71,28 @@ func state_send() -> void:
 	var grid_size : int = GlobalConfigs.GRID_SIZE
 	# Größter Pfusch aller Zeiten xD
 
+	wave_side_count = 0
+	wave_side_finished_count = 0
 	
 	for dir in directions:
 		match dir:
 			DIRECTIONS.LEFT:
 				wave_left.position.x = bounds.x * grid_size + depth * grid_size - 80
 				wave_left.start_wave()
+				wave_side_count += 1
 			DIRECTIONS.DOWN:
 				wave_down.position.y = bounds.y * grid_size + depth * grid_size - 80
 				wave_down.start_wave()
+				wave_side_count += 1
 			DIRECTIONS.RIGHT:
 				wave_right.position.x = bounds.z * grid_size - depth * grid_size + 80
 				wave_right.start_wave()
+				wave_side_count += 1
 			DIRECTIONS.UP:
 				wave_up.position.y = bounds.w * grid_size - depth * grid_size + 80
 				wave_up.start_wave()
-		await get_tree().create_timer(0.5).timeout
+				wave_side_count += 1
+		#await get_tree().create_timer(0.5).timeout
 	
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):
@@ -87,3 +102,16 @@ func state_send() -> void:
 	await get_tree().process_frame
 	
 	send_wave.emit()
+	state = STATES.RUNNING
+
+func state_running() -> void:
+	pass
+
+func on_wave_side_finished() -> void:
+	wave_side_finished_count += 1
+	if wave_side_finished_count >= wave_side_count:
+		_on_waves_finished()
+
+func _on_waves_finished() -> void:
+	state = STATES.MARK
+	finished_waves.emit()
