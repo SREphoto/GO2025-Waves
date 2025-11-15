@@ -60,7 +60,6 @@ func state_send() -> void:
 	
 	var bounds : Vector4i = sand_tilemap_layer.get_grid_bounds()
 	var grid_size : int = GlobalConfigs.GRID_SIZE
-	print(bounds)
 	# Größter Pfusch aller Zeiten xD
 
 	

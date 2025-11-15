@@ -6,7 +6,7 @@ extends Node2D
 
 @export var round_goal : int = 5
 @export var round_waves : int = 1
-@export var wave_time : int = 10
+@export var wave_time : int = 1000
 
 @onready var second_timer: Timer = $SecondTimer
 

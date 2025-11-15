@@ -33,6 +33,8 @@ const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 			stat_coll_poly.polygon = res.stat_poly
 			flag.position =  res.flag_pos
 
+var in_danger: bool = false
+
 func set_color(col : int):
 	flag.color
 

@@ -2,6 +2,7 @@ class_name HouseManager
 extends Node2D
 
 @export var sand_tilemap: SandTileMapLayer
+@export var wave_marker_tile_map_layer: WaveMarkerTileMap
 
 @onready var check_ray: CheckRay = $CheckRay
 @onready var object_grid: Node2D = %ObjectGrid
@@ -88,10 +89,19 @@ func _check_free_grid_pos_for_size(house_res_size: Array[Vector2i]) -> Vector2i:
 func get_houses_on_grid() -> Dictionary[Vector2i, House]:
 	var grid_vectors = sand_tilemap.all_pos
 	var house_dict : Dictionary[Vector2i, House]
+	var danger_cells : Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
+	
 	for vector in grid_vectors:
 		if house_on_pos(vector):
 			var house = get_house_on_pos(vector) as House
+			house.in_danger = false
 			house_dict.get_or_add(vector, house)
+	
+	for pos in house_dict.keys():
+		if danger_cells.has(pos):
+			var house: House = house_dict[pos]
+			house.in_danger = true
+	
 	return house_dict
 
 func _get_empty_grid_tiles() -> Array[Vector2i]:
