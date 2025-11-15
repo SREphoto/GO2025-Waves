@@ -2,34 +2,33 @@
 
 [ext_resource type="Script" uid="uid://315gl0w368qe" path="res://Entities/GridObject/MovableGridObject/House/HouseToRes/house_to_res.gd" id="1_12l8f"]
 [ext_resource type="PackedScene" uid="uid://b2avbu36bburo" path="res://Entities/GridObject/MovableGridObject/House/house.tscn" id="2_fewq0"]
-[ext_resource type="Resource" uid="uid://cs4ajudybkhkb" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_04.tres" id="3_ih4tn"]
-[ext_resource type="Texture2D" uid="uid://da80p8vrq1g0s" path="res://Entities/GridObject/MovableGridObject/House/Houses2x2-Front.png" id="4_rb2t6"]
+[ext_resource type="Resource" uid="uid://drq1a6thji0" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_start.tres" id="3_ih4tn"]
+[ext_resource type="Texture2D" uid="uid://brflvrevp3b45" path="res://Stages/Homepage/StartHouse.png" id="4_rb2t6"]
 
-[node name="HouseToRes" type="Node2D"]
+[node name="HouseToRes" type="Node2D" node_paths=PackedStringArray("house")]
 script = ExtResource("1_12l8f")
-res_name = &"house_four_02"
+house = NodePath("House")
+res_name = &"house_start"
 
 [node name="House" parent="." instance=ExtResource("2_fewq0")]
 res = ExtResource("3_ih4tn")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, -1)])
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
 
 [node name="CollisionPolygon2D" parent="House/Selectable" index="0"]
-polygon = PackedVector2Array(-16, 16, 48, 16, 48, -48, 16, -48, 16, -16, -16, -16)
+polygon = PackedVector2Array(-16, 16, 48, 16, 48, -16, -16, -16)
 
 [node name="Front" parent="House/SpritesFront" index="0"]
-position = Vector2(16, -36)
+position = Vector2(16, -6)
 texture = ExtResource("4_rb2t6")
-hframes = 7
-frame = 3
+hframes = 1
 
 [node name="Back" parent="House/SpritesBack" index="0"]
-visible = true
 frame = 3
 
 [node name="CollisionPolygon2D" parent="House/StaticBody2D" index="0"]
-polygon = PackedVector2Array(-9, 12, 41, 12, 45, 8, 45, -30, 41, -33, 23, -33, 19, -30, 19, -1, -9, -1, -13, 3, -13, 8)
+polygon = PackedVector2Array(-9, 12, 41, 12, 44, 8, 44, 2, 41, -1, -9, -1, -12, 3, -12, 8)
 
 [node name="Flagpole" parent="House" index="4"]
-position = Vector2(32, -15)
+position = Vector2(16, -8865)
 
 [editable path="House"]
