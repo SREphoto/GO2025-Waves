@@ -11,6 +11,10 @@ var all_pos: Array[Vector2i]
 
 signal changed_grid_size()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("spawn"):
+		increase_grid_size()
+
 func increase_grid_size() -> void:
 		grid_size += Vector2.ONE
 

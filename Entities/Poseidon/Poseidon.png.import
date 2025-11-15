@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvt66q5my43bn"
-path="res://.godot/imported/Poseidon.png-9da295637e75165a674571be6afac803.ctex"
+path="res://.godot/imported/Poseidon.png-7668d30e840112c3924d563292018ef3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TMP/Poseidon/Poseidon.png"
-dest_files=["res://.godot/imported/Poseidon.png-9da295637e75165a674571be6afac803.ctex"]
+source_file="res://Entities/Poseidon/Poseidon.png"
+dest_files=["res://.godot/imported/Poseidon.png-7668d30e840112c3924d563292018ef3.ctex"]
 
 [params]
 

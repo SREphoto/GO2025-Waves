@@ -11,16 +11,22 @@ var next_game_state: GAME_STATES
 
 @onready var game_variables: GameVariables = $GameVariables
 
+@onready var poseidon: Poseidon = $Poseidon
+
 @onready var ui: UI = $UI
 @onready var shop: CanvasLayer = $Shop
 
 func _ready() -> void:
 	game_variables.counting_finished.connect(on_counting_finished)
+	poseidon.poseidon_pressed.connect(_on_poseidon_pressed)
 	_game_state_sliding()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.waves):
 		switch_game_state()
+
+func _on_poseidon_pressed() -> void:
+	switch_game_state()
 
 func on_counting_finished(has_finished: bool) -> void:
 	if has_finished:
