@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5tubgyxsf3es"]
+[gd_scene load_steps=6 format=3 uid="uid://c5tubgyxsf3es"]
 
 [ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
 [ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
 [ext_resource type="PackedScene" uid="uid://bimqf8pw360of" path="res://Entities/UI/left_bottom_ui.tscn" id="3_irfo3"]
+[ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="4_ag6ts"]
+[ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="5_ikunc"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_irfo3")
@@ -10,6 +12,25 @@ script = ExtResource("1_irfo3")
 [node name="LeftTopUI" parent="." instance=ExtResource("1_y56jo")]
 
 [node name="LeftBottomUI" parent="." instance=ExtResource("3_irfo3")]
+
+[node name="TimeLabel" parent="LeftBottomUI/Sprite2D" index="2"]
+offset_right = -17.000004
+text = "Time"
+
+[node name="TimeRemaining" parent="LeftBottomUI/Sprite2D" index="3"]
+offset_left = -17.799988
+offset_right = 18.399998
+text = "120"
+
+[node name="SkipButton" type="TextureButton" parent="LeftBottomUI/Sprite2D" index="4"]
+offset_left = 20.399998
+offset_top = 5.199993
+offset_right = 40.399998
+offset_bottom = 26.199993
+texture_normal = ExtResource("4_ag6ts")
+texture_hover = ExtResource("5_ikunc")
+
+[connection signal="pressed" from="LeftBottomUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
 
 [editable path="LeftTopUI"]
 [editable path="LeftBottomUI"]

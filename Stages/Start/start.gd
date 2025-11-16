@@ -18,14 +18,15 @@ var next_game_state: GAME_STATES
 
 func _ready() -> void:
 	game_variables.counting_finished.connect(on_counting_finished)
-	poseidon.poseidon_pressed.connect(_on_poseidon_pressed)
+	poseidon.poseidon_pressed.connect(_switch_game_state)
+	ui.start_wave.connect(_switch_game_state)
 	_game_state_sliding()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.waves):
 		switch_game_state()
 
-func _on_poseidon_pressed() -> void:
+func _switch_game_state() -> void:
 	switch_game_state()
 
 func on_counting_finished(has_finished: bool) -> void:
