@@ -10,7 +10,7 @@ extends Node2D
 @export var double : bool = true
 @export var foam_time = 1.0
 
-signal retreating
+signal wave_retreating
 signal wave_row_finished()
 
 func _ready() -> void:
@@ -26,8 +26,10 @@ func start_wave():
 	third_tile.visible = true
 	third_tile.play("Foam")
 	timer.start(foam_time)
+	wave_retreating.emit()
 	await timer.timeout
 	await _wave_out()
+	wave_row_finished.emit()
 
 func _wave_in():
 	if double:
@@ -56,5 +58,3 @@ func _wave_out():
 		double_tile.play("WaveOut")
 		await double_tile.animation_finished
 		double_tile.visible = false
-	
-	wave_row_finished.emit()

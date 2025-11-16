@@ -93,7 +93,8 @@ func state_send() -> void:
 				wave_up.start_wave()
 				wave_side_count += 1
 		#await get_tree().create_timer(0.5).timeout
-	
+	# TEMP!!!
+	await get_tree().create_timer(1.5).timeout
 	for pos: Vector2i in danger_cells:
 		if house_manager.house_on_pos(pos):
 			house_manager.get_house_on_pos(pos).destroy()
