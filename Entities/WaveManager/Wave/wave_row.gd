@@ -10,7 +10,7 @@ extends Node2D
 @export var double : bool = true
 @export var foam_time = 1.0
 
-signal wave_retreating
+signal wave_row_moved(dist: int)
 signal wave_row_finished()
 
 func _ready() -> void:
@@ -26,7 +26,6 @@ func start_wave():
 	third_tile.visible = true
 	third_tile.play("Foam")
 	timer.start(foam_time)
-	wave_retreating.emit()
 	await timer.timeout
 	await _wave_out()
 	wave_row_finished.emit()
@@ -36,14 +35,17 @@ func _wave_in():
 		double_tile.visible = true
 		double_tile.play("WaveIn")
 		await double_tile.animation_finished
+		wave_row_moved.emit(0)
 		double_tile.play("Water")
 	first_tile.visible = true
 	first_tile.play("WaveIn")
 	await first_tile.animation_finished
+	wave_row_moved.emit(1)
 	first_tile.play("Water")
 	second_tile.visible = true
 	second_tile.play("WaveInLast")
 	await second_tile.animation_finished
+	wave_row_moved.emit(2)
 	second_tile.play("WaterLast")
 
 func _wave_out():

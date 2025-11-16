@@ -8,18 +8,19 @@
 [node name="Flagpole" type="Node2D"]
 script = ExtResource("2_1jp6d")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Pole" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
 texture = ExtResource("1_wpnrq")
 
-[node name="Flag" type="PanelContainer" parent="Sprite"]
+[node name="Flag" type="PanelContainer" parent="Pole"]
 offset_left = -1.0
 offset_top = -8.0
 offset_right = 13.0
 offset_bottom = 1.0
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("3_1jp6d")
 
-[node name="Label" type="Label" parent="Sprite/Flag"]
+[node name="Label" type="Label" parent="Pole/Flag"]
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_1jp6d")

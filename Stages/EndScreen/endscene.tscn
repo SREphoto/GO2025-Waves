@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://xiplbjxmuo35" path="res://Stages/EndScreen/tombstone.tscn" id="3_hvjcg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
-vertices = PackedVector2Array(63, 63, -63, 63, -63, -63, 63, -63)
+vertices = PackedVector2Array(62, 62, -62, 62, -62, -62, 62, -62)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)])
 source_geometry_mode = 1

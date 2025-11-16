@@ -11,11 +11,13 @@ var wave_row_count: int
 var wave_row_finished_count: int
 
 signal wave_group_finished()
+signal wave_group_moved(dist: int)
 
 func _ready() -> void:
 	for wave_row: WaveRow in get_children():
 		wave_row_count += 1
 		wave_row.wave_row_finished.connect(_on_wave_row_finished)
+	wave_row_1.wave_row_moved.connect(_on_wave_row_moved)
 
 func start_wave():
 	wave_row_finished_count = 0
@@ -31,3 +33,6 @@ func _on_wave_row_finished() -> void:
 	wave_row_finished_count += 1
 	if wave_row_finished_count >= wave_row_count:
 		wave_group_finished.emit()
+
+func _on_wave_row_moved(dist: int) -> void:
+	wave_group_moved.emit(dist)

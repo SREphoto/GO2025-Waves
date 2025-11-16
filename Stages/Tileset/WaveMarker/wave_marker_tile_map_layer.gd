@@ -7,7 +7,7 @@ extends TileMapLayer
 
 func _ready() -> void:
 	wave_manager.mark_wave.connect(_on_mark_wave)
-	wave_manager.send_wave.connect(_on_send_wave)
+	wave_manager.finished_waves.connect(_on_finished_waves)
 
 func _on_mark_wave() -> void:
 	for dir: WaveManager.DIRECTIONS in wave_manager.directions:
@@ -38,7 +38,7 @@ func _set_tilemap(dir: WaveManager.DIRECTIONS) -> void:
 					set_cell(Vector2i(row, col), 2, Vector2(0, 0))
 	set_cells_terrain_connect(get_used_cells(), 0, 2, false)
 
-func _on_send_wave() -> void:
+func _on_finished_waves() -> void:
 	clear()
 
 func get_danger_cells() -> Array[Vector2i]:

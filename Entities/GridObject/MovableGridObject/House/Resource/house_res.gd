@@ -10,3 +10,5 @@ extends Resource
 @export var sel_poly: PackedVector2Array
 @export var stat_poly: PackedVector2Array
 @export var flag_pos: Vector2i
+@export var standard_points: int = 1
+@export var multi_house: bool

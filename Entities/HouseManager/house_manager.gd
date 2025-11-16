@@ -7,7 +7,7 @@ extends Node2D
 @onready var check_ray: CheckRay = $CheckRay
 @onready var object_grid: Node2D = %ObjectGrid
 
-enum HOUSE_SIZES{ONE, TWO, THREE, FOUR}
+enum HOUSE_SIZES{ONE, TWO, THREE, FOUR, MULTI}
 
 const HOUSE = preload("uid://b2avbu36bburo")
 
@@ -15,25 +15,29 @@ const HOUSE_ARRAY_RES_ONE: HouseArrayRescource = preload("uid://c3lrp7xjq6rsk")
 const HOUSE_ARRAY_RES_TWO: HouseArrayRescource = preload("uid://ttgp1nmc6xx3")
 const HOUSE_ARRAY_RES_THREE: HouseArrayRescource = preload("uid://ccydnracsqhx3")
 const HOUSE_ARRAY_RES_FOUR: HouseArrayRescource = preload("uid://4ifk5bscputi")
+const HOUSE_ARRAY_RES_MULTI: HouseArrayRescource = preload("uid://tdk2guk68owq")
 
 var active: bool = true
 
-var house_size_to_grid_size: Dictionary = {
-	HOUSE_SIZES.ONE : [[Vector2i.ZERO], [Vector2.ONE]],
-	HOUSE_SIZES.TWO : [[Vector2i.ZERO], [Vector2.ONE]],
-	HOUSE_SIZES.THREE : [[Vector2i.ZERO], [Vector2.ONE]],
-	HOUSE_SIZES.FOUR : [[Vector2i.ZERO], [Vector2.ONE]]
-	}
-var weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0])
+#var house_size_to_grid_size: Dictionary = {
+	#HOUSE_SIZES.ONE : [[Vector2i.ZERO], [Vector2.ONE]],
+	#HOUSE_SIZES.TWO : [[Vector2i.ZERO], [Vector2.ONE]],
+	#HOUSE_SIZES.THREE : [[Vector2i.ZERO], [Vector2.ONE]],
+	#HOUSE_SIZES.FOUR : [[Vector2i.ZERO], [Vector2.ONE]],
+	#}
 
 var house_size_dict: Dictionary[HOUSE_SIZES, HouseArrayRescource] = {
 	HOUSE_SIZES.ONE : HOUSE_ARRAY_RES_ONE,
 	HOUSE_SIZES.TWO : HOUSE_ARRAY_RES_TWO,
 	HOUSE_SIZES.THREE : HOUSE_ARRAY_RES_THREE,
-	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR
+	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR,
+	HOUSE_SIZES.MULTI: HOUSE_ARRAY_RES_MULTI
 	}
+var size_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0, 0])
 
-var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.ONE, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+var color_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1])
+
+var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.MULTI, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -42,20 +46,18 @@ signal house_spawned()
 func _ready() -> void:
 	var timer: Timer = Timer.new()
 	add_child(timer)
-	timer.start(1)
-	await timer.timeout
 	
 	while not start_house_sizes.is_empty():
-		timer.start(0.2)
+		timer.start(0.8)
 		await timer.timeout
 		_spawn_house()
 
 func _spawn_house():
 	var house_size: HOUSE_SIZES
 	if not start_house_sizes.is_empty():
-		house_size = start_house_sizes.pop_front()
+		house_size = start_house_sizes.pop_back()
 	else:
-		house_size = rng.rand_weighted(weights) as HOUSE_SIZES
+		house_size = rng.rand_weighted(size_weights) as HOUSE_SIZES
 	
 	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size].house_res_array).duplicate_deep()
 	house_size_res_array.shuffle()
@@ -77,18 +79,31 @@ func _spawn_house():
 				break
 		if done:
 			break
-		house_size -= 1 as HOUSE_SIZES
+		house_size = (house_size - 1) as HOUSE_SIZES
+	
+	for i in size_weights.size():
+		if not i == house_size and size_weights[i] > 0:
+			size_weights[i] *= 2
 	
 	var house: House = HOUSE.instantiate()
 	house.set_grid_pos(rand)
 	house.res = house_res
 	object_grid.add_child(house)
 	# TEMPORARY
-	house.flag.color = randi_range(0, 2)
-	house.flag.set_flag_color(house.flag.color)
+	if not house.multi_house:
+		house.flag.color = rng.rand_weighted(color_weights) as Flag.COLORS
+	else:
+		house.flag.color = Flag.COLORS.GRAY
+	
+	if not house.multi_house:
+		for i in color_weights.size():
+			if not i == house.flag.color:
+				color_weights[i] *= 2
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
+	
+	await house.house_done
 	
 	house_spawned.emit()
 	

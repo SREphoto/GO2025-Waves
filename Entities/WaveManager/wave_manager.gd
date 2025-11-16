@@ -5,10 +5,10 @@ extends Node2D
 @export var wave_marker_tile_map_layer: WaveMarkerTileMap
 @export var sand_tilemap_layer : SandTileMapLayer
 
-@onready var wave_left: Node2D = $AllWavesLeft
-@onready var wave_up: Node2D = $AllWavesUp
-@onready var wave_right: Node2D = $AllWavesRight
-@onready var wave_down: Node2D = $AllWavesDown
+@onready var wave_left: WaveSide = $AllWavesLeft
+@onready var wave_up: WaveSide = $AllWavesUp
+@onready var wave_right: WaveSide = $AllWavesRight
+@onready var wave_down: WaveSide = $AllWavesDown
 
 enum STATES {MARK, SEND, RUNNING, DONE}
 var state: STATES = STATES.MARK
@@ -25,13 +25,52 @@ var wave_side_finished_count: int
 
 signal mark_wave()
 signal send_wave()
-signal running_wave()
 
 signal finished_waves()
 
 func _ready() -> void:
 	for wave_side: WaveSide in get_children():
 		wave_side.wave_side_finished.connect(on_wave_side_finished)
+	wave_left.wave_side_moved.connect(_on_wave_left_moved)
+	wave_right.wave_side_moved.connect(_on_wave_right_moved)
+	wave_up.wave_side_moved.connect(_on_wave_up_moved)
+	wave_down.wave_side_moved.connect(_on_wave_down_moved)
+
+func _on_wave_left_moved(dist: int) -> void:
+	var grid_x: int = int(wave_left.global_position.x/GlobalConfigs.GRID_SIZE) + dist
+	_delet_houses_on_wave(grid_x)
+
+func _on_wave_right_moved(dist: int) -> void:
+	var grid_x: int = int(wave_right.global_position.x/GlobalConfigs.GRID_SIZE) - dist
+	_delet_houses_on_wave(grid_x)
+
+func _on_wave_up_moved(dist: int) -> void:
+	var grid_y: int = int(wave_up.global_position.y/GlobalConfigs.GRID_SIZE) - dist
+	_delet_houses_on_wave(-1000, grid_y)
+
+func _on_wave_down_moved(dist: int) -> void:
+	var grid_y: int = int(wave_down.global_position.y/GlobalConfigs.GRID_SIZE) + dist
+	_delet_houses_on_wave(-1000, grid_y)
+
+func _delet_houses_on_wave(grid_x: int = -1000, grid_y: int = -1000) -> void:
+	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
+	var bound: Vector4i = sand_tilemap_layer.get_grid_bounds()
+	
+	if grid_x > -1000:
+		for y in range(bound.y, bound.w):
+			var pos: Vector2i = Vector2i(grid_x, y)
+			if not danger_cells.has(pos):
+				return
+			if house_manager.house_on_pos(pos):
+				house_manager.get_house_on_pos(pos).destroy()
+		return
+	
+	for x in range(bound.x, bound.z):
+		var pos: Vector2i = Vector2i(x, grid_y)
+		if not danger_cells.has(pos):
+			return
+		if house_manager.house_on_pos(pos):
+			house_manager.get_house_on_pos(pos).destroy()
 
 func next_state() -> void:
 	match state:
@@ -64,9 +103,7 @@ func state_mark() -> void:
 	mark_wave.emit()
 	state = STATES.SEND
 
-func state_send() -> void:
-	var danger_cells: Array[Vector2i] = wave_marker_tile_map_layer.get_danger_cells()
-	
+func state_send() -> void:	
 	var bounds : Vector4i = sand_tilemap_layer.get_grid_bounds()
 	var grid_size : int = GlobalConfigs.GRID_SIZE
 	# Größter Pfusch aller Zeiten xD
@@ -92,12 +129,6 @@ func state_send() -> void:
 				wave_up.position.y = bounds.w * grid_size - depth * grid_size + 80
 				wave_up.start_wave()
 				wave_side_count += 1
-		#await get_tree().create_timer(0.5).timeout
-	# TEMP!!!
-	await get_tree().create_timer(1.5).timeout
-	for pos: Vector2i in danger_cells:
-		if house_manager.house_on_pos(pos):
-			house_manager.get_house_on_pos(pos).destroy()
 	
 	await get_tree().process_frame
 	await get_tree().process_frame

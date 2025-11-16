@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var waves_remaining: Label = $LeftBottomUI/Sprite2D/WavesRemaining
 @onready var time_remaining: Label = $LeftBottomUI/Sprite2D/TimeRemaining
 
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
+
 signal start_wave
 
 func _ready() -> void:
@@ -22,3 +24,11 @@ func refresh():
 
 func _on_skip_button_pressed() -> void:
 	start_wave.emit()
+
+func blend_in() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 1), 0.8)
+
+func blend_out() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.8)

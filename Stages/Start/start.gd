@@ -1,14 +1,13 @@
 class_name Start
 extends Node2D
 
-enum GAME_STATES {PAUSED, EXPANDING, SPAWNING, SLIDING, WAVES, COUNTING}
+enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
 @onready var water_tile_map_layer: WaterTileMapLayer = $WaterTileMapLayer
-
 
 @onready var selector: Selector = $Selector
 @onready var wave_manager: WaveManager = $WaveManager
@@ -19,14 +18,14 @@ var next_game_state: GAME_STATES
 @onready var poseidon: Poseidon = $Poseidon
 
 @onready var ui: UI = $UI
-@onready var shop: CanvasLayer = $Shop
+@onready var shop: Shop = $Shop
 
 func _ready() -> void:
 	GlobalGameState.start_scene = self
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
-	_game_state_sliding()
+	_game_state_paused()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(GlobalNames.inputs.waves):
@@ -37,7 +36,7 @@ func _switch_game_state() -> void:
 
 func on_counting_finished(has_finished: bool) -> void:
 	if has_finished:
-		next_game_state = GAME_STATES.PAUSED
+		next_game_state = GAME_STATES.SHOP
 	else:
 		next_game_state = GAME_STATES.SPAWNING
 	_game_state_counting()
@@ -45,10 +44,10 @@ func on_counting_finished(has_finished: bool) -> void:
 func switch_game_state(value = next_game_state) -> void:
 	game_state = value
 	match game_state:
+		GAME_STATES.SHOP:
+			_game_state_shop()
 		GAME_STATES.PAUSED:
 			_game_state_paused()
-		GAME_STATES.EXPANDING:
-			_game_state_expanding()
 		GAME_STATES.SPAWNING:
 			_game_state_spawning()
 		GAME_STATES.SLIDING:
@@ -58,16 +57,27 @@ func switch_game_state(value = next_game_state) -> void:
 		GAME_STATES.COUNTING: 
 			_game_state_counting()
 
-func _game_state_paused() -> void:
-	ui.visible = false
+func _game_state_shop() -> void:
+	ui.blend_out()
 	game_variables.active = false
 	game_variables.next_game()
-	shop.visible = true
+	shop.enter()
 	next_game_state = GAME_STATES.SPAWNING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
 
-func _game_state_expanding() -> void:
-	pass
+func _game_state_paused() -> void:
+	game_variables.active = false
+	ui.canvas_modulate.color = Color(1,1,1,0)
+	selector.active = false
+	shop.exit()
+	next_game_state = GAME_STATES.SLIDING
+	GlobalGameState.state = GlobalGameState.STATES.GAMELOOP
+	
+	var timer: Timer = Timer.new()
+	add_child(timer)
+	timer.start(3)
+	await timer.timeout
+	switch_game_state()
 
 func _game_state_spawning() -> void:
 	house_manager._spawn_house()
@@ -75,9 +85,9 @@ func _game_state_spawning() -> void:
 	switch_game_state()
 
 func _game_state_sliding() -> void:
-	ui.visible = true
+	ui.blend_in()
 	game_variables.active = true
-	shop.visible = false
+	shop.exit()
 	selector.active = true
 	next_game_state = GAME_STATES.WAVES
 	wave_manager.next_state()
@@ -103,3 +113,6 @@ func get_sand() -> SandTileMapLayer:
 
 func get_water() -> WaterTileMapLayer:
 	return water_tile_map_layer
+
+func get_nav_region() -> NavigationRegion:
+	return find_child("NavigationRegion")

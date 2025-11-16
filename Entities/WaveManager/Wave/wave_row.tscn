@@ -7,6 +7,7 @@
 script = ExtResource("1_b4e5m")
 
 [node name="DoubleTile" parent="." instance=ExtResource("1_pty62")]
+animation = &"Water"
 
 [node name="FirstTile" parent="." instance=ExtResource("1_pty62")]
 animation = &"Water"

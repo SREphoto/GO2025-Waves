@@ -28,11 +28,42 @@ func on_object_move_finished() -> void:
 
 func score():
 	house_grid = house_manager.get_houses_on_grid()
+	_apply_tile_multis(house_grid)
 	var groups = _group_houses_by_color(house_grid)
 	_set_flag_values(groups)
 	biggest_color_groups = _get_biggest_color_groups(groups)
-	_set_falg_modulate()
+	_set_flag_modulate()
 	score_changed.emit()
+
+func _clear_multis(house_dict:Dictionary) -> void:
+	for pos in house_dict.keys():
+		var house: House = house_dict[pos]
+		house.current_points = house.standard_points
+
+func _apply_tile_multis(house_dict:Dictionary) -> void:
+	_clear_multis(house_dict)
+	for pos in house_dict.keys():
+		var house: House = house_dict[pos]
+		if not house.multi_house or house.in_danger:
+			continue
+			
+		var neighbors = [
+				pos + Vector2i(1, -1),  # up-right
+				pos + Vector2i(1, 0),   # right
+				pos + Vector2i(1, 1),	# down-right
+				pos + Vector2i(0, 1),   # down
+				pos + Vector2i(-1, 1),  # down-left
+				pos + Vector2i(-1, 0),  # left
+				pos + Vector2i(-1, -1),  # left-up
+				pos + Vector2i(0, -1)   # up
+			]
+		for neighbor_pos in neighbors:
+			if not house_dict.has(neighbor_pos):
+				continue
+			var neighbor_house: House = house_dict[neighbor_pos]
+			if neighbor_house.multi_house:
+				continue
+			neighbor_house.current_points = neighbor_house.standard_points * house.current_points
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}
@@ -63,7 +94,7 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 			if not house_dict.has(current_pos):
 				continue
 			
-			var current_house = house_dict[current_pos]
+			var current_house: House = house_dict[current_pos]
 			if not current_house is House:
 				continue
 			
@@ -75,7 +106,8 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 			
 			# Add to group and mark as visited
 			visited[current_pos] = true
-			group.append(current_house)
+			if not group.has(current_house) and not current_house.multi_house:
+				group.append(current_house)
 			
 			# Check all 4 adjacent positions
 			var neighbors = [
@@ -113,17 +145,27 @@ func _color_group_in_groups(groups: Array[Array], color: int) -> Array[House]:
 			return group
 	return []
 
+func _get_group_points(group: Array[House]) -> int:
+	var points: int = 0
+	
+	for house: House in group:
+		points += house.current_points
+	
+	return points
+
 func _set_flag_values(groups: Array[Array]) -> void:
 	for house : House in house_grid.values():
-		house.flag.current_value = 0
+		house.flag.current_value = house.current_points
+		if house.multi_house and not house.in_danger:
+			house.flag.set_flag_opacity(true)
+			continue
 		house.flag.set_flag_opacity(false)
 	
 	for group in groups:
 		for house : House in group:
-			house.flag.current_value = group.size()
-			house.flag.set_flag_opacity(false)
+			house.flag.current_value = _get_group_points(group)
 
-func _set_falg_modulate() -> void:
+func _set_flag_modulate() -> void:
 	for group in biggest_color_groups:
 		for house: House in group:
 			house.flag.set_flag_opacity(true)

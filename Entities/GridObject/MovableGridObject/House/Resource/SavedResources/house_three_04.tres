@@ -14,3 +14,4 @@ frame_back = true
 sel_poly = PackedVector2Array(-16, 16, 48, 16, 48, -48, 16, -48, 16, -16, -16, -16)
 stat_poly = PackedVector2Array(-9, 12, 41, 12, 45, 8, 45, -30, 41, -33, 23, -33, 19, -30, 19, -1, -9, -1, -13, 3, -13, 8)
 flag_pos = Vector2i(32, -15)
+standard_points = 3

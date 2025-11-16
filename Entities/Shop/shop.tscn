@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bpcls6g0vs82v"]
+[gd_scene load_steps=2 format=3 uid="uid://bpcls6g0vs82v"]
+
+[ext_resource type="Script" uid="uid://dlss7wu3vxe7x" path="res://Entities/Shop/shop.gd" id="1_p3mvd"]
 
 [node name="Shop" type="CanvasLayer"]
+script = ExtResource("1_p3mvd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -10,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0627451, 0.0627451, 0.0627451, 0.7058824)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+[node name="M" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,9 +25,30 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer"]
+[node name="M" type="MarginContainer" parent="ColorRect/M"]
+custom_minimum_size = Vector2(1024, 256)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="V" type="HBoxContainer" parent="ColorRect/M/M"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/M/M/V"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 256
 text = "SHOP"
-horizontal_alignment = 1
+horizontal_alignment = 2
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="MoneyLabel" type="RichTextLabel" parent="ColorRect/M/M/V"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 128
+text = " $100"
+vertical_alignment = 1
 justification_flags = 162

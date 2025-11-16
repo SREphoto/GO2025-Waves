@@ -1,10 +1,15 @@
 class_name Flag
 extends Node2D
 
-@onready var flag: PanelContainer = $Sprite/Flag
-@onready var label: Label = $Sprite/Flag/Label
+@onready var pole: Sprite2D = $Pole
+@onready var flag: PanelContainer = $Pole/Flag
+@onready var label: Label = $Pole/Flag/Label
 
-@export var color : COLORS = COLORS.RED
+
+@export var color : COLORS = COLORS.RED:
+	set(value):
+		color = value
+		set_flag_color(color)
 @export var standard_value : int = 1
 @export var current_value : int = 1:
 	set(value):
@@ -19,8 +24,12 @@ extends Node2D
 enum COLORS {
 	RED,
 	GREEN,
-	BLUE
+	BLUE,
+	GRAY
 }
+
+var multi_house: bool = false:
+	set = set_multi_house
 
 func _ready() -> void:
 	set_flag_color(color)
@@ -34,13 +43,25 @@ func set_flag_color(col):
 			style = preload("uid://dvigpxi5gueqt")
 		COLORS.BLUE:
 			style = preload("uid://b1iyke7tm7rbh")
+		COLORS.GRAY:
+			style = preload("uid://uxgj5j41wtk3")
 	flag.add_theme_stylebox_override("panel", style)
 
 func set_flag_value(value : String):
-	label.text = value
+	if multi_house:
+		label.text = "*" + value
+	else:
+		label.text = value
 
-func set_flag_opacity(in_biggest_group: bool) -> void:
-	if in_biggest_group:
+func set_flag_opacity(shown: bool) -> void:
+	if shown:
 		flag.modulate = Color(1, 1, 1, 1)
 	else:
 		flag.modulate = Color(0.6, 0.6, 0.6, 1)
+
+func set_multi_house(value: bool) -> void:
+	multi_house = value
+	if not multi_house:
+		return
+		
+	pole.self_modulate = Color(1, 1, 1, 0)

@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://uxgj5j41wtk3"]
+
+[ext_resource type="Texture2D" uid="uid://34jjv87pdftd" path="res://Entities/Flag/Flags/FlagGray.png" id="1_1y7oi"]
+
+[resource]
+texture = ExtResource("1_1y7oi")
+texture_margin_left = 3.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 1.0

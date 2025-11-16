@@ -13,9 +13,6 @@ const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 @onready var sel_coll_poly: CollisionPolygon2D = $Selectable/CollisionPolygon2D
 @onready var stat_coll_poly: CollisionPolygon2D = $StaticBody2D/CollisionPolygon2D
 
-func _ready() -> void:
-	_spawn()
-
 @export var res: HouseRescource:
 	set(value):
 		res = value
@@ -35,11 +32,26 @@ func _ready() -> void:
 			sel_coll_poly.polygon = res.sel_poly
 			stat_coll_poly.polygon = res.stat_poly
 			flag.position =  res.flag_pos
+			standard_points = res.standard_points
+			multi_house = res.multi_house
+			if multi_house:
+				flag.multi_house = true
+				
 
 var in_danger: bool = false
 
-#func set_color(col : int):
-	#flag.color
+var standard_points: int:
+	set(value):
+		standard_points = value
+		current_points = standard_points
+var current_points: int
+
+var multi_house: bool = false
+
+signal house_done()
+
+func _ready() -> void:
+	_spawn()
 
 func get_color():
 	return flag.color
@@ -53,4 +65,6 @@ func destroy():
 func _spawn():
 	self.scale = Vector2.ZERO
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2(1.0, 1.0), 0.7)
+	tween.set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2(1.0, 1.0), 0.5)
+	await tween.finished
+	house_done.emit()

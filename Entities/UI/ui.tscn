@@ -9,6 +9,8 @@
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_irfo3")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
 [node name="LeftTopUI" parent="." instance=ExtResource("1_y56jo")]
 
 [node name="LeftBottomUI" parent="." instance=ExtResource("3_irfo3")]
