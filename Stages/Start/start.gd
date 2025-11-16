@@ -5,6 +5,11 @@ enum GAME_STATES {PAUSED, EXPANDING, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
+@onready var zoom_camera: ZoomCamera = $ZoomCamera
+@onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
+@onready var water_tile_map_layer: WaterTileMapLayer = $WaterTileMapLayer
+
+
 @onready var selector: Selector = $Selector
 @onready var wave_manager: WaveManager = $WaveManager
 @onready var house_manager: HouseManager = $HouseManager
@@ -17,6 +22,7 @@ var next_game_state: GAME_STATES
 @onready var shop: CanvasLayer = $Shop
 
 func _ready() -> void:
+	GlobalGameState.start_scene = self
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
@@ -88,3 +94,12 @@ func _game_state_counting() -> void:
 	if next_game_state == GAME_STATES.COUNTING:
 		next_game_state = GAME_STATES.SPAWNING
 	switch_game_state()
+
+func get_camera() -> ZoomCamera:
+	return zoom_camera
+
+func get_sand() -> SandTileMapLayer:
+	return sand_tile_map_layer
+
+func get_water() -> WaterTileMapLayer:
+	return water_tile_map_layer

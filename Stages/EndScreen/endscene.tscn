@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctnqj58d24fjc"]
+
+[ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
+[ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="2_1htgg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
+vertices = PackedVector2Array(63, 63, -63, 63, -63, -63, 63, -63)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+agent_radius = 2.0
+
+[node name="Endscene" type="Node2D"]
+script = ExtResource("1_wuj7j")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_wuj7j")
+
+[node name="LittleGuy" parent="." instance=ExtResource("2_1htgg")]
