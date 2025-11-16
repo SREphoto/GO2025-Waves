@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xiplbjxmuo35"]
+
+[ext_resource type="Texture2D" uid="uid://gyhrctodcjuq" path="res://Stages/EndScreen/Assets/Tombstone.png" id="1_ju4rn"]
+
+[node name="Tombstone" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_ju4rn")

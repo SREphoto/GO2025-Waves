@@ -94,7 +94,7 @@ func _won() -> void:
 
 func _lost() -> void:
 	print("LOST")
-	SceneSwitcher.switch_start_to_end(GlobalGameState.start_scene)
+	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
 
 func next_game() -> void:
 	has_finished = false
