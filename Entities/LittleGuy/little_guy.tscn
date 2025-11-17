@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://btpjeah0ck4vi"]
 
-[ext_resource type="Texture2D" uid="uid://drqeoogrmokte" path="res://TMP/LittleGuy/little_guy.png" id="1_8nyrq"]
-[ext_resource type="Script" uid="uid://cen6muvu073ei" path="res://TMP/LittleGuy/little_guy.gd" id="1_nbkvw"]
-[ext_resource type="PackedScene" uid="uid://di3u0ltqm70us" path="res://TMP/LittleHat/little_hat.tscn" id="3_0tbs0"]
+[ext_resource type="Texture2D" uid="uid://drqeoogrmokte" path="res://Entities/LittleGuy/little_guy.png" id="1_8nyrq"]
+[ext_resource type="Script" uid="uid://cen6muvu073ei" path="res://Entities/LittleGuy/little_guy.gd" id="1_nbkvw"]
+[ext_resource type="PackedScene" uid="uid://di3u0ltqm70us" path="res://Entities/LittleGuy/LittleHat/little_hat.tscn" id="3_0tbs0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nyrq"]
 radius = 2.0

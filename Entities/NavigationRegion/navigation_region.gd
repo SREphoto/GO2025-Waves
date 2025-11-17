@@ -25,7 +25,7 @@ func on_changed_grid_size() -> void:
 	navigation_polygon.add_outline(outline)
 	bake_navigation_polygon()
 
-func on_house_spawned() -> void:
+func on_house_spawned(_house: House) -> void:
 	while is_baking():
 		await bake_finished
 	bake_navigation_polygon()

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HouseRescource" load_steps=3 format=3 uid="uid://der423hq24i8n"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_oaaxo"]
+[ext_resource type="Texture2D" uid="uid://gyhrctodcjuq" path="res://Stages/EndScreen/Assets/Tombstone.png" id="2_img8m"]
+
+[resource]
+script = ExtResource("1_oaaxo")
+size = Array[Vector2i]([Vector2i(0, 0)])
+sprite_offset = Vector2i(0, -20)
+sprite_sheet = ExtResource("2_img8m")
+hframes = 1
+sel_poly = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
+stat_poly = PackedVector2Array(-12, 9, 11, 9, 14, 6, 14, -4, 11, -7, -12, -7, -15, -4, -15, 6)
+flag_pos = Vector2i(0, -8865)

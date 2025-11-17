@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3vmmpugqdyin"]
 
-[ext_resource type="Script" uid="uid://derm87e2x5fdk" path="res://Stages/Homepage/homepage_selector.gd" id="1_q2kic"]
+[ext_resource type="Script" uid="uid://by7hpmg8n7cwh" path="res://Entities/Selector/selector.gd" id="1_q2kic"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_q2kic")

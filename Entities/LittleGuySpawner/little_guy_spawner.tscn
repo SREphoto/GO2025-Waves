@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpx6wvmbcscmi"]
+
+[ext_resource type="Script" uid="uid://jshk271p187p" path="res://Entities/LittleGuySpawner/little_guy_spawner.gd" id="1_ftyc8"]
+
+[node name="LittleGuySpawner" type="Node2D"]
+script = ExtResource("1_ftyc8")

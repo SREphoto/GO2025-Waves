@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HouseRescource" load_steps=3 format=3 uid="uid://d2bf3axnhtoxx"]
+
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_erjqh"]
+[ext_resource type="Texture2D" uid="uid://cwhwrtnjfyed6" path="res://Entities/GridObject/MovableGridObject/House/MenuHouse.png" id="2_un016"]
+
+[resource]
+script = ExtResource("1_erjqh")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+sprite_offset = Vector2i(16, -6)
+sprite_sheet = ExtResource("2_un016")
+hframes = 1
+sel_poly = PackedVector2Array(-16, 16, 48, 16, 48, -16, -16, -16)
+stat_poly = PackedVector2Array(-9, 12, 41, 12, 44, 8, 44, 2, 41, -1, -9, -1, -12, 3, -12, 8)
+flag_pos = Vector2i(16, -8865)

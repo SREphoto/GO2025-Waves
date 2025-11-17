@@ -41,7 +41,7 @@ var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.MULTI, HOUSE_SIZES.TWO,
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-signal house_spawned()
+signal house_spawned(house: House)
 
 func _ready() -> void:
 	var timer: Timer = Timer.new()
@@ -100,12 +100,9 @@ func _spawn_house():
 			if not i == house.flag.color:
 				color_weights[i] *= 2
 	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	
 	await house.house_done
 	
-	house_spawned.emit()
+	house_spawned.emit(house)
 	
 
 func _check_free_grid_pos_for_size(house_res_size: Array[Vector2i]) -> Vector2i:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctnqj58d24fjc"]
+[gd_scene load_steps=6 format=3 uid="uid://ctnqj58d24fjc"]
 
 [ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
-[ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://TMP/LittleGuy/little_guy.tscn" id="2_1htgg"]
-[ext_resource type="PackedScene" uid="uid://xiplbjxmuo35" path="res://Stages/EndScreen/tombstone.tscn" id="3_hvjcg"]
+[ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://Entities/LittleGuy/little_guy.tscn" id="2_1htgg"]
+[ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="3_kcas4"]
+[ext_resource type="PackedScene" uid="uid://cj8uwejgc6yoe" path="res://Entities/HouseManager/special_house_manager.tscn" id="3_ri5hi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
 vertices = PackedVector2Array(62, 62, -62, 62, -62, -62, 62, -62)
@@ -16,28 +17,15 @@ agent_radius = 2.0
 y_sort_enabled = true
 script = ExtResource("1_wuj7j")
 
-[node name="LittleGuy" parent="." instance=ExtResource("2_1htgg")]
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_wuj7j")
 
-[node name="Tombstones" type="Node2D" parent="."]
+[node name="SpecialHouseManager" parent="." instance=ExtResource("3_ri5hi")]
+
+[node name="Selector" parent="." instance=ExtResource("3_kcas4")]
+
+[node name="ObjectGrid" type="Node2D" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="Tombstone" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(-48, 48)
-
-[node name="Tombstone2" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(16, 48)
-
-[node name="Tombstone3" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(48, 16)
-
-[node name="Tombstone4" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(-16, -16)
-
-[node name="Tombstone5" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(-48, -48)
-
-[node name="Tombstone6" parent="Tombstones" instance=ExtResource("3_hvjcg")]
-position = Vector2(16, -48)
+[node name="LittleGuy" parent="ObjectGrid" instance=ExtResource("2_1htgg")]

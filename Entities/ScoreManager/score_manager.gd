@@ -14,7 +14,7 @@ func _ready() -> void:
 	wave_manager.mark_wave.connect(on_wave_marked)
 	wave_manager.send_wave.connect(on_wave_sent)
 
-func on_house_spawned() -> void:
+func on_house_spawned(_house: House) -> void:
 	score()
 
 func on_wave_marked() -> void:

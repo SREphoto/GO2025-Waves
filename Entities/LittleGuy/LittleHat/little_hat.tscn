@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://di3u0ltqm70us"]
+
+[ext_resource type="Texture2D" uid="uid://cv1omyym30t35" path="res://Entities/LittleGuy/LittleHat/little_hats.png" id="1_k53q5"]
+[ext_resource type="Script" uid="uid://cyot6iyqh5s43" path="res://Entities/LittleGuy/LittleHat/little_hat.gd" id="2_k7mdq"]
+
+[node name="LittleHat" type="Sprite2D"]
+texture = ExtResource("1_k53q5")
+hframes = 3
+vframes = 8
+script = ExtResource("2_k7mdq")

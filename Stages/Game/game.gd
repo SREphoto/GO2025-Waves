@@ -1,4 +1,4 @@
-class_name Start
+class_name Game
 extends Node2D
 
 enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
@@ -21,7 +21,7 @@ var next_game_state: GAME_STATES
 @onready var shop: Shop = $Shop
 
 func _ready() -> void:
-	GlobalGameState.start_scene = self
+	GlobalGameState.game_scene = self
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
