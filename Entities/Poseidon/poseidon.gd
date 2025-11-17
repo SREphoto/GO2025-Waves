@@ -3,11 +3,19 @@ extends StaticBody2D
 
 @export var sand_tile_map_layer: SandTileMapLayer
 
+@onready var animated_sprite: AnimatedSprite2D = $Poseidon
+
+var attacking = false
+var is_animating = false
+
 signal poseidon_pressed
 
 func _ready() -> void:
 	sand_tile_map_layer.changed_grid_size.connect(on_grid_size_changed)
 	input_event.connect(_on_input_event)
+
+func _process(delta: float) -> void:
+	_animate()
 
 func on_grid_size_changed() -> void:
 	var bound: Vector4 = sand_tile_map_layer.get_grid_bounds()
@@ -21,3 +29,16 @@ func on_grid_size_changed() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("left_click"):
 		poseidon_pressed.emit()
+
+func _animate():
+	if attacking:
+		if not is_animating:
+			is_animating = true
+			var attack_anim = "Atk1" if randf() > 0.5 else "Atk2"
+			animated_sprite.play(attack_anim)
+			await animated_sprite.animation_finished
+			is_animating = false
+	else:
+		if animated_sprite.animation != "Idle":
+			animated_sprite.play("Idle")
+		is_animating = false

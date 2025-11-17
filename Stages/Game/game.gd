@@ -49,10 +49,13 @@ func switch_game_state(value = next_game_state) -> void:
 		GAME_STATES.PAUSED:
 			_game_state_paused()
 		GAME_STATES.SPAWNING:
+			poseidon.attacking = false
 			_game_state_spawning()
 		GAME_STATES.SLIDING:
+			poseidon.attacking = false
 			_game_state_sliding()
 		GAME_STATES.WAVES:
+			poseidon.attacking = true
 			_game_state_waves()
 		GAME_STATES.COUNTING: 
 			_game_state_counting()

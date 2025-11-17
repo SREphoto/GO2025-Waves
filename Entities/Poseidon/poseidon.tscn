@@ -257,7 +257,7 @@ frame_progress = 0.35849848
 [node name="Poseidon" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -15)
 sprite_frames = SubResource("SpriteFrames_gmd1k")
-animation = &"Idle"
+animation = &"Atk1"
 autoplay = "Idle"
-frame = 2
-frame_progress = 0.14092313
+frame = 5
+frame_progress = 0.8880053
