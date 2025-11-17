@@ -69,15 +69,13 @@ position = Vector2(48, 16)
 position = Vector2(16, 656)
 
 [node name="Rock5" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-position = Vector2(16, -688)
+position = Vector2(16, -496)
 
 [node name="FollowCamera" type="Camera2D" parent="." node_paths=PackedStringArray("selector")]
 position = Vector2(0, -16)
 rotation = -0.08726646
 ignore_rotation = false
 zoom = Vector2(7.5, 7.5)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
 rotation_smoothing_speed = 2.0
 script = ExtResource("12_jkks1")
 selector = NodePath("../Selector")

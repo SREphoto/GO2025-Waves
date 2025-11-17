@@ -13,6 +13,7 @@ var object_mover: ObjectMover
 var active: bool = true
 
 signal object_selected(object: GridObject)
+signal object_deselected(object: GridObject)
 
 func _ready() -> void:
 	object_grid.child_entered_tree.connect(_on_object_grid_child_entered_tree)
@@ -35,5 +36,6 @@ func _on_selectable_selected(grid_object: GridObject, selected: bool) -> void:
 			if navigation_region:
 				object_mover.object_move_finished.connect(navigation_region.on_object_move_finished)
 	else:
+		object_deselected.emit(grid_object)
 		if object_mover:
 			object_mover.object_deselected()

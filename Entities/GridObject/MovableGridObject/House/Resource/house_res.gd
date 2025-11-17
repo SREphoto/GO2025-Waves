@@ -1,6 +1,7 @@
 class_name HouseRescource
 extends Resource
 
+@export var name: StringName
 @export var size: Array[Vector2i]
 @export var sprite_offset: Vector2i
 @export var sprite_sheet: Texture2D

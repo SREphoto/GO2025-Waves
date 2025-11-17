@@ -25,6 +25,7 @@ func _save() -> void:
 	if FileAccess.file_exists(dir_path + file_name):
 		dir.remove(file_name)
 	
+	res.name = res_name
 	res.size = house.size
 	res.sprite_offset = house.front.position
 	res.sprite_sheet = house.front.texture
