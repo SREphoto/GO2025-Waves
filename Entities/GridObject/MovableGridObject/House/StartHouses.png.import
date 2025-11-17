@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://br8ed05mihn0a"
-path="res://.godot/imported/StartHouses.png-e1ae54c7e92379eb5f0d663b11d07e12.ctex"
+path="res://.godot/imported/StartHouses.png-faa281890d1bb370607ef45ff88f7789.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Stages/Homepage/StartHouses.png"
-dest_files=["res://.godot/imported/StartHouses.png-e1ae54c7e92379eb5f0d663b11d07e12.ctex"]
+source_file="res://Entities/GridObject/MovableGridObject/House/StartHouses.png"
+dest_files=["res://.godot/imported/StartHouses.png-faa281890d1bb370607ef45ff88f7789.ctex"]
 
 [params]
 

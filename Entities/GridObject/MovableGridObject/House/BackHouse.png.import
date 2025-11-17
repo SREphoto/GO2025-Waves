@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brflvrevp3b45"
-path="res://.godot/imported/StartHouse.png-c39e5ea7482ac5367479ff6270670af7.ctex"
+uid="uid://dq64hqrljcs0o"
+path="res://.godot/imported/BackHouse.png-3aec4cec088cedf19d867e4db8fee489.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Stages/Homepage/StartHouse.png"
-dest_files=["res://.godot/imported/StartHouse.png-c39e5ea7482ac5367479ff6270670af7.ctex"]
+source_file="res://Entities/GridObject/MovableGridObject/House/BackHouse.png"
+dest_files=["res://.godot/imported/BackHouse.png-3aec4cec088cedf19d867e4db8fee489.ctex"]
 
 [params]
 
