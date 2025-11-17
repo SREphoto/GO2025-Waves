@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://54b8uchrs6ae"]
+
+[ext_resource type="Script" uid="uid://djkdjgsdg1b8f" path="res://Entities/GridObject/Rock/rock.gd" id="1_4mr8i"]
+[ext_resource type="Texture2D" uid="uid://devg5a33nhxel" path="res://icon.svg" id="2_gnpq6"]
+
+[node name="Rock" type="Node2D"]
+script = ExtResource("1_4mr8i")
+size = Array[Vector2i]([Vector2i(0, 0)])
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_gnpq6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
