@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GO2025-Waves"
-run/main_scene="uid://cxkp8l2y2mw4"
+run/main_scene="uid://bea0lmunii7f3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,10 +19,10 @@ config/icon="res://icon.svg"
 
 RainLayer="*res://Assets/Globals/RainLayer/rain_layer.tscn"
 GlobalNames="*res://Assets/Globals/GlobalNames/global_names.tscn"
-GlobalConfigs="*res://Assets/Globals/GlobalConfigs/global_configs.gd"
 GlobalGameState="*res://Assets/Globals/GameState/game_state.tscn"
 MusicManager="*res://Assets/Globals/MusicManager/music_manager.tscn"
 SceneSwitcher="*res://Assets/Globals/SceneSwitcher/scene_switcher.tscn"
+GlobalVariables="*res://Assets/Globals/GlobalVariables/global_variables.tscn"
 
 [display]
 

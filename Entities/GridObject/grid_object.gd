@@ -9,7 +9,7 @@ extends Node2D
 var mid_pos: Vector2
 
 func set_grid_pos(grid_pos: Vector2i):
-	global_position = GlobalConfigs.GRID_SIZE * grid_pos
+	global_position = GlobalVariables.GRID_SIZE * grid_pos
 	global_position += Vector2(16, 16)
 
 func get_middle_pos() -> Vector2:

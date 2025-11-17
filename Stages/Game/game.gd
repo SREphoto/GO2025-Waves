@@ -76,6 +76,9 @@ func _game_state_paused() -> void:
 	next_game_state = GAME_STATES.SLIDING
 	GlobalGameState.state = GlobalGameState.STATES.GAMELOOP
 	
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN).tween_property(zoom_camera, "offset", Vector2(0,0), 0.25)
+	
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	timer.start(3)

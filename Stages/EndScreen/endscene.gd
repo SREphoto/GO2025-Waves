@@ -10,10 +10,10 @@ extends Node2D
 func set_nav_region(bounds: Vector4i) -> void:
 	navigation_region_2d.navigation_polygon.clear_outlines()
 	var outline: PackedVector2Array = [
-		Vector2(bounds.x, bounds.y) * GlobalConfigs.GRID_SIZE,
-		Vector2(bounds.x, bounds.w) * GlobalConfigs.GRID_SIZE,
-		Vector2(bounds.z, bounds.w) * GlobalConfigs.GRID_SIZE,
-		Vector2(bounds.z, bounds.y) * GlobalConfigs.GRID_SIZE
+		Vector2(bounds.x, bounds.y) * GlobalVariables.GRID_SIZE,
+		Vector2(bounds.x, bounds.w) * GlobalVariables.GRID_SIZE,
+		Vector2(bounds.z, bounds.w) * GlobalVariables.GRID_SIZE,
+		Vector2(bounds.z, bounds.y) * GlobalVariables.GRID_SIZE
 	]
 	navigation_region_2d.navigation_polygon.add_outline(outline)
 	navigation_region_2d.bake_navigation_polygon()

@@ -37,19 +37,19 @@ func _ready() -> void:
 	wave_down.wave_side_moved.connect(_on_wave_down_moved)
 
 func _on_wave_left_moved(dist: int) -> void:
-	var grid_x: int = int(wave_left.global_position.x/GlobalConfigs.GRID_SIZE) + dist
+	var grid_x: int = int(wave_left.global_position.x/GlobalVariables.GRID_SIZE) + dist
 	_delet_houses_on_wave(grid_x)
 
 func _on_wave_right_moved(dist: int) -> void:
-	var grid_x: int = int(wave_right.global_position.x/GlobalConfigs.GRID_SIZE) - dist
+	var grid_x: int = int(wave_right.global_position.x/GlobalVariables.GRID_SIZE) - dist
 	_delet_houses_on_wave(grid_x)
 
 func _on_wave_up_moved(dist: int) -> void:
-	var grid_y: int = int(wave_up.global_position.y/GlobalConfigs.GRID_SIZE) - dist
+	var grid_y: int = int(wave_up.global_position.y/GlobalVariables.GRID_SIZE) - dist
 	_delet_houses_on_wave(-1000, grid_y)
 
 func _on_wave_down_moved(dist: int) -> void:
-	var grid_y: int = int(wave_down.global_position.y/GlobalConfigs.GRID_SIZE) + dist
+	var grid_y: int = int(wave_down.global_position.y/GlobalVariables.GRID_SIZE) + dist
 	_delet_houses_on_wave(-1000, grid_y)
 
 func _delet_houses_on_wave(grid_x: int = -1000, grid_y: int = -1000) -> void:
@@ -105,7 +105,7 @@ func state_mark() -> void:
 
 func state_send() -> void:	
 	var bounds : Vector4i = sand_tilemap_layer.get_grid_bounds()
-	var grid_size : int = GlobalConfigs.GRID_SIZE
+	var grid_size : int = GlobalVariables.GRID_SIZE
 	# Größter Pfusch aller Zeiten xD
 
 	wave_side_count = 0

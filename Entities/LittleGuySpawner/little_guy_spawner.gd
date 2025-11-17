@@ -13,5 +13,5 @@ func _ready() -> void:
 func on_house_spawned(house: House) -> void:
 	for size in house.size:
 		var little_guy: LittleGuy = LITTLE_GUY.instantiate()
-		little_guy.global_position = house.global_position + Vector2(house.size.pick_random() * GlobalConfigs.GRID_SIZE)
+		little_guy.global_position = house.global_position + Vector2(house.size.pick_random() * GlobalVariables.GRID_SIZE)
 		object_grid.add_child(little_guy)

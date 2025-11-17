@@ -20,8 +20,6 @@ var current_score : int = 0
 var remaining_waves : int
 var remaining_time : int = wave_time
 
-var money : int = 0
-
 var active: bool = true:
 	set = on_active
 
@@ -52,7 +50,7 @@ func on_wave_finished() -> void:
 	remaining_waves -= 1
 	# If higher score than needed
 	if current_goal <= 0:
-		money += abs(current_goal)
+		GlobalVariables.money += abs(current_goal)
 		current_goal = 0
 	# If all waves are completed
 	if remaining_waves <= 0:

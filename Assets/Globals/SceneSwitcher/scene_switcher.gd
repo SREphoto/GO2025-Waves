@@ -37,4 +37,6 @@ func switch_game_to_end(game_scene : Game):
 	current_scene.special_house_manager.start_house_res = house_res_array
 	
 	current_scene.set_nav_region(sand.get_grid_bounds())
-	
+
+func switch_home_to_game() -> void:
+	get_tree().change_scene_to_packed(GAME)

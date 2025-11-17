@@ -8,7 +8,7 @@ var raining = false
 func fade_in():
 	if not raining:
 		raining = true
-		visible = true
+		rain_particles.visible = true
 		rain_particles.emitting = true
 		await desaturate(1.0)
 
@@ -17,7 +17,7 @@ func fade_out():
 		raining = false
 		rain_particles.emitting = false
 		await resaturate(1.0)
-		visible = false
+		rain_particles.visible = false
 
 func desaturate(duration: float = 1.0):
 	var tween = create_tween()

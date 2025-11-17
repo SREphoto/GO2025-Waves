@@ -40,3 +40,4 @@ script = ExtResource("1_oijki")
 stream = SubResource("AudioStreamInteractive_oijki")
 volume_db = -25.296
 autoplay = true
+bus = &"Music"

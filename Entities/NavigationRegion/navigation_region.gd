@@ -17,10 +17,10 @@ func _ready() -> void:
 
 func on_changed_grid_size() -> void:
 	var grid_bounds = sand_tile_map_layer.get_grid_bounds()
-	var outline: PackedVector2Array = [Vector2(grid_bounds.x, grid_bounds.y) * GlobalConfigs.GRID_SIZE,
-	Vector2(grid_bounds.x, grid_bounds.w) * GlobalConfigs.GRID_SIZE,
-	Vector2(grid_bounds.z, grid_bounds.w) * GlobalConfigs.GRID_SIZE,
-	Vector2(grid_bounds.z, grid_bounds.y) * GlobalConfigs.GRID_SIZE]
+	var outline: PackedVector2Array = [Vector2(grid_bounds.x, grid_bounds.y) * GlobalVariables.GRID_SIZE,
+	Vector2(grid_bounds.x, grid_bounds.w) * GlobalVariables.GRID_SIZE,
+	Vector2(grid_bounds.z, grid_bounds.w) * GlobalVariables.GRID_SIZE,
+	Vector2(grid_bounds.z, grid_bounds.y) * GlobalVariables.GRID_SIZE]
 	navigation_polygon.clear_outlines()
 	navigation_polygon.add_outline(outline)
 	bake_navigation_polygon()
