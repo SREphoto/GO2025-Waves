@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+RainLayer="*res://Assets/Globals/RainLayer/rain_layer.tscn"
 GlobalNames="*res://Assets/Globals/GlobalNames/global_names.tscn"
 GlobalConfigs="*res://Assets/Globals/GlobalConfigs/global_configs.gd"
 GlobalGameState="*res://Assets/Globals/GameState/game_state.tscn"
