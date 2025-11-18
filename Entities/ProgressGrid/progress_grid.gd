@@ -12,7 +12,7 @@ func _ready() -> void:
 		if child is Node2D:
 			stage_markers.append(child)
 	
-	#set_comleted_stage(15)
+	set_comleted_stage(15)
 
 ## How to call:
 ## set_completed_stage("stage until which the user played")

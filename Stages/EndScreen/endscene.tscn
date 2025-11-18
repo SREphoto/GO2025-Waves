@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctnqj58d24fjc"]
+[gd_scene load_steps=8 format=3 uid="uid://ctnqj58d24fjc"]
 
 [ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://Entities/LittleGuy/little_guy.tscn" id="2_1htgg"]
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="3_kcas4"]
 [ext_resource type="PackedScene" uid="uid://cj8uwejgc6yoe" path="res://Entities/HouseManager/special_house_manager.tscn" id="3_ri5hi"]
 [ext_resource type="PackedScene" uid="uid://n70ob341vmaw" path="res://Assets/Globals/RainLayer/rain_layer.tscn" id="5_kcas4"]
+[ext_resource type="PackedScene" uid="uid://igm3fwboac6v" path="res://Entities/ProgressGrid/progress_grid.tscn" id="6_fn33l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
 vertices = PackedVector2Array(62, 62, -62, 62, -62, -62, 62, -62)
@@ -32,3 +33,5 @@ y_sort_enabled = true
 [node name="LittleGuy" parent="ObjectGrid" instance=ExtResource("2_1htgg")]
 
 [node name="RainLayer" parent="." instance=ExtResource("5_kcas4")]
+
+[node name="ProgressGrid" parent="." instance=ExtResource("6_fn33l")]
