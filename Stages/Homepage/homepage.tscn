@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bea0lmunii7f3"]
+[gd_scene load_steps=24 format=4 uid="uid://bea0lmunii7f3"]
 
 [ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="4_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="5_t2kd2"]
@@ -17,6 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://54b8uchrs6ae" path="res://Entities/GridObject/Rock/rock.tscn" id="11_uje2r"]
 [ext_resource type="Script" uid="uid://br4j4jpie6vyx" path="res://Entities/FollowCamera/follow_camera.gd" id="12_jkks1"]
 [ext_resource type="Script" uid="uid://da5sy0bjrdcfo" path="res://Entities/NavigationRegion/special_navigation_region.gd" id="14_auknt"]
+[ext_resource type="PackedScene" uid="uid://b2avbu36bburo" path="res://Entities/GridObject/MovableGridObject/House/house.tscn" id="14_dvcl3"]
+[ext_resource type="Resource" uid="uid://c44t4pxtghb32" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_around.tres" id="15_lm27f"]
+[ext_resource type="Resource" uid="uid://jvm3qpuyps81" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_plus.tres" id="16_ioedv"]
+[ext_resource type="Resource" uid="uid://dncuupp26aiqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_minus.tres" id="17_x3mbe"]
+[ext_resource type="Resource" uid="uid://u6oihlrklo8y" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_line.tres" id="18_nlvk3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b4cjd"]
 vertices = PackedVector2Array(131.82813, 43.179688, -31, 57.8125, -31, -83.171875, 119.17969, -96.82031)
@@ -78,6 +83,25 @@ position = Vector2(16, -528)
 
 [node name="Rock6" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
 position = Vector2(48, -496)
+
+[node name="ShopObjectGrid" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="House" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-112, 528)
+res = ExtResource("15_lm27f")
+
+[node name="House2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-80, 528)
+res = ExtResource("16_ioedv")
+
+[node name="House3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-48, 528)
+res = ExtResource("17_x3mbe")
+
+[node name="House4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-16, 528)
+res = ExtResource("18_nlvk3")
 
 [node name="FollowCamera" type="Camera2D" parent="." node_paths=PackedStringArray("selector")]
 position = Vector2(0, -16)

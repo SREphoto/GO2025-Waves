@@ -6,7 +6,7 @@ extends Node2D
 @onready var label: Label = $Pole/Flag/Label
 
 
-@export var color : COLORS = COLORS.RED:
+@export var color : COLORS = COLORS.GRAY:
 	set(value):
 		color = value
 		set_flag_color(color)
@@ -31,6 +31,9 @@ enum COLORS {
 var multi_house: bool = false
 
 func _ready() -> void:
+	await get_parent().ready
+	if not multi_house:
+		color = COLORS.values().pick_random()
 	set_flag_color(color)
 
 func set_flag_color(col):

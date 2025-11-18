@@ -25,6 +25,7 @@ var next_game_state: GAME_STATES
 func _ready() -> void:
 	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
+	game_variables.wave_finished.connect(on_wave_finished)
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
@@ -37,12 +38,15 @@ func _input(event: InputEvent) -> void:
 func _switch_game_state() -> void:
 	switch_game_state()
 
+func on_wave_finished() -> void:
+	switch_game_state()
+
 func on_counting_finished(has_finished: bool) -> void:
 	if has_finished:
 		next_game_state = GAME_STATES.SHOP
 	else:
 		next_game_state = GAME_STATES.SPAWNING
-	_game_state_counting()
+	switch_game_state()
 
 func switch_game_state(value = next_game_state) -> void:
 	game_state = value
@@ -61,6 +65,7 @@ func switch_game_state(value = next_game_state) -> void:
 			poseidon.attacking = true
 			_game_state_waves()
 		GAME_STATES.COUNTING: 
+			poseidon.attacking = false
 			_game_state_counting()
 
 func _game_state_shop() -> void:
@@ -116,7 +121,7 @@ func _game_state_waves() -> void:
 func _game_state_counting() -> void:
 	if next_game_state == GAME_STATES.COUNTING:
 		next_game_state = GAME_STATES.SPAWNING
-	switch_game_state()
+	MusicManager.switch_music("GAMELOOP")
 
 func get_camera() -> ZoomCamera:
 	return zoom_camera

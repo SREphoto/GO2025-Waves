@@ -5,7 +5,7 @@ extends Node2D
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 
-@export var all_goals: Array[int] 		= [20, 50, 120, 240]
+@export var all_goals: Array[int] 		= [18, 50, 120, 240]
 @export var all_round_waves: Array[int] = [2, 3, 4, 5]
 
 @export var wave_time : int = 1000:
@@ -27,6 +27,8 @@ var has_finished: bool = false
 
 signal values_changed
 signal counting_finished(won: bool)
+
+signal wave_finished()
 
 func _ready() -> void:
 	current_goal = all_goals.pop_front()
@@ -63,13 +65,13 @@ func on_wave_finished() -> void:
 	
 	second_timer.stop()
 	
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.start(1)
-	await  timer.timeout
-	counting_finished.emit(has_finished)
+	RainLayer.fade_out()
+	
+	_house_counting()
 	
 	_prepare_new_wave()
+	
+	wave_finished.emit()
 
 func _prepare_new_wave():
 	remaining_time = wave_time
@@ -95,13 +97,29 @@ func _lost() -> void:
 
 func next_game() -> void:
 	has_finished = false
-	sand_tile_map_layer.increase_grid_size()
 	if all_goals.is_empty():
 		game_finished()
 		return
+	print(all_goals.size())
+	if posmod(all_goals.size(), 2) == 1:
+		sand_tile_map_layer.increase_grid_size()
 	current_goal = all_goals.pop_front()
 	remaining_waves = all_round_waves.pop_front()
 	values_changed.emit()
+
+func _house_counting() -> void:
+	for group in score_manager.biggest_color_groups:
+		await get_tree().create_timer(0.4).timeout
+		for house in group:
+			await _count_house(house)
+	counting_finished.emit(has_finished)
+
+func _count_house(house: House) -> void:
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(house, "scale", Vector2(1.1, 1.1), 0.1)
+	tween.tween_property(house, "scale", Vector2(1, 1), 0.1)
+	await tween.finished
 
 func game_finished() -> void:
 	pass

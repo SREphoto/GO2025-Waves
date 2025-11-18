@@ -15,7 +15,6 @@ const HOUSE_ARRAY_RES_ONE: HouseArrayRescource = preload("uid://c3lrp7xjq6rsk")
 const HOUSE_ARRAY_RES_TWO: HouseArrayRescource = preload("uid://ttgp1nmc6xx3")
 const HOUSE_ARRAY_RES_THREE: HouseArrayRescource = preload("uid://ccydnracsqhx3")
 const HOUSE_ARRAY_RES_FOUR: HouseArrayRescource = preload("uid://4ifk5bscputi")
-const HOUSE_ARRAY_RES_MULTI: HouseArrayRescource = preload("uid://tdk2guk68owq")
 
 var active: bool = true
 
@@ -26,12 +25,12 @@ var active: bool = true
 	#HOUSE_SIZES.FOUR : [[Vector2i.ZERO], [Vector2.ONE]],
 	#}
 
-var house_size_dict: Dictionary[HOUSE_SIZES, HouseArrayRescource] = {
-	HOUSE_SIZES.ONE : HOUSE_ARRAY_RES_ONE,
-	HOUSE_SIZES.TWO : HOUSE_ARRAY_RES_TWO,
-	HOUSE_SIZES.THREE : HOUSE_ARRAY_RES_THREE,
-	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR,
-	HOUSE_SIZES.MULTI: HOUSE_ARRAY_RES_MULTI
+var house_size_dict: Dictionary[HOUSE_SIZES, Array] = {
+	HOUSE_SIZES.ONE : HOUSE_ARRAY_RES_ONE.house_res_array,
+	HOUSE_SIZES.TWO : HOUSE_ARRAY_RES_TWO.house_res_array,
+	HOUSE_SIZES.THREE : HOUSE_ARRAY_RES_THREE.house_res_array,
+	HOUSE_SIZES.FOUR: HOUSE_ARRAY_RES_FOUR.house_res_array,
+	HOUSE_SIZES.MULTI: GlobalVariables.owned_multi_houses_array
 	}
 var size_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0, 0])
 
@@ -59,7 +58,7 @@ func _spawn_house():
 	else:
 		house_size = rng.rand_weighted(size_weights) as HOUSE_SIZES
 	
-	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size].house_res_array).duplicate_deep()
+	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size]).duplicate_deep()
 	house_size_res_array.shuffle()
 	var house_res: HouseRescource = house_size_res_array.pop_back()
 	
@@ -69,7 +68,7 @@ func _spawn_house():
 		var done: bool = false
 		if house_size < 0:
 			return
-		house_size_res_array = (house_size_dict[house_size].house_res_array).duplicate_deep()
+		house_size_res_array = (house_size_dict[house_size]).duplicate_deep()
 		house_size_res_array.shuffle()
 		while not house_size_res_array.is_empty():
 			house_res = house_size_res_array.pop_back()
