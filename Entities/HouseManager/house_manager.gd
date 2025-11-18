@@ -135,6 +135,15 @@ func get_houses_on_grid() -> Dictionary[Vector2i, House]:
 	
 	return house_dict
 
+func get_multi_houses_on_grid(house_dict: Dictionary[Vector2i, House]) -> Dictionary[Vector2i, House]:
+	var multi_house_dict: Dictionary[Vector2i, House] = {}
+	for pos: Vector2i in house_dict.keys():
+		var house: House = house_dict[pos]
+		if house.multi_house:
+			multi_house_dict.get_or_add(pos, house)
+	
+	return multi_house_dict
+
 func _get_empty_grid_tiles() -> Array[Vector2i]:
 	var grid_vectors = sand_tilemap.all_pos
 	var empty_grid_tiles : Array[Vector2i]
