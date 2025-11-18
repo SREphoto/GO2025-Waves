@@ -61,6 +61,7 @@ func on_wave_finished() -> void:
 			_won()
 		else:
 			_lost()
+			return
 	values_changed.emit()
 	
 	second_timer.stop()
@@ -108,6 +109,7 @@ func next_game() -> void:
 	values_changed.emit()
 
 func _house_counting() -> void:
+	await get_tree().create_timer(0.4).timeout
 	for group in score_manager.biggest_color_groups:
 		await get_tree().create_timer(0.4).timeout
 		for house in group:
