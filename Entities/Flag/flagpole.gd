@@ -28,8 +28,7 @@ enum COLORS {
 	GRAY
 }
 
-var multi_house: bool = false:
-	set = set_multi_house
+var multi_house: bool = false
 
 func _ready() -> void:
 	set_flag_color(color)
@@ -58,10 +57,3 @@ func set_flag_opacity(shown: bool) -> void:
 		flag.modulate = Color(1, 1, 1, 1)
 	else:
 		flag.modulate = Color(0.6, 0.6, 0.6, 1)
-
-func set_multi_house(value: bool) -> void:
-	multi_house = value
-	if not multi_house:
-		return
-		
-	pole.self_modulate = Color(1, 1, 1, 0)

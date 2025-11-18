@@ -498,6 +498,10 @@ texture_region_size = Vector2i(32, 32)
 5:3/0/terrains_peering_bit/left_side = 2
 5:3/0/terrains_peering_bit/top_side = 2
 5:3/0/terrains_peering_bit/top_right_corner = 2
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 2
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_be7bo"]
 tile_size = Vector2i(32, 32)

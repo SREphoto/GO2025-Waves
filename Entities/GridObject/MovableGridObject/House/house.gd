@@ -50,9 +50,6 @@ var multi_house: bool = false
 
 signal house_done()
 
-signal mouse_entered_house(house: House)
-signal mouse_exited_house(house: House)
-
 func _ready() -> void:
 	_spawn()
 
@@ -71,9 +68,3 @@ func _spawn():
 	tween.set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2(1.0, 1.0), 0.5)
 	await tween.finished
 	house_done.emit()
-
-func _on_selectable_mouse_entered() -> void:
-	mouse_entered_house.emit(self)
-
-func _on_selectable_mouse_exited() -> void:
-	mouse_exited_house.emit(self)

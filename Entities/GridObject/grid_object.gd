@@ -12,6 +12,10 @@ func set_grid_pos(grid_pos: Vector2i):
 	global_position = GlobalVariables.GRID_SIZE * grid_pos
 	global_position += Vector2(16, 16)
 
+func get_grid_pos() -> Vector2i:
+	var pos: Vector2i = (global_position - Vector2(16, 16)) / GlobalVariables.GRID_SIZE
+	return pos
+
 func get_middle_pos() -> Vector2:
 	var corners: Array[Vector2] = []
 	

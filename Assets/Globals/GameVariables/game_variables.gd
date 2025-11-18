@@ -88,10 +88,9 @@ func _on_second_passed() -> void:
 		wave_manager.state_send()
 
 func _won() -> void:
-	print("WON")
+	GlobalVariables.bosses_completed_now += 1
 
 func _lost() -> void:
-	print("LOST")
 	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
 
 func next_game() -> void:

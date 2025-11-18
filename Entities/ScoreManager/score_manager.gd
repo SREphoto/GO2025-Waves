@@ -105,11 +105,36 @@ func _apply_tile_multis(multi_house_dict:Dictionary[Vector2i, House]) -> void:
 		if house.in_danger:
 			continue
 		
-		var multi_group: Array[House] = []
-		
 		match house.res.name:
 			"house_multi_around":
-				var neighbors = [
+				var all_multi_pos = get_multi_around(house)
+				_multiply_with_given_pos(all_multi_pos, house)
+			"house_multi_minus":
+				var all_multi_pos: Array[Vector2i] = get_multi_minus(house)
+				_multiply_with_given_pos(all_multi_pos, house)
+			"house_multi_line":
+				var all_multi_pos: Array[Vector2i] = get_multi_line(house)
+				_multiply_with_given_pos(all_multi_pos, house)
+			"house_multi_plus":
+				var all_multi_pos: Array[Vector2i] = get_multi_plus(house)
+				_multiply_with_given_pos(all_multi_pos, house)
+
+func _multiply_with_given_pos(all_multi_pos: Array[Vector2i], house: House) -> void:
+	var multi_group: Array[House] = []
+	for multi_pos in all_multi_pos:
+		if not house_grid.has(multi_pos):
+			continue
+		var current_house: House = house_grid[multi_pos]
+		if current_house.multi_house:
+			continue
+		if not multi_group.has(current_house):
+			current_house.current_points = current_house.current_points * house.current_points
+		multi_group.append(current_house)
+
+func get_multi_around(house: House) -> Array[Vector2i]:
+	var pos: Vector2i = house.get_grid_pos()
+	var all_multi_pos: Array[Vector2i]
+	var neighbors: Array[Vector2i] = [
 						pos + Vector2i(1, -1),  # up-right
 						pos + Vector2i(1, 0),   # right
 						pos + Vector2i(1, 1),	# down-right
@@ -119,49 +144,48 @@ func _apply_tile_multis(multi_house_dict:Dictionary[Vector2i, House]) -> void:
 						pos + Vector2i(-1, -1),  # left-up
 						pos + Vector2i(0, -1)   # up
 					]
-				for neighbor_pos in neighbors:
-					if not house_grid.has(neighbor_pos):
-						continue
-					var neighbor_house: House = house_grid[neighbor_pos]
-					if neighbor_house.multi_house:
-						continue
-					if not multi_group.has(neighbor_house):
-						neighbor_house.current_points = neighbor_house.current_points * house.current_points
-					multi_group.append(neighbor_house)
-			"house_multi_minus":
-				var bounds: Vector4i = sand_tile_map_layer.get_grid_bounds()
-				for x_pos in range(bounds.x, bounds.z):
-					var current_pos: Vector2i = Vector2i(x_pos, pos.y)
-					if not house_grid.has(current_pos):
-						continue
-					var current_house: House = house_grid[current_pos]
-					if current_house.multi_house:
-						continue
-					if not multi_group.has(current_house):
-						current_house.current_points = current_house.current_points * house.current_points
-					multi_group.append(current_house)
-			"house_multi_plus":
-				var bounds: Vector4i = sand_tile_map_layer.get_grid_bounds()
-				for x_pos in range(bounds.x, bounds.z):
-					var current_pos: Vector2i = Vector2i(x_pos, pos.y)
-					if not house_grid.has(current_pos):
-						continue
-					var current_house: House = house_grid[current_pos]
-					if current_house.multi_house:
-						continue
-					if not multi_group.has(current_house):
-						current_house.current_points = current_house.current_points * house.current_points
-					multi_group.append(current_house)
-				for y_pos in range(bounds.y, bounds.w):
-					var current_pos: Vector2i = Vector2i(pos.x, y_pos)
-					if not house_grid.has(current_pos):
-						continue
-					var current_house: House = house_grid[current_pos]
-					if current_house.multi_house:
-						continue
-					if not multi_group.has(current_house):
-						current_house.current_points = current_house.current_points * house.current_points
-					multi_group.append(current_house)
+	for neighbor in neighbors:
+		if sand_tile_map_layer.all_pos.has(neighbor):
+			all_multi_pos.append(neighbor)
+	return all_multi_pos
+
+func get_multi_minus(house: House) -> Array[Vector2i]:
+	var pos: Vector2i = house.get_grid_pos()
+	var all_multi_pos: Array[Vector2i]
+	var bounds: Vector4i = sand_tile_map_layer.get_grid_bounds()
+	for x_pos in range(bounds.x, bounds.z):
+		var current_pos = Vector2i(x_pos, pos.y)
+		if current_pos == pos:
+			continue
+		all_multi_pos.append(current_pos)
+	return all_multi_pos
+
+func get_multi_line(house: House) -> Array[Vector2i]:
+	var pos: Vector2i = house.get_grid_pos()
+	var all_multi_pos: Array[Vector2i]
+	var bounds: Vector4i = sand_tile_map_layer.get_grid_bounds()
+	for y_pos in range(bounds.x, bounds.z):
+		var current_pos = Vector2i(pos.x, y_pos)
+		if current_pos == pos:
+			continue
+		all_multi_pos.append(current_pos)
+	return all_multi_pos
+
+func get_multi_plus(house: House) -> Array[Vector2i]:
+	var pos: Vector2i = house.get_grid_pos()
+	var all_multi_pos: Array[Vector2i]
+	var bounds: Vector4i = sand_tile_map_layer.get_grid_bounds()
+	for x_pos in range(bounds.x, bounds.z):
+		var current_pos = Vector2i(x_pos, pos.y)
+		if current_pos == pos:
+			continue
+		all_multi_pos.append(current_pos)
+	for y_pos in range(bounds.y, bounds.w):
+		var current_pos = Vector2i(pos.x, y_pos)
+		if current_pos == pos:
+			continue
+		all_multi_pos.append(current_pos)
+	return all_multi_pos
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}

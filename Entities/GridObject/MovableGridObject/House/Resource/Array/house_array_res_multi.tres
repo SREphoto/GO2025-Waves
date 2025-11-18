@@ -1,10 +1,26 @@
-[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=4 format=3 uid="uid://tdk2guk68owq"]
+[gd_resource type="Resource" script_class="HouseArrayRescource" load_steps=8 format=3 uid="uid://tdk2guk68owq"]
 
 [ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_82ums"]
-[ext_resource type="Resource" uid="uid://dnmk4uhttkl87" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_around.tres" id="2_p8p7j"]
+[ext_resource type="Resource" uid="uid://dncuupp26aiqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_minus.tres" id="2_82ums"]
+[ext_resource type="Texture2D" uid="uid://ck8qun50ygusc" path="res://Entities/GridObject/MovableGridObject/SpecialHouse/SpecialHouses.png" id="2_vu6j0"]
 [ext_resource type="Script" uid="uid://cemxtf4jcadr" path="res://Entities/GridObject/MovableGridObject/House/Resource/Array/house_array_res.gd" id="3_dytrn"]
+[ext_resource type="Resource" uid="uid://u6oihlrklo8y" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_line.tres" id="4_4ueej"]
+[ext_resource type="Resource" uid="uid://jvm3qpuyps81" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_plus.tres" id="5_3662f"]
+
+[sub_resource type="Resource" id="Resource_hxiwv"]
+script = ExtResource("1_82ums")
+name = &"house_multi_around"
+size = Array[Vector2i]([Vector2i(0, 0)])
+sprite_offset = Vector2i(0, -20)
+sprite_sheet = ExtResource("2_vu6j0")
+hframes = 6
+sel_poly = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
+stat_poly = PackedVector2Array(-12, 9, 12, 9, 15, 6, 15, -4, 12, -7, -12, -7, -15, -4, -15, 6)
+flag_pos = Vector2i(-7, 3)
+standard_points = 2
+multi_house = true
 
 [resource]
 script = ExtResource("3_dytrn")
-house_res_array = Array[ExtResource("1_82ums")]([ExtResource("2_p8p7j")])
+house_res_array = Array[ExtResource("1_82ums")]([SubResource("Resource_hxiwv"), ExtResource("2_82ums"), ExtResource("4_4ueej"), ExtResource("5_3662f")])
 metadata/_custom_type_script = "uid://cemxtf4jcadr"
