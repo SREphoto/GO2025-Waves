@@ -5,12 +5,12 @@ extends CanvasLayer
 
 var raining = false
 
-func fade_in():
-	if not raining:
-		raining = true
-		rain_particles.visible = true
-		rain_particles.emitting = true
-		await desaturate(1.0)
+func fade_in(amount : int = 800):
+	raining = true
+	rain_particles.visible = true
+	rain_particles.amount = amount
+	rain_particles.emitting = true
+	await desaturate(1.0)
 
 func fade_out():
 	if raining:
