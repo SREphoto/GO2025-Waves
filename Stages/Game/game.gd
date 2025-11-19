@@ -13,6 +13,8 @@ var next_game_state: GAME_STATES
 @onready var wave_manager: WaveManager = $WaveManager
 @onready var house_manager: HouseManager = $HouseManager
 
+@onready var hoverer: Hoverer = $Hoverer
+
 @onready var game_variables: GameVariables = $GameVariables
 
 @onready var poseidon: Poseidon = $Poseidon
@@ -21,7 +23,9 @@ var next_game_state: GAME_STATES
 @onready var shop: Shop = $Shop
 
 func _ready() -> void:
+	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
+	game_variables.wave_finished.connect(on_wave_finished)
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
@@ -34,12 +38,15 @@ func _input(event: InputEvent) -> void:
 func _switch_game_state() -> void:
 	switch_game_state()
 
+func on_wave_finished() -> void:
+	switch_game_state()
+
 func on_counting_finished(has_finished: bool) -> void:
 	if has_finished:
 		next_game_state = GAME_STATES.SHOP
 	else:
 		next_game_state = GAME_STATES.SPAWNING
-	_game_state_counting()
+	switch_game_state()
 
 func switch_game_state(value = next_game_state) -> void:
 	game_state = value
@@ -58,12 +65,14 @@ func switch_game_state(value = next_game_state) -> void:
 			poseidon.attacking = true
 			_game_state_waves()
 		GAME_STATES.COUNTING: 
+			poseidon.attacking = false
 			_game_state_counting()
 
 func _game_state_shop() -> void:
 	ui.blend_out()
 	game_variables.active = false
 	game_variables.next_game()
+	hoverer.active = false
 	shop.enter()
 	next_game_state = GAME_STATES.SPAWNING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
@@ -72,6 +81,7 @@ func _game_state_paused() -> void:
 	game_variables.active = false
 	ui.canvas_modulate.color = Color(1,1,1,0)
 	selector.active = false
+	hoverer.active = false
 	shop.exit()
 	next_game_state = GAME_STATES.SLIDING
 	GlobalGameState.state = GlobalGameState.STATES.GAMELOOP
@@ -93,6 +103,7 @@ func _game_state_spawning() -> void:
 func _game_state_sliding() -> void:
 	ui.blend_in()
 	game_variables.active = true
+	hoverer.active = true
 	shop.exit()
 	selector.active = true
 	next_game_state = GAME_STATES.WAVES
@@ -101,6 +112,7 @@ func _game_state_sliding() -> void:
 
 func _game_state_waves() -> void:
 	game_variables.active = false
+	hoverer.active = false
 	selector.active = false
 	next_game_state = GAME_STATES.COUNTING
 	wave_manager.next_state()
@@ -109,7 +121,7 @@ func _game_state_waves() -> void:
 func _game_state_counting() -> void:
 	if next_game_state == GAME_STATES.COUNTING:
 		next_game_state = GAME_STATES.SPAWNING
-	switch_game_state()
+	MusicManager.switch_music("GAMELOOP")
 
 func get_camera() -> ZoomCamera:
 	return zoom_camera

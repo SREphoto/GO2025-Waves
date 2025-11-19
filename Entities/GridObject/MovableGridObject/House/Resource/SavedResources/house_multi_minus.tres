@@ -1,18 +1,18 @@
 [gd_resource type="Resource" script_class="HouseRescource" load_steps=3 format=3 uid="uid://dncuupp26aiqh"]
 
 [ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="1_x1gsv"]
-[ext_resource type="Texture2D" uid="uid://dk1lvmc6ou1s7" path="res://Entities/GridObject/MovableGridObject/House/Houses1x1.png" id="2_7x0l1"]
+[ext_resource type="Texture2D" uid="uid://ck8qun50ygusc" path="res://Entities/GridObject/MovableGridObject/SpecialHouse/SpecialHouses.png" id="2_x1gsv"]
 
 [resource]
 script = ExtResource("1_x1gsv")
 name = &"house_multi_minus"
 size = Array[Vector2i]([Vector2i(0, 0)])
 sprite_offset = Vector2i(0, -20)
-sprite_sheet = ExtResource("2_7x0l1")
-hframes = 5
-frame = 4
+sprite_sheet = ExtResource("2_x1gsv")
+hframes = 6
+frame = 1
 sel_poly = PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)
-stat_poly = PackedVector2Array(-12, 9, 12, 9, 15, 6, 15, -4, 12, -7, -12, -7, -15, -4, -15, 6)
-flag_pos = Vector2i(-7, 3)
+stat_poly = PackedVector2Array(-12, 8, 12, 8, 14, 6, 14, 0, 12, -2, -12, -2, -14, 0, -14, 6)
+flag_pos = Vector2i(0, -17)
 standard_points = 2
 multi_house = true

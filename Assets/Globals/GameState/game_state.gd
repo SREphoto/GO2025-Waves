@@ -21,7 +21,6 @@ func _on_state_changed(value) -> void:
 			RainLayer.fade_in()
 		STATES.SHOP:
 			MusicManager.switch_music("SHOP")
-			RainLayer.fade_out()
 		STATES.GAMEOVER:
 			SceneSwitcher.switch_game_to_end(game_scene)
 			MusicManager.switch_music("GAMEOVER")

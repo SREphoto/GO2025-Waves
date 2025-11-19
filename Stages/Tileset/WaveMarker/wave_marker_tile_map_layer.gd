@@ -25,7 +25,7 @@ func _set_tilemap(dir: WaveManager.DIRECTIONS) -> void:
 					wave_manager.DIRECTIONS.RIGHT:
 						row = grid_bounds.z - 1 - depth
 				for col in range(grid_bounds.y, grid_bounds.w):
-					set_cell(Vector2i(row, col), 2, Vector2(0, 0))
+					set_cell(Vector2i(row, col), 2, Vector2(3, 3))
 		_:
 			for row in range(grid_bounds.x, grid_bounds.z):
 				for depth in range(wave_manager.depth):
@@ -35,7 +35,7 @@ func _set_tilemap(dir: WaveManager.DIRECTIONS) -> void:
 							col = grid_bounds.w - 1 - depth
 						wave_manager.DIRECTIONS.DOWN:
 							col = grid_bounds.y + depth
-					set_cell(Vector2i(row, col), 2, Vector2(0, 0))
+					set_cell(Vector2i(row, col), 2, Vector2(3, 3))
 	set_cells_terrain_connect(get_used_cells(), 0, 2, false)
 
 func _on_finished_waves() -> void:
