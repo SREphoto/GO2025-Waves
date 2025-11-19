@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bea0lmunii7f3"]
+[gd_scene load_steps=38 format=4 uid="uid://bea0lmunii7f3"]
 
 [ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="4_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="5_t2kd2"]
@@ -16,12 +16,26 @@
 [ext_resource type="Resource" uid="uid://cyol4b27485t3" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_back.tres" id="11_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://54b8uchrs6ae" path="res://Entities/GridObject/Rock/rock.tscn" id="11_uje2r"]
 [ext_resource type="Script" uid="uid://br4j4jpie6vyx" path="res://Entities/FollowCamera/follow_camera.gd" id="12_jkks1"]
+[ext_resource type="Script" uid="uid://0o6321auqmfh" path="res://Entities/house_unlocker/house_unlocker.gd" id="14_4dtno"]
 [ext_resource type="Script" uid="uid://da5sy0bjrdcfo" path="res://Entities/NavigationRegion/special_navigation_region.gd" id="14_auknt"]
 [ext_resource type="PackedScene" uid="uid://b2avbu36bburo" path="res://Entities/GridObject/MovableGridObject/House/house.tscn" id="14_dvcl3"]
 [ext_resource type="Resource" uid="uid://c44t4pxtghb32" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_around.tres" id="15_lm27f"]
 [ext_resource type="Resource" uid="uid://jvm3qpuyps81" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_plus.tres" id="16_ioedv"]
 [ext_resource type="Resource" uid="uid://dncuupp26aiqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_minus.tres" id="17_x3mbe"]
 [ext_resource type="Resource" uid="uid://u6oihlrklo8y" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_line.tres" id="18_nlvk3"]
+[ext_resource type="Resource" uid="uid://p6oqlvse6tss" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_01.tres" id="19_nlvk3"]
+[ext_resource type="Resource" uid="uid://ntu1nhh1ggm8" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_02.tres" id="20_ouvjx"]
+[ext_resource type="Resource" uid="uid://rlyy3nmn44u" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_03.tres" id="21_ueku8"]
+[ext_resource type="Resource" uid="uid://mngysai4e7lr" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_04.tres" id="22_1shfn"]
+[ext_resource type="Resource" uid="uid://boh7llkonfl3x" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_01.tres" id="23_bw70o"]
+[ext_resource type="Resource" uid="uid://cl7jkyf4n1sag" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_02.tres" id="24_4dtno"]
+[ext_resource type="Resource" uid="uid://cyj5bx4td6nao" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_03.tres" id="25_f1qum"]
+[ext_resource type="Resource" uid="uid://ctuojqp4jg4wd" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_04.tres" id="26_y4sl6"]
+[ext_resource type="Resource" uid="uid://bspel7cyepuqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_05.tres" id="27_xhbwn"]
+[ext_resource type="Resource" uid="uid://cs2c7ri5vembk" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_01.tres" id="28_04xsi"]
+[ext_resource type="Resource" uid="uid://vqfb2hw0qpvm" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_02.tres" id="29_gq86k"]
+[ext_resource type="Resource" uid="uid://dixl6nxbk3bhx" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_03.tres" id="30_nuodi"]
+[ext_resource type="Resource" uid="uid://cs4ajudybkhkb" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_04.tres" id="31_vspba"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b4cjd"]
 vertices = PackedVector2Array(131.82813, 43.179688, -31, 57.8125, -31, -83.171875, 119.17969, -96.82031)
@@ -84,24 +98,88 @@ position = Vector2(16, -528)
 [node name="Rock6" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
 position = Vector2(48, -496)
 
+[node name="HouseUnlocker" type="Node2D" parent="."]
+script = ExtResource("14_4dtno")
+
 [node name="ShopObjectGrid" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="House" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-112, 528)
+[node name="Multi1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-144, 464)
 res = ExtResource("15_lm27f")
 
-[node name="House2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-80, 528)
+[node name="Multi2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-112, 464)
 res = ExtResource("16_ioedv")
 
-[node name="House3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-48, 528)
+[node name="Multi3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-80, 464)
 res = ExtResource("17_x3mbe")
 
-[node name="House4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-16, 528)
+[node name="Multi4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-48, 464)
 res = ExtResource("18_nlvk3")
+
+[node name="One1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-144, 496)
+res = ExtResource("19_nlvk3")
+
+[node name="One2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-112, 496)
+res = ExtResource("20_ouvjx")
+
+[node name="One3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-80, 496)
+res = ExtResource("21_ueku8")
+
+[node name="One4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-48, 496)
+res = ExtResource("22_1shfn")
+
+[node name="Two1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-144, 528)
+res = ExtResource("23_bw70o")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+
+[node name="Two2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-80, 528)
+res = ExtResource("24_4dtno")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+
+[node name="Two3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-16, 528)
+res = ExtResource("25_f1qum")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+
+[node name="Two4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(48, 528)
+res = ExtResource("26_y4sl6")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+
+[node name="Two5" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(112, 528)
+res = ExtResource("27_xhbwn")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+
+[node name="Three1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-144, 592)
+res = ExtResource("28_04xsi")
+size = Array[Vector2i]([Vector2i(1, 0), Vector2i(0, -1), Vector2i(1, -1)])
+
+[node name="Three2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-80, 592)
+res = ExtResource("29_gq86k")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1), Vector2i(1, -1)])
+
+[node name="Three3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(-16, 592)
+res = ExtResource("30_nuodi")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, -1)])
+
+[node name="Three4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
+position = Vector2(48, 592)
+res = ExtResource("31_vspba")
+size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, -1)])
 
 [node name="FollowCamera" type="Camera2D" parent="." node_paths=PackedStringArray("selector")]
 position = Vector2(0, -16)

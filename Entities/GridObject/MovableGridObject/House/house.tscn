@@ -37,5 +37,6 @@ collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 
-[node name="Flagpole" parent="." instance=ExtResource("4_8u6ha")]
+[node name="Flagpole" parent="." node_paths=PackedStringArray("house") instance=ExtResource("4_8u6ha")]
 z_index = 1
+house = NodePath("..")

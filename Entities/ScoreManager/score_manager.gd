@@ -7,9 +7,14 @@ extends Node2D
 
 var house_grid: Dictionary[Vector2i, House]
 var multi_house_grid: Dictionary[Vector2i, House]
-var biggest_color_groups: Array[Array] = []
+var biggest_color_groups: Array[Array] = []:
+	set(value):
+		biggest_color_groups = value
+		biggest_color_groups_changed.emit()
 
 signal score_changed()
+
+signal biggest_color_groups_changed()
 
 func _ready() -> void:
 	house_manager.house_spawned.connect(on_house_spawned)

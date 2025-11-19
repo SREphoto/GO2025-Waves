@@ -1,6 +1,8 @@
 class_name Flag
 extends Node2D
 
+@export var house: House
+
 @onready var pole: Sprite2D = $Pole
 @onready var flag: PanelContainer = $Pole/Flag
 @onready var label: Label = $Pole/Flag/Label
@@ -33,7 +35,8 @@ var multi_house: bool = false
 func _ready() -> void:
 	await get_parent().ready
 	if not multi_house:
-		color = COLORS.values().pick_random()
+		while color == COLORS.GRAY:
+			color = COLORS.values().pick_random()
 	set_flag_color(color)
 
 func set_flag_color(col):
