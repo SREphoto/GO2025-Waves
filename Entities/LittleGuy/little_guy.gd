@@ -20,7 +20,7 @@ var last_velocity = Vector2.RIGHT
 
 func _ready():
 	navigation_agent.avoidance_enabled = false
-	start_panic(randf_range(1.0, 3.0))
+	#start_panic(randf_range(1.0, 3.0))
 
 func _physics_process(delta):
 	#position = get_global_mouse_position()
