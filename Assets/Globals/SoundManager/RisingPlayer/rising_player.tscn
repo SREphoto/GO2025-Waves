@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://hlo4heflipng"]
+
+[ext_resource type="Script" uid="uid://biwfc07fgyiwc" path="res://Assets/Globals/SoundManager/RisingPlayer/rising_player.gd" id="1_vnycx"]
+
+[node name="RisingPlayer" type="AudioStreamPlayer"]
+max_polyphony = 10
+script = ExtResource("1_vnycx")

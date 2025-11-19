@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bupik54utcvkp"]
+
+[ext_resource type="Script" uid="uid://dhty223thegdw" path="res://Assets/Globals/SoundManager/sound_manager.gd" id="1_viyf2"]
+[ext_resource type="AudioStream" uid="uid://yaqal4271jjd" path="res://Assets/Audio/SFX/count_pop.mp3" id="2_syb5k"]
+[ext_resource type="Script" uid="uid://biwfc07fgyiwc" path="res://Assets/Globals/SoundManager/RisingPlayer/rising_player.gd" id="3_umtpf"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_viyf2"]
+streams_count = 1
+
+[node name="sound_manager" type="Node"]
+script = ExtResource("1_viyf2")
+
+[node name="RisingPopPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_syb5k")
+script = ExtResource("3_umtpf")
+metadata/_custom_type_script = "uid://biwfc07fgyiwc"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_viyf2")

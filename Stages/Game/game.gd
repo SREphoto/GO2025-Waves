@@ -121,7 +121,7 @@ func _game_state_waves() -> void:
 func _game_state_counting() -> void:
 	if next_game_state == GAME_STATES.COUNTING:
 		next_game_state = GAME_STATES.SPAWNING
-	MusicManager.switch_music("GAMELOOP")
+	MusicManager.switch_music("SHOP")
 
 func get_camera() -> ZoomCamera:
 	return zoom_camera

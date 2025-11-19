@@ -113,7 +113,9 @@ func _house_counting() -> void:
 	for group in score_manager.biggest_color_groups:
 		await get_tree().create_timer(0.4).timeout
 		for house in group:
+			SoundManager.rising_pop_player.play_rising()
 			await _count_house(house)
+	SoundManager.rising_pop_player.reset_pitch()
 	counting_finished.emit(has_finished)
 
 func _count_house(house: House) -> void:
