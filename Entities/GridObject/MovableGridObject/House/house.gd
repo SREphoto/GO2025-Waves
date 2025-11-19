@@ -59,12 +59,14 @@ func get_color():
 	return flag.color
 
 func destroy():
+	SoundManager.fall_house_player.play()
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2.ZERO, 0.5)
 	await tween.finished
 	queue_free()
 
 func _spawn():
+	SoundManager.spawn_house_player.play()
 	self.scale = Vector2.ZERO
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2(1.0, 1.0), 0.5)

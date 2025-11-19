@@ -132,6 +132,7 @@ func object_deselected() -> void:
 
 func _move_grid_object() -> void:
 	var tween = create_tween()
+	SoundManager.swipe_house_player.play()
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
 	await tween.finished
 	object_move_finished.emit()
