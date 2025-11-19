@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://r0xru2kwj8ju"]
+[gd_scene load_steps=7 format=3 uid="uid://r0xru2kwj8ju"]
 
 [ext_resource type="Script" uid="uid://x4pb8270in08" path="res://Assets/Globals/GlobalVariables/global_variables.gd" id="1_uvklx"]
+[ext_resource type="Script" uid="uid://bnh0p2fra6uo8" path="res://Entities/GridObject/MovableGridObject/House/Resource/house_res.gd" id="2_plm7c"]
+[ext_resource type="Resource" uid="uid://u6oihlrklo8y" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_line.tres" id="3_ix8r4"]
+[ext_resource type="Resource" uid="uid://dncuupp26aiqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_minus.tres" id="4_h8rf8"]
+[ext_resource type="Resource" uid="uid://jvm3qpuyps81" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_plus.tres" id="5_h8rf8"]
+[ext_resource type="Resource" uid="uid://c44t4pxtghb32" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_around.tres" id="6_hx238"]
 
 [node name="GlobalVariables" type="Node"]
 script = ExtResource("1_uvklx")
+owned_multi_houses_array = Array[ExtResource("2_plm7c")]([ExtResource("3_ix8r4"), ExtResource("4_h8rf8"), ExtResource("5_h8rf8"), ExtResource("6_hx238")])

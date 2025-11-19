@@ -29,11 +29,8 @@ func _ready() -> void:
 	game_variables.counting_finished.connect(on_counting_finished)
 	poseidon.poseidon_pressed.connect(_switch_game_state)
 	ui.start_wave.connect(_switch_game_state)
+	shop.shopping_done.connect(on_shopping_done)
 	_game_state_paused()
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(GlobalNames.inputs.waves):
-		switch_game_state()
 
 func _switch_game_state() -> void:
 	switch_game_state()
@@ -46,6 +43,10 @@ func on_counting_finished(has_finished: bool) -> void:
 		next_game_state = GAME_STATES.SHOP
 	else:
 		next_game_state = GAME_STATES.SPAWNING
+	switch_game_state()
+
+func on_shopping_done(house_res: HouseRescource) -> void:
+	house_manager.spawn_specific_house(house_res)
 	switch_game_state()
 
 func switch_game_state(value = next_game_state) -> void:
@@ -74,7 +75,7 @@ func _game_state_shop() -> void:
 	game_variables.next_game()
 	hoverer.active = false
 	shop.enter()
-	next_game_state = GAME_STATES.SPAWNING
+	next_game_state = GAME_STATES.SLIDING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
 
 func _game_state_paused() -> void:
@@ -96,7 +97,7 @@ func _game_state_paused() -> void:
 	switch_game_state()
 
 func _game_state_spawning() -> void:
-	house_manager._spawn_house()
+	house_manager.spawn_random_house()
 	next_game_state = GAME_STATES.SLIDING
 	switch_game_state()
 

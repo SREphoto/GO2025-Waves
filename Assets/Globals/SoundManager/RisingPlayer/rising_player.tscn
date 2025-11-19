@@ -4,4 +4,5 @@
 
 [node name="RisingPlayer" type="AudioStreamPlayer"]
 max_polyphony = 10
+bus = &"Effects"
 script = ExtResource("1_vnycx")

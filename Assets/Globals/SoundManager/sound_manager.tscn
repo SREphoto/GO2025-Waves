@@ -41,6 +41,7 @@ script = ExtResource("1_viyf2")
 [node name="RisingPopPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kxaji")
 max_polyphony = 3
+bus = &"Effects"
 script = ExtResource("3_umtpf")
 metadata/_custom_type_script = "uid://biwfc07fgyiwc"
 
@@ -48,11 +49,14 @@ metadata/_custom_type_script = "uid://biwfc07fgyiwc"
 stream = SubResource("AudioStreamRandomizer_viyf2")
 volume_db = -18.0
 max_polyphony = 3
+bus = &"Effects"
 
 [node name="FallHousePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_3gsjt")
 volume_db = -16.0
+bus = &"Effects"
 
 [node name="SpawnHousePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_rrog2")
 volume_db = -10.0
+bus = &"Effects"

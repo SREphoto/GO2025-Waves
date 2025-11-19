@@ -21,6 +21,3 @@ var bosses_completed_now: int
 const GRID_SIZE = 32
 
 var money: int = 0
-
-func _ready() -> void: 
-	owned_multi_houses_array.append(upgradable_multi_houses_array.pop_at(0))

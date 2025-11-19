@@ -5,7 +5,7 @@ extends Node2D
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 
-@export var all_goals: Array[int] 		= [18, 50, 120, 240]
+@export var all_goals: Array[int] 		= [8, 50, 120, 240]
 @export var all_round_waves: Array[int] = [2, 3, 4, 5]
 
 @export var wave_time : int = 1000:
@@ -102,8 +102,8 @@ func next_game() -> void:
 		game_finished()
 		return
 	print(all_goals.size())
-	if posmod(all_goals.size(), 2) == 1:
-		sand_tile_map_layer.increase_grid_size()
+	#if posmod(all_goals.size(), 2) == 1:
+	sand_tile_map_layer.increase_grid_size()
 	current_goal = all_goals.pop_front()
 	remaining_waves = all_round_waves.pop_front()
 	values_changed.emit()

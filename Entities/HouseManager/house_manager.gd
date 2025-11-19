@@ -36,7 +36,7 @@ var size_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0, 0])
 
 var color_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1])
 
-var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.MULTI, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.ONE, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -46,46 +46,50 @@ func _ready() -> void:
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	
-	while not start_house_sizes.is_empty():
+	for house_size in start_house_sizes:
 		timer.start(0.8)
 		await timer.timeout
-		_spawn_house()
+		spawn_specific_house_size(house_size)
 
-func _spawn_house():
-	var house_size: HOUSE_SIZES
-	if not start_house_sizes.is_empty():
-		house_size = start_house_sizes.pop_back()
-	else:
-		house_size = rng.rand_weighted(size_weights) as HOUSE_SIZES
-	
-	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size]).duplicate_deep()
-	house_size_res_array.shuffle()
-	var house_res: HouseRescource = house_size_res_array.pop_back()
-	
+func spawn_specific_house(house_res: HouseRescource) -> bool:
 	var rand: Vector2i = _check_free_grid_pos_for_size(house_res.size)
 	
-	while true:
-		var done: bool = false
-		if house_size < 0:
-			return
-		house_size_res_array = (house_size_dict[house_size]).duplicate_deep()
-		house_size_res_array.shuffle()
-		while not house_size_res_array.is_empty():
-			house_res = house_size_res_array.pop_back()
-			rand = _check_free_grid_pos_for_size(house_res.size)
-			if rand != Vector2i(-1000, -1000):
-				done = true
-				break
-		if done:
-			break
+	if rand == Vector2i(-1000, -1000):
+		#No place to spawn house
+		return false
+	
+	_spawn_house(rand, house_res)
+	return true
+
+func spawn_specific_house_size(house_size: HOUSE_SIZES) -> bool:
+	var house_size_res_array: Array[HouseRescource] = (house_size_dict[house_size]).duplicate_deep()
+	house_size_res_array.shuffle()
+	
+	while not house_size_res_array.is_empty():
+		var house_res: HouseRescource = house_size_res_array.pop_back()
+		var rand: Vector2i = _check_free_grid_pos_for_size(house_res.size)
+		if rand == Vector2i(-1000, -1000):
+			#No place to spawn house
+			continue
+		for i in size_weights.size():
+			if not i == house_size:
+				size_weights[i] *= 2
+		_spawn_house(rand, house_res)
+		return true
+	
+	return false
+
+func spawn_random_house() -> void:
+	var house_size: HOUSE_SIZES
+	house_size = rng.rand_weighted(size_weights) as HOUSE_SIZES
+	
+	#Check for biggest possible house and the position
+	while house_size >= 0 and not spawn_specific_house_size(house_size):
 		house_size = (house_size - 1) as HOUSE_SIZES
-	
-	for i in size_weights.size():
-		if not i == house_size and size_weights[i] > 0:
-			size_weights[i] *= 2
-	
+
+func _spawn_house(pos: Vector2i, house_res: HouseRescource):
 	var house: House = HOUSE.instantiate()
-	house.set_grid_pos(rand)
+	house.set_grid_pos(pos)
 	house.res = house_res
 	object_grid.add_child(house)
 	# TEMPORARY
