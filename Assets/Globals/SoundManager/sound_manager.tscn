@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bupik54utcvkp"]
+[gd_scene load_steps=13 format=3 uid="uid://bupik54utcvkp"]
 
 [ext_resource type="Script" uid="uid://dhty223thegdw" path="res://Assets/Globals/SoundManager/sound_manager.gd" id="1_viyf2"]
 [ext_resource type="AudioStream" uid="uid://yaqal4271jjd" path="res://Assets/Audio/SFX/count_pop/count_pop_1.mp3" id="2_syb5k"]
-[ext_resource type="AudioStream" uid="uid://blirfy2ipnmrg" path="res://Assets/Audio/SFX/count_pop/count_pop_2.mp3" id="2_w88u2"]
 [ext_resource type="Script" uid="uid://biwfc07fgyiwc" path="res://Assets/Globals/SoundManager/RisingPlayer/rising_player.gd" id="3_umtpf"]
 [ext_resource type="AudioStream" uid="uid://c7llp74h45mdm" path="res://Assets/Audio/SFX/swipe/swipe_1.mp3" id="4_54jhn"]
 [ext_resource type="AudioStream" uid="uid://332kkj3hyrgq" path="res://Assets/Audio/SFX/swipe/swipe_2.mp3" id="5_0h4ep"]
@@ -11,9 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://dlh2k805ggnsp" path="res://Assets/Audio/SFX/spawn_house.mp3" id="9_kxaji"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kxaji"]
-streams_count = 2
+streams_count = 1
 stream_0/stream = ExtResource("2_syb5k")
-stream_1/stream = ExtResource("2_w88u2")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_viyf2"]
 random_pitch = 1.17
