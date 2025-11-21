@@ -36,7 +36,9 @@ var size_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0, 0])
 
 var color_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1])
 
-var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.ONE, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.MULTI, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+
+@export var special_house_round: Dictionary[int, HOUSE_SIZES]
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -78,6 +80,12 @@ func spawn_specific_house_size(house_size: HOUSE_SIZES) -> bool:
 		return true
 	
 	return false
+
+func spawn_special_or_random_house(current_round: int) -> void:
+	if special_house_round.has(current_round):
+		spawn_specific_house_size(special_house_round[current_round])
+	else:
+		spawn_random_house()
 
 func spawn_random_house() -> void:
 	var house_size: HOUSE_SIZES

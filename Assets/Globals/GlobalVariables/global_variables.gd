@@ -21,3 +21,5 @@ var bosses_completed_now: int
 const GRID_SIZE = 32
 
 var money: int = 0
+
+var first_time: bool = true

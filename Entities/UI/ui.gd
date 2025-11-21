@@ -20,7 +20,8 @@ func refresh():
 	goal.text = str(game_variables.current_goal)
 	current_offering.text = str(game_variables.current_score)
 	waves_remaining.text = str(game_variables.remaining_waves)
-	time_remaining.text = str(game_variables.remaining_time)
+	var remaining_time: int = max(0, game_variables.remaining_time)
+	time_remaining.text = str(remaining_time)
 
 func _on_skip_button_pressed() -> void:
 	start_wave.emit()

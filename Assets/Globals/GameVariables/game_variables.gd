@@ -5,10 +5,10 @@ extends Node2D
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 
-@export var all_goals: Array[int] 		= [8, 50, 120, 240]
+@export var all_goals: Array[int] 		= [8, 50, 170, 240]
 @export var all_round_waves: Array[int] = [2, 3, 4, 5]
 
-@export var wave_time : int = 1000:
+@export var wave_time : int = 180:
 	set(value):
 		wave_time = value
 		remaining_time = wave_time
@@ -29,6 +29,8 @@ signal values_changed
 signal counting_finished(won: bool)
 
 signal wave_finished()
+
+signal no_time()
 
 func _ready() -> void:
 	current_goal = all_goals.pop_front()
@@ -61,9 +63,7 @@ func on_wave_finished() -> void:
 			_won()
 		else:
 			_lost()
-			return
-	values_changed.emit()
-	
+			return	
 	second_timer.stop()
 	
 	RainLayer.fade_out()
@@ -88,7 +88,7 @@ func _on_second_passed() -> void:
 	remaining_time -= 1
 	values_changed.emit()
 	if remaining_time < 0:
-		wave_manager.state_send()
+		no_time.emit()
 
 func _won() -> void:
 	GlobalVariables.bosses_completed_now += 1
@@ -101,7 +101,6 @@ func next_game() -> void:
 	if all_goals.is_empty():
 		game_finished()
 		return
-	print(all_goals.size())
 	#if posmod(all_goals.size(), 2) == 1:
 	sand_tile_map_layer.increase_grid_size()
 	current_goal = all_goals.pop_front()

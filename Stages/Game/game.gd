@@ -5,6 +5,8 @@ enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
+var current_round: int = 0
+
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
 @onready var water_tile_map_layer: WaterTileMapLayer = $WaterTileMapLayer
@@ -27,13 +29,11 @@ func _ready() -> void:
 	GlobalGameState.game_scene = self
 	game_variables.wave_finished.connect(on_wave_finished)
 	game_variables.counting_finished.connect(on_counting_finished)
-	poseidon.poseidon_pressed.connect(_switch_game_state)
-	ui.start_wave.connect(_switch_game_state)
+	game_variables.no_time.connect(switch_game_state)
+	poseidon.poseidon_pressed.connect(switch_game_state)
+	ui.start_wave.connect(switch_game_state)
 	shop.shopping_done.connect(on_shopping_done)
 	_game_state_paused()
-
-func _switch_game_state() -> void:
-	switch_game_state()
 
 func on_wave_finished() -> void:
 	switch_game_state()
@@ -97,7 +97,8 @@ func _game_state_paused() -> void:
 	switch_game_state()
 
 func _game_state_spawning() -> void:
-	house_manager.spawn_random_house()
+	current_round += 1
+	house_manager.spawn_special_or_random_house(current_round)
 	next_game_state = GAME_STATES.SLIDING
 	switch_game_state()
 

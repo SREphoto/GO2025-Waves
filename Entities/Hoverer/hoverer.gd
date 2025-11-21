@@ -54,6 +54,7 @@ func set_hovered_tilemap(house: House) -> void:
 					all_pos = score_manager.get_multi_plus(house)
 				"house_multi_line":
 					all_pos = score_manager.get_multi_line(house)
+			all_pos = score_manager.remove_danger_cells(all_pos)
 			hovered_tile_map_layer.set_tilemap_wit_pos_arr(all_pos)
 			hovered_tile_map_layer.set_tilemap_modulate(house.flag.color)
 		else:

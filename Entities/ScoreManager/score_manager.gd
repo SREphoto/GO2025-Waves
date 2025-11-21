@@ -12,6 +12,8 @@ var biggest_color_groups: Array[Array] = []:
 		biggest_color_groups = value
 		biggest_color_groups_changed.emit()
 
+var multi_changed_houses: Dictionary[House, Array] = {}
+
 signal score_changed()
 
 signal biggest_color_groups_changed()
@@ -44,11 +46,12 @@ func score():
 	_set_flag_modulate()
 	score_changed.emit()
 
+#Not used
 func _clear_multis(multi_house_dict:Dictionary) -> void:
 	for pos in multi_house_dict.keys():
 		var house: House = multi_house_dict[pos]
 		house.current_points = house.standard_points
-
+#Not used
 func _apply_multis(multi_house_dict: Dictionary[Vector2i, House]) -> void:
 	_clear_multis(multi_house_dict)
 	for pos in multi_house_dict.keys():
@@ -110,19 +113,20 @@ func _apply_tile_multis(multi_house_dict:Dictionary[Vector2i, House]) -> void:
 		if house.in_danger:
 			continue
 		
+		var all_multi_pos: Array[Vector2i]
+		
 		match house.res.name:
 			"house_multi_around":
-				var all_multi_pos = get_multi_around(house)
-				_multiply_with_given_pos(all_multi_pos, house)
+				all_multi_pos = get_multi_around(house)
 			"house_multi_minus":
-				var all_multi_pos: Array[Vector2i] = get_multi_minus(house)
-				_multiply_with_given_pos(all_multi_pos, house)
+				all_multi_pos = get_multi_minus(house)
 			"house_multi_line":
-				var all_multi_pos: Array[Vector2i] = get_multi_line(house)
-				_multiply_with_given_pos(all_multi_pos, house)
+				all_multi_pos = get_multi_line(house)
 			"house_multi_plus":
-				var all_multi_pos: Array[Vector2i] = get_multi_plus(house)
-				_multiply_with_given_pos(all_multi_pos, house)
+				all_multi_pos = get_multi_plus(house)
+		
+		all_multi_pos = remove_danger_cells(all_multi_pos)
+		_multiply_with_given_pos(all_multi_pos, house)
 
 func _multiply_with_given_pos(all_multi_pos: Array[Vector2i], house: House) -> void:
 	var multi_group: Array[House] = []
@@ -134,7 +138,15 @@ func _multiply_with_given_pos(all_multi_pos: Array[Vector2i], house: House) -> v
 			continue
 		if not multi_group.has(current_house):
 			current_house.current_points = current_house.current_points * house.current_points
-		multi_group.append(current_house)
+			multi_group.append(current_house)
+	multi_changed_houses[house] = multi_group
+
+func remove_danger_cells(all_multi_pos: Array[Vector2i]) -> Array[Vector2i]:
+	var danger_cells: Array[Vector2i] = wave_manager.wave_marker_tile_map_layer.get_danger_cells()
+	for pos in danger_cells:
+		if all_multi_pos.has(pos):
+			all_multi_pos.erase(pos)
+	return all_multi_pos
 
 func get_multi_around(house: House) -> Array[Vector2i]:
 	var pos: Vector2i = house.get_grid_pos()
@@ -153,6 +165,7 @@ func get_multi_around(house: House) -> Array[Vector2i]:
 		if sand_tile_map_layer.all_pos.has(neighbor):
 			all_multi_pos.append(neighbor)
 	return all_multi_pos
+	
 
 func get_multi_minus(house: House) -> Array[Vector2i]:
 	var pos: Vector2i = house.get_grid_pos()
