@@ -111,6 +111,7 @@ func _apply_tile_multis(multi_house_dict:Dictionary[Vector2i, House]) -> void:
 	for pos in multi_house_dict.keys():
 		var house: House = multi_house_dict[pos]
 		if house.in_danger:
+			multi_changed_houses[house] = []
 			continue
 		
 		var all_multi_pos: Array[Vector2i]
