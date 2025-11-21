@@ -36,7 +36,7 @@ var size_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 0, 0])
 
 var color_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1])
 
-var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.MULTI, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
+var start_house_sizes: Array[HOUSE_SIZES] = [HOUSE_SIZES.ONE, HOUSE_SIZES.TWO, HOUSE_SIZES.THREE]
 
 @export var special_house_round: Dictionary[int, HOUSE_SIZES]
 

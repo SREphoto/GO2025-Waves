@@ -34,10 +34,10 @@ func _check_if_house() -> void:
 		house_is_multiplied(house)
 		set_hovered_tilemap(house)
 		if house != old_house:
-			house_not_multiplied(old_house)
+			house_not_multiplied()
 		old_house = house
 	else:
-		house_not_multiplied(old_house)
+		house_not_multiplied()
 		old_house = null
 		hovered_tile_map_layer.clear_tilemap()
 
@@ -66,8 +66,10 @@ func set_hovered_tilemap(house: House) -> void:
 		else:
 			hovered_tile_map_layer.clear_tilemap()
 
-func house_not_multiplied(old_house: House) -> void:
-	if old_house:
+func house_not_multiplied() -> void:
+	if not old_house:
+		return
+	if old_house and not old_house.multi_house:
 		old_house.flag.label.text = str(old_house.current_points)
 
 func house_is_multiplied(house: House) -> void:
@@ -77,6 +79,6 @@ func house_is_multiplied(house: House) -> void:
 		if multiplied_houses.has(house):
 			multiplied = true
 			var multi_house: House = score_manager.multi_changed_houses.find_key(multiplied_houses)
-			all_multies = multi_house.current_points
+			all_multies *= multi_house.current_points
 	if multiplied:
 		house.flag.label.text = str(house.current_points) + " " + str(house.standard_points) + "*" + str(all_multies)
