@@ -15,8 +15,13 @@ const HOUSE_ARRAY_RES_FOUR = preload("uid://4ifk5bscputi")
 const HOUSE_ARRAY_RES_MULTI = preload("uid://tdk2guk68owq")
 
 var bosses_completed_max: int = 0
-var bosses_completed_last: int = 0
-var bosses_completed_now: int
+var bosses_completed_last: int = 0:
+	set(value):
+		bosses_completed_last = value
+		bosses_completed_max = max(bosses_completed_max, bosses_completed_last)
+var bosses_completed_now: int = 0:
+	set(value):
+		bosses_completed_now = clamp(value, 0, 15)
 
 const GRID_SIZE = 32
 

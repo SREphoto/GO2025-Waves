@@ -12,7 +12,7 @@ func switch_game_to_end(game_scene : Game):
 	var sand: SandTileMapLayer = game_scene.get_sand()
 	var water: WaterTileMapLayer = game_scene.get_water()
 	
-	var house_pos_arr: Array[Vector2i] = game_scene.house_manager.get_houses_on_grid().keys()
+	#var house_pos_arr: Array[Vector2i] = game_scene.house_manager.get_houses_on_grid().keys()
 	
 	var nodes_to_transfer = [camera, sand, water]
 	
@@ -29,14 +29,17 @@ func switch_game_to_end(game_scene : Game):
 	for node in nodes_to_transfer:
 		current_scene.add_child(node)
 	
-	var house_res_array: Array[HouseRescource] = []
-	for pos in house_pos_arr:
-		house_res_array.append(HOUSE_TOMBSTONE)
+	#var house_res_array: Array[HouseRescource] = []
+	#for pos in house_pos_arr:
+		#house_res_array.append(HOUSE_TOMBSTONE)
 	
-	current_scene.special_house_manager.start_house_pos = house_pos_arr
-	current_scene.special_house_manager.start_house_res = house_res_array
+	#current_scene.special_house_manager.start_house_pos = house_pos_arr
+	#current_scene.special_house_manager.start_house_res = house_res_array
 	
 	current_scene.set_nav_region(sand.get_grid_bounds())
 
 func switch_home_to_game() -> void:
 	get_tree().change_scene_to_packed(GAME)
+
+func switch_end_to_home() -> void:
+	get_tree().change_scene_to_packed(HOMEPAGE)

@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://dlss7wu3vxe7x" path="res://Entities/Shop/shop.gd" id="1_p3mvd"]
 [ext_resource type="Texture2D" uid="uid://ck8qun50ygusc" path="res://Entities/GridObject/MovableGridObject/SpecialHouse/SpecialHouses.png" id="2_gis86"]
 
-[node name="Shop" type="CanvasLayer" node_paths=PackedStringArray("texture_slots")]
+[node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_p3mvd")
-texture_slots = [NodePath("ColorRect/M/V/H/Slot1/TextureRect1"), NodePath("ColorRect/M/V/H/Slot2/TextureRect2")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -49,19 +48,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 
 [node name="TextureRect1" type="Sprite2D" parent="ColorRect/M/V/H/Slot1"]
-position = Vector2(0, -128)
-scale = Vector2(12, 12)
-texture = ExtResource("2_gis86")
-hframes = 6
-region_enabled = true
-region_rect = Rect2(0, 0, 192, 64)
-
-[node name="Slot2" type="PanelContainer" parent="ColorRect/M/V/H"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="TextureRect2" type="Sprite2D" parent="ColorRect/M/V/H/Slot2"]
 position = Vector2(0, -128)
 scale = Vector2(12, 12)
 texture = ExtResource("2_gis86")

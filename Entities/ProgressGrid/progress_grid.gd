@@ -1,18 +1,28 @@
+class_name ProgressGrid
 extends Node2D
 
 @onready var statue: Node2D = $Statue
 @onready var stages: Node2D = $Stages
 
 const PROGRESS_X = preload("uid://4nu336d5a2bg")
+var progress: int = 0
+
+var last_stage_index: int
 
 var stage_markers : Array[Node2D] = []
+
+signal movement_done()
 
 func _ready() -> void:
 	for child in stages.get_children():
 		if child is Node2D:
 			stage_markers.append(child)
 	
-	set_comleted_stage(9)
+	last_stage_index = set_stage_last(GlobalVariables.bosses_completed_last)
+	set_progress_x(GlobalVariables.bosses_completed_max)
+	await get_tree().create_timer(1).timeout
+	move_to_stage(GlobalVariables.bosses_completed_now)
+	#set_comleted_stage(GlobalVariables.bosses_completed_now)
 
 ## How to call:
 ## set_completed_stage("stage until which the user played")
@@ -35,7 +45,41 @@ func set_comleted_stage(stage_index : int):
 			
 		rest -= 4
 
-func tween_statue(idx : int, ease_out_in : bool, time : float = 0.5):
+func set_stage_last(stage_index: int) -> int:
+	statue.position = stage_markers[stage_index].position
+	return stage_index
+
+func move_to_stage(stage_index: int) -> void:
+	var direction: int = sign(stage_index - last_stage_index)
+	var times: int = 0
+	var time: float = 0.4
+	for i in range(last_stage_index, stage_index, direction):
+		var next_stage_marker: Node2D = stage_markers[i+direction]
+		var stage_marker: Node2D = stage_markers[i]
+		if next_stage_marker.position.y == stage_marker.position.y:
+			times +=1
+			continue
+		spawn_progress_x(i, times, time/4)
+		times = 0
+		await tween_statue(i, true, time)
+		await tween_statue(i+direction, true, time/2)
+	spawn_progress_x(stage_index, times, time/4)
+	await tween_statue(stage_index, true, time)
+	
+	movement_done.emit()
+
+func set_progress_x(progress_max: int) -> void:
+	for i in progress_max:
+		stage_markers[i].add_child(PROGRESS_X.instantiate())
+
+func spawn_progress_x(index: int, times: int, time: float) -> void:
+	for i in range(times, -1, -1):
+		var j: int = index - i
+		print(j)
+		stage_markers[j].add_child(PROGRESS_X.instantiate())
+		await get_tree().create_timer(time).timeout
+
+func tween_statue(idx : int, ease_out_in : bool, time : float = 0.4):
 	var stage = stage_markers[idx]
 	var tween = create_tween()
 	if ease_out_in:

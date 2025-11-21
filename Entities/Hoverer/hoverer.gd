@@ -8,6 +8,7 @@ extends Node2D
 @onready var object_grid: Node2D = %ObjectGrid
 
 var old_house: House = null
+var old_house_label: String = ""
 
 var active: bool = false
 
@@ -70,7 +71,8 @@ func house_not_multiplied() -> void:
 	if not old_house:
 		return
 	if old_house and not old_house.multi_house:
-		old_house.flag.label.text = str(old_house.current_points)
+		if old_house_label != "":
+			old_house.flag.label.text = old_house_label
 
 func house_is_multiplied(house: House) -> void:
 	var all_multies: int = 1
@@ -81,4 +83,6 @@ func house_is_multiplied(house: House) -> void:
 			var multi_house: House = score_manager.multi_changed_houses.find_key(multiplied_houses)
 			all_multies *= multi_house.current_points
 	if multiplied:
+		if house.flag.label.text != str(house.current_points) + " " + str(house.standard_points) + "*" + str(all_multies):
+			old_house_label = house.flag.label.text
 		house.flag.label.text = str(house.current_points) + " " + str(house.standard_points) + "*" + str(all_multies)

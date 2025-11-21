@@ -14,6 +14,7 @@ func _ready() -> void:
 	if wave_manager:
 		wave_manager.mark_wave.connect(on_wave_marked)
 		wave_manager.finished_waves.connect(on_wave_finished)
+	on_changed_grid_size()
 
 func on_changed_grid_size() -> void:
 	var grid_bounds = sand_tile_map_layer.get_grid_bounds()
@@ -26,21 +27,18 @@ func on_changed_grid_size() -> void:
 	bake_navigation_polygon()
 
 func on_house_spawned(_house: House) -> void:
-	while is_baking():
-		await bake_finished
-	bake_navigation_polygon()
+	_bake()
 
 func on_object_move_finished() -> void:
-	if is_baking():
-		await bake_finished
-	bake_navigation_polygon()
+	_bake()
 
 func on_wave_marked() -> void:
-	if is_baking():
-		await bake_finished
-	bake_navigation_polygon()
+	_bake()
 
 func on_wave_finished() -> void:
+	_bake()
+
+func _bake() -> void:
 	if is_baking():
 		await bake_finished
 	bake_navigation_polygon()

@@ -7,6 +7,21 @@ extends Node2D
 
 @onready var special_house_manager: StartHouseManager = $SpecialHouseManager
 
+@onready var progress_grid: ProgressGrid = $ProgressGrid
+
+var pressable: bool = false
+
+func _ready() -> void:
+	progress_grid.movement_done.connect(on_movement_done)
+
+func on_movement_done() -> void:
+	await get_tree().create_timer(1).timeout
+	pressable = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_click") and pressable:
+		GlobalGameState.state = GlobalGameState.STATES.START
+
 func set_nav_region(bounds: Vector4i) -> void:
 	navigation_region_2d.navigation_polygon.clear_outlines()
 	var outline: PackedVector2Array = [
@@ -17,3 +32,7 @@ func set_nav_region(bounds: Vector4i) -> void:
 	]
 	navigation_region_2d.navigation_polygon.add_outline(outline)
 	navigation_region_2d.bake_navigation_polygon()
+
+func switch_to_start() -> void:
+	GlobalVariables.bosses_completed_last = GlobalVariables.bosses_completed_now
+	SceneSwitcher.switch_end_to_home()

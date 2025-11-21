@@ -11,6 +11,7 @@ func _on_state_changed(value) -> void:
 	state = value
 	match state:
 		STATES.START:
+			SceneSwitcher.switch_end_to_home()
 			MusicManager.switch_music("START")
 			RainLayer.fade_out()
 		STATES.GAMELOOP:
