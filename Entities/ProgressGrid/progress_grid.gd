@@ -59,23 +59,22 @@ func move_to_stage(stage_index: int) -> void:
 		if next_stage_marker.position.y == stage_marker.position.y:
 			times +=1
 			continue
-		spawn_progress_x(i, times, time/4)
+		spawn_progress_x(i, direction, times, time/4)
 		times = 0
 		await tween_statue(i, true, time)
 		await tween_statue(i+direction, true, time/2)
-	spawn_progress_x(stage_index, times, time/4)
+	spawn_progress_x(stage_index, direction, times, time/4)
 	await tween_statue(stage_index, true, time)
 	
 	movement_done.emit()
 
 func set_progress_x(progress_max: int) -> void:
-	for i in progress_max:
+	for i in range(progress_max + 1):
 		stage_markers[i].add_child(PROGRESS_X.instantiate())
 
-func spawn_progress_x(index: int, times: int, time: float) -> void:
-	for i in range(times, -1, -1):
+func spawn_progress_x(index: int, dir: int, times: int, time: float) -> void:
+	for i in range(times, -1, -dir):
 		var j: int = index - i
-		print(j)
 		stage_markers[j].add_child(PROGRESS_X.instantiate())
 		await get_tree().create_timer(time).timeout
 

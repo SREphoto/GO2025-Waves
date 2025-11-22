@@ -42,4 +42,5 @@ func switch_home_to_game() -> void:
 	get_tree().change_scene_to_packed(GAME)
 
 func switch_end_to_home() -> void:
+	GlobalVariables.bosses_completed_last = GlobalVariables.bosses_completed_now
 	get_tree().change_scene_to_packed(HOMEPAGE)

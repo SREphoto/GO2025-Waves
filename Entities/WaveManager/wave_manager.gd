@@ -103,7 +103,7 @@ func state_mark() -> void:
 	mark_wave.emit()
 	state = STATES.SEND
 
-func state_send() -> void:	
+func state_send() -> void:
 	var bounds : Vector4i = sand_tilemap_layer.get_grid_bounds()
 	var grid_size : int = GlobalVariables.GRID_SIZE
 	# Größter Pfusch aller Zeiten xD

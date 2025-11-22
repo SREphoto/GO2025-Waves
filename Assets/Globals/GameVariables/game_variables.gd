@@ -66,7 +66,7 @@ func on_wave_finished() -> void:
 			_won()
 		else:
 			_lost()
-			return	
+			return
 	second_timer.stop()
 	
 	RainLayer.fade_out()
@@ -81,10 +81,7 @@ func _prepare_new_wave():
 	remaining_time = wave_time
 
 func on_score_changed() -> void:
-	var points: int = 0
-	for group: Array[House] in score_manager.biggest_color_groups:
-		points += group[0].flag.current_value
-	current_score = points
+	current_score = score_manager.calculate_score()
 	values_changed.emit()
 
 func _on_second_passed() -> void:

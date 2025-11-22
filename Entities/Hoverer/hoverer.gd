@@ -7,8 +7,10 @@ extends Node2D
 
 @onready var object_grid: Node2D = %ObjectGrid
 
+var old_group_house: House = null
+
 var old_house: House = null
-var old_house_label: String = ""
+var old_multiplied: bool = false
 
 var active: bool = false
 
@@ -18,29 +20,54 @@ func _ready() -> void:
 func on_biggest_color_groups_changed() -> void:
 	if not active:
 		return
-	_check_if_house()
+	var house: House = check_if_house()
+	if house:
+		update_house(house)
+	
 
 func _input(event: InputEvent) -> void:
 	if not active:
 		return
 	if event is InputEventMouseMotion:
-		_check_if_house()
+		var house: House = check_if_house()
+		if house and house != old_house:
+			update_house(house)
+			old_house = house
+		elif not house:
+			clear_old_house()
 
-func _check_if_house() -> void:
+func check_if_house() -> House:
 	var mouse_pos = hovered_tile_map_layer.local_to_map(get_global_mouse_position())
 	if house_manager.house_on_pos(mouse_pos):
 		var house: House = house_manager.get_house_on_pos(mouse_pos)
-		if not house:
-			return
-		house_is_multiplied(house)
-		set_hovered_tilemap(house)
-		if house != old_house:
-			house_not_multiplied()
-		old_house = house
+		if house:
+			return house
+	return null
+
+func clear_old_house() -> void:
+	if not old_house:
+		return
+	old_house.flag.set_flag_value(str(old_house.current_points))
+	clear_hovered_tilemap()
+	old_multiplied = false
+	old_house = null
+
+func update_house(new_house: House) -> void:
+	clear_old_house()
+	set_hovered_tilemap(new_house)
+	var all_multies: int = 1
+	var multiplied: bool = false
+	for multiplied_houses in score_manager.multi_changed_houses.values():
+		if multiplied_houses.has(new_house):
+			multiplied = true
+			var multi_house: House = score_manager.multi_changed_houses.find_key(multiplied_houses)
+			all_multies *= multi_house.current_points
+	if multiplied:
+		old_multiplied = true
+		new_house.flag.set_flag_value(str(new_house.current_points) + " " + str(new_house.standard_points) + "*" + str(all_multies))
 	else:
-		house_not_multiplied()
-		old_house = null
-		hovered_tile_map_layer.clear_tilemap()
+		old_multiplied = false
+		new_house.flag.set_flag_value(str(new_house.current_points))
 
 func set_hovered_tilemap(house: House) -> void:
 	var has_group: bool = false
@@ -65,24 +92,7 @@ func set_hovered_tilemap(house: House) -> void:
 			hovered_tile_map_layer.set_tilemap_wit_pos_arr(all_pos)
 			hovered_tile_map_layer.set_tilemap_modulate(house.flag.color)
 		else:
-			hovered_tile_map_layer.clear_tilemap()
+			clear_hovered_tilemap()
 
-func house_not_multiplied() -> void:
-	if not old_house:
-		return
-	if old_house and not old_house.multi_house:
-		if old_house_label != "":
-			old_house.flag.label.text = old_house_label
-
-func house_is_multiplied(house: House) -> void:
-	var all_multies: int = 1
-	var multiplied: bool = false
-	for multiplied_houses in score_manager.multi_changed_houses.values():
-		if multiplied_houses.has(house):
-			multiplied = true
-			var multi_house: House = score_manager.multi_changed_houses.find_key(multiplied_houses)
-			all_multies *= multi_house.current_points
-	if multiplied:
-		if house.flag.label.text != str(house.current_points) + " " + str(house.standard_points) + "*" + str(all_multies):
-			old_house_label = house.flag.label.text
-		house.flag.label.text = str(house.current_points) + " " + str(house.standard_points) + "*" + str(all_multies)
+func clear_hovered_tilemap() -> void:
+	hovered_tile_map_layer.clear_tilemap()

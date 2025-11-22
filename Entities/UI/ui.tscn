@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5tubgyxsf3es"]
+[gd_scene load_steps=9 format=3 uid="uid://c5tubgyxsf3es"]
 
 [ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
 [ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
 [ext_resource type="PackedScene" uid="uid://bimqf8pw360of" path="res://Entities/UI/left_bottom_ui.tscn" id="3_irfo3"]
 [ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="4_ag6ts"]
 [ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="5_ikunc"]
+[ext_resource type="Texture2D" uid="uid://cgdvolb34j1e7" path="res://Entities/Flag/Flags/FlagG.png" id="6_4ef74"]
+[ext_resource type="Texture2D" uid="uid://7hsfq5pm2crm" path="res://Entities/Flag/Flags/FlagB.png" id="7_lmmol"]
+[ext_resource type="Texture2D" uid="uid://d23ymo5ndu7qy" path="res://Entities/Flag/Flags/FlagR.png" id="8_ffqlu"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_irfo3")
@@ -31,6 +34,86 @@ offset_right = 40.399998
 offset_bottom = 26.199993
 texture_normal = ExtResource("4_ag6ts")
 texture_hover = ExtResource("5_ikunc")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="M" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 384
+theme_override_constants/margin_bottom = 384
+
+[node name="V" type="VBoxContainer" parent="Control/M"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="H1" type="HBoxContainer" parent="Control/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/M/V/H1"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_ffqlu")
+stretch_mode = 5
+
+[node name="LabelRed" type="Label" parent="Control/M/V/H1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 112
+text = "1"
+vertical_alignment = 1
+
+[node name="H2" type="HBoxContainer" parent="Control/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/M/V/H2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_4ef74")
+stretch_mode = 5
+
+[node name="LabelGreen" type="Label" parent="Control/M/V/H2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 112
+text = "8"
+vertical_alignment = 1
+
+[node name="H3" type="HBoxContainer" parent="Control/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/M/V/H3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_lmmol")
+stretch_mode = 5
+
+[node name="LabelBlue" type="Label" parent="Control/M/V/H3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 112
+text = "9"
+vertical_alignment = 1
 
 [connection signal="pressed" from="LeftBottomUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
 

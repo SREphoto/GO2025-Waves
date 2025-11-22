@@ -58,6 +58,14 @@ func set_flag_value(value : String):
 	else:
 		label.text = value
 
+func set_group_flag(value: String):
+	pole.scale = Vector2(1.4, 1.4)
+	set_flag_value(value)
+
+func clear_group_flag():
+	pole.scale = Vector2i(1, 1)
+	set_flag_value(str(current_value))
+
 func set_flag_opacity(shown: bool) -> void:
 	if shown:
 		flag.modulate = Color(1, 1, 1, 1)

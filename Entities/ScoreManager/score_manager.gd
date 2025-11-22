@@ -7,6 +7,7 @@ extends Node2D
 
 var house_grid: Dictionary[Vector2i, House]
 var multi_house_grid: Dictionary[Vector2i, House]
+var color_groups: Array[Array] = []
 var biggest_color_groups: Array[Array] = []:
 	set(value):
 		biggest_color_groups = value
@@ -40,10 +41,10 @@ func score():
 	multi_house_grid = house_manager.get_multi_houses_on_grid(house_grid)
 	#_apply_multis(multi_house_grid)
 	_apply_tile_multis(multi_house_grid)
-	var groups = _group_houses_by_color(house_grid)
-	_set_flag_values(groups)
-	biggest_color_groups = _get_biggest_color_groups(groups)
-	_set_flag_modulate()
+	color_groups = _group_houses_by_color(house_grid)
+	set_flag_values()
+	biggest_color_groups = _get_biggest_color_groups()
+	set_flag_modulate()
 	score_changed.emit()
 
 #Not used
@@ -268,9 +269,9 @@ func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	
 	return groups
 
-func _get_biggest_color_groups(groups: Array[Array]) -> Array[Array]:
+func _get_biggest_color_groups() -> Array[Array]:
 	var biggest_groups: Array[Array] = []
-	for group: Array[House] in groups:
+	for group: Array[House] in color_groups:
 		var color_group: Array[House] = _color_group_in_groups(biggest_groups, group[0].flag.color)
 		if color_group != []:
 			if group[0].flag.current_value > color_group[0].flag.current_value:
@@ -286,7 +287,7 @@ func _color_group_in_groups(groups: Array[Array], color: int) -> Array[House]:
 			return group
 	return []
 
-func _get_group_points(group: Array[House]) -> int:
+func get_group_points(group: Array[House]) -> int:
 	var points: int = 0
 	
 	for house: House in group:
@@ -294,19 +295,22 @@ func _get_group_points(group: Array[House]) -> int:
 	
 	return points
 
-func _set_flag_values(groups: Array[Array]) -> void:
+func set_flag_values() -> void:
 	for house : House in house_grid.values():
 		house.flag.current_value = house.current_points
 		if house.multi_house and not house.in_danger:
 			house.flag.set_flag_opacity(true)
 			continue
 		house.flag.set_flag_opacity(false)
-	
-	for group in groups:
-		for house : House in group:
-			house.flag.current_value = _get_group_points(group)
 
-func _set_flag_modulate() -> void:
+func set_flag_modulate() -> void:
 	for group in biggest_color_groups:
 		for house: House in group:
 			house.flag.set_flag_opacity(true)
+
+func calculate_score() -> int:
+	var points: int = 0
+	for group: Array[House] in biggest_color_groups:
+		for house in group:
+			points += house.flag.current_value
+	return points

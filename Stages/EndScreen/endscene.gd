@@ -32,7 +32,3 @@ func set_nav_region(bounds: Vector4i) -> void:
 	]
 	navigation_region_2d.navigation_polygon.add_outline(outline)
 	navigation_region_2d.bake_navigation_polygon()
-
-func switch_to_start() -> void:
-	GlobalVariables.bosses_completed_last = GlobalVariables.bosses_completed_now
-	SceneSwitcher.switch_end_to_home()
