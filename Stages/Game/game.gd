@@ -23,6 +23,7 @@ var current_round: int = 0
 
 @onready var ui: UI = $UI
 @onready var shop: Shop = $Shop
+@onready var tutorial_ui: CanvasLayer = $TutorialUI
 
 var start_wave_active: bool = true
 
@@ -52,6 +53,9 @@ func on_counting_finished(has_finished: bool) -> void:
 	switch_game_state()
 
 func on_shopping_done(house_res: HouseRescource) -> void:
+	if GlobalVariables.first_time_multi:
+		tutorial_ui.dialogue_loop_multi()
+	GlobalVariables.first_time_multi = false
 	house_manager.spawn_specific_house(house_res)
 	switch_game_state()
 

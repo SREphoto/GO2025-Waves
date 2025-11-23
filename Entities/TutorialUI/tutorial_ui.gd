@@ -20,8 +20,6 @@ func _ready() -> void:
 	initalize()
 	if GlobalVariables.first_time:
 		dialogue_loop()
-	if GlobalVariables.first_time_multi:
-		dialogue_loop_multi()
 
 func initalize():
 	if score_manager:

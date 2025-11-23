@@ -11,7 +11,8 @@ var size: Vector2
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		y_to_x = (get_viewport_rect().size.x / get_viewport_rect().size.y)
-	sand_tile_map_layer.changed_grid_size.connect(_on_grid_size_changed)
+	if sand_tile_map_layer:
+		sand_tile_map_layer.changed_grid_size.connect(_on_grid_size_changed)
 
 func _on_grid_size_changed() -> void:
 	size.y = sand_tile_map_layer.grid_size.y

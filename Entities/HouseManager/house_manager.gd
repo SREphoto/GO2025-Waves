@@ -84,6 +84,7 @@ func spawn_specific_house_size(house_size: HOUSE_SIZES) -> bool:
 	return false
 
 func spawn_special_or_random_house(current_round: int) -> void:
+	GlobalVariables.first_time = false
 	if not start_house_sizes.is_empty():
 		for i in start_house_sizes.size():
 			await get_tree().create_timer(0.8).timeout

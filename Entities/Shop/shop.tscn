@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpcls6g0vs82v"]
+[gd_scene load_steps=4 format=3 uid="uid://bpcls6g0vs82v"]
 
 [ext_resource type="Script" uid="uid://dlss7wu3vxe7x" path="res://Entities/Shop/shop.gd" id="1_p3mvd"]
 [ext_resource type="Texture2D" uid="uid://ck8qun50ygusc" path="res://Entities/GridObject/MovableGridObject/SpecialHouse/SpecialHouses.png" id="2_gis86"]
+[ext_resource type="Texture2D" uid="uid://dij881hbillov" path="res://Entities/Shop/lottery_slot.png" id="3_tgpdm"]
 
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_p3mvd")
@@ -34,7 +35,7 @@ custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 256
-text = "SHOP"
+text = "LOTTERY"
 horizontal_alignment = 1
 justification_flags = 162
 
@@ -47,10 +48,15 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="TextureRect1" type="Sprite2D" parent="ColorRect/M/V/H/Slot1"]
+[node name="MultiHouse" type="Sprite2D" parent="ColorRect/M/V/H/Slot1"]
 position = Vector2(0, -128)
 scale = Vector2(12, 12)
 texture = ExtResource("2_gis86")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 0, 192, 64)
+
+[node name="LotterySlot" type="Sprite2D" parent="ColorRect/M/V/H/Slot1"]
+position = Vector2(0, -20)
+scale = Vector2(12, 12)
+texture = ExtResource("3_tgpdm")

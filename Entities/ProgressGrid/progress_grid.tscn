@@ -66,6 +66,3 @@ position = Vector2(-48, -48)
 [node name="Sprite2D" type="Sprite2D" parent="Statue"]
 position = Vector2(0, -16)
 texture = ExtResource("3_o06lx")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)

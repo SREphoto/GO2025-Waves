@@ -91,6 +91,7 @@ func state_mark() -> void:
 	var current_round: int = game.current_round
 	if special_mark_array.has(current_round):
 		special_state_mark(special_mark_array[current_round])
+		special_mark_array.erase(current_round)
 	else:
 		random_state_mark()
 

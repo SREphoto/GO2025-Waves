@@ -14,8 +14,9 @@ var std_pos: Vector2 = Vector2(0.0, -16.0)
 var std_zoom: Vector2 = Vector2(5.625, 5.625)
 
 func _ready() -> void:
-	selector.object_selected.connect(on_object_selected)
-	selector.object_deselected.connect(on_object_deselected)
+	if selector:
+		selector.object_selected.connect(on_object_selected)
+		selector.object_deselected.connect(on_object_deselected)
 
 func on_object_selected(object: GridObject) -> void:
 	object_pos = object.position
@@ -30,6 +31,15 @@ func on_object_deselected(object: GridObject) -> void:
 	await get_tree().create_timer(.25).timeout
 	
 	object.position = object_pos
+
+func move_camera_end_to_home() -> void:
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", Vector2(640.0, 0), 0.5)
+	tween.parallel().tween_property(self, "rotation", std_rotation, 0.5)
+	await tween.finished
+	
+	GlobalGameState.state = GlobalGameState.STATES.START
 
 func move_camera(object: GridObject) -> void:
 	match object.res.name:

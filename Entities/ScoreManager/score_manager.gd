@@ -150,6 +150,8 @@ func remove_danger_cells(all_multi_pos: Array[Vector2i]) -> Array[Vector2i]:
 			all_multi_pos.erase(pos)
 	return all_multi_pos
 
+#region multi fuunctions
+
 func get_multi_around(house: House) -> Array[Vector2i]:
 	var pos: Vector2i = house.get_grid_pos()
 	var all_multi_pos: Array[Vector2i]
@@ -167,7 +169,6 @@ func get_multi_around(house: House) -> Array[Vector2i]:
 		if sand_tile_map_layer.all_pos.has(neighbor):
 			all_multi_pos.append(neighbor)
 	return all_multi_pos
-	
 
 func get_multi_minus(house: House) -> Array[Vector2i]:
 	var pos: Vector2i = house.get_grid_pos()
@@ -206,6 +207,8 @@ func get_multi_plus(house: House) -> Array[Vector2i]:
 			continue
 		all_multi_pos.append(current_pos)
 	return all_multi_pos
+
+#endregion
 
 func _group_houses_by_color(house_dict: Dictionary) -> Array[Array]:
 	var visited: Dictionary[Vector2i, bool] = {}
