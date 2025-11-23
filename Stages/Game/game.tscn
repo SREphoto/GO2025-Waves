@@ -64,10 +64,14 @@ hovered_tile_map_layer = NodePath("../HoveredTileMapLayer")
 score_manager = NodePath("../ScoreManager")
 navigation_region = NodePath("../NavigationRegion")
 
-[node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer", "sand_tilemap_layer") instance=ExtResource("12_bu72o")]
+[node name="WaveManager" parent="." node_paths=PackedStringArray("house_manager", "wave_marker_tile_map_layer", "sand_tilemap_layer", "game") instance=ExtResource("12_bu72o")]
 house_manager = NodePath("../HouseManager")
 wave_marker_tile_map_layer = NodePath("../WaveMarkerTileMapLayer")
 sand_tilemap_layer = NodePath("../SandTileMapLayer")
+game = NodePath("..")
+special_mark_array = Dictionary[int, int]({
+0: 2
+})
 
 [node name="ObjectGrid" type="Node2D" parent="."]
 unique_name_in_owner = true

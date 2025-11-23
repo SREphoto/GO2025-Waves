@@ -32,9 +32,9 @@ func _set_tilemap(dir: WaveManager.DIRECTIONS) -> void:
 					var col: int
 					match dir:
 						wave_manager.DIRECTIONS.UP:
-							col = grid_bounds.w - 1 - depth
-						wave_manager.DIRECTIONS.DOWN:
 							col = grid_bounds.y + depth
+						wave_manager.DIRECTIONS.DOWN:
+							col = grid_bounds.w - 1 - depth
 					set_cell(Vector2i(row, col), 2, Vector2(3, 3))
 	set_cells_terrain_connect(get_used_cells(), 0, 2, false)
 

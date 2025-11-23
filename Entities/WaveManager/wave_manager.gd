@@ -4,6 +4,10 @@ extends Node2D
 @export var house_manager: HouseManager
 @export var wave_marker_tile_map_layer: WaveMarkerTileMap
 @export var sand_tilemap_layer : SandTileMapLayer
+@export var game: Game
+
+@export_category("Special Wave Marker")
+@export var special_mark_array: Dictionary[int, DIRECTIONS]
 
 @onready var wave_left: WaveSide = $AllWavesLeft
 @onready var wave_up: WaveSide = $AllWavesUp
@@ -84,6 +88,22 @@ func next_state() -> void:
 				state = STATES.MARK
 
 func state_mark() -> void:
+	var current_round: int = game.current_round
+	if special_mark_array.has(current_round):
+		special_state_mark(special_mark_array[current_round])
+	else:
+		random_state_mark()
+
+func special_state_mark(dir: DIRECTIONS) -> void:
+	depth = 2
+	directions = []
+	directions.append(dir)
+	
+	mark_wave.emit()
+	state = STATES.SEND
+	
+
+func random_state_mark() -> void:
 	var wave_count = randi_range(1, 2)
 	if wave_count > 1:
 		depth = 1
@@ -118,16 +138,16 @@ func state_send() -> void:
 				wave_left.start_wave()
 				wave_side_count += 1
 			DIRECTIONS.DOWN:
-				wave_down.position.y = bounds.y * grid_size + depth * grid_size - 80
-				wave_down.start_wave()
+				wave_up.position.y = bounds.w * grid_size - depth * grid_size + 80
+				wave_up.start_wave()
 				wave_side_count += 1
 			DIRECTIONS.RIGHT:
 				wave_right.position.x = bounds.z * grid_size - depth * grid_size + 80
 				wave_right.start_wave()
 				wave_side_count += 1
 			DIRECTIONS.UP:
-				wave_up.position.y = bounds.w * grid_size - depth * grid_size + 80
-				wave_up.start_wave()
+				wave_down.position.y = bounds.y * grid_size + depth * grid_size - 80
+				wave_down.start_wave()
 				wave_side_count += 1
 	
 	await get_tree().process_frame

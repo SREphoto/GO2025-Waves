@@ -24,7 +24,7 @@ var current_round: int = 0
 @onready var ui: UI = $UI
 @onready var shop: Shop = $Shop
 
-var start_wave_active: bool = false
+var start_wave_active: bool = true
 
 func _ready() -> void:
 	GlobalVariables.bosses_completed_now = 0
