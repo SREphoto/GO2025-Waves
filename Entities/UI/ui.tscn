@@ -36,10 +36,14 @@ texture_normal = ExtResource("4_ag6ts")
 texture_hover = ExtResource("5_ikunc")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_top = 357.0
+offset_right = 512.0
+offset_bottom = -357.0
 grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2

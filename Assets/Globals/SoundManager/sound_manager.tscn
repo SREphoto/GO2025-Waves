@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bupik54utcvkp"]
+[gd_scene load_steps=14 format=3 uid="uid://bupik54utcvkp"]
 
 [ext_resource type="Script" uid="uid://dhty223thegdw" path="res://Assets/Globals/SoundManager/sound_manager.gd" id="1_viyf2"]
 [ext_resource type="AudioStream" uid="uid://yaqal4271jjd" path="res://Assets/Audio/SFX/count_pop/count_pop_1.mp3" id="2_syb5k"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://332kkj3hyrgq" path="res://Assets/Audio/SFX/swipe/swipe_2.mp3" id="5_0h4ep"]
 [ext_resource type="AudioStream" uid="uid://dq61576ua5uoh" path="res://Assets/Audio/SFX/swipe/swipe_3.mp3" id="6_d8brp"]
 [ext_resource type="AudioStream" uid="uid://bm0bdjcj1r7qh" path="res://Assets/Audio/SFX/fall_down.mp3" id="7_w88u2"]
+[ext_resource type="PackedScene" uid="uid://chifxicclsw5o" path="res://Assets/Globals/SoundManager/VoiceManager/voice_manager.tscn" id="9_3gsjt"]
 [ext_resource type="AudioStream" uid="uid://dlh2k805ggnsp" path="res://Assets/Audio/SFX/spawn_house.mp3" id="9_kxaji"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kxaji"]
@@ -58,3 +59,5 @@ bus = &"Effects"
 stream = SubResource("AudioStreamRandomizer_rrog2")
 volume_db = -10.0
 bus = &"Effects"
+
+[node name="VoiceManager" parent="." instance=ExtResource("9_3gsjt")]

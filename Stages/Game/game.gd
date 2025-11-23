@@ -53,10 +53,12 @@ func switch_game_state(value = next_game_state) -> void:
 	game_state = value
 	match game_state:
 		GAME_STATES.SHOP:
+			SoundManager.voice_manager.start_voices()
 			_game_state_shop()
 		GAME_STATES.PAUSED:
 			_game_state_paused()
 		GAME_STATES.SPAWNING:
+			SoundManager.voice_manager.start_voices()
 			poseidon.attacking = false
 			_game_state_spawning()
 		GAME_STATES.SLIDING:

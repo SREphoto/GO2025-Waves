@@ -26,3 +26,4 @@ func on_house_spawned(house: House) -> void:
 func panic(min_time : float = 5.0, max_time : float = 10.0):
 	for guy in little_guy_array:
 		guy.start_panic(randf_range(min_time, max_time))
+		SoundManager.voice_manager.start_panic()
