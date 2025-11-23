@@ -24,16 +24,22 @@ var current_round: int = 0
 @onready var ui: UI = $UI
 @onready var shop: Shop = $Shop
 
+var start_wave_active: bool = false
+
 func _ready() -> void:
 	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
 	game_variables.wave_finished.connect(on_wave_finished)
 	game_variables.counting_finished.connect(on_counting_finished)
 	game_variables.no_time.connect(switch_game_state)
-	poseidon.poseidon_pressed.connect(switch_game_state)
-	ui.start_wave.connect(switch_game_state)
+	poseidon.poseidon_pressed.connect(on_start_wave)
+	ui.start_wave.connect(on_start_wave)
 	shop.shopping_done.connect(on_shopping_done)
 	_game_state_paused()
+
+func on_start_wave() -> void:
+	if start_wave_active:
+		switch_game_state()
 
 func on_wave_finished() -> void:
 	switch_game_state()

@@ -11,9 +11,10 @@ extends CanvasLayer
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
-@onready var label_red: Label = $Control/M/V/H1/LabelRed
-@onready var label_green: Label = $Control/M/V/H2/LabelGreen
-@onready var label_blue: Label = $Control/M/V/H3/LabelBlue
+@onready var label_red: Label = $Control/M/V/P1/LabelRed
+@onready var label_green: Label = $Control/M/V/P2/LabelGreen
+@onready var label_blue: Label = $Control/M/V/P3/LabelBlue
+
 
 signal start_wave
 
