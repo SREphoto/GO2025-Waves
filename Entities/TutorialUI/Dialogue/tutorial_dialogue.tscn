@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6n407x31u6sf"]
+
+[ext_resource type="Script" uid="uid://v33j620oj6cn" path="res://Entities/TutorialUI/Dialogue/tutorial_dialogue.gd" id="1_317s1"]
+
+[node name="TutorialDialogue" type="Node"]
+script = ExtResource("1_317s1")

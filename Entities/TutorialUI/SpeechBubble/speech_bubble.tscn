@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3yqdng3kheet"]
+
+[ext_resource type="Texture2D" uid="uid://d045aotsrg26b" path="res://Entities/TutorialUI/Assets/SpeechBubble.png" id="1_tafbj"]
+[ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="2_7bdei"]
+[ext_resource type="Script" uid="uid://bx28hf5g3lorn" path="res://Entities/TutorialUI/SpeechBubble/speech_bubble.gd" id="2_xgwoq"]
+[ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="4_ptg0h"]
+[ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="5_2t8re"]
+
+[node name="SpeechBubble" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.5882353)
+scale = Vector2(5, 5)
+texture = ExtResource("1_tafbj")
+offset = Vector2(73, 0)
+script = ExtResource("2_xgwoq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 12.799999
+offset_top = -20.4
+offset_right = 132.79999
+offset_bottom = 20.599993
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7bdei")
+theme_override_font_sizes/font_size = 8
+text = "Testtext"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SkipContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SkipButton" type="TextureButton" parent="HBoxContainer/SkipContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_ptg0h")
+texture_hover = ExtResource("5_2t8re")
+
+[connection signal="pressed" from="HBoxContainer/SkipContainer/SkipButton" to="." method="_on_skip_button_pressed"]

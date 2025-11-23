@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cb27vdad5164i"]
+
+[ext_resource type="Script" uid="uid://ubiqcrpe4lx1" path="res://Entities/TutorialUI/tutorial_ui.gd" id="1_itko2"]
+[ext_resource type="PackedScene" uid="uid://c3yqdng3kheet" path="res://Entities/TutorialUI/SpeechBubble/speech_bubble.tscn" id="2_itko2"]
+[ext_resource type="Texture2D" uid="uid://bi7gy6nb5i6vl" path="res://Entities/TutorialUI/Assets/Mayor.png" id="2_rmiah"]
+[ext_resource type="PackedScene" uid="uid://6n407x31u6sf" path="res://Entities/TutorialUI/Dialogue/tutorial_dialogue.tscn" id="4_w6mpw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itko2"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6mpw"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppawp"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roj1m"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chr7n"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp1jd"]
+atlas = ExtResource("2_rmiah")
+region = Rect2(180, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8iiu5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itko2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6mpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppawp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roj1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chr7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp1jd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TutorialUI" type="CanvasLayer"]
+script = ExtResource("1_itko2")
+
+[node name="TutorialDialogue" parent="." instance=ExtResource("4_w6mpw")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MajorIcon" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(-275, -100)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_8iiu5")
+autoplay = "default"
+frame_progress = 0.9932316
+
+[node name="SpeechBubble" parent="Control" instance=ExtResource("2_itko2")]
+position = Vector2(-160.91, -100)
+text = "This is a testtext, please ignore"
