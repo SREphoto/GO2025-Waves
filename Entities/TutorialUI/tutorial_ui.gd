@@ -2,12 +2,14 @@ extends CanvasLayer
 
 @export var game_vars : GameVariables
 @export var score_manager : ScoreManager
+@export var selector : Selector
 
 @onready var tutorial_dialogue: Node = $TutorialDialogue
 @onready var major_icon: AnimatedSprite2D = $Control/MajorIcon
 @onready var speech_bubble: Sprite2D = $Control/SpeechBubble
 
 var received_signals = {
+	"house_grabbed" : false,
 	"house_moved" : false,
 	"wave_finished" : false
 }
@@ -23,6 +25,8 @@ func initalize():
 		score_manager.biggest_color_groups_changed.connect(_on_house_moved)
 	if game_vars:
 		game_vars.wave_finished.connect(_on_wave_finished)
+	if selector:
+		selector.object_selected.connect(_on_object_selected)
 
 func set_signal_value(key: String, value):
 	if key in received_signals:
@@ -60,5 +64,10 @@ func dialogue_loop():
 func _on_wave_finished():
 	set_signal_value("wave_finished", true)
 
+func _on_object_selected(_object):
+	set_signal_value("house_grabbed", true)
+
 func _on_house_moved():
-	set_signal_value("house_moved", true)
+	await get_tree().process_frame
+	if game_vars.current_score > 0 and received_signals["house_grabbed"]:
+		set_signal_value("house_moved", true)
