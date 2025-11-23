@@ -8,6 +8,7 @@ const HOUSE_TOMBSTONE = preload("uid://der423hq24i8n")
 
 
 func switch_game_to_end(game_scene : Game):
+	GlobalVariables.first_time = false
 	var camera: ZoomCamera = game_scene.get_camera()
 	var sand: SandTileMapLayer = game_scene.get_sand()
 	var water: WaterTileMapLayer = game_scene.get_water()

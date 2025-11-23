@@ -38,6 +38,8 @@ signal no_time()
 func _ready() -> void:
 	current_goal = all_goals.pop_front()
 	remaining_waves = all_round_waves.pop_front()
+	if GlobalVariables.first_time:
+		remaining_waves += 1
 	score_manager.score_changed.connect(on_score_changed)
 	wave_manager.finished_waves.connect(on_wave_finished)
 	# So values get updated at the start

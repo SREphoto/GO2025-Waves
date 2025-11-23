@@ -48,10 +48,12 @@ func _ready() -> void:
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	
-	for house_size in start_house_sizes:
+	if GlobalVariables.first_time:
 		timer.start(0.8)
 		await timer.timeout
-		spawn_specific_house_size(house_size)
+		spawn_specific_house_size(start_house_sizes.pop_front())
+	else:
+		spawn_special_or_random_house(0)
 
 func spawn_specific_house(house_res: HouseRescource) -> bool:
 	var rand: Vector2i = _check_free_grid_pos_for_size(house_res.size)
@@ -82,7 +84,11 @@ func spawn_specific_house_size(house_size: HOUSE_SIZES) -> bool:
 	return false
 
 func spawn_special_or_random_house(current_round: int) -> void:
-	if special_house_round.has(current_round):
+	if not start_house_sizes.is_empty():
+		for i in start_house_sizes.size():
+			await get_tree().create_timer(0.8).timeout
+			spawn_specific_house_size(start_house_sizes.pop_front())
+	elif special_house_round.has(current_round):
 		spawn_specific_house_size(special_house_round[current_round])
 	else:
 		spawn_random_house()
