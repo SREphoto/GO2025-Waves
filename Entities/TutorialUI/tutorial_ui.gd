@@ -18,7 +18,10 @@ signal dict_value_changed
 
 func _ready() -> void:
 	initalize()
-	dialogue_loop()
+	if GlobalVariables.first_time:
+		dialogue_loop()
+	if GlobalVariables.first_time_multi:
+		dialogue_loop_multi()
 
 func initalize():
 	if score_manager:
@@ -27,6 +30,19 @@ func initalize():
 		game_vars.wave_finished.connect(_on_wave_finished)
 	if selector:
 		selector.object_selected.connect(_on_object_selected)
+
+#region signals
+func _on_wave_finished():
+	set_signal_value("wave_finished", true)
+
+func _on_object_selected(_object):
+	set_signal_value("house_grabbed", true)
+
+func _on_house_moved():
+	await get_tree().process_frame
+	if game_vars.current_score > 0 and received_signals["house_grabbed"]:
+		set_signal_value("house_moved", true)
+#endregion
 
 func set_signal_value(key: String, value):
 	if key in received_signals:
@@ -61,13 +77,5 @@ func dialogue_loop():
 					break
 		await speech_bubble.disappear()
 
-func _on_wave_finished():
-	set_signal_value("wave_finished", true)
-
-func _on_object_selected(_object):
-	set_signal_value("house_grabbed", true)
-
-func _on_house_moved():
-	await get_tree().process_frame
-	if game_vars.current_score > 0 and received_signals["house_grabbed"]:
-		set_signal_value("house_moved", true)
+func dialogue_loop_multi():
+	pass

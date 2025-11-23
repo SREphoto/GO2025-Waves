@@ -105,7 +105,8 @@ func _game_state_paused() -> void:
 	switch_game_state()
 
 func _game_state_spawning() -> void:
-	current_round += 1
+	if not GlobalVariables.first_time:
+		current_round += 1
 	house_manager.spawn_special_or_random_house(current_round)
 	next_game_state = GAME_STATES.SLIDING
 	switch_game_state()

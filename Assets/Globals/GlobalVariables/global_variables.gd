@@ -28,3 +28,4 @@ const GRID_SIZE = 32
 var money: int = 0
 
 var first_time: bool = true
+var first_time_multi: bool = true
