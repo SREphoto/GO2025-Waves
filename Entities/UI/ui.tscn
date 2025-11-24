@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5tubgyxsf3es"]
+[gd_scene load_steps=13 format=3 uid="uid://c5tubgyxsf3es"]
 
 [ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
 [ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
@@ -6,49 +6,59 @@
 [ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="4_ag6ts"]
 [ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="5_ikunc"]
 [ext_resource type="Texture2D" uid="uid://s0my7jip2gjq" path="res://Entities/UI/Assets/UiFlagR.png" id="6_4ef74"]
+[ext_resource type="FontFile" uid="uid://c7ov6yg6gek8u" path="res://Entities/Flag/FlagFont.ttf" id="7_ffqlu"]
 [ext_resource type="Texture2D" uid="uid://dhqgeyfueuo1x" path="res://Entities/UI/Assets/UiFlagG.png" id="7_lmmol"]
 [ext_resource type="Texture2D" uid="uid://54pqb0g3og0r" path="res://Entities/UI/Assets/UiFlagB.png" id="8_ffqlu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1jd4"]
 texture = ExtResource("6_4ef74")
-texture_margin_left = 30.0
-texture_margin_top = 10.0
-texture_margin_right = 40.0
-texture_margin_bottom = 10.0
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 30.0
+texture_margin_bottom = 7.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq0a8"]
 texture = ExtResource("7_lmmol")
-texture_margin_left = 30.0
-texture_margin_top = 10.0
+texture_margin_left = 24.0
+texture_margin_top = 16.0
 texture_margin_right = 30.0
-texture_margin_bottom = 10.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(0, 0, 94, 71)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_64pqe"]
 texture = ExtResource("8_ffqlu")
-texture_margin_left = 30.0
-texture_margin_top = 10.0
+texture_margin_left = 24.0
+texture_margin_top = 16.0
 texture_margin_right = 30.0
-texture_margin_bottom = 10.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(0, 0, 94, 71)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_irfo3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="LeftTopUI" parent="." instance=ExtResource("1_y56jo")]
+[node name="GoalUI" parent="." instance=ExtResource("1_y56jo")]
 
-[node name="LeftBottomUI" parent="." instance=ExtResource("3_irfo3")]
+[node name="RoundUI" parent="." instance=ExtResource("3_irfo3")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
 
-[node name="TimeLabel" parent="LeftBottomUI/Sprite2D" index="2"]
+[node name="TimeLabel" parent="RoundUI/Sprite2D" index="2"]
 offset_right = -17.000004
 text = "Time"
 
-[node name="TimeRemaining" parent="LeftBottomUI/Sprite2D" index="3"]
+[node name="TimeRemaining" parent="RoundUI/Sprite2D" index="3"]
 offset_left = -17.799988
 offset_right = 18.399998
 text = "120"
 
-[node name="SkipButton" type="TextureButton" parent="LeftBottomUI/Sprite2D" index="4"]
+[node name="SkipButton" type="TextureButton" parent="RoundUI/Sprite2D" index="4"]
 offset_left = 20.399998
 offset_top = 5.199993
 offset_right = 40.399998
@@ -57,75 +67,71 @@ texture_normal = ExtResource("4_ag6ts")
 texture_hover = ExtResource("5_ikunc")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 357.0
 offset_right = 512.0
-offset_bottom = -357.0
+offset_bottom = -447.0
 grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 1
 
-[node name="M" type="MarginContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 384
-theme_override_constants/margin_bottom = 384
-
-[node name="V" type="VBoxContainer" parent="Control/M"]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="V" type="HFlowContainer" parent="Control"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 22.5
+offset_right = 512.0
+offset_bottom = 93.5
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 alignment = 1
 
-[node name="P1" type="PanelContainer" parent="Control/M/V"]
+[node name="P1" type="PanelContainer" parent="Control/V"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_d1jd4")
 
-[node name="LabelRed" type="Label" parent="Control/M/V/P1"]
+[node name="LabelRed" type="Label" parent="Control/V/P1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.5
 theme_override_constants/paragraph_spacing = 0
-theme_override_font_sizes/font_size = 64
-text = "1"
+theme_override_fonts/font = ExtResource("7_ffqlu")
+theme_override_font_sizes/font_size = 32
+text = "999"
 
-[node name="P2" type="PanelContainer" parent="Control/M/V"]
+[node name="P2" type="PanelContainer" parent="Control/V"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_bq0a8")
 
-[node name="LabelGreen" type="Label" parent="Control/M/V/P2"]
+[node name="LabelGreen" type="Label" parent="Control/V/P2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.5
 theme_override_constants/paragraph_spacing = 0
-theme_override_font_sizes/font_size = 64
-text = "8"
+theme_override_fonts/font = ExtResource("7_ffqlu")
+theme_override_font_sizes/font_size = 32
+text = "999"
 
-[node name="P3" type="PanelContainer" parent="Control/M/V"]
+[node name="P3" type="PanelContainer" parent="Control/V"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_64pqe")
 
-[node name="LabelBlue" type="Label" parent="Control/M/V/P3"]
+[node name="LabelBlue" type="Label" parent="Control/V/P3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.5
 theme_override_constants/paragraph_spacing = 0
-theme_override_font_sizes/font_size = 64
-text = "9"
+theme_override_fonts/font = ExtResource("7_ffqlu")
+theme_override_font_sizes/font_size = 32
+text = "999"
 
 [node name="TEMP" type="Sprite2D" parent="."]
 visible = false
@@ -133,7 +139,7 @@ position = Vector2(440, 800)
 scale = Vector2(0.1, 1.7964789)
 texture = ExtResource("6_4ef74")
 
-[connection signal="pressed" from="LeftBottomUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="RoundUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
 
-[editable path="LeftTopUI"]
-[editable path="LeftBottomUI"]
+[editable path="GoalUI"]
+[editable path="RoundUI"]

@@ -4,16 +4,19 @@ extends CanvasLayer
 @export var game_variables : GameVariables
 @export var score_manager: ScoreManager
 
-@onready var goal: Label = $LeftTopUI/BG/Goal
-@onready var current_offering: Label = $LeftTopUI/BG/CurrentOffering
-@onready var waves_remaining: Label = $LeftBottomUI/Sprite2D/WavesRemaining
-@onready var time_remaining: Label = $LeftBottomUI/Sprite2D/TimeRemaining
+@onready var goal: Label = $GoalUI/BG/Goal
+@onready var current_offering: Label = $GoalUI/BG/CurrentOffering
+@onready var waves_remaining: Label = $RoundUI/Sprite2D/WavesRemaining
+@onready var time_remaining: Label = $RoundUI/Sprite2D/TimeRemaining
+
+
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
-@onready var label_red: Label = $Control/M/V/P1/LabelRed
-@onready var label_green: Label = $Control/M/V/P2/LabelGreen
-@onready var label_blue: Label = $Control/M/V/P3/LabelBlue
+@onready var label_red: Label = $Control/V/P1/LabelRed
+@onready var label_green: Label = $Control/V/P2/LabelGreen
+@onready var label_blue: Label = $Control/V/P3/LabelBlue
+
 
 
 signal start_wave
