@@ -127,6 +127,12 @@ theme_override_constants/paragraph_spacing = 0
 theme_override_font_sizes/font_size = 64
 text = "9"
 
+[node name="TEMP" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(440, 800)
+scale = Vector2(0.1, 1.7964789)
+texture = ExtResource("6_4ef74")
+
 [connection signal="pressed" from="LeftBottomUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
 
 [editable path="LeftTopUI"]

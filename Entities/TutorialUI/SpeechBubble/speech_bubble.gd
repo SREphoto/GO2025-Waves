@@ -1,3 +1,4 @@
+class_name SpeechBubble
 extends Sprite2D
 
 @export var text : String = ""
