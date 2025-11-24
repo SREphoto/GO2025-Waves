@@ -14,6 +14,7 @@ var std_pos: Vector2 = Vector2(0.0, -16.0)
 var std_zoom: Vector2 = Vector2(5.625, 5.625)
 
 func _ready() -> void:
+	offset.x = -384.0
 	if selector:
 		selector.object_selected.connect(on_object_selected)
 		selector.object_deselected.connect(on_object_deselected)
