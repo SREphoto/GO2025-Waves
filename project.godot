@@ -13,7 +13,9 @@ config_version=5
 config/name="GO2025-Waves"
 run/main_scene="uid://bea0lmunii7f3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://dist644fxkl6v"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
