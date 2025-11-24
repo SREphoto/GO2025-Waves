@@ -190,7 +190,8 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_vspba")
 
 [node name="SandGrooveTileMap" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD/////AAAHAAAAAAACAP7/AAAGAAEAAAACAAAAAAAGAAIAAAABAAAAAAAFAAIAAAAAAAAAAAAFAAIAAAD//wAAAAAEAAEAAAD+//D/AAAHAAIAAAD+/+//AAAEAAAAAAD//+//AAAFAAIAAAAAAO//AAAFAAIAAAABAO//AAAFAAAAAAABAPD/AAAHAAIAAAA=")
+visible = false
+tile_map_data = PackedByteArray("AAD/////AAAHAAAAAAACAP7/AAAGAAEAAAACAAAAAAAGAAIAAAABAAAAAAAFAAIAAAD//wAAAAAEAAEAAAD+//D/AAAHAAIAAAD+/+//AAAEAAAAAAD//+//AAAFAAIAAAAAAO//AAAFAAIAAAABAO//AAAFAAAAAAABAPD/AAAHAAIAAAAAAAAAAAAFAAIAAAA=")
 tile_set = SubResource("TileSet_nlvk3")
 
 [node name="WaveMarkerTileMapLayer" parent="." instance=ExtResource("4_pq1y0")]
@@ -224,27 +225,21 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="Rock" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(-16, -16)
 
 [node name="Rock2" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(80, -48)
 
 [node name="Rock3" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(80, 16)
 
 [node name="Rock5" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(16, -528)
 
 [node name="Rock6" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(48, -496)
 
 [node name="Rock8" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-visible = false
 position = Vector2(-48, -496)
 
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("selector") instance=ExtResource("33_4dtno")]
