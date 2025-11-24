@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bea0lmunii7f3"]
+[gd_scene load_steps=43 format=4 uid="uid://bea0lmunii7f3"]
 
 [ext_resource type="Script" uid="uid://bg6o4yas77dl" path="res://Stages/Homepage/homepage.gd" id="1_f1qum"]
 [ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="4_pq1y0"]
@@ -37,6 +37,10 @@
 [ext_resource type="Resource" uid="uid://dixl6nxbk3bhx" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_03.tres" id="30_nuodi"]
 [ext_resource type="Resource" uid="uid://cs4ajudybkhkb" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_04.tres" id="31_vspba"]
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="33_4dtno"]
+[ext_resource type="Script" uid="uid://ikl2p3fbe25o" path="res://Stages/Homepage/Settings/settings.gd" id="38_xhbwn"]
+[ext_resource type="PackedScene" uid="uid://6y68rwdlue32" path="res://Entities/Slider/slider.tscn" id="38_y4sl6"]
+[ext_resource type="Texture2D" uid="uid://c72o8n77ahodp" path="res://Entities/Slider/music_house.png" id="39_gq86k"]
+[ext_resource type="Texture2D" uid="uid://c71pmhurrtn8y" path="res://Entities/Slider/voices_house.png" id="41_nuodi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b4cjd"]
 vertices = PackedVector2Array(131.82813, 43.179688, -31, 57.8125, -31, -83.171875, 119.17969, -96.82031)
@@ -99,6 +103,9 @@ position = Vector2(16, -528)
 
 [node name="Rock6" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
 position = Vector2(48, -496)
+
+[node name="Rock8" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+position = Vector2(-48, -496)
 
 [node name="HouseUnlocker" type="Node2D" parent="."]
 script = ExtResource("14_4dtno")
@@ -196,3 +203,29 @@ script = ExtResource("9_b4cjd")
 [node name="SpecialNavigationRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_b4cjd")
 script = ExtResource("14_auknt")
+
+[node name="Settings" type="Node2D" parent="."]
+position = Vector2(0, -560)
+script = ExtResource("38_xhbwn")
+
+[node name="Music" type="Node2D" parent="Settings"]
+position = Vector2(0, -64)
+
+[node name="MusicHouse" type="Sprite2D" parent="Settings/Music"]
+position = Vector2(-128, -4)
+texture = ExtResource("39_gq86k")
+
+[node name="MusicSlider" parent="Settings/Music" instance=ExtResource("38_y4sl6")]
+
+[node name="Sounds" type="Node2D" parent="Settings"]
+position = Vector2(0, -32)
+
+[node name="EffectSlider" parent="Settings/Sounds" instance=ExtResource("38_y4sl6")]
+
+[node name="Voices" type="Node2D" parent="Settings"]
+
+[node name="VoicesHouse" type="Sprite2D" parent="Settings/Voices"]
+position = Vector2(-128, -4)
+texture = ExtResource("41_nuodi")
+
+[node name="VoicesSlider" parent="Settings/Voices" instance=ExtResource("38_y4sl6")]

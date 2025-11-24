@@ -25,7 +25,7 @@ var current_round: int = 0
 @onready var shop: Shop = $Shop
 @onready var tutorial_ui: CanvasLayer = $TutorialUI
 
-var start_wave_active: bool = true
+var start_wave_active: bool = false
 
 func _ready() -> void:
 	GlobalVariables.bosses_completed_now = 0
@@ -93,6 +93,7 @@ func _game_state_shop() -> void:
 func _game_state_paused() -> void:
 	game_variables.active = false
 	ui.canvas_modulate.color = Color(1,1,1,0)
+	start_wave_active = false
 	selector.active = false
 	hoverer.active = false
 	shop.exit()
@@ -113,6 +114,8 @@ func _game_state_spawning() -> void:
 		current_round += 1
 	house_manager.spawn_special_or_random_house(current_round)
 	next_game_state = GAME_STATES.SLIDING
+	if GlobalVariables.first_time == true:
+		GlobalVariables.first_time = false
 	switch_game_state()
 
 func _game_state_sliding() -> void:
@@ -120,7 +123,12 @@ func _game_state_sliding() -> void:
 	game_variables.active = true
 	hoverer.active = true
 	shop.exit()
-	selector.active = true
+	if GlobalVariables.first_time:
+		start_wave_active = false
+		selector.active = false
+	else:
+		start_wave_active = true
+		selector.active = true
 	next_game_state = GAME_STATES.WAVES
 	wave_manager.next_state()
 	GlobalGameState.state = GlobalGameState.STATES.GAMELOOP
@@ -128,6 +136,7 @@ func _game_state_sliding() -> void:
 func _game_state_waves() -> void:
 	game_variables.active = false
 	hoverer.active = false
+	start_wave_active = false
 	selector.active = false
 	next_game_state = GAME_STATES.COUNTING
 	wave_manager.next_state()

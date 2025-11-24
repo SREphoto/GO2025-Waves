@@ -1,4 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cr714kf24h3q2"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cr714kf24h3q2"]
+
+[ext_resource type="Texture2D" uid="uid://dbba8hsxf8o77" path="res://Entities/Slider/grabber.png" id="1_dp6sy"]
+[ext_resource type="Texture2D" uid="uid://c8pym0paloj74" path="res://Entities/Slider/grabber_hover.png" id="2_inlh7"]
+[ext_resource type="Texture2D" uid="uid://dcrwmevxsdbtx" path="res://Entities/Slider/slider.png" id="2_tei57"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inlh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tei57"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp6sy"]
+texture = ExtResource("2_tei57")
+texture_margin_top = 2.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 160, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lohmq"]
 border_width_left = 4
@@ -13,5 +27,10 @@ corner_radius_bottom_left = 16
 anti_aliasing = false
 
 [resource]
+HSlider/icons/grabber = ExtResource("1_dp6sy")
+HSlider/icons/grabber_highlight = ExtResource("2_inlh7")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_inlh7")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_tei57")
+HSlider/styles/slider = SubResource("StyleBoxTexture_dp6sy")
 Panel/styles/panel = SubResource("StyleBoxFlat_lohmq")
 RichTextLabel/font_sizes/normal_font_size = 64

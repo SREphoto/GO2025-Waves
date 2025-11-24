@@ -7,7 +7,8 @@ const dialogue_template = [
 		"direction" : "right",
 		"text" : "This is a Test Text, please ignore",
 		"has_skip" : true,
-		"signal" : null
+		"signal_listen" : null,
+		"signal_emit" : null
 	}
 ]
 
@@ -18,7 +19,8 @@ var dialogue = [
 		"direction" : "right",
 		"text" : "Hello! I am Mayor Mini Man, mayor of tidal town!",
 		"has_skip" : true,
-		"signal" : null
+		"signal_listen" : null,
+		"signal_emit" : null
 	},
 	{
 		"speaker" : "Mayor",
@@ -26,7 +28,8 @@ var dialogue = [
 		"direction" : "right",
 		"text" : "Poseidon is attacking our lovely village with waves!",
 		"has_skip" : true,
-		"signal" : null
+		"signal_listen" : null,
+		"signal_emit" : null
 	},
 	{
 		"speaker" : "Mayor",
@@ -34,7 +37,8 @@ var dialogue = [
 		"direction" : "right",
 		"text" : "Drag buildings outside of the red zone to save them!",
 		"has_skip" : false,
-		"signal" : "house_moved"
+		"signal_listen" : "house_moved",
+		"signal_emit" : "house_movable"
 	},
 	{
 		"speaker" : "Mayor",
@@ -42,6 +46,7 @@ var dialogue = [
 		"direction" : "right",
 		"text" : "Great! Now press the 'skip' button to make the wave appear!",
 		"has_skip" : false,
-		"signal" : "wave_finished"
+		"signal_listen" : "wave_finished",
+		"signal_emit" : "start_wave_pressable"
 	},
 ]

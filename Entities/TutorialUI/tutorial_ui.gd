@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var game: Game
 @export var game_vars : GameVariables
 @export var score_manager : ScoreManager
 @export var selector : Selector
@@ -54,7 +55,8 @@ func dialogue_loop():
 		var dir = dialogue["direction"]
 		var text = dialogue["text"]
 		var has_skip = dialogue["has_skip"]
-		var required_signal = dialogue["signal"]
+		var required_signal = dialogue["signal_listen"]
+		var emitted_signal = dialogue["signal_emit"]
 		
 		# If no_skip, check signals
 		# If this has already been done, add a skip button!
@@ -64,6 +66,8 @@ func dialogue_loop():
 		
 		speech_bubble.set_bubble(text, has_skip, dir)
 		await speech_bubble.appear()
+		if emitted_signal != null:
+			emitted_singals(emitted_signal)
 		if has_skip:
 			await speech_bubble.skip_pressed
 		else:
@@ -74,6 +78,15 @@ func dialogue_loop():
 				if received_signals[required_signal] == true:
 					break
 		await speech_bubble.disappear()
+
+func emitted_singals(emitted: String) -> void:
+	match emitted:
+		"house_movable":
+			selector.active = true
+		"start_wave_pressable":
+			game.start_wave_active = true
+		_:
+			pass
 
 func dialogue_loop_multi():
 	pass
