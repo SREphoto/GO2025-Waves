@@ -5,10 +5,7 @@ extends Node2D
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 
-#@export var all_goals: Array[int] 		= [8, 50, 170, 480]
-#@export var all_round_waves: Array[int] = [2, 3, 4, 5]
-
-@export var all_goals: Array[int] 		= [12, 28, 60, 130, 260, 320, 640, 1280]
+@export var all_goals: Array[int] 		= [10, 20, 50, 110, 220, 300, 480, 680]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 2, 2]
 
 @export var wave_time : int = 180:

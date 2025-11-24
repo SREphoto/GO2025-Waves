@@ -63,12 +63,10 @@ func switch_game_state(value = next_game_state) -> void:
 	game_state = value
 	match game_state:
 		GAME_STATES.SHOP:
-			SoundManager.voice_manager.start_voices()
 			_game_state_shop()
 		GAME_STATES.PAUSED:
 			_game_state_paused()
 		GAME_STATES.SPAWNING:
-			SoundManager.voice_manager.start_voices()
 			poseidon.attacking = false
 			_game_state_spawning()
 		GAME_STATES.SLIDING:
@@ -82,6 +80,7 @@ func switch_game_state(value = next_game_state) -> void:
 			_game_state_counting()
 
 func _game_state_shop() -> void:
+	current_round += 1
 	ui.blend_out()
 	game_variables.active = false
 	game_variables.next_game()
@@ -110,8 +109,6 @@ func _game_state_paused() -> void:
 	switch_game_state()
 
 func _game_state_spawning() -> void:
-	if not GlobalVariables.first_time:
-		current_round += 1
 	house_manager.spawn_special_or_random_house(current_round)
 	next_game_state = GAME_STATES.SLIDING
 	if GlobalVariables.first_time == true:

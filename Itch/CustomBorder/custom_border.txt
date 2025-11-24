@@ -1,0 +1,4 @@
+#wrapper .game_frame {
+ outline: 4px solid #c5966f;     
+ outline-offset: -4px;           
+}

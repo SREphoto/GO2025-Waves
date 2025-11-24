@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=4 uid="uid://bea0lmunii7f3"]
+[gd_scene load_steps=28 format=4 uid="uid://bea0lmunii7f3"]
 
 [ext_resource type="Script" uid="uid://bg6o4yas77dl" path="res://Stages/Homepage/homepage.gd" id="1_f1qum"]
 [ext_resource type="Texture2D" uid="uid://dist644fxkl6v" path="res://Stages/Homepage/Assets/SplashScreen.png" id="2_vspba"]
+[ext_resource type="Texture2D" uid="uid://drtfl4ixr8iwd" path="res://Stages/Tileset/SandGroove/sand_groove_tilemap.png" id="3_ioedv"]
 [ext_resource type="PackedScene" uid="uid://fwmogwn3o8ul" path="res://Stages/Tileset/WaveMarker/wave_marker_tile_map_layer.tscn" id="4_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="5_t2kd2"]
 [ext_resource type="PackedScene" uid="uid://cj8uwejgc6yoe" path="res://Entities/HouseManager/special_house_manager.tscn" id="5_uje2r"]
@@ -13,36 +14,164 @@
 [ext_resource type="Resource" uid="uid://dt5kpipiulohg" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_settings.tres" id="9_auknt"]
 [ext_resource type="Script" uid="uid://3h8ke828gg2d" path="res://Stages/Homepage/homepage_wave.gd" id="9_b4cjd"]
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="9_dvcl3"]
-[ext_resource type="Resource" uid="uid://cldanqk580w1i" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_upgrades.tres" id="10_alk3g"]
 [ext_resource type="Texture2D" uid="uid://sneu0e0u534w" path="res://Stages/Homepage/Annotations.png" id="10_ymq12"]
 [ext_resource type="Resource" uid="uid://cyol4b27485t3" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_back.tres" id="11_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://54b8uchrs6ae" path="res://Entities/GridObject/Rock/rock.tscn" id="11_uje2r"]
-[ext_resource type="Script" uid="uid://0o6321auqmfh" path="res://Entities/house_unlocker/house_unlocker.gd" id="14_4dtno"]
 [ext_resource type="Script" uid="uid://da5sy0bjrdcfo" path="res://Entities/NavigationRegion/special_navigation_region.gd" id="14_auknt"]
-[ext_resource type="PackedScene" uid="uid://b2avbu36bburo" path="res://Entities/GridObject/MovableGridObject/House/house.tscn" id="14_dvcl3"]
-[ext_resource type="Resource" uid="uid://c44t4pxtghb32" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_around.tres" id="15_lm27f"]
-[ext_resource type="Resource" uid="uid://jvm3qpuyps81" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_plus.tres" id="16_ioedv"]
-[ext_resource type="Resource" uid="uid://dncuupp26aiqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_minus.tres" id="17_x3mbe"]
-[ext_resource type="Resource" uid="uid://u6oihlrklo8y" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_multi_line.tres" id="18_nlvk3"]
-[ext_resource type="Resource" uid="uid://p6oqlvse6tss" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_01.tres" id="19_nlvk3"]
-[ext_resource type="Resource" uid="uid://ntu1nhh1ggm8" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_02.tres" id="20_ouvjx"]
-[ext_resource type="Resource" uid="uid://rlyy3nmn44u" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_03.tres" id="21_ueku8"]
-[ext_resource type="Resource" uid="uid://mngysai4e7lr" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_one_04.tres" id="22_1shfn"]
-[ext_resource type="Resource" uid="uid://boh7llkonfl3x" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_01.tres" id="23_bw70o"]
-[ext_resource type="Resource" uid="uid://cl7jkyf4n1sag" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_02.tres" id="24_4dtno"]
-[ext_resource type="Resource" uid="uid://cyj5bx4td6nao" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_03.tres" id="25_f1qum"]
-[ext_resource type="Resource" uid="uid://ctuojqp4jg4wd" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_04.tres" id="26_y4sl6"]
-[ext_resource type="Resource" uid="uid://bspel7cyepuqh" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_two_05.tres" id="27_xhbwn"]
-[ext_resource type="Resource" uid="uid://cs2c7ri5vembk" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_01.tres" id="28_04xsi"]
-[ext_resource type="Resource" uid="uid://vqfb2hw0qpvm" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_02.tres" id="29_gq86k"]
-[ext_resource type="Resource" uid="uid://dixl6nxbk3bhx" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_03.tres" id="30_nuodi"]
-[ext_resource type="Resource" uid="uid://cs4ajudybkhkb" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_three_04.tres" id="31_vspba"]
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="33_4dtno"]
 [ext_resource type="Script" uid="uid://ikl2p3fbe25o" path="res://Stages/Homepage/Settings/settings.gd" id="38_xhbwn"]
 [ext_resource type="PackedScene" uid="uid://6y68rwdlue32" path="res://Entities/Slider/slider.tscn" id="38_y4sl6"]
 [ext_resource type="Texture2D" uid="uid://c72o8n77ahodp" path="res://Entities/Slider/music_house.png" id="39_gq86k"]
 [ext_resource type="Texture2D" uid="uid://c71pmhurrtn8y" path="res://Entities/Slider/voices_house.png" id="41_nuodi"]
 [ext_resource type="Texture2D" uid="uid://l6jgna30bfab" path="res://Stages/Homepage/Assets/NameLogo.png" id="42_nuodi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3mbe"]
+texture = ExtResource("3_ioedv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 4, 4, 4, 4, 16, -4, 16, -4, -4, 16, -4)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 4, -16, 4)
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 16, -4, 4, -16, 4, -16, -4, 4, -4, 4, 16)
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 16, -4, -4, 4, -4, 4, 16)
+3:0/0/terrains_peering_bit/bottom_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -16, 4, 16, -4, 16, -4, -16)
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -16, 4, 16, -4, 16, -4, -16)
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -16, 4, 16, -4, 16, -4, -16)
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -16, 4, -4, 16, -4, 16, 4, -4, 4, -4, -16)
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 4, -16, 4)
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, -4, -4, -4, -16, 4, -16, 4, 4, -16, 4)
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -16, 4, 4, -4, 4, -4, -16)
+3:2/0/terrains_peering_bit/top_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 4, -4, 4, -4, -4, 16, -4)
+0:3/0/terrains_peering_bit/right_side = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 4, -16, 4)
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/left_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 4, -4, 4, 4, -16, 4)
+2:3/0/terrains_peering_bit/left_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 1
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:2/0/terrains_peering_bit/right_side = 1
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 1
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:1/0/terrains_peering_bit/right_side = 1
+4:1/0/terrains_peering_bit/top_side = 1
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 1
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/0/terrains_peering_bit/right_side = 1
+4:0/0/terrains_peering_bit/bottom_side = 1
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 1
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:0/0/terrains_peering_bit/bottom_side = 1
+5:0/0/terrains_peering_bit/left_side = 1
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 1
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:1/0/terrains_peering_bit/left_side = 1
+5:1/0/terrains_peering_bit/top_side = 1
+5:2/0 = 0
+5:2/0/terrain_set = 0
+5:2/0/terrain = 1
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:2/0/terrains_peering_bit/right_side = 1
+5:2/0/terrains_peering_bit/left_side = 1
+6:2/0 = 0
+6:2/0/terrain_set = 0
+6:2/0/terrain = 1
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+6:2/0/terrains_peering_bit/left_side = 1
+7:2/0 = 0
+7:2/0/terrain_set = 0
+7:2/0/terrain = 1
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:2/0/terrains_peering_bit/top_side = 1
+7:1/0 = 0
+7:1/0/terrain_set = 0
+7:1/0/terrain = 1
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:1/0/terrains_peering_bit/bottom_side = 1
+7:1/0/terrains_peering_bit/top_side = 1
+6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 1
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 1
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:0/0/terrains_peering_bit/bottom_side = 1
+
+[sub_resource type="TileSet" id="TileSet_nlvk3"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Grooves"
+terrain_set_0/terrain_0/color = Color(0.7303092, 0, 0.11499686, 1)
+terrain_set_0/terrain_1/name = "BigGrooves"
+terrain_set_0/terrain_1/color = Color(0.1888212, 0.42096683, 0.8334237, 1)
+sources/0 = SubResource("TileSetAtlasSource_x3mbe")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b4cjd"]
 vertices = PackedVector2Array(131.82813, 43.179688, -31, 57.8125, -31, -83.171875, 119.17969, -96.82031)
@@ -59,6 +188,10 @@ script = ExtResource("1_f1qum")
 position = Vector2(-848, -25)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_vspba")
+
+[node name="SandGrooveTileMap" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD/////AAAHAAAAAAACAP7/AAAGAAEAAAACAAAAAAAGAAIAAAABAAAAAAAFAAIAAAAAAAAAAAAFAAIAAAD//wAAAAAEAAEAAAD+//D/AAAHAAIAAAD+/+//AAAEAAAAAAD//+//AAAFAAIAAAAAAO//AAAFAAIAAAABAO//AAAFAAAAAAABAPD/AAAHAAIAAAA=")
+tile_set = SubResource("TileSet_nlvk3")
 
 [node name="WaveMarkerTileMapLayer" parent="." instance=ExtResource("4_pq1y0")]
 tile_map_data = PackedByteArray("AAD//wMAAgADAAEAAAD//wIAAgADAAEAAAD//wEAAgADAAEAAAD//wAAAgADAAEAAAD/////AgADAAEAAAD///7/AgADAAEAAAD///3/AgADAAEAAAD///z/AgADAAEAAAD///v/AgADAAEAAAD///r/AgADAAEAAAD///n/AgADAAEAAAD///j/AgADAAEAAAD//wcAAgADAAEAAAD//wYAAgADAAEAAAD//wUAAgADAAEAAAD//wQAAgADAAEAAAD//wsAAgADAAEAAAD//woAAgADAAEAAAD//wkAAgADAAEAAAD//wgAAgADAAEAAAD///f/AgADAAEAAAD///b/AgADAAEAAAD///X/AgADAAEAAAD7//D/AgADAAIAAAD7/+//AgADAAEAAAD7/+7/AgADAAEAAAD7/+3/AgADAAEAAAD7/+z/AgADAAAAAAD//w0AAgADAAIAAAD//wwAAgADAAEAAAD///T/AgADAAEAAAD///P/AgADAAEAAAD///L/AgADAAEAAAD///H/AgADAAAAAAD7/xIAAgADAAIAAAD7/xEAAgADAAEAAAD7/xAAAgADAAEAAAD7/w8AAgADAAEAAAD7/w4AAgADAAAAAAA=")
@@ -81,8 +214,8 @@ texture = ExtResource("10_ymq12")
 house_manager = NodePath("../SpecialHouseManager")
 
 [node name="SpecialHouseManager" parent="." instance=ExtResource("5_uje2r")]
-start_house_pos = Array[Vector2i]([Vector2i(-1, -2), Vector2i(0, -1), Vector2i(-1, 0), Vector2i(-1, -16), Vector2i(-1, 14)])
-start_house_res = Array[ExtResource("7_ihi7c")]([ExtResource("9_auknt"), ExtResource("8_uje2r"), ExtResource("10_alk3g"), ExtResource("11_pq1y0"), ExtResource("11_pq1y0")])
+start_house_pos = Array[Vector2i]([Vector2i(-1, -2), Vector2i(0, -1), Vector2i(-1, -16)])
+start_house_res = Array[ExtResource("7_ihi7c")]([ExtResource("9_auknt"), ExtResource("8_uje2r"), ExtResource("11_pq1y0")])
 
 [node name="Selector" parent="." instance=ExtResource("9_dvcl3")]
 
@@ -91,111 +224,28 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="Rock" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(-16, -16)
 
 [node name="Rock2" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(80, -48)
 
 [node name="Rock3" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(80, 16)
 
-[node name="Rock4" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-position = Vector2(16, 496)
-
-[node name="Rock7" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
-position = Vector2(48, 464)
-
 [node name="Rock5" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(16, -528)
 
 [node name="Rock6" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(48, -496)
 
 [node name="Rock8" parent="ObjectGrid" instance=ExtResource("11_uje2r")]
+visible = false
 position = Vector2(-48, -496)
-
-[node name="HouseUnlocker" type="Node2D" parent="."]
-script = ExtResource("14_4dtno")
-
-[node name="ShopObjectGrid" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Multi1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-144, 464)
-res = ExtResource("15_lm27f")
-
-[node name="Multi2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-112, 464)
-res = ExtResource("16_ioedv")
-
-[node name="Multi3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-80, 464)
-res = ExtResource("17_x3mbe")
-
-[node name="Multi4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-48, 464)
-res = ExtResource("18_nlvk3")
-
-[node name="One1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-144, 496)
-res = ExtResource("19_nlvk3")
-
-[node name="One2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-112, 496)
-res = ExtResource("20_ouvjx")
-
-[node name="One3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-80, 496)
-res = ExtResource("21_ueku8")
-
-[node name="One4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-48, 496)
-res = ExtResource("22_1shfn")
-
-[node name="Two1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-144, 528)
-res = ExtResource("23_bw70o")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-
-[node name="Two2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-80, 528)
-res = ExtResource("24_4dtno")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-
-[node name="Two3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-16, 528)
-res = ExtResource("25_f1qum")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-
-[node name="Two4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(48, 528)
-res = ExtResource("26_y4sl6")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-
-[node name="Two5" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(112, 528)
-res = ExtResource("27_xhbwn")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
-
-[node name="Three1" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-144, 592)
-res = ExtResource("28_04xsi")
-size = Array[Vector2i]([Vector2i(1, 0), Vector2i(0, -1), Vector2i(1, -1)])
-
-[node name="Three2" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-80, 592)
-res = ExtResource("29_gq86k")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1), Vector2i(1, -1)])
-
-[node name="Three3" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(-16, 592)
-res = ExtResource("30_nuodi")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, -1)])
-
-[node name="Three4" parent="ShopObjectGrid" instance=ExtResource("14_dvcl3")]
-position = Vector2(48, 592)
-res = ExtResource("31_vspba")
-size = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, -1)])
 
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("selector") instance=ExtResource("33_4dtno")]
 position = Vector2(0, -16)

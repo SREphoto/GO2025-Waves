@@ -1,11 +1,14 @@
 class_name UI
 extends CanvasLayer
 
+@export var game: Game
 @export var game_variables : GameVariables
 @export var score_manager: ScoreManager
 
 @onready var goal: Label = $GoalUI/BG/Goal
 @onready var current_offering: Label = $GoalUI/BG/CurrentOffering
+
+@onready var round_current: Label = $RoundUI/Sprite2D/RoundCurrent
 @onready var waves_remaining: Label = $RoundUI/Sprite2D/WavesRemaining
 @onready var time_remaining: Label = $RoundUI/Sprite2D/TimeRemaining
 
@@ -27,6 +30,7 @@ func _ready() -> void:
 
 func refresh():
 	goal.text = str(game_variables.current_goal)
+	round_current.text = str(game.current_round + 1)
 	current_offering.text = str(game_variables.current_score)
 	waves_remaining.text = str(game_variables.remaining_waves)
 	var remaining_time: int = max(0, game_variables.remaining_time)

@@ -1,26 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://bimqf8pw360of"]
+[gd_scene load_steps=5 format=3 uid="uid://bimqf8pw360of"]
 
 [ext_resource type="Texture2D" uid="uid://vex5yghwvotm" path="res://Entities/UI/Assets/Bot_BG.png" id="1_q17fx"]
 [ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="2_jw1km"]
+[ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="3_xofbw"]
+[ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="4_wgu4t"]
 
-[node name="LeftBottomUI" type="Control"]
+[node name="RoundUI" type="Control"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.5882353)
-position = Vector2(-275, 195)
+position = Vector2(-261, 256)
 scale = Vector2(5, 5)
 texture = ExtResource("1_q17fx")
 
+[node name="RoundLabel" type="Label" parent="Sprite2D"]
+offset_left = -45.0
+offset_top = -44.0
+offset_right = 3.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jw1km")
+theme_override_font_sizes/font_size = 8
+text = "Current
+Round"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RoundCurrent" type="Label" parent="Sprite2D"]
+offset_left = 10.0
+offset_top = -44.0
+offset_right = 40.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jw1km")
+theme_override_font_sizes/font_size = 16
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WavesLabel" type="Label" parent="Sprite2D"]
-offset_left = -44.800007
-offset_top = -29.08
-offset_right = 2.9999962
-offset_bottom = -4.880003
+offset_left = -45.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = 12.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jw1km")
 theme_override_font_sizes/font_size = 8
@@ -30,10 +57,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="WavesRemaining" type="Label" parent="Sprite2D"]
-offset_left = 10.2
-offset_top = -29.08
-offset_right = 41.79999
-offset_bottom = -4.799986
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 40.0
+offset_bottom = 12.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jw1km")
 theme_override_font_sizes/font_size = 16
@@ -42,26 +69,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimeLabel" type="Label" parent="Sprite2D"]
-offset_left = -44.800007
-offset_top = 3.62
-offset_right = 2.9999962
-offset_bottom = 27.819996
+offset_left = -45.0
+offset_top = 20.0
+offset_right = -17.0
+offset_bottom = 44.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jw1km")
 theme_override_font_sizes/font_size = 8
-text = "Waves
-Remaining"
+text = "Time"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TimeRemaining" type="Label" parent="Sprite2D"]
-offset_left = 10.2
-offset_top = 3.62
-offset_right = 41.79999
-offset_bottom = 27.900013
+offset_left = -18.0
+offset_top = 20.0
+offset_right = 18.0
+offset_bottom = 44.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jw1km")
 theme_override_font_sizes/font_size = 16
-text = "5"
+text = "120"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SkipButton" type="TextureButton" parent="Sprite2D"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 41.0
+texture_normal = ExtResource("3_xofbw")
+texture_hover = ExtResource("4_wgu4t")
