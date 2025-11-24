@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var mayor: MayorIcon = $Control/Mayor
 @onready var speech_bubble: SpeechBubble = $Control/SpeechBubble
 @onready var pointer_sprite: Sprite2D = $PointerSprite
-
+@onready var click_catching_rect: ColorRect = $ClickCatchingRect
 
 var received_signals = {
 	"house_grabbed" : false,
@@ -76,7 +76,6 @@ func dialogue_loop_tut1():
 		var pointer = dialogue["pointer"]
 		var pointer_rotation = dialogue["pointer_rotation"]
 		
-		print(mood)
 		mayor.play(mood)
 		
 		# If no_skip, check signals
@@ -84,6 +83,9 @@ func dialogue_loop_tut1():
 		if not has_skip:
 			if received_signals[required_signal] == true:
 				has_skip = true
+		
+		# disable all other input when a skip button is here
+		click_catching_rect.visible = has_skip
 		
 		speech_bubble.set_bubble(text, has_skip, dir)
 		await speech_bubble.appear()
@@ -108,6 +110,7 @@ func dialogue_loop_tut1():
 					break
 		await speech_bubble.disappear()
 	mayor.disappear()
+	click_catching_rect.visible = false
 
 func emitted_singals(emitted: String) -> void:
 	match emitted:

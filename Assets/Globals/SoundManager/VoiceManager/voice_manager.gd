@@ -7,7 +7,7 @@ extends Node
 
 var panicking = false
 var playing = true
-var timer_range = [1.0, 3.0]
+var timer_range = [3.0, 5.0]
 
 func _ready() -> void:
 	timer.start(1.0)
@@ -26,7 +26,7 @@ func start_voices():
 	timer.stop()
 	panicking = false
 	playing = true
-	timer_range = [1.0, 3.0]
+	timer_range = [3.0, 5.0]
 	_on_timer_timeout()
 
 func start_panic():

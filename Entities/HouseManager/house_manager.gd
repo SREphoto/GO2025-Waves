@@ -68,8 +68,9 @@ func spawn_specific_house_size(house_size: HOUSE_SIZES, pos: Vector2i = Vector2i
 	while not house_size_res_array.is_empty():
 		var house_res: HouseRescource = house_size_res_array.pop_back()
 		if pos == Vector2i(-1000, -1000):
-			#No place to spawn house
 			pos = _check_free_grid_pos_for_size(house_res.size)
+		if pos == Vector2i(-1000, -1000):
+			#No place to spawn house
 			continue
 		for i in size_weights.size():
 			if not i == house_size:

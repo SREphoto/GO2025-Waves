@@ -12,6 +12,15 @@ script = ExtResource("1_itko2")
 
 [node name="TutorialDialogue" parent="." instance=ExtResource("4_w6mpw")]
 
+[node name="ClickCatchingRect" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 7
@@ -27,6 +36,7 @@ grow_vertical = 0
 
 [node name="Mayor" parent="Control" instance=ExtResource("3_w6mpw")]
 position = Vector2(-275, -100)
+animation = &"normal"
 
 [node name="SpeechBubble" parent="Control" instance=ExtResource("2_itko2")]
 position = Vector2(-160.91, -100)
