@@ -4,10 +4,8 @@ extends Sprite2D
 var cycling = true
 var last_symbol = null
 
-func _ready() -> void:
-	_roll()
-
-func _roll():
+func roll():
+	cycling = true
 	while cycling:
 		var tween_loop: Tween = create_tween()
 		region_rect.position.y = 0.0

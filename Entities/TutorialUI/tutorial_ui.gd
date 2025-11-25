@@ -17,7 +17,8 @@ var received_signals = {
 	"house_grabbed" : false,
 	"house_moved" : false,
 	"wave_sent" : false,
-	"wave_finished" : false
+	"wave_finished" : false,
+	"shopping_done" : false,
 }
 
 signal dict_value_changed
@@ -42,6 +43,8 @@ func initalize():
 		selector.object_selected.connect(_on_object_selected)
 	if wave_manager:
 		wave_manager.send_wave.connect(_on_wave_sent)
+	if shop:
+		shop.shopping_done.connect(_on_shopping_done)
 
 #region signals
 func _on_wave_finished():
@@ -59,6 +62,9 @@ func _on_house_moved():
 
 func _on_wave_sent():
 	set_signal_value("wave_sent", true)
+
+func _on_shopping_done(_object):
+	set_signal_value("shopping_done", true)
 #endregion
 
 func set_signal_value(key: String, value):

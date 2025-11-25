@@ -9,6 +9,7 @@ extends CanvasLayer
 	house_roll_1, house_roll_2, house_roll_3,
 ]
 
+
 var active = true
 
 signal shop_entered
@@ -19,6 +20,8 @@ func enter() -> void:
 	shop_entered.emit()
 	visible = true
 	await get_tree().create_timer(0.5).timeout
+	for roll in house_rolls:
+		roll.roll()
 
 func exit() -> void:
 	active = false

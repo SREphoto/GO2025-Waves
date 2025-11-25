@@ -35,11 +35,11 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Mayor" parent="Control" instance=ExtResource("3_w6mpw")]
-position = Vector2(-275, -100)
+position = Vector2(-325, -100)
 animation = &"normal"
 
 [node name="SpeechBubble" parent="Control" instance=ExtResource("2_itko2")]
-position = Vector2(-160.91, -100)
+position = Vector2(-210, -100)
 text = "This is a testtext, please ignore"
 
 [node name="PointerSprite" type="Sprite2D" parent="."]

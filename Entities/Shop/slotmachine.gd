@@ -14,8 +14,7 @@ var dragging: bool = false
 var drag_valid: bool = false
 
 func _ready() -> void:
-	pull_player.play("Pull")
-	pull_player.pause()
+	reset_slot()
 
 func _input(event: InputEvent) -> void:
 	if not shop.active:
@@ -66,6 +65,11 @@ func squish():
 	tween.tween_property(self, "scale", Vector2(5.0, 4.0), 0.2)
 	tween.tween_property(self, "scale", Vector2(4.2, 4.8), 0.2)
 	tween.tween_property(self, "scale", Vector2(4.5, 4.5), 0.2)
+
+func reset_slot():
+	pull_player.seek(0.0, true)
+	pull_player.play("Pull")
+	pull_player.pause()
 
 func stop_spinning():
 	shop.active = false
