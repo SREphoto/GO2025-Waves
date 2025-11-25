@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://g1r6a8l8fr2s"]
+[gd_scene load_steps=28 format=3 uid="uid://g1r6a8l8fr2s"]
 
 [ext_resource type="Texture2D" uid="uid://bi7gy6nb5i6vl" path="res://Entities/TutorialUI/Assets/Mayor.png" id="1_hd8l5"]
 [ext_resource type="Script" uid="uid://cdvdtbxwa37lx" path="res://Entities/TutorialUI/Mayor/major_icon.gd" id="2_fhnq7"]
@@ -51,6 +51,30 @@ region = Rect2(144, 36, 36, 36)
 atlas = ExtResource("1_hd8l5")
 region = Rect2(180, 36, 36, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_htgbv"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(0, 108, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbvxo"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(36, 108, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6psj"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(72, 108, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpsrt"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(108, 108, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3feqv"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(144, 108, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujado"]
+atlas = ExtResource("1_hd8l5")
+region = Rect2(180, 108, 36, 36)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_itko2"]
 atlas = ExtResource("1_hd8l5")
 region = Rect2(0, 0, 36, 36)
@@ -98,7 +122,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"angry",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,6 +149,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_htgbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbvxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6psj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpsrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3feqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujado")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_itko2")
 }, {
 "duration": 1.0,
@@ -144,12 +191,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"normal",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="MajorIcon" type="AnimatedSprite2D"]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_8iiu5")
-animation = &"angry"
+animation = &"normal"
 autoplay = "normal"
+frame_progress = 0.6749986
 script = ExtResource("2_fhnq7")

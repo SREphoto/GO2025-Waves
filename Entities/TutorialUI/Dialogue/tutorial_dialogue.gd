@@ -110,7 +110,7 @@ var dialogue_tut = [
 var dialogue_multi = [
 	{
 		"speaker" : "Mayor",
-		"mood" : "normal",
+		"mood" : "happy",
 		"direction" : "right",
 		"text" : "Conratulations, you saved us... for now. You earned a spin!",
 		"has_skip" : false,
@@ -121,7 +121,7 @@ var dialogue_multi = [
 	},
 	{
 		"speaker" : "Mayor",
-		"mood" : "normal",
+		"mood" : "happy",
 		"direction" : "right",
 		"text" : "Multi-houses multiply all regular houses in their effect area!",
 		"has_skip" : true,
@@ -132,7 +132,7 @@ var dialogue_multi = [
 	},
 	{
 		"speaker" : "Mayor",
-		"mood" : "normal",
+		"mood" : "happy",
 		"direction" : "right",
 		"text" : "These effects stack, so place multi-houses well!",
 		"has_skip" : true,
