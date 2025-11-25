@@ -153,36 +153,38 @@ libraries = {
 &"": SubResource("AnimationLibrary_dbxhb")
 }
 
-[node name="V" type="VBoxContainer" parent="ColorRect/Control"]
-layout_mode = 0
-offset_left = -247.0
-offset_top = -486.0
-offset_right = 247.0
-offset_bottom = -225.0
+[node name="V" type="VBoxContainer" parent="ColorRect/Control/Slotmachine"]
+offset_left = -54.888885
+offset_top = -108.0
+offset_right = 55.111115
+offset_bottom = -50.0
 alignment = 1
 
-[node name="H" type="HBoxContainer" parent="ColorRect/Control/V"]
+[node name="H" type="HBoxContainer" parent="ColorRect/Control/Slotmachine/V"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Slot1" type="PanelContainer" parent="ColorRect/Control/V/H"]
+[node name="Slot1" type="PanelContainer" parent="ColorRect/Control/Slotmachine/V/H"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="HouseRoll" parent="ColorRect/Control/V/H/Slot1" instance=ExtResource("4_pm1ah")]
+[node name="HouseRoll" parent="ColorRect/Control/Slotmachine/V/H/Slot1" instance=ExtResource("4_pm1ah")]
+scale = Vector2(0.8, 0.8)
 
-[node name="Slot2" type="PanelContainer" parent="ColorRect/Control/V/H"]
+[node name="Slot2" type="PanelContainer" parent="ColorRect/Control/Slotmachine/V/H"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="HouseRoll" parent="ColorRect/Control/V/H/Slot2" instance=ExtResource("4_pm1ah")]
+[node name="HouseRoll" parent="ColorRect/Control/Slotmachine/V/H/Slot2" instance=ExtResource("4_pm1ah")]
+scale = Vector2(0.8, 0.8)
 
-[node name="Slot3" type="PanelContainer" parent="ColorRect/Control/V/H"]
+[node name="Slot3" type="PanelContainer" parent="ColorRect/Control/Slotmachine/V/H"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="HouseRoll" parent="ColorRect/Control/V/H/Slot3" instance=ExtResource("4_pm1ah")]
+[node name="HouseRoll" parent="ColorRect/Control/Slotmachine/V/H/Slot3" instance=ExtResource("4_pm1ah")]
+scale = Vector2(0.8, 0.8)

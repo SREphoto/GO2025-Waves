@@ -60,6 +60,15 @@ func _finish_drag() -> void:
 		# Valid pull → play forward
 		pull_player.play()
 
+func squish():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", Vector2(5.0, 4.0), 0.2)
+	tween.tween_property(self, "scale", Vector2(4.2, 4.8), 0.2)
+	tween.tween_property(self, "scale", Vector2(4.5, 4.5), 0.2)
+
 func stop_spinning():
 	shop.active = false
-	shop.rand_houses()
+	squish()
+	await get_tree().create_timer(0.5).timeout
+	shop.stop_spinning()

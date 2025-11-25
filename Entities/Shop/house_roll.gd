@@ -15,8 +15,9 @@ func _roll():
 		await tween_loop.finished
 	
 	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
 	region_rect.position.y = 0.0
-	tween.tween_property(self, "region_rect:position:y", last_symbol * 48, 0.1)
+	tween.tween_property(self, "region_rect:position:y", last_symbol * 48, 0.4)
 	await tween.finished
 
 func stop(new_last_symbol : int):
