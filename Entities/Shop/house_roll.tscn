@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvhwjki240vla"]
+
+[ext_resource type="Texture2D" uid="uid://bcr8lov8s7e3m" path="res://Entities/Shop/Slotmachine/HouseRoll.png" id="1_0hpld"]
+[ext_resource type="Script" uid="uid://dqsss8dtxddmr" path="res://Entities/Shop/house_roll.gd" id="2_s3dui"]
+
+[node name="HouseRoll" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_0hpld")
+vframes = 5
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 240)
+script = ExtResource("2_s3dui")
+
+[node name="Camera2D" type="Camera2D" parent="."]

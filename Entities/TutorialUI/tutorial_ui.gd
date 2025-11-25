@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var score_manager : ScoreManager
 @export var selector : Selector
 @export var wave_manager : WaveManager
+@export var shop : Shop
 
 @onready var tutorial_dialogue: Node = $TutorialDialogue
 @onready var mayor: MayorIcon = $Control/Mayor
@@ -25,7 +26,10 @@ func _ready() -> void:
 	initalize()
 	if GlobalVariables.first_time:
 		await get_tree().create_timer(0.5).timeout
-		dialogue_loop_tut1()
+		dialogue_loop_tut(tutorial_dialogue.dialogue_tut)
+	if GlobalVariables.first_time_multi:
+		await shop.shop_entered
+		dialogue_loop_tut(tutorial_dialogue.dialogue_multi)
 
 func initalize():
 	mayor.reset()
@@ -62,10 +66,10 @@ func set_signal_value(key: String, value):
 		received_signals[key] = value
 		dict_value_changed.emit()
 
-func dialogue_loop_tut1():
+func dialogue_loop_tut(dialogue_arr : Array):
 	mayor.appear()
 	await get_tree().create_timer(0.5).timeout
-	for dialogue in tutorial_dialogue.dialogue:
+	for dialogue in dialogue_arr:
 		var _speaker = dialogue["speaker"]
 		var mood = dialogue["mood"]
 		var dir = dialogue["direction"]
@@ -120,6 +124,3 @@ func emitted_singals(emitted: String) -> void:
 			game.start_wave_active = true
 		_:
 			pass
-
-func dialogue_loop_multi():
-	pass

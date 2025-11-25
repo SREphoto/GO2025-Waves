@@ -14,7 +14,7 @@ const dialogue_template = [
 	}
 ]
 
-var dialogue = [
+var dialogue_tut = [
 	{
 		"speaker" : "Mayor",
 		"mood" : "normal",
@@ -102,5 +102,19 @@ var dialogue = [
 		"signal_emit" : null,
 		"pointer" : Vector2(440, 800),
 		"pointer_rotation" : 0.0
+	},
+]
+
+var dialogue_multi = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "normal",
+		"direction" : "right",
+		"text" : "Congrats, you did it! I will reward you with a multiplicator house!",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : null,
+		"pointer_rotation" : null
 	},
 ]

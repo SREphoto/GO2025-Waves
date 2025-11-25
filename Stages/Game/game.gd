@@ -53,9 +53,9 @@ func on_counting_finished(has_finished: bool) -> void:
 	switch_game_state()
 
 func on_shopping_done(house_res: HouseRescource) -> void:
-	if GlobalVariables.first_time_multi:
-		tutorial_ui.dialogue_loop_multi()
-	GlobalVariables.first_time_multi = false
+	#if GlobalVariables.first_time_multi:
+	#	tutorial_ui.dialogue_loop_multi()
+	#GlobalVariables.first_time_multi = false
 	house_manager.spawn_specific_house(house_res)
 	switch_game_state()
 
