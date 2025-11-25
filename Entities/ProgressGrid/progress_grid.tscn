@@ -8,6 +8,7 @@
 script = ExtResource("1_4kd3j")
 
 [node name="Grid" type="Sprite2D" parent="."]
+z_index = -2
 texture = ExtResource("2_tptyk")
 
 [node name="Stages" type="Node2D" parent="."]
@@ -60,9 +61,16 @@ position = Vector2(-16, 48)
 [node name="Stage16" type="Node2D" parent="Stages"]
 position = Vector2(-48, 48)
 
-[node name="Statue" type="Node2D" parent="."]
+[node name="Statue" type="StaticBody2D" parent="." groups=["navigation"]]
+y_sort_enabled = true
 position = Vector2(-48, -48)
 
-[node name="Sprite2D" type="Sprite2D" parent="Statue"]
-position = Vector2(0, -16)
+[node name="Sprite" type="Node2D" parent="Statue"]
+position = Vector2(0, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Statue/Sprite"]
+position = Vector2(0, -20)
 texture = ExtResource("3_o06lx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Statue"]
+polygon = PackedVector2Array(-10, 7, 10, 7, 12, 5, 12, -5, 10, -7, -10, -7, -12, -5, -12, 5)

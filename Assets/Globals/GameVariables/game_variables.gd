@@ -4,6 +4,7 @@ extends Node2D
 @export var sand_tile_map_layer: SandTileMapLayer
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
+@export var tutorial_ui: TutorialUI
 
 @export var all_goals: Array[int] 		= [10, 20, 50, 110, 220, 300, 480, 680]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 2, 2]
@@ -41,9 +42,10 @@ func _ready() -> void:
 	wave_manager.finished_waves.connect(on_wave_finished)
 	# So values get updated at the start
 	values_changed.emit()
-	second_timer.start()
 
 func on_active(value: bool) -> void:
+	if tutorial_ui.running:
+		return
 	active = value
 	if active:
 		second_timer.start()

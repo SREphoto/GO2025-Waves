@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ctnqj58d24fjc"]
+[gd_scene load_steps=12 format=4 uid="uid://ctnqj58d24fjc"]
 
 [ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://Entities/LittleGuy/little_guy.tscn" id="2_1htgg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="3_kcas4"]
 [ext_resource type="PackedScene" uid="uid://cj8uwejgc6yoe" path="res://Entities/HouseManager/special_house_manager.tscn" id="3_ri5hi"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="3_yjoqm"]
+[ext_resource type="Script" uid="uid://xspw5h2aq3ao" path="res://Entities/NavigationRegion/end_navigation_region.gd" id="4_03p1f"]
 [ext_resource type="PackedScene" uid="uid://n70ob341vmaw" path="res://Assets/Globals/RainLayer/rain_layer.tscn" id="5_kcas4"]
 [ext_resource type="PackedScene" uid="uid://igm3fwboac6v" path="res://Entities/ProgressGrid/progress_grid.tscn" id="6_fn33l"]
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="7_0uold"]
@@ -27,8 +28,10 @@ tile_map_data = PackedByteArray("AAACAP7/AAAAAAMAAAACAP//AAAAAAMAAAACAAAAAAAAAAM
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("3_yjoqm")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." node_paths=PackedStringArray("progress_grid")]
 navigation_polygon = SubResource("NavigationPolygon_wuj7j")
+script = ExtResource("4_03p1f")
+progress_grid = NodePath("../ProgressGrid")
 
 [node name="SpecialHouseManager" parent="." instance=ExtResource("3_ri5hi")]
 
@@ -43,6 +46,7 @@ y_sort_enabled = true
 [node name="RainLayer" parent="." instance=ExtResource("5_kcas4")]
 
 [node name="ProgressGrid" parent="." instance=ExtResource("6_fn33l")]
+y_sort_enabled = true
 
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("selector") instance=ExtResource("7_0uold")]
 rotation = 0.0

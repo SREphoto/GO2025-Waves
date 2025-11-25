@@ -55,4 +55,5 @@ func type_text_by_character(delay: float = 0.02):
 		await get_tree().create_timer(delay).timeout
 
 func _on_skip_button_pressed() -> void:
+	SoundManager.ui_click_player.play()
 	skip_pressed.emit()

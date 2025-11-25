@@ -1,7 +1,7 @@
 class_name ProgressGrid
 extends Node2D
 
-@onready var statue: Node2D = $Statue
+@onready var statue: StaticBody2D = $Statue
 @onready var stages: Node2D = $Stages
 
 const PROGRESS_X = preload("uid://4nu336d5a2bg")

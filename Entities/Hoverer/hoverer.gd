@@ -19,6 +19,8 @@ func _ready() -> void:
 
 func on_biggest_color_groups_changed() -> void:
 	if not active:
+		if old_house:
+			clear_old_house()
 		return
 	var house: House = check_if_house()
 	if house:

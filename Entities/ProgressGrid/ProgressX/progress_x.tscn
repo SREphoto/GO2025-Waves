@@ -4,5 +4,6 @@
 [ext_resource type="Script" uid="uid://sslmhxmyxuk3" path="res://Entities/ProgressGrid/ProgressX/progress_x.gd" id="2_usrph"]
 
 [node name="ProgressX" type="Sprite2D"]
+z_index = -1
 texture = ExtResource("1_xg7vs")
 script = ExtResource("2_usrph")

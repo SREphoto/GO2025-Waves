@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d045aotsrg26b" path="res://Entities/TutorialUI/Assets/SpeechBubble.png" id="1_tafbj"]
 [ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="2_7bdei"]
 [ext_resource type="Script" uid="uid://bx28hf5g3lorn" path="res://Entities/TutorialUI/SpeechBubble/speech_bubble.gd" id="2_xgwoq"]
-[ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="4_ptg0h"]
-[ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="5_2t8re"]
+[ext_resource type="Texture2D" uid="uid://dx80wa365q134" path="res://Entities/TutorialUI/SpeechBubble/continue_button1.png" id="4_ptg0h"]
+[ext_resource type="Texture2D" uid="uid://qeanik1d0cf" path="res://Entities/TutorialUI/SpeechBubble/continue_button2.png" id="5_2t8re"]
 
 [node name="SpeechBubble" type="Sprite2D"]
 self_modulate = Color(1, 1, 1, 0.5882353)
@@ -14,10 +14,11 @@ offset = Vector2(73, 0)
 script = ExtResource("2_xgwoq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 12.799999
-offset_top = -20.4
-offset_right = 132.79999
-offset_bottom = 20.599993
+custom_minimum_size = Vector2(120, 42)
+offset_left = 12.0
+offset_top = -21.0
+offset_right = 132.0
+offset_bottom = 21.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer"]
@@ -37,10 +38,11 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="SkipButton" type="TextureButton" parent="HBoxContainer/SkipContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 texture_normal = ExtResource("4_ptg0h")
 texture_hover = ExtResource("5_2t8re")
 

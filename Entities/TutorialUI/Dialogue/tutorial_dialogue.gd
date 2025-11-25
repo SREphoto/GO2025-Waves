@@ -56,8 +56,8 @@ var dialogue_tut = [
 		"has_skip" : false,
 		"signal_listen" : "wave_sent",
 		"signal_emit" : "start_wave_pressable",
-		"pointer" : Vector2(481, 939),
-		"pointer_rotation" : -30
+		"pointer" : Vector2(1800, 470),
+		"pointer_rotation" : 120.0
 	},
 	{
 		"speaker" : "Mayor",
@@ -89,8 +89,8 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(530, 200),
-		"pointer_rotation" : 0.0
+		"pointer" : Vector2(1790, 140),
+		"pointer_rotation" : 70.0
 	},
 	{
 		"speaker" : "Mayor",
@@ -100,10 +100,12 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(440, 800),
-		"pointer_rotation" : 0.0
+		"pointer" : Vector2(1790, 300),
+		"pointer_rotation" : 120.0
 	},
 ]
+#Vector2(1810, 96)
+#Vector2(1810, 256)
 
 var dialogue_multi = [
 	{

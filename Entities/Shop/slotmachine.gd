@@ -1,3 +1,4 @@
+class_name SlotMachine
 extends Sprite2D
 
 @export var shop : Shop

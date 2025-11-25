@@ -2,6 +2,7 @@ class_name Shop
 extends CanvasLayer
 
 @export var game_variables: GameVariables
+@onready var slotmachine: SlotMachine = $ColorRect/Control/Slotmachine
 @onready var house_roll_1: HouseRoll = $ColorRect/Control/Slotmachine/V/H/Slot1/HouseRoll
 @onready var house_roll_2: HouseRoll = $ColorRect/Control/Slotmachine/V/H/Slot2/HouseRoll
 @onready var house_roll_3: HouseRoll = $ColorRect/Control/Slotmachine/V/H/Slot3/HouseRoll
@@ -19,8 +20,9 @@ func enter() -> void:
 	active = true
 	shop_entered.emit()
 	visible = true
+	slotmachine.reset_slot()
 	await get_tree().create_timer(0.5).timeout
-	for roll in house_rolls:
+	for roll: HouseRoll in house_rolls:
 		roll.roll()
 
 func exit() -> void:
@@ -37,7 +39,10 @@ func _rand_houses() -> void:
 		await get_tree().create_timer(0.3).timeout
 		roll.stop(rand_res["frame"])
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.4).timeout
+	SoundManager.slot_win_player.play()
+	
+	await get_tree().create_timer(2.5).timeout
 	
 	shopping_done.emit(rand_res)
 

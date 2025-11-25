@@ -1,3 +1,4 @@
+class_name TutorialUI
 extends CanvasLayer
 
 @export var game: Game
@@ -6,12 +7,15 @@ extends CanvasLayer
 @export var selector : Selector
 @export var wave_manager : WaveManager
 @export var shop : Shop
+@export var hoverer: Hoverer
 
 @onready var tutorial_dialogue: Node = $TutorialDialogue
 @onready var mayor: MayorIcon = $Control/Mayor
 @onready var speech_bubble: SpeechBubble = $Control/SpeechBubble
 @onready var pointer_sprite: Sprite2D = $PointerSprite
 @onready var click_catching_rect: ColorRect = $ClickCatchingRect
+
+var running: bool = false
 
 var received_signals = {
 	"house_grabbed" : false,
@@ -73,6 +77,7 @@ func set_signal_value(key: String, value):
 		dict_value_changed.emit()
 
 func dialogue_loop_tut(dialogue_arr : Array):
+	running = true
 	mayor.appear()
 	await get_tree().create_timer(0.5).timeout
 	for dialogue in dialogue_arr:
@@ -101,10 +106,16 @@ func dialogue_loop_tut(dialogue_arr : Array):
 		await speech_bubble.appear()
 		
 		if pointer:
-			pointer_sprite.position = pointer
-			pointer_sprite.rotation_degrees = pointer_rotation
+			var tween: Tween = create_tween()
+			tween.tween_property(pointer_sprite, "position", pointer, 0.5)
+			tween.parallel().tween_property(pointer_sprite, "rotation_degrees", pointer_rotation, 0.5)
+			#pointer_sprite.position = pointer
+			#pointer_sprite.rotation_degrees = pointer_rotation
 			pointer_sprite.appear()
 		
+		hoverer.active = false
+		selector.active = false
+		game.start_wave_active = false
 		if emitted_signal != null:
 			emitted_singals(emitted_signal)
 		if has_skip:
@@ -120,11 +131,17 @@ func dialogue_loop_tut(dialogue_arr : Array):
 					break
 		await speech_bubble.disappear()
 	mayor.disappear()
+	hoverer.active = true
+	selector.active = true
+	game.start_wave_active = true
 	click_catching_rect.visible = false
+	running = false
+	game_vars.active = true
 
 func emitted_singals(emitted: String) -> void:
 	match emitted:
 		"house_movable":
+			hoverer.active = true
 			selector.active = true
 		"start_wave_pressable":
 			game.start_wave_active = true

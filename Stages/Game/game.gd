@@ -40,6 +40,7 @@ func _ready() -> void:
 
 func on_start_wave() -> void:
 	if start_wave_active:
+		SoundManager.ui_click_player.play()
 		switch_game_state()
 
 func on_wave_finished() -> void:
@@ -88,6 +89,7 @@ func _game_state_shop() -> void:
 	shop.enter()
 	next_game_state = GAME_STATES.SLIDING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
+	GlobalVariables.first_time_multi = false
 
 func _game_state_paused() -> void:
 	game_variables.active = false
