@@ -7,7 +7,7 @@
 texture = ExtResource("1_evkp4")
 texture_region_size = Vector2i(32, 32)
 0:3/animation_columns = 8
-0:3/animation_separation = Vector2i(2, 0)
+0:3/animation_separation = Vector2i(4, 0)
 0:3/animation_frame_0/duration = 0.2
 0:3/animation_frame_1/duration = 0.2
 0:3/animation_frame_2/duration = 0.2
