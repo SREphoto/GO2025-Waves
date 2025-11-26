@@ -22,11 +22,12 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_2dnh2")
 
-[node name="GameVariables" parent="." node_paths=PackedStringArray("sand_tile_map_layer", "score_manager", "wave_manager", "tutorial_ui") instance=ExtResource("2_vu8u8")]
+[node name="GameVariables" parent="." node_paths=PackedStringArray("sand_tile_map_layer", "score_manager", "wave_manager", "tutorial_ui", "game") instance=ExtResource("2_vu8u8")]
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 score_manager = NodePath("../ScoreManager")
 wave_manager = NodePath("../WaveManager")
 tutorial_ui = NodePath("../TutorialUI")
+game = NodePath("..")
 
 [node name="ZoomCamera" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("3_d3rtp")]
 offset = Vector2(-384, 0)
@@ -78,6 +79,14 @@ game_variables = NodePath("../GameVariables")
 special_mark_array = Dictionary[int, Dictionary]({
 0: {
 0: PackedInt32Array(2)
+},
+6: {
+0: PackedInt32Array(0),
+1: PackedInt32Array(0, 1),
+2: PackedInt32Array(0, 1, 2),
+3: PackedInt32Array(0, 1, 2, 3),
+4: PackedInt32Array(0, 1, 2, 3),
+5: PackedInt32Array(0, 1, 2, 3)
 }
 })
 

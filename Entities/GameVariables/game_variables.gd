@@ -5,9 +5,10 @@ extends Node2D
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
 @export var tutorial_ui: TutorialUI
+@export var game: Game
 
-@export var all_goals: Array[int] 		= [10, 20, 46, 98, 190, 300, 1200, 200]
-@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 6, 2]
+@export var all_goals: Array[int] 		= [10, 20, 46, 98, 190, 300, 1200, 600, 800, 1000, 2000, 4000, 8000, 16000, 32000, 69000]
+@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 
 @export var wave_time : int = 180:
 	set(value):
@@ -36,14 +37,9 @@ signal wave_finished()
 signal no_time()
 
 func _ready() -> void:
-	current_goal = all_goals.pop_front()
-	remaining_waves = all_round_waves.pop_front()
-	if GlobalVariables.first_time:
-		remaining_waves += 1
 	score_manager.score_changed.connect(on_score_changed)
 	wave_manager.finished_waves.connect(on_wave_finished)
-	# So values get updated at the start
-	values_changed.emit()
+	next_game()
 
 func on_active(value: bool) -> void:
 	if tutorial_ui.running:
@@ -104,13 +100,14 @@ func _lost() -> void:
 
 func next_game() -> void:
 	has_finished = false
-	if all_goals.is_empty():
+	if game.current_round == (game.last_round + 1):
 		game_finished()
-		return
-	if posmod(all_goals.size(), 2) == 1:
+	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
-	current_goal = all_goals.pop_front()
-	remaining_waves = all_round_waves.pop_front()
+	current_goal = all_goals[game.current_round]
+	remaining_waves = all_round_waves[game.current_round]
+	if GlobalVariables.first_time:
+		remaining_waves += 1
 	values_changed.emit()
 
 func _house_counting() -> void:
@@ -131,4 +128,4 @@ func _count_house(house: House) -> void:
 	await tween.finished
 
 func game_finished() -> void:
-	pass
+	print("Game Won")

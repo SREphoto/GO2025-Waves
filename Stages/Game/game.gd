@@ -5,7 +5,12 @@ enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
-var current_round: int = 0
+const last_round: int = 6
+var current_round: int = 0:
+	set(value):
+		current_round = value
+		if current_round == last_round:
+			GlobalGameState.last_round = true
 
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
