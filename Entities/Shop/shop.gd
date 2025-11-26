@@ -10,7 +10,6 @@ extends CanvasLayer
 	house_roll_1, house_roll_2, house_roll_3,
 ]
 
-
 var active = true
 
 signal shop_entered

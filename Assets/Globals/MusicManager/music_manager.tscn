@@ -4,8 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://dg6wfemir1nk2" path="res://Assets/Audio/Music/Tracks/MenuTrack.ogg" id="2_joeqp"]
 [ext_resource type="AudioStream" uid="uid://bue4prt8j2u7a" path="res://Assets/Audio/Music/Tracks/IslandTrack.ogg" id="3_ei44j"]
 [ext_resource type="AudioStream" uid="uid://8vlaohfoopfo" path="res://Assets/Audio/Music/Tracks/WaveTrack.ogg" id="3_wx0e2"]
-[ext_resource type="AudioStream" uid="uid://cpjpsii7bxvkn" path="res://Assets/Audio/Music/Tracks/ShopTrack.ogg" id="4_ei44j"]
 [ext_resource type="AudioStream" uid="uid://bqrg4qomox30v" path="res://Assets/Audio/Music/Tracks/EndTrack.ogg" id="5_iou0w"]
+[ext_resource type="AudioStream" uid="uid://cqnv7apgq1js7" path="res://Assets/Audio/Music/Tracks/ShopTrack2.ogg" id="5_wx0e2"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_oijki"]
 clip_count = 5
@@ -19,7 +19,7 @@ clip_2/name = &"WAVE"
 clip_2/stream = ExtResource("3_wx0e2")
 clip_2/auto_advance = 0
 clip_3/name = &"SHOP"
-clip_3/stream = ExtResource("4_ei44j")
+clip_3/stream = ExtResource("5_wx0e2")
 clip_3/auto_advance = 0
 clip_4/name = &"GAMEOVER"
 clip_4/stream = ExtResource("5_iou0w")
