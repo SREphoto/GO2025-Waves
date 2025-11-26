@@ -20,7 +20,7 @@ var state: STATES = STATES.MARK
 
 enum DIRECTIONS {LEFT, UP, RIGHT, DOWN}
 var directions: Array[DIRECTIONS]
-var last_dirs: Array[DIRECTIONS]
+var last_dirs: Array[DIRECTIONS] = [DIRECTIONS.RIGHT]
 
 var depth: int = 2
 var radius : int = 32

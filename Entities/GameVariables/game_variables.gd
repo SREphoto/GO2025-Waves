@@ -6,6 +6,7 @@ extends Node2D
 @export var wave_manager: WaveManager
 @export var tutorial_ui: TutorialUI
 @export var game: Game
+@export var clock: Clock
 
 @export var all_goals: Array[int] 		= [10, 20, 46, 98, 190, 300, 1200, 600, 800, 1000, 2000, 4000, 8000, 16000, 32000, 69000]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2]
@@ -89,6 +90,8 @@ func on_score_changed() -> void:
 func _on_second_passed() -> void:
 	remaining_time -= 1
 	values_changed.emit()
+	if remaining_time == 60:
+		clock.play_ticks()
 	if remaining_time < 0:
 		no_time.emit()
 

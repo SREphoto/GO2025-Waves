@@ -63,6 +63,7 @@ func move_camera(object: GridObject) -> void:
 			var tween: Tween = create_tween()
 			tween.tween_property(self, "position", Vector2(0, -560), 0.5)
 			tween.parallel().tween_property(self, "rotation", 0, 0.5)
+			MusicManager.switch_music("SHOP")
 		"house_upgrades":
 			var tween: Tween = create_tween()
 			tween.tween_property(self, "position", Vector2(0, 528), 0.5)
@@ -72,5 +73,6 @@ func move_camera(object: GridObject) -> void:
 			tween.tween_property(self, "position",std_pos, 0.5)
 			tween.parallel().tween_property(self, "rotation", std_rotation, 0.5)
 			tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)
+			MusicManager.switch_music("START")
 		_:
 			pass

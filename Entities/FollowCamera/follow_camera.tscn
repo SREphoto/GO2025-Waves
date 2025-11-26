@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://br4j4jpie6vyx" path="res://Entities/FollowCamera/follow_camera.gd" id="1_7awrx"]
 
-[node name="FollowCamera" type="Camera2D" node_paths=PackedStringArray("selector")]
+[node name="FollowCamera" type="Camera2D"]
 rotation = -0.08726646
 ignore_rotation = false
 zoom = Vector2(5.625, 5.625)
 rotation_smoothing_speed = 2.0
 script = ExtResource("1_7awrx")
-selector = NodePath("")

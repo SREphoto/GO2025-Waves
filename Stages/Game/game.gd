@@ -6,7 +6,7 @@ var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
 const last_round: int = 6
-@export var current_round: int = 0:
+@export var current_round: int = 5:
 	set(value):
 		current_round = value
 		if current_round == last_round:
@@ -152,7 +152,6 @@ func _game_state_waves() -> void:
 func _game_state_counting() -> void:
 	if next_game_state == GAME_STATES.COUNTING:
 		next_game_state = GAME_STATES.SPAWNING
-	MusicManager.switch_music("SHOP")
 
 func get_camera() -> ZoomCamera:
 	return zoom_camera

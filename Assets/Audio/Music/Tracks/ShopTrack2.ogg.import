@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ShopTrack2.ogg-430427a83ad9b0ec7eb5cc38b65896
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0.0
 bpm=0.0
 beat_count=0

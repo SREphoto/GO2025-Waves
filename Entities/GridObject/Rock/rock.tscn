@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://54b8uchrs6ae"]
 
 [ext_resource type="Script" uid="uid://djkdjgsdg1b8f" path="res://Entities/GridObject/Rock/rock.gd" id="1_4mr8i"]
-[ext_resource type="Texture2D" uid="uid://gyhrctodcjuq" path="res://Stages/EndScreen/Assets/Tombstone.png" id="2_gnpq6"]
+[ext_resource type="Texture2D" uid="uid://bj47etqjqy8d6" path="res://Entities/GridObject/Rock/BeachToys.png" id="2_gnpq6"]
 
 [node name="Rock" type="Node2D"]
 script = ExtResource("1_4mr8i")
@@ -12,6 +12,7 @@ size = Array[Vector2i]([Vector2i(0, 0)])
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 position = Vector2(0, -16)
 texture = ExtResource("2_gnpq6")
+hframes = 6
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["navigation"]]
 collision_layer = 4

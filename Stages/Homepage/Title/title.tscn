@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://brhbm8tx41hr3"]
+
+[ext_resource type="Script" uid="uid://dn584nfs0qisp" path="res://Stages/Homepage/Title/title.gd" id="1_5sop4"]
+[ext_resource type="Texture2D" uid="uid://iy8xpx5wj8q8" path="res://Stages/Homepage/Title/Letters/Title-T.png" id="1_ehhwu"]
+[ext_resource type="Texture2D" uid="uid://onqyfd67sskf" path="res://Stages/Homepage/Title/Letters/Title-i.png" id="2_5sop4"]
+[ext_resource type="Texture2D" uid="uid://rkn76c58x6i6" path="res://Stages/Homepage/Title/Letters/Title-d.png" id="3_e7054"]
+[ext_resource type="Texture2D" uid="uid://k84xnq7epdek" path="res://Stages/Homepage/Title/Letters/Title-a.png" id="4_nq4np"]
+[ext_resource type="Texture2D" uid="uid://mi72f835cind" path="res://Stages/Homepage/Title/Letters/Title-l.png" id="5_oonf8"]
+[ext_resource type="Texture2D" uid="uid://c52gbchfgpfus" path="res://Stages/Homepage/Title/Letters/Title-o.png" id="6_juq4v"]
+[ext_resource type="Texture2D" uid="uid://dalglgon85lr3" path="res://Stages/Homepage/Title/Letters/Title-w.png" id="7_e3oqd"]
+[ext_resource type="Texture2D" uid="uid://c7bwppckl16id" path="res://Stages/Homepage/Title/Letters/Title-n.png" id="8_7jxaw"]
+[ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="10_e7054"]
+
+[node name="Title" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_5sop4")
+
+[node name="Letters" type="Node2D" parent="."]
+
+[node name="TitleT" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("1_ehhwu")
+
+[node name="TitleI" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_5sop4")
+
+[node name="TitleD" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_e7054")
+
+[node name="TitleA" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_nq4np")
+
+[node name="TitleL" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_oonf8")
+
+[node name="TitleO" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_juq4v")
+
+[node name="TitleW" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("7_e3oqd")
+
+[node name="TitleN" type="Sprite2D" parent="Letters"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("8_7jxaw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -66.25
+offset_top = 72.5
+offset_right = 67.5
+offset_bottom = 139.99998
+theme_override_fonts/normal_font = ExtResource("10_e7054")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][wave]
+A Game by
+Grumelkeks
+&
+Tobinotron
+[/wave][/center]"
