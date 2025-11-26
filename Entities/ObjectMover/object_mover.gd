@@ -79,6 +79,7 @@ func _ghost_push(dir: String) -> void:
 	var ray: CheckRay = shortest_rays.get(dir)
 	if ray.target_position.is_zero_approx():
 		_ghost_hide()
+		return
 	else:
 		_ghost_show()
 	target_pos = global_position + ray.target_position

@@ -80,25 +80,25 @@ func stretch(dir : String):
 	var horizontal = (dir == "Right" or dir == "Left")
 	var tween = create_tween()
 	if horizontal:
-		tween.tween_property(sprites, "scale", Vector2(1.3, 0.8), 0.1)
+		tween.tween_property(self, "scale", Vector2(1.3, 0.8), 0.1)
 	else:
-		tween.tween_property(sprites, "scale", Vector2(0.8, 1.3), 0.1)
+		tween.tween_property(self, "scale", Vector2(0.8, 1.3), 0.1)
 
 func squish(dir : String):
 	var horizontal = (dir == "Right" or dir == "Left")
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE)
 	if horizontal:
-		tween.tween_property(sprites, "scale", Vector2(0.9, 1.15), 0.15)
-		tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.15)
+		tween.tween_property(self, "scale", Vector2(0.9, 1.15), 0.15)
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
 	else:
-		tween.tween_property(sprites, "scale", Vector2(1.15, 0.9), 0.15)
-		tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.15)
+		tween.tween_property(self, "scale", Vector2(1.15, 0.9), 0.15)
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
 
 func select():
 	var tween = create_tween()
-	tween.tween_property(sprites, "scale", Vector2(1.05, 0.95), 0.1)
+	tween.tween_property(self, "scale", Vector2(1.05, 0.95), 0.1)
 
 func deselect():
 	var tween = create_tween()
-	tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.1)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
