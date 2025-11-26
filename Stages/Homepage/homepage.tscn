@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bea0lmunii7f3"]
+[gd_scene load_steps=29 format=4 uid="uid://bea0lmunii7f3"]
 
 [ext_resource type="Script" uid="uid://bg6o4yas77dl" path="res://Stages/Homepage/homepage.gd" id="1_f1qum"]
 [ext_resource type="Texture2D" uid="uid://dist644fxkl6v" path="res://Stages/Homepage/Assets/SplashScreen.png" id="2_vspba"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://cyol4b27485t3" path="res://Entities/GridObject/MovableGridObject/House/Resource/SavedResources/house_back.tres" id="11_pq1y0"]
 [ext_resource type="PackedScene" uid="uid://54b8uchrs6ae" path="res://Entities/GridObject/Rock/rock.tscn" id="11_uje2r"]
 [ext_resource type="Script" uid="uid://da5sy0bjrdcfo" path="res://Entities/NavigationRegion/special_navigation_region.gd" id="14_auknt"]
+[ext_resource type="Texture2D" uid="uid://dkb5udiyqwxsw" path="res://Entities/Slider/sound_house.png" id="23_x3mbe"]
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="33_4dtno"]
 [ext_resource type="Script" uid="uid://ikl2p3fbe25o" path="res://Stages/Homepage/Settings/settings.gd" id="38_xhbwn"]
 [ext_resource type="PackedScene" uid="uid://6y68rwdlue32" path="res://Entities/Slider/slider.tscn" id="38_y4sl6"]
@@ -273,6 +274,10 @@ texture = ExtResource("39_gq86k")
 position = Vector2(0, -32)
 
 [node name="EffectSlider" parent="Settings/Sounds" instance=ExtResource("38_y4sl6")]
+
+[node name="VoicesHouse" type="Sprite2D" parent="Settings/Sounds"]
+position = Vector2(-128, -4)
+texture = ExtResource("23_x3mbe")
 
 [node name="Voices" type="Node2D" parent="Settings"]
 
