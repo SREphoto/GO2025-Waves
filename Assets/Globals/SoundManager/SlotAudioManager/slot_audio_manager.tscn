@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhydqi1n25j7y"]
+
+[ext_resource type="Script" uid="uid://b5virk2bgda7e" path="res://Assets/Globals/SoundManager/SlotAudioManager/slot_audio_manager.gd" id="1_cjkkt"]
+[ext_resource type="AudioStream" uid="uid://yldpt18hk5la" path="res://Assets/Audio/SFX/Slotmachine/win.mp3" id="1_xh6yf"]
+[ext_resource type="AudioStream" uid="uid://lacnpti1jn1e" path="res://Assets/Audio/SFX/Slotmachine/spinner.ogg" id="2_cjkkt"]
+[ext_resource type="AudioStream" uid="uid://cdbt4qivq5hdy" path="res://Assets/Audio/SFX/Slotmachine/slot1.mp3" id="4_kciml"]
+[ext_resource type="AudioStream" uid="uid://cag2b5ifnki5o" path="res://Assets/Audio/SFX/Slotmachine/slot2.mp3" id="5_qpm7s"]
+[ext_resource type="AudioStream" uid="uid://dcwtrfx1ctpy2" path="res://Assets/Audio/SFX/Slotmachine/slot4.mp3" id="7_5dtmn"]
+[ext_resource type="AudioStream" uid="uid://bf3dxautugkxd" path="res://Assets/Audio/SFX/Slotmachine/clank.mp3" id="7_kciml"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v4sf2"]
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("1_xh6yf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q44fh"]
+streams_count = 3
+stream_0/stream = ExtResource("4_kciml")
+stream_1/stream = ExtResource("5_qpm7s")
+stream_2/stream = ExtResource("7_5dtmn")
+
+[node name="SlotAudioManager" type="Node"]
+script = ExtResource("1_cjkkt")
+
+[node name="SlotWinPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_v4sf2")
+volume_db = -6.0
+pitch_scale = 1.25
+bus = &"Effects"
+
+[node name="SlotLoopPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cjkkt")
+volume_db = -10.0
+pitch_scale = 0.9
+bus = &"Effects"
+
+[node name="SlotStopPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_q44fh")
+max_polyphony = 3
+
+[node name="LeverPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kciml")

@@ -16,12 +16,16 @@ var active = true
 signal shop_entered
 signal shopping_done(house_res: HouseRescource)
 
+func _ready() -> void:
+	#enter()
+	pass
+
 func enter() -> void:
+	SoundManager.slot_audio_manager.play_slot_loop()
 	active = true
 	shop_entered.emit()
 	visible = true
 	slotmachine.reset_slot()
-	await get_tree().create_timer(0.5).timeout
 	for roll: HouseRoll in house_rolls:
 		roll.roll()
 
@@ -36,13 +40,13 @@ func _rand_houses() -> void:
 	var rand_res: HouseRescource = rand_res_arr.pop_back()
 	
 	for roll in house_rolls:
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.5).timeout
+		SoundManager.slot_audio_manager.play_stop()
 		roll.stop(rand_res["frame"])
 	
-	await get_tree().create_timer(0.4).timeout
-	SoundManager.slot_win_player.play()
-	
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(1.0).timeout
+	SoundManager.slot_audio_manager.play_win()
+	await get_tree().create_timer(1.5).timeout
 	
 	shopping_done.emit(rand_res)
 

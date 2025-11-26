@@ -74,6 +74,7 @@ func reset_slot():
 
 func stop_spinning():
 	shop.active = false
+	SoundManager.slot_audio_manager.play_lever()
 	squish()
 	await get_tree().create_timer(0.5).timeout
 	shop.stop_spinning()
