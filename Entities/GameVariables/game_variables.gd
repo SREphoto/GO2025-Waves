@@ -72,8 +72,6 @@ func on_wave_finished() -> void:
 			return
 	second_timer.stop()
 	
-	RainLayer.fade_out()
-	
 	_house_counting()
 	
 	_prepare_new_wave()

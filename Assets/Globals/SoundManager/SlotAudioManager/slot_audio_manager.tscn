@@ -30,13 +30,15 @@ bus = &"Effects"
 
 [node name="SlotLoopPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_cjkkt")
-volume_db = -10.0
+volume_db = -13.0
 pitch_scale = 0.9
 bus = &"Effects"
 
 [node name="SlotStopPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_q44fh")
+volume_db = -7.0
 max_polyphony = 3
 
 [node name="LeverPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_kciml")
+volume_db = -15.0

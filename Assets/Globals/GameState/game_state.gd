@@ -21,39 +21,38 @@ func _change_state_last_round() -> void:
 		STATES.START:
 			SceneSwitcher.switch_end_to_home()
 			MusicManager.switch_music("ENDGAME")
-			RainLayer.fade_out()
 		STATES.GAMELOOP:
 			SoundManager.voice_manager.start_voices()
 			MusicManager.switch_music("ENDGAME")
-			RainLayer.fade_in()
+			RainLayer.fade_in_rain()
 		STATES.WAVE:
 			MusicManager.switch_music("ENDGAME")
-			RainLayer.fade_in()
+			RainLayer.fade_in_rain()
 		STATES.SHOP: # not possible in last round -> change to won (!?!)
-			MusicManager.switch_music("ENDGAME")
+			MusicManager.switch_music("SHOP")
 		STATES.GAMEOVER:
 			SceneSwitcher.switch_game_to_end(game_scene)
 			SoundManager.voice_manager.stop_voices()
 			MusicManager.switch_music("GAMEOVER")
-			RainLayer.fade_in(200)
+			RainLayer.fade_in_rain(200)
 
 func _change_state_normal() -> void:
 	match state:
 		STATES.START:
 			SceneSwitcher.switch_end_to_home()
 			MusicManager.switch_music("START")
-			RainLayer.fade_out()
+			RainLayer.fade_out_rain()
 		STATES.GAMELOOP:
 			SoundManager.voice_manager.start_voices()
 			MusicManager.switch_music("GAMELOOP")
-			RainLayer.fade_out()
+			RainLayer.fade_out_rain()
 		STATES.WAVE:
 			MusicManager.switch_music("WAVE")
-			RainLayer.fade_in()
+			RainLayer.fade_in_rain()
 		STATES.SHOP:
 			MusicManager.switch_music("SHOP")
 		STATES.GAMEOVER:
 			SceneSwitcher.switch_game_to_end(game_scene)
 			SoundManager.voice_manager.stop_voices()
 			MusicManager.switch_music("GAMEOVER")
-			RainLayer.fade_in(200)
+			RainLayer.fade_in_rain(200)

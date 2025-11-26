@@ -11,8 +11,15 @@ shader_parameter/desaturation_amount = 0.0
 [node name="RainLayer" type="CanvasLayer"]
 script = ExtResource("1_0n4vt")
 
-[node name="DesatRect" type="ColorRect" parent="."]
+[node name="Rain" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DesatRect" type="ColorRect" parent="Rain"]
 material = SubResource("ShaderMaterial_0n4vt")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RainParticles" type="CPUParticles2D" parent="."]
+[node name="RainParticles" type="CPUParticles2D" parent="Rain"]
 visible = false
 position = Vector2(1200, 0)
 amount = 800

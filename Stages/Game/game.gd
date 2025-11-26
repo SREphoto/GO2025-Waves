@@ -5,8 +5,8 @@ enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
-const last_round: int = 6
-@export var current_round: int = 5:
+const last_round: int = 5
+@export var current_round: int = 0:
 	set(value):
 		current_round = value
 		if current_round == last_round:
