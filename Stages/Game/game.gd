@@ -6,11 +6,14 @@ var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
 const last_round: int = 6
-var current_round: int = 0:
+@export var current_round: int = 0:
 	set(value):
 		current_round = value
 		if current_round == last_round:
+			ui.show_healthbar()
 			GlobalGameState.last_round = true
+		else:
+			ui.show_normal()
 
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer

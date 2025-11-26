@@ -13,9 +13,10 @@ extends CanvasLayer
 
 signal start_wave
 
-func initialize():
+func _ready() -> void:
 	game_variables.connect("values_changed", refresh)
-	
+
+func initialize():
 	max_health = game_variables.current_goal
 	health = max_health
 	health_after_attack = max_health

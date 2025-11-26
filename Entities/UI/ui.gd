@@ -26,7 +26,7 @@ func _ready() -> void:
 	game_variables.connect("values_changed", refresh)
 	health_bar.game_variables = game_variables
 	health_bar.initialize()
-	show_healthbar()
+	show_normal()
 
 func refresh():
 	goal.text = str(game_variables.current_goal)
