@@ -36,3 +36,9 @@ func stretch(_dir: String):
 	
 func squish(_dir : String):
 	pass
+
+func select():
+	pass
+
+func deselect():
+	pass

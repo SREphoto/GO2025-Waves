@@ -26,16 +26,24 @@ func _on_object_grid_child_entered_tree(node: Node) -> void:
 
 func _on_selectable_selected(grid_object: GridObject, selected: bool) -> void:
 	if selected and active:
-		object_selected.emit(grid_object)
-		if not object_mover:
-			object_mover = OBJECT_MOVER.instantiate()
-			object_mover.object_to_move = grid_object
-			object_grid.add_child(object_mover)
-			if score_manager:
-				object_mover.object_move_finished.connect(score_manager.on_object_move_finished)
-			if navigation_region:
-				object_mover.object_move_finished.connect(navigation_region.on_object_move_finished)
+		select(grid_object)
 	else:
-		object_deselected.emit(grid_object)
-		if object_mover:
-			object_mover.object_deselected()
+		deselect(grid_object)
+
+func select(grid_object: GridObject):
+	grid_object.select()
+	object_selected.emit(grid_object)
+	if not object_mover:
+		object_mover = OBJECT_MOVER.instantiate()
+		object_mover.object_to_move = grid_object
+		object_grid.add_child(object_mover)
+		if score_manager:
+			object_mover.object_move_finished.connect(score_manager.on_object_move_finished)
+		if navigation_region:
+			object_mover.object_move_finished.connect(navigation_region.on_object_move_finished)
+
+func deselect(grid_object: GridObject):
+	grid_object.deselect()
+	object_deselected.emit(grid_object)
+	if object_mover:
+		object_mover.object_deselected()

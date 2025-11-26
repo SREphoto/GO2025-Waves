@@ -8,10 +8,6 @@ extends MovableGridObject
 @onready var front: Sprite2D = $Sprites/SpritesFront/Front
 @onready var back: Sprite2D = $Sprites/SpritesBack/Back
 
-
-
-const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
-
 @onready var static_body_2d: StaticBody2D = $StaticBody2D
 
 @onready var sel_coll_poly: CollisionPolygon2D = $Selectable/CollisionPolygon2D
@@ -20,7 +16,10 @@ const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 @export var res: HouseRescource:
 	set = _set_res
 
+const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
+
 var in_danger: bool = false
+var selected : bool = false
 
 var standard_points: int:
 	set(value):
@@ -95,3 +94,11 @@ func squish(dir : String):
 	else:
 		tween.tween_property(sprites, "scale", Vector2(1.15, 0.9), 0.15)
 		tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.15)
+
+func select():
+	var tween = create_tween()
+	tween.tween_property(sprites, "scale", Vector2(1.05, 0.95), 0.1)
+
+func deselect():
+	var tween = create_tween()
+	tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.1)
