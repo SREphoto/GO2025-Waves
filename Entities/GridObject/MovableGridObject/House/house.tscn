@@ -15,17 +15,19 @@ grid_object = NodePath("..")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Selectable"]
 
-[node name="SpritesFront" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="SpritesFront" type="Node2D" parent="Sprites"]
 position = Vector2(0, 4)
 
-[node name="Front" type="Sprite2D" parent="SpritesFront"]
+[node name="Front" type="Sprite2D" parent="Sprites/SpritesFront"]
 position = Vector2(0, -16)
 hframes = 5
 
-[node name="SpritesBack" type="Node2D" parent="."]
+[node name="SpritesBack" type="Node2D" parent="Sprites"]
 position = Vector2(0, -25)
 
-[node name="Back" type="Sprite2D" parent="SpritesBack"]
+[node name="Back" type="Sprite2D" parent="Sprites/SpritesBack"]
 visible = false
 position = Vector2(16, -7)
 texture = ExtResource("3_8u6ha")

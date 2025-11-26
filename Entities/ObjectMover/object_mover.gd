@@ -12,6 +12,7 @@ var object_to_move: MovableGridObject:
 var mouse_outside_of_object: bool = false
 
 var last_mouse_dir: Vector2i
+var current_dir_str : String
 var target_pos: Vector2
 
 var shortest_rays: Dictionary[String, CheckRay] = {}
@@ -97,13 +98,14 @@ func _input(_event: InputEvent) -> void:
 			last_mouse_dir = mouse_dir
 			match mouse_dir:
 				Vector2i.LEFT:
-					_ghost_push("Left")
+					current_dir_str = "Left"
 				Vector2i.UP:
-					_ghost_push("Up")
+					current_dir_str = "Up"
 				Vector2i.RIGHT:
-					_ghost_push("Right")
+					current_dir_str = "Right"
 				Vector2i.DOWN:
-					_ghost_push("Down")
+					current_dir_str = "Down"
+			_ghost_push(current_dir_str)
 		elif last_mouse_dir != Vector2i.ZERO:
 			last_mouse_dir = Vector2i.ZERO
 			_ghost_reset()
@@ -134,6 +136,7 @@ func _move_grid_object() -> void:
 	var tween = create_tween()
 	SoundManager.swipe_house_player.play()
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
+	object_to_move.squish(current_dir_str)
 	await tween.finished
 	object_move_finished.emit()
 	queue_free()

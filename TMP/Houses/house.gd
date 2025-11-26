@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var rays: Node2D = $Rays
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var ghosts: Node2D = $Ghosts
 
 

@@ -3,8 +3,12 @@ class_name House
 extends MovableGridObject
 
 @onready var flag: Flag = $Flagpole
-@onready var front: Sprite2D = $SpritesFront/Front
-@onready var back: Sprite2D = $SpritesBack/Back
+
+@onready var sprites: Node2D = $Sprites
+@onready var front: Sprite2D = $Sprites/SpritesFront/Front
+@onready var back: Sprite2D = $Sprites/SpritesBack/Back
+
+
 
 const GRID_COLLISION_SHAPE = preload("uid://bkek31gnkn0ip")
 
@@ -72,3 +76,22 @@ func _spawn():
 	tween.set_trans(Tween.TRANS_BOUNCE).tween_property(self, "scale", Vector2(1.0, 1.0), 0.5)
 	await tween.finished
 	house_done.emit()
+
+func stretch(dir : String):
+	var horizontal = (dir == "Right" or dir == "Left")
+	var tween = create_tween()
+	if horizontal:
+		tween.tween_property(sprites, "scale", Vector2(1.3, 0.8), 0.1)
+	else:
+		tween.tween_property(sprites, "scale", Vector2(0.8, 1.3), 0.1)
+
+func squish(dir : String):
+	var horizontal = (dir == "Right" or dir == "Left")
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	if horizontal:
+		tween.tween_property(sprites, "scale", Vector2(0.9, 1.15), 0.15)
+		tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.15)
+	else:
+		tween.tween_property(sprites, "scale", Vector2(1.15, 0.9), 0.15)
+		tween.tween_property(sprites, "scale", Vector2(1.0, 1.0), 0.15)

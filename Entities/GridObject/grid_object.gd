@@ -30,3 +30,9 @@ func get_middle_pos() -> Vector2:
 	
 	var middle: Vector2 = (corners[0] + corners[1])/2
 	return middle
+
+func stretch(_dir: String):
+	pass
+	
+func squish(_dir : String):
+	pass
