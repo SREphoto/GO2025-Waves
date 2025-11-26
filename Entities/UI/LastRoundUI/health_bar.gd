@@ -13,7 +13,7 @@ extends CanvasLayer
 
 signal start_wave
 
-func _ready() -> void:
+func connect_signal() -> void:
 	game_variables.connect("values_changed", refresh)
 
 func initialize():

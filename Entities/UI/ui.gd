@@ -25,6 +25,7 @@ signal start_wave
 func _ready() -> void:
 	game_variables.connect("values_changed", refresh)
 	health_bar.game_variables = game_variables
+	health_bar.connect_signal()
 	health_bar.initialize()
 	show_normal()
 
@@ -73,10 +74,10 @@ func show_healthbar():
 
 func blend_in() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 1), 0.8)
+	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 1), 0.2)
 	health_bar.blend_in()
 
 func blend_out() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.8)
+	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.2)
 	health_bar.blend_out()

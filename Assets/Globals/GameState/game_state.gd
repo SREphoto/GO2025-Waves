@@ -7,7 +7,7 @@ enum STATES {START, GAMELOOP, WAVE, SHOP, GAMEOVER}
 var state: STATES:
 	set = _on_state_changed
 
-var last_round = true
+var last_round = false
 
 func _on_state_changed(value) -> void:
 	state = value
