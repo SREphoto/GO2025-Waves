@@ -36,6 +36,7 @@ func set_object_to_move(value) -> void:
 	await ready
 	var house = object_to_move as House
 	if is_instance_valid(house):
+		ghosts.modulate.a = 0.0 # Hide the ghost on default
 		ghost_object.texture = house.front.texture
 		ghost_object.hframes = house.front.hframes
 		ghost_object.frame = house.front.frame
@@ -76,12 +77,25 @@ func _expand_raycasts() -> void:
 
 func _ghost_push(dir: String) -> void:
 	var ray: CheckRay = shortest_rays.get(dir)
+	if ray.target_position.is_zero_approx():
+		_ghost_hide()
+	else:
+		_ghost_show()
 	target_pos = global_position + ray.target_position
 	_tween_ghost_to_pos()
 
 func _ghost_reset() -> void:
+	_ghost_hide()
 	target_pos = global_position
 	_tween_ghost_to_pos()
+
+func _ghost_show() -> void:
+	var tween = create_tween()
+	tween.tween_property(ghosts, "modulate:a", 1.0, 0.2)
+
+func _ghost_hide() -> void:
+	var tween = create_tween()
+	tween.tween_property(ghosts, "modulate:a", 0.0, 0.2)
 
 func _tween_ghost_to_pos() -> void:
 	var tween = create_tween()
