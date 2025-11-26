@@ -6,8 +6,8 @@ extends Node2D
 @export var wave_manager: WaveManager
 @export var tutorial_ui: TutorialUI
 
-@export var all_goals: Array[int] 		= [10, 20, 50, 110, 220, 300, 480, 680]
-@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 2, 2]
+@export var all_goals: Array[int] 		= [10, 20, 46, 98, 190, 300, 1200, 200]
+@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 6, 2]
 
 @export var wave_time : int = 180:
 	set(value):
@@ -20,6 +20,8 @@ var current_goal : int
 var current_score : int = 0
 var remaining_waves : int
 var remaining_time : int = wave_time
+
+var current_wave: int =  0
 
 var active: bool = true:
 	set = on_active
@@ -53,6 +55,7 @@ func on_active(value: bool) -> void:
 		second_timer.stop()
 
 func on_wave_finished() -> void:
+	current_wave += 1
 	current_goal -= current_score
 	current_score = 0
 	remaining_waves -= 1
@@ -64,8 +67,10 @@ func on_wave_finished() -> void:
 	if remaining_waves <= 0:
 		if current_goal <= 0:
 			has_finished = true
+			current_wave = 0
 			_won()
 		else:
+			current_wave = 0
 			_lost()
 			return
 	second_timer.stop()

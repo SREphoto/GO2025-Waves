@@ -16,6 +16,7 @@ grid_object = NodePath("..")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Selectable"]
 
 [node name="Sprites" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="SpritesFront" type="Node2D" parent="Sprites"]
 position = Vector2(0, 4)

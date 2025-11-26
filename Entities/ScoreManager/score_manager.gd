@@ -150,7 +150,7 @@ func remove_danger_cells(all_multi_pos: Array[Vector2i]) -> Array[Vector2i]:
 			all_multi_pos.erase(pos)
 	return all_multi_pos
 
-#region multi fuunctions
+#region multi functions
 
 func get_multi_around(house: House) -> Array[Vector2i]:
 	var pos: Vector2i = house.get_grid_pos()
@@ -277,7 +277,7 @@ func _get_biggest_color_groups() -> Array[Array]:
 	for group: Array[House] in color_groups:
 		var color_group: Array[House] = _color_group_in_groups(biggest_groups, group[0].flag.color)
 		if color_group != []:
-			if group[0].flag.current_value > color_group[0].flag.current_value:
+			if get_group_points(group) > get_group_points(color_group):
 				biggest_groups.erase(color_group)
 				biggest_groups.append(group)
 		else:

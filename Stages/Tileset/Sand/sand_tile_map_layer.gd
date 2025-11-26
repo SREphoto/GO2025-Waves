@@ -18,6 +18,9 @@ func _input(event: InputEvent) -> void:
 func increase_grid_size() -> void:
 		grid_size += Vector2.ONE
 
+func decrease_grid_size() -> void:
+		grid_size -= Vector2.ONE
+
 func set_tilemap() -> void:
 	clear()
 	for row in range(floori(-float(grid_size.x)/2.0) - 1, floori(float(grid_size.x)/2.0) + 1):

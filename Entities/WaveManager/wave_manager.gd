@@ -5,9 +5,10 @@ extends Node2D
 @export var wave_marker_tile_map_layer: WaveMarkerTileMap
 @export var sand_tilemap_layer : SandTileMapLayer
 @export var game: Game
+@export var game_variables: GameVariables
 
 @export_category("Special Wave Marker")
-@export var special_mark_array: Dictionary[int, DIRECTIONS]
+@export var special_mark_array: Dictionary[int, Dictionary]
 
 @onready var wave_left: WaveSide = $AllWavesLeft
 @onready var wave_up: WaveSide = $AllWavesUp
@@ -19,7 +20,7 @@ var state: STATES = STATES.MARK
 
 enum DIRECTIONS {LEFT, UP, RIGHT, DOWN}
 var directions: Array[DIRECTIONS]
-var last_dir: DIRECTIONS
+var last_dirs: Array[DIRECTIONS]
 
 var depth: int = 2
 var radius : int = 32
@@ -89,16 +90,27 @@ func next_state() -> void:
 
 func state_mark() -> void:
 	var current_round: int = game.current_round
+	var current_wave : int = game_variables.current_wave
 	if special_mark_array.has(current_round):
-		special_state_mark(special_mark_array[current_round])
-		special_mark_array.erase(current_round)
-	else:
-		random_state_mark()
+		var special_rounds_array: Dictionary = special_mark_array[current_round]
+		if special_rounds_array.has(current_wave):
+			special_state_mark(special_rounds_array[current_wave])
+			return
+	random_state_mark()
 
-func special_state_mark(dir: DIRECTIONS) -> void:
-	depth = 2
+func special_state_mark(dir_array: Array) -> void:
+	if dir_array.size() > 1:
+		depth = 1
+	else:
+		depth = 2
+	
+	last_dirs = []
 	directions = []
-	directions.append(dir)
+	
+	for dir: DIRECTIONS in dir_array:
+		directions.append(dir)
+	
+	last_dirs = directions.duplicate_deep()
 	
 	mark_wave.emit()
 	state = STATES.SEND
@@ -111,16 +123,31 @@ func random_state_mark() -> void:
 	else:
 		depth = 2
 	directions = []
-	for i in wave_count:
-		var dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-		while directions.has(dir):
-			dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-		directions.append(dir)
-		if i == 0:
-			while directions[0] == last_dir:
-				directions[0] = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-			last_dir = directions[0]
 	
+	for i in wave_count:
+		var dir : DIRECTIONS 
+		if i == 0:
+			var rand_off: int = (randi_range(1, 2) * 2) - 3 # -1 or +1
+			dir = posmod(last_dirs[0] + rand_off, DIRECTIONS.size()) as DIRECTIONS # new dir
+		else:
+			var rand_off: int = (randi_range(0, 1) * 2) # 0 or 2
+			dir = posmod(last_dirs[0] + rand_off, DIRECTIONS.size()) as DIRECTIONS # new dir
+			if last_dirs.size() > 1:
+				if dir == last_dirs[0] and directions[0] == last_dirs[1]:
+					dir = posmod(last_dirs[0] + 2, DIRECTIONS.size()) as DIRECTIONS
+		directions.append(dir)
+	#for i in wave_count:
+		#var dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+		#while directions.has(dir):
+			#dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+		#directions.append(dir)
+		#print(dir)
+		#if i == 0:
+			#while directions[0] == last_dir:
+				#directions[0] = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+			#last_dir = directions[0]
+	last_dirs = directions.duplicate_deep()
+		
 	mark_wave.emit()
 	state = STATES.SEND
 
