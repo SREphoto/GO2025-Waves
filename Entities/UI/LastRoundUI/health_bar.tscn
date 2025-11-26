@@ -1,0 +1,206 @@
+[gd_scene load_steps=23 format=3 uid="uid://4whf7dkteppb"]
+
+[ext_resource type="Texture2D" uid="uid://cjs6xnh662xiu" path="res://Entities/UI/LastRoundUI/HealthBar/HealthBarBlack.png" id="1_n1e2a"]
+[ext_resource type="Script" uid="uid://cffc6f46af57y" path="res://Entities/UI/LastRoundUI/health_bar.gd" id="1_uad10"]
+[ext_resource type="Texture2D" uid="uid://n4t63kcrgfhi" path="res://Entities/UI/LastRoundUI/HealthBar/HealthBarRed.png" id="2_jj7gi"]
+[ext_resource type="Texture2D" uid="uid://cqstalrpyhiqn" path="res://Entities/UI/LastRoundUI/HealthBar/HealthbarYellow.png" id="3_jj7gi"]
+[ext_resource type="Texture2D" uid="uid://bi7gy6nb5i6vl" path="res://Entities/TutorialUI/Assets/Mayor.png" id="5_8igpc"]
+[ext_resource type="Texture2D" uid="uid://ctckfbpqcmk71" path="res://Entities/Poseidon/PoseidonAngry.png" id="5_yvj13"]
+[ext_resource type="Texture2D" uid="uid://1thres8piprw" path="res://Entities/UI/Assets/SkipButton/skip_button1.png" id="7_ye1f5"]
+[ext_resource type="Texture2D" uid="uid://c3f16uwlduii7" path="res://Entities/UI/Assets/SkipButton/skip_button3.png" id="8_vc48u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v1td"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3r75"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84tlu"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh05d"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7xpf"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joxry"]
+atlas = ExtResource("5_yvj13")
+region = Rect2(180, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvj13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v1td")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3r75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84tlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh05d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7xpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joxry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpoxv"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(0, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye1f5"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(36, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc48u"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(72, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrmbp"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(108, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2rld"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(144, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwce6"]
+atlas = ExtResource("5_8igpc")
+region = Rect2(180, 72, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v1td"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpoxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye1f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc48u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrmbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2rld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwce6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="HealthBar" type="CanvasLayer"]
+script = ExtResource("1_uad10")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HealthBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -14.0
+offset_right = 88.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 80.0
+texture_under = ExtResource("1_n1e2a")
+texture_progress = ExtResource("3_jj7gi")
+
+[node name="HealthAfterAttackBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -14.0
+offset_right = 88.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 70.0
+texture_progress = ExtResource("2_jj7gi")
+
+[node name="Poseidon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PoseidonAngry" type="AnimatedSprite2D" parent="Poseidon"]
+position = Vector2(140, 150)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_yvj13")
+autoplay = "default"
+frame_progress = 0.43032247
+
+[node name="Major" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MajorAngry" type="AnimatedSprite2D" parent="Major"]
+position = Vector2(-100, 150)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_1v1td")
+autoplay = "default"
+frame_progress = 0.993045
+flip_h = true
+
+[node name="SkipButton" type="TextureButton" parent="Major/MajorAngry"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 5.0000153
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("7_ye1f5")
+texture_hover = ExtResource("8_vc48u")

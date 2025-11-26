@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5tubgyxsf3es"]
+[gd_scene load_steps=12 format=3 uid="uid://c5tubgyxsf3es"]
 
 [ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
 [ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://s0my7jip2gjq" path="res://Entities/UI/Assets/UiFlagR.png" id="6_4ef74"]
 [ext_resource type="FontFile" uid="uid://c7ov6yg6gek8u" path="res://Entities/Flag/FlagFont.ttf" id="7_ffqlu"]
 [ext_resource type="Texture2D" uid="uid://dhqgeyfueuo1x" path="res://Entities/UI/Assets/UiFlagG.png" id="7_lmmol"]
+[ext_resource type="PackedScene" uid="uid://4whf7dkteppb" path="res://Entities/UI/LastRoundUI/health_bar.tscn" id="8_4ef74"]
 [ext_resource type="Texture2D" uid="uid://54pqb0g3og0r" path="res://Entities/UI/Assets/UiFlagB.png" id="8_ffqlu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1jd4"]
@@ -109,13 +110,11 @@ theme_override_fonts/font = ExtResource("7_ffqlu")
 theme_override_font_sizes/font_size = 64
 text = "1"
 
-[node name="TEMP" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(440, 800)
-scale = Vector2(0.1, 1.7964789)
-texture = ExtResource("6_4ef74")
+[node name="HealthBar" parent="." instance=ExtResource("8_4ef74")]
 
 [connection signal="pressed" from="RoundUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="HealthBar/Major/MajorAngry/SkipButton" to="." method="_on_skip_button_pressed"]
 
 [editable path="GoalUI"]
 [editable path="RoundUI"]
+[editable path="HealthBar"]

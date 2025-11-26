@@ -12,21 +12,21 @@ extends CanvasLayer
 @onready var waves_remaining: Label = $RoundUI/Sprite2D/WavesRemaining
 @onready var time_remaining: Label = $RoundUI/Sprite2D/TimeRemaining
 
-
-
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 @onready var label_red: Label = $Control/V/P1/LabelRed
 @onready var label_green: Label = $Control/V/P2/LabelGreen
 @onready var label_blue: Label = $Control/V/P3/LabelBlue
 
-
+@onready var health_bar: HealthBarUI = $HealthBar
 
 signal start_wave
 
 func _ready() -> void:
-	visible = true
 	game_variables.connect("values_changed", refresh)
+	health_bar.game_variables = game_variables
+	health_bar.initialize()
+	show_healthbar()
 
 func refresh():
 	goal.text = str(game_variables.current_goal)
@@ -57,10 +57,26 @@ func set_biggest_group_labels() -> void:
 func _on_skip_button_pressed() -> void:
 	start_wave.emit()
 
+func show_normal():
+	$GoalUI.visible = true
+	$RoundUI.visible = true
+	$Control.visible = true
+	$CanvasModulate.visible = true
+	$HealthBar.visible = false
+
+func show_healthbar():
+	$GoalUI.visible = false
+	$RoundUI.visible = false
+	$Control.visible = false
+	$CanvasModulate.visible = false
+	$HealthBar.visible = true
+
 func blend_in() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 1), 0.8)
+	health_bar.blend_in()
 
 func blend_out() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.8)
+	health_bar.blend_out()
