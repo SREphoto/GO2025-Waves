@@ -5,6 +5,7 @@ extends StaticBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $Poseidon
 
+var angry = false
 var attacking = false
 var is_animating = false
 

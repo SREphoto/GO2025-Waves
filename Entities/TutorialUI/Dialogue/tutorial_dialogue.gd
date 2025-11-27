@@ -89,8 +89,8 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(1790, 140),
-		"pointer_rotation" : 70.0
+		"pointer" : Vector2(450, 171),
+		"pointer_rotation" : 25.0
 	},
 	{
 		"speaker" : "Mayor",

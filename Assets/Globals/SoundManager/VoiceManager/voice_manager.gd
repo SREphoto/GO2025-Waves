@@ -1,6 +1,7 @@
 class_name VoiceManager
 extends Node
 
+@onready var mayor_voice_player: AudioStreamPlayer = $MayorVoicePlayer
 @onready var normal_voice_player: AudioStreamPlayer = $NormalVoicePlayer
 @onready var panic_voice_player: AudioStreamPlayer = $PanicVoicePlayer
 @onready var timer: Timer = $Timer

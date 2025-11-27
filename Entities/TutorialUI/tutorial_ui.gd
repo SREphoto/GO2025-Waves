@@ -92,7 +92,7 @@ func dialogue_loop_tut(dialogue_arr : Array):
 		var pointer_rotation = dialogue["pointer_rotation"]
 		
 		mayor.play(mood)
-		
+		SoundManager.voice_manager.mayor_voice_player.play()
 		# If no_skip, check signals
 		# If this has already been done, add a skip button!
 		if not has_skip:

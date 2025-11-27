@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://g1r6a8l8fr2s" path="res://Entities/TutorialUI/Mayor/major_icon.tscn" id="3_w6mpw"]
 [ext_resource type="PackedScene" uid="uid://6n407x31u6sf" path="res://Entities/TutorialUI/Dialogue/tutorial_dialogue.tscn" id="4_w6mpw"]
 [ext_resource type="Texture2D" uid="uid://c1q5um5me87iq" path="res://Entities/TutorialUI/Assets/Pointer.png" id="5_ppawp"]
-[ext_resource type="Script" path="res://Entities/TutorialUI/pointer_sprite.gd" id="6_roj1m"]
+[ext_resource type="Script" uid="uid://by5fya253w4uo" path="res://Entities/TutorialUI/pointer_sprite.gd" id="6_roj1m"]
 
 [node name="TutorialUI" type="CanvasLayer"]
 script = ExtResource("1_itko2")
@@ -36,14 +36,13 @@ grow_vertical = 0
 
 [node name="Mayor" parent="Control" instance=ExtResource("3_w6mpw")]
 position = Vector2(-325, -100)
-animation = &"normal"
 
 [node name="SpeechBubble" parent="Control" instance=ExtResource("2_itko2")]
 position = Vector2(-210, -100)
 text = "This is a testtext, please ignore"
 
 [node name="PointerSprite" type="Sprite2D" parent="."]
-position = Vector2(1352.9999, 569.99994)
+position = Vector2(350.00006, 171.00009)
 scale = Vector2(5, 5)
 texture = ExtResource("5_ppawp")
 offset = Vector2(15, 0)
