@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgnnvy62pecj7"]
+
+[ext_resource type="Script" uid="uid://efanfc6lmnfl" path="res://Assets/Globals/GlobalBoat/global_boat.gd" id="1_1glid"]
+[ext_resource type="Texture2D" uid="uid://c8pym0paloj74" path="res://Entities/Slider/grabber_hover.png" id="2_x72vu"]
+
+[sub_resource type="Curve" id="Curve_1glid"]
+_limits = [-30.0, 30.0, 0.0, 8.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1.5559924, 9.5070915), 0.0, 0.0, 0, 0, Vector2(2.8919451, 4.2478485), 0.0, 0.0, 0, 0, Vector2(4.416503, -5.726574), 0.0, 0.0, 0, 0, Vector2(5.3438115, 1.1648445), 0.0, 0.0, 0, 0, Vector2(6.318271, 6.0613804), 0.0, 0.0, 0, 0, Vector2(7.13556, -1.736805), 0.0, 0.0, 0, 0, Vector2(8, 0.25807953), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[node name="GlobalBoat" type="Node2D"]
+z_index = 2
+script = ExtResource("1_1glid")
+curve = SubResource("Curve_1glid")
+
+[node name="Boat" type="Sprite2D" parent="."]
+position = Vector2(-260, 340)
+texture = ExtResource("2_x72vu")

@@ -45,6 +45,22 @@ func move_to_home() -> void:
 	tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)
 	await tween.finished
 
+func move_to_win() -> void:
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", Vector2(0.0, 0.0), 3.8)
+	tween.parallel().tween_property(self, "rotation", 0.0, 3.8)
+	tween.parallel().tween_property(self, "zoom", Vector2(4.0, 4.0), 3.8)
+	await tween.finished
+
+func move_camera_game_to_win() -> void:
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", Vector2(0.0, 0.0), 0.5)
+	tween.parallel().tween_property(self, "rotation", 0, 0.5)
+	tween.parallel().tween_property(self, "zoom", Vector2(4.0, 4.0), 0.5)
+	await tween.finished
+
 func move_camera_end_to_home() -> void:
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)

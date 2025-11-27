@@ -10,10 +10,7 @@ const last_round: int = 1
 	set(value):
 		current_round = value
 		if current_round == last_round:
-			ui.show_healthbar()
 			GlobalGameState.last_round = true
-		else:
-			ui.show_normal()
 
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
@@ -94,10 +91,17 @@ func _game_state_shop() -> void:
 	game_variables.active = false
 	game_variables.next_game()
 	hoverer.active = false
+	if current_round > last_round:
+		return
 	shop.enter()
 	next_game_state = GAME_STATES.SLIDING
 	GlobalGameState.state = GlobalGameState.STATES.SHOP
 	GlobalVariables.first_time_multi = false
+	await get_tree().create_timer(1).timeout
+	if GlobalGameState.last_round:
+		ui.show_healthbar()
+	else:
+		ui.show_normal()
 
 func _game_state_paused() -> void:
 	game_variables.active = false

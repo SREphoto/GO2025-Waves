@@ -13,12 +13,11 @@ extends Node2D
 var running = false
 
 func _ready() -> void:
-	MusicManager.switch_music("WIN")
 	drag_screen.dragged.connect(_on_screen_dragged)
 	GlobalVariables.hard_mode_unlocked = true
 	hide_flags()
 	mayor.reset()
-	await get_tree().create_timer(1.0).timeout
+	await follow_camera.move_to_win()
 	dialogue_loop_tut(tutorial_dialogue.dialogue_win)
 
 func _on_screen_dragged() -> void:

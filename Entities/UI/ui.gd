@@ -20,6 +20,12 @@ extends CanvasLayer
 
 @onready var health_bar: HealthBarUI = $HealthBar
 
+var round_current_int: int = 0:
+	set(value):
+		if round_current_int != value:
+			health_bar.initialize()
+		round_current_int = value
+
 signal start_wave
 
 func _ready() -> void:
@@ -31,7 +37,8 @@ func _ready() -> void:
 
 func refresh():
 	goal.text = str(game_variables.current_goal)
-	round_current.text = str(game.current_round + 1)
+	round_current_int = (game.current_round + 1)
+	round_current.text = str(round_current_int)
 	current_offering.text = str(game_variables.current_score)
 	waves_remaining.text = str(game_variables.remaining_waves)
 	var remaining_time: int = max(0, game_variables.remaining_time)

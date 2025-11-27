@@ -25,8 +25,6 @@ func initialize():
 	health_after_attack_bar.value = max_health
 
 func refresh():
-	if health_bar.max_value != game_variables.current_goal:
-		initialize()
 	health =  game_variables.current_goal
 	health_after_attack = health - game_variables.current_score
 	#var remaining_time: int = max(0, game_variables.remaining_time)

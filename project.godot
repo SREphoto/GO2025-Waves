@@ -26,6 +26,7 @@ MusicManager="*res://Assets/Globals/MusicManager/music_manager.tscn"
 SceneSwitcher="*res://Assets/Globals/SceneSwitcher/scene_switcher.tscn"
 GlobalVariables="*res://Assets/Globals/GlobalVariables/global_variables.tscn"
 SoundManager="*res://Assets/Globals/SoundManager/sound_manager.tscn"
+GlobalBoat="*res://Assets/Globals/GlobalBoat/global_boat.tscn"
 
 [display]
 

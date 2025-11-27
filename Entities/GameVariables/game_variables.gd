@@ -1,6 +1,7 @@
 class_name GameVariables
 extends Node2D
 
+@export var zoom_camera: ZoomCamera
 @export var sand_tile_map_layer: SandTileMapLayer
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
@@ -10,6 +11,9 @@ extends Node2D
 
 @export var all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
+
+@export var hard_mode_all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
+@export var hard_mode_all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
 
 @export var wave_time : int = 180:
 	set(value):
@@ -106,6 +110,9 @@ func next_game() -> void:
 		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
+	if GlobalGameState.last_round:
+		if current_wave >= 3:
+			sand_tile_map_layer.decrease_grid_size()
 	current_goal = all_goals[game.current_round]
 	remaining_waves = all_round_waves[game.current_round]
 	if GlobalVariables.first_time:
@@ -119,6 +126,7 @@ func _house_counting() -> void:
 		for house in group:
 			SoundManager.rising_pop_player.play_rising()
 			await _count_house(house)
+	values_changed.emit()
 	SoundManager.rising_pop_player.reset_pitch()
 	counting_finished.emit(has_finished)
 
@@ -130,4 +138,15 @@ func _count_house(house: House) -> void:
 	await tween.finished
 
 func game_finished() -> void:
-	SceneSwitcher.switch_game_to_win(game)
+	MusicManager.switch_music("WIN")
+	RainLayer.fade_out_rain()
+	GlobalBoat.tween_boat()
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 3.8)
+	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.8)
+	await tween.finished
+	
+	await get_tree().create_timer(0.4).timeout
+	
+	SceneSwitcher.switch_game_to_win()
