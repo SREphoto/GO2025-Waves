@@ -9,6 +9,8 @@ var angry = false
 var attacking = false
 var is_animating = false
 
+var click_count = 0
+
 signal poseidon_pressed
 
 func _ready() -> void:
@@ -28,8 +30,16 @@ func on_grid_size_changed() -> void:
 	tween.tween_property(self, "global_position", target_pos, 0.8)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("left_click"):
-		poseidon_pressed.emit()
+	if event.is_action_pressed("left_click") and not angry:
+		if click_count >= 2:
+			click_count = 0
+			poseidon_pressed.emit()
+		else:
+			SoundManager.voice_manager.poseidon_voice_player.play()
+			angry = true
+			click_count += 1
+			await get_tree().create_timer(1.0).timeout
+			angry = false
 
 func _animate():
 	if attacking:
@@ -37,6 +47,13 @@ func _animate():
 			is_animating = true
 			var attack_anim = "Atk1" if randf() > 0.5 else "Atk2"
 			animated_sprite.play(attack_anim)
+			await animated_sprite.animation_finished
+			is_animating = false
+	elif angry:
+		if not is_animating:
+			is_animating = true
+			var angry_anim = "Angry1" if randf() > 0.5 else "Angry2"
+			animated_sprite.play(angry_anim)
 			await animated_sprite.animation_finished
 			is_animating = false
 	else:

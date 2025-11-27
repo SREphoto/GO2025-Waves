@@ -240,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xte2c")
 }],
-"loop": true,
+"loop": false,
 "name": &"Angry1",
 "speed": 10.0
 }, {
@@ -263,7 +263,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8mi50")
 }],
-"loop": true,
+"loop": false,
 "name": &"Angry2",
 "speed": 10.0
 }, {
@@ -286,7 +286,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hogru")
 }],
-"loop": true,
+"loop": false,
 "name": &"Atk1",
 "speed": 15.0
 }, {
@@ -330,7 +330,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ti0ts")
 }],
-"loop": true,
+"loop": false,
 "name": &"Atk2",
 "speed": 10.0
 }, {
@@ -398,6 +398,7 @@ frame_progress = 0.35849848
 [node name="Poseidon" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -15)
 sprite_frames = SubResource("SpriteFrames_gmd1k")
-animation = &"Angry1"
+animation = &"Angry2"
 autoplay = "Idle"
-frame_progress = 0.7488724
+frame = 5
+frame_progress = 1.0

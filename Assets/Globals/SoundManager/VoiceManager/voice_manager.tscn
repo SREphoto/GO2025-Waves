@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://chifxicclsw5o"]
+[gd_scene load_steps=22 format=3 uid="uid://chifxicclsw5o"]
 
 [ext_resource type="Script" uid="uid://d1w0bc4dcw5jf" path="res://Assets/Globals/SoundManager/VoiceManager/voice_manager.gd" id="1_ks1t5"]
 [ext_resource type="AudioStream" uid="uid://dvdhckqxch125" path="res://Assets/Audio/SFX/voices/voice1.wav" id="1_qhspx"]
@@ -16,6 +16,12 @@
 [ext_resource type="AudioStream" uid="uid://d1r0kc45y731e" path="res://Assets/Audio/SFX/voices/voice9.wav" id="9_d6v8c"]
 [ext_resource type="AudioStream" uid="uid://bbteuo2s4tg0a" path="res://Assets/Audio/SFX/voices/scream.wav" id="10_sxtlo"]
 [ext_resource type="AudioStream" uid="uid://bi7gyi4fe0b1p" path="res://Assets/Audio/SFX/voices/no.wav" id="11_ggt63"]
+[ext_resource type="AudioStream" uid="uid://cane1nm3uefhw" path="res://Assets/Audio/SFX/voices/poseidon/poseidon_voice.wav" id="17_3bduk"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ggt63"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("17_3bduk")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxtlo"]
 random_pitch = 1.1
@@ -50,6 +56,11 @@ stream_5/stream = ExtResource("11_ggt63")
 
 [node name="VoiceManager" type="Node"]
 script = ExtResource("1_ks1t5")
+
+[node name="PoseidonVoicePlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ggt63")
+volume_db = -3.0
+pitch_scale = 1.8
 
 [node name="MayorVoicePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_sxtlo")
