@@ -142,3 +142,41 @@ var dialogue_multi = [
 		"pointer_rotation" : null
 	},
 ]
+
+const dialogue_win = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "happy",
+		"direction" : "right",
+		"text" : "YOU DID IT!",
+		"has_skip" : true,
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "happy",
+		"direction" : "right",
+		"text" : "You defeated Poseidon and saved this town!",
+		"has_skip" : true,
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "angry",
+		"direction" : "right",
+		"text" : "After 50 long years, I finally got my revenge!",
+		"has_skip" : true,
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "happy",
+		"direction" : "right",
+		"text" : "You will be our hero forever!",
+		"has_skip" : true,
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "happy",
+		"direction" : "right",
+		"text" : "And finally: Thanks for playing!",
+		"has_skip" : true,
+	},
+]
