@@ -24,7 +24,7 @@ var bosses_completed_last: int = 0:
 		bosses_completed_max = max(bosses_completed_max, bosses_completed_last)
 var bosses_completed_now: int = 0:
 	set(value):
-		bosses_completed_now = clamp(value, 0, 15)
+		bosses_completed_now = clamp(value, 0, 5)
 
 var rounds_played: int = 0
 
@@ -32,5 +32,5 @@ const GRID_SIZE = 32
 
 var money: int = 0
 
-var first_time: bool = false
-var first_time_multi: bool = false
+var first_time: bool = true
+var first_time_multi: bool = true

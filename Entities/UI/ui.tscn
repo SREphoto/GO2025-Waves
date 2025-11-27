@@ -38,8 +38,10 @@ script = ExtResource("1_irfo3")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="GoalUI" parent="." instance=ExtResource("1_y56jo")]
+mouse_filter = 1
 
 [node name="RoundUI" parent="." instance=ExtResource("3_irfo3")]
+mouse_filter = 1
 
 [node name="TimeRemaining" parent="RoundUI/Sprite2D" index="5"]
 offset_left = -17.799988

@@ -9,7 +9,7 @@ extends Node2D
 @export var game: Game
 @export var clock: Clock
 
-@export var all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
+@export var all_goals: Array[int] 		= [10, 20, 46, 98, 160, 1200]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
 
 @export var hard_mode_all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
@@ -80,6 +80,10 @@ func on_wave_finished() -> void:
 	
 	_prepare_new_wave()
 	
+	if GlobalGameState.last_round:
+		if current_wave >= 3:
+			sand_tile_map_layer.decrease_grid_size()
+	
 	wave_finished.emit()
 
 func _prepare_new_wave():
@@ -110,9 +114,6 @@ func next_game() -> void:
 		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
-	if GlobalGameState.last_round:
-		if current_wave >= 3:
-			sand_tile_map_layer.decrease_grid_size()
 	current_goal = all_goals[game.current_round]
 	remaining_waves = all_round_waves[game.current_round]
 	if GlobalVariables.first_time:

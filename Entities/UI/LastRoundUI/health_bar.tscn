@@ -126,6 +126,7 @@ grow_horizontal = 2
 scale = Vector2(5, 5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 
 [node name="HealthBar" type="TextureProgressBar" parent="Control"]
 layout_mode = 1
