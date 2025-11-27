@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqt5pbsf3ej5o"]
+
+[ext_resource type="Script" uid="uid://ca8t4jpgscgr0" path="res://Entities/DragScreen/drag_screen.gd" id="1_osqbg"]
+
+[node name="DragScreen" type="Node2D"]
+script = ExtResource("1_osqbg")

@@ -376,6 +376,7 @@ texture = ExtResource("41_nuodi")
 position = Vector2(-106.99999, -47.000004)
 
 [node name="Sunshine" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 
 [node name="Light2" type="Sprite2D" parent="Sunshine"]
 position = Vector2(239.835, 0)

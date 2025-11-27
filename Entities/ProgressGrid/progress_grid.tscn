@@ -9,61 +9,32 @@ script = ExtResource("1_4kd3j")
 
 [node name="Grid" type="Sprite2D" parent="."]
 z_index = -2
+position = Vector2(0, -16)
 texture = ExtResource("2_tptyk")
 
 [node name="Stages" type="Node2D" parent="."]
 
 [node name="Stage1" type="Node2D" parent="Stages"]
-position = Vector2(-48, -48)
+position = Vector2(-80, -16)
 
 [node name="Stage2" type="Node2D" parent="Stages"]
-position = Vector2(-16, -48)
+position = Vector2(-48, -16)
 
 [node name="Stage3" type="Node2D" parent="Stages"]
-position = Vector2(16, -48)
+position = Vector2(-16, -16)
 
 [node name="Stage4" type="Node2D" parent="Stages"]
-position = Vector2(48, -48)
+position = Vector2(16, -16)
 
 [node name="Stage5" type="Node2D" parent="Stages"]
 position = Vector2(48, -16)
 
 [node name="Stage6" type="Node2D" parent="Stages"]
-position = Vector2(16, -16)
-
-[node name="Stage7" type="Node2D" parent="Stages"]
-position = Vector2(-16, -16)
-
-[node name="Stage8" type="Node2D" parent="Stages"]
-position = Vector2(-48, -16)
-
-[node name="Stage9" type="Node2D" parent="Stages"]
-position = Vector2(-48, 16)
-
-[node name="Stage10" type="Node2D" parent="Stages"]
-position = Vector2(-16, 16)
-
-[node name="Stage11" type="Node2D" parent="Stages"]
-position = Vector2(16, 16)
-
-[node name="Stage12" type="Node2D" parent="Stages"]
-position = Vector2(48, 16)
-
-[node name="Stage13" type="Node2D" parent="Stages"]
-position = Vector2(48, 48)
-
-[node name="Stage14" type="Node2D" parent="Stages"]
-position = Vector2(16, 48)
-
-[node name="Stage15" type="Node2D" parent="Stages"]
-position = Vector2(-16, 48)
-
-[node name="Stage16" type="Node2D" parent="Stages"]
-position = Vector2(-48, 48)
+position = Vector2(80, -16)
 
 [node name="Statue" type="StaticBody2D" parent="." groups=["navigation"]]
 y_sort_enabled = true
-position = Vector2(-48, -48)
+position = Vector2(-80, -16)
 
 [node name="Sprite" type="Node2D" parent="Statue"]
 position = Vector2(0, 4)

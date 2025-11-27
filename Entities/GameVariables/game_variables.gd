@@ -8,8 +8,8 @@ extends Node2D
 @export var game: Game
 @export var clock: Clock
 
-@export var all_goals: Array[int] 		= [10, 20, 46, 98, 190, 300, 1200, 600, 800, 1000, 2000, 4000, 8000, 16000, 32000, 69000]
-@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+@export var all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
+@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
 
 @export var wave_time : int = 180:
 	set(value):
@@ -103,6 +103,7 @@ func next_game() -> void:
 	has_finished = false
 	if game.current_round == (game.last_round + 1):
 		game_finished()
+		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
 	current_goal = all_goals[game.current_round]
@@ -129,4 +130,4 @@ func _count_house(house: House) -> void:
 	await tween.finished
 
 func game_finished() -> void:
-	print("Game Won")
+	SceneSwitcher.switch_game_to_win(game)

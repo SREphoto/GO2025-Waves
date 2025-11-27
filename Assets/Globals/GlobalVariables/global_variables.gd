@@ -14,6 +14,9 @@ const HOUSE_ARRAY_RES_THREE = preload("uid://ccydnracsqhx3")
 const HOUSE_ARRAY_RES_FOUR = preload("uid://4ifk5bscputi")
 const HOUSE_ARRAY_RES_MULTI = preload("uid://tdk2guk68owq")
 
+var hard_mode_unlocked: bool = false
+var hard_mode: bool = false
+
 var bosses_completed_max: int = 0
 var bosses_completed_last: int = 0:
 	set(value):
@@ -29,5 +32,5 @@ const GRID_SIZE = 32
 
 var money: int = 0
 
-var first_time: bool = true
-var first_time_multi: bool = true
+var first_time: bool = false
+var first_time_multi: bool = false

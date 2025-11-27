@@ -7,14 +7,22 @@ extends Node2D
 @onready var speech_bubble: SpeechBubble = $CanvasLayer/Control/SpeechBubble
 @onready var tutorial_dialogue: Node = $TutorialDialogue
 
+@onready var follow_camera: FollowCamera = $FollowCamera
+@onready var drag_screen: DragScreen = $DragScreen
+
 var running = false
 
 func _ready() -> void:
 	MusicManager.switch_music("WIN")
+	drag_screen.dragged.connect(_on_screen_dragged)
+	GlobalVariables.hard_mode_unlocked = true
 	hide_flags()
 	mayor.reset()
 	await get_tree().create_timer(1.0).timeout
 	dialogue_loop_tut(tutorial_dialogue.dialogue_win)
+
+func _on_screen_dragged() -> void:
+	follow_camera.move_camera_win_to_home()
 
 func hide_flags():
 	for house : House in houses.get_children():

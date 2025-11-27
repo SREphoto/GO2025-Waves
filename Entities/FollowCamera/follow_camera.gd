@@ -9,9 +9,9 @@ var style: STYLE
 var follow_object: House
 var object_pos: Vector2
 
-var std_rotation: float = deg_to_rad(-5)
-var std_pos: Vector2 = Vector2(0.0, -16.0)
-var std_zoom: Vector2 = Vector2(5.625, 5.625)
+@export var std_rotation: float = -5
+@export var std_pos: Vector2 = Vector2(0.0, -16.0)
+@export var std_zoom: Vector2 = Vector2(5.625, 5.625)
 
 func _ready() -> void:
 	if selector:
@@ -41,7 +41,7 @@ func move_to_home() -> void:
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", std_pos, 0.5)
-	tween.parallel().tween_property(self, "rotation", std_rotation, 0.5)
+	tween.parallel().tween_property(self, "rotation", deg_to_rad(std_rotation), 0.5)
 	tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)
 	await tween.finished
 
@@ -49,7 +49,16 @@ func move_camera_end_to_home() -> void:
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", Vector2(640.0, 0), 0.5)
-	tween.parallel().tween_property(self, "rotation", std_rotation, 0.5)
+	tween.parallel().tween_property(self, "rotation", deg_to_rad(std_rotation), 0.5)
+	await tween.finished
+	
+	GlobalGameState.state = GlobalGameState.STATES.START
+
+func move_camera_win_to_home() -> void:
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", Vector2(640.0, 0), 0.5)
+	tween.parallel().tween_property(self, "rotation", deg_to_rad(std_rotation), 0.5)
 	await tween.finished
 	
 	GlobalGameState.state = GlobalGameState.STATES.START
@@ -61,6 +70,7 @@ func move_camera(object: GridObject) -> void:
 			tween.set_ease(Tween.EASE_OUT)
 			tween.tween_property(self, "position", Vector2(640.0, 0), 0.5)
 			tween.parallel().tween_property(self, "rotation", 0, 0.5)
+			tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)
 			await tween.finished
 			
 			SceneSwitcher.switch_home_to_game()
@@ -76,7 +86,7 @@ func move_camera(object: GridObject) -> void:
 		"house_back":
 			var tween: Tween = create_tween()
 			tween.tween_property(self, "position",std_pos, 0.5)
-			tween.parallel().tween_property(self, "rotation", std_rotation, 0.5)
+			tween.parallel().tween_property(self, "rotation", deg_to_rad(std_rotation), 0.5)
 			tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)
 			MusicManager.switch_music("START")
 		_:

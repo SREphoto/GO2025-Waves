@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://ctnqj58d24fjc"]
+[gd_scene load_steps=15 format=4 uid="uid://ctnqj58d24fjc"]
 
 [ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://Entities/LittleGuy/little_guy.tscn" id="2_1htgg"]
 [ext_resource type="PackedScene" uid="uid://cv74d6obju0wx" path="res://Stages/Tileset/Water/water_tile_map_layer.tscn" id="2_3y6ud"]
+[ext_resource type="Texture2D" uid="uid://bhpl7uar2nf4r" path="res://Stages/EndScreen/Assets/AnnotationsEnd.png" id="2_g3c68"]
 [ext_resource type="PackedScene" uid="uid://d3vmmpugqdyin" path="res://Entities/Selector/selector.tscn" id="3_kcas4"]
 [ext_resource type="PackedScene" uid="uid://cj8uwejgc6yoe" path="res://Entities/HouseManager/special_house_manager.tscn" id="3_ri5hi"]
 [ext_resource type="PackedScene" uid="uid://c3mdjuay2rie0" path="res://Stages/Tileset/Sand/sand_tile_map_layer.tscn" id="3_yjoqm"]
@@ -10,11 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://n70ob341vmaw" path="res://Assets/Globals/RainLayer/rain_layer.tscn" id="5_kcas4"]
 [ext_resource type="PackedScene" uid="uid://igm3fwboac6v" path="res://Entities/ProgressGrid/progress_grid.tscn" id="6_fn33l"]
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="7_0uold"]
+[ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="12_sqbnp"]
+[ext_resource type="PackedScene" uid="uid://dqt5pbsf3ej5o" path="res://Entities/DragScreen/drag_screen.tscn" id="13_koukn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
-vertices = PackedVector2Array(62, 62, -62, 62, -62, -62, 62, -62)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)])
+vertices = PackedVector2Array(-90.828125, -25, -93.32031, -22.5, -93.02344, -62, -93.97656, 62, -93.421875, -9.59375, -90.828125, -7, 94, -62, -69.171875, -25, -66, -21.828125, 94, 62, -66, -10.171875, -69.171875, -7)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 2, 6, 7), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(10, 8, 9), PackedInt32Array(10, 9, 3, 11), PackedInt32Array(11, 3, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-95, -64, -96, 64, 96, 64, 96, -64)])
 source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
 agent_radius = 2.0
@@ -23,15 +26,21 @@ agent_radius = 2.0
 y_sort_enabled = true
 script = ExtResource("1_wuj7j")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." node_paths=PackedStringArray("progress_grid")]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_wuj7j")
+script = ExtResource("4_03p1f")
+progress_grid = NodePath("../ProgressGrid")
+
+[node name="Annotations" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_g3c68")
+
 [node name="WaterTileMapLayer2" parent="." instance=ExtResource("2_3y6ud")]
 tile_map_data = PackedByteArray("AAACAP7/AAAAAAMAAAACAP//AAAAAAMAAAACAAAAAAAAAAMAAAACAAEAAAAAAAMAAAADAP7/AAAAAAMAAAADAP//AAAAAAMAAAADAAAAAAAAAAMAAAADAAEAAAAAAAMAAAAEAP7/AAAAAAMAAAAEAP//AAAAAAMAAAAEAAAAAAAAAAMAAAAEAAEAAAAAAAMAAAAFAP7/AAAAAAMAAAAFAP//AAAAAAMAAAAFAAAAAAAAAAMAAAAFAAEAAAAAAAMAAAAGAP7/AAAAAAMAAAAGAP//AAAAAAMAAAAGAAAAAAAAAAMAAAAGAAEAAAAAAAMAAAAHAP7/AAAAAAMAAAAHAP//AAAAAAMAAAAHAAAAAAAAAAMAAAAHAAEAAAAAAAMAAAAIAP7/AAAAAAMAAAAIAP//AAAAAAMAAAAIAAAAAAAAAAMAAAAIAAEAAAAAAAMAAAAJAP7/AAAAAAMAAAAJAP//AAAAAAMAAAAJAAAAAAAAAAMAAAAJAAEAAAAAAAMAAAAKAP7/AAAAAAMAAAAKAP//AAAAAAMAAAAKAAAAAAAAAAMAAAAKAAEAAAAAAAMAAAALAP7/AAAAAAMAAAALAP//AAAAAAMAAAALAAAAAAAAAAMAAAALAAEAAAAAAAMAAAAMAP7/AAAAAAMAAAAMAP//AAAAAAMAAAAMAAAAAAAAAAMAAAAMAAEAAAAAAAMAAAANAP7/AAAAAAMAAAANAP//AAAAAAMAAAANAAAAAAAAAAMAAAANAAEAAAAAAAMAAAAOAP7/AAAAAAMAAAAOAP//AAAAAAMAAAAOAAAAAAAAAAMAAAAOAAEAAAAAAAMAAAAPAP7/AAAAAAMAAAAPAP//AAAAAAMAAAAPAAAAAAAAAAMAAAAPAAEAAAAAAAMAAAAQAP7/AAAAAAMAAAAQAP//AAAAAAMAAAAQAAAAAAAAAAMAAAAQAAEAAAAAAAMAAAD+//7/AAAAAAMAAAD+////AAAAAAMAAAD+/wAAAAAAAAMAAAD+/wEAAAAAAAMAAAD///7/AAAAAAMAAAD/////AAAAAAMAAAD//wAAAAAAAAMAAAD//wEAAAAAAAMAAAAAAP7/AAAAAAMAAAAAAP//AAAAAAMAAAAAAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAABAP7/AAAAAAMAAAABAP//AAAAAAMAAAABAAAAAAAAAAMAAAABAAEAAAAAAAMAAAARAP7/AAAAAAMAAAARAP//AAAAAAMAAAARAAAAAAAAAAMAAAARAAEAAAAAAAMAAAASAP7/AAAAAAMAAAASAP//AAAAAAMAAAASAAAAAAAAAAMAAAASAAEAAAAAAAMAAAATAP7/AAAAAAMAAAATAP//AAAAAAMAAAATAAAAAAAAAAMAAAATAAEAAAAAAAMAAAACAPz/AAAAAAMAAAACAP3/AAAAAAMAAAACAAIAAAAAAAMAAAACAAMAAAAAAAMAAAADAPz/AAAAAAMAAAADAP3/AAAAAAMAAAADAAIAAAAAAAMAAAADAAMAAAAAAAMAAAAEAPz/AAAAAAMAAAAEAP3/AAAAAAMAAAAEAAIAAAAAAAMAAAAEAAMAAAAAAAMAAAAFAPz/AAAAAAMAAAAFAP3/AAAAAAMAAAAFAAIAAAAAAAMAAAAFAAMAAAAAAAMAAAAGAPz/AAAAAAMAAAAGAP3/AAAAAAMAAAAGAAIAAAAAAAMAAAAGAAMAAAAAAAMAAAAHAPz/AAAAAAMAAAAHAP3/AAAAAAMAAAAHAAIAAAAAAAMAAAAHAAMAAAAAAAMAAAAIAPz/AAAAAAMAAAAIAP3/AAAAAAMAAAAIAAIAAAAAAAMAAAAIAAMAAAAAAAMAAAAJAPz/AAAAAAMAAAAJAP3/AAAAAAMAAAAJAAIAAAAAAAMAAAAJAAMAAAAAAAMAAAAKAPz/AAAAAAMAAAAKAP3/AAAAAAMAAAAKAAIAAAAAAAMAAAAKAAMAAAAAAAMAAAALAPz/AAAAAAMAAAALAP3/AAAAAAMAAAALAAIAAAAAAAMAAAALAAMAAAAAAAMAAAAMAPz/AAAAAAMAAAAMAP3/AAAAAAMAAAAMAAIAAAAAAAMAAAAMAAMAAAAAAAMAAAANAPz/AAAAAAMAAAANAP3/AAAAAAMAAAANAAIAAAAAAAMAAAANAAMAAAAAAAMAAAAOAPz/AAAAAAMAAAAOAP3/AAAAAAMAAAAOAAIAAAAAAAMAAAAOAAMAAAAAAAMAAAAPAPz/AAAAAAMAAAAPAP3/AAAAAAMAAAAPAAIAAAAAAAMAAAAPAAMAAAAAAAMAAAAQAPz/AAAAAAMAAAAQAP3/AAAAAAMAAAAQAAIAAAAAAAMAAAAQAAMAAAAAAAMAAAARAPz/AAAAAAMAAAARAP3/AAAAAAMAAAARAAIAAAAAAAMAAAARAAMAAAAAAAMAAAASAPz/AAAAAAMAAAASAP3/AAAAAAMAAAASAAIAAAAAAAMAAAASAAMAAAAAAAMAAAATAPz/AAAAAAMAAAATAP3/AAAAAAMAAAATAAIAAAAAAAMAAAATAAMAAAAAAAMAAAAUAPz/AAAAAAMAAAAUAP3/AAAAAAMAAAAUAP7/AAAAAAMAAAAUAP//AAAAAAMAAAAUAAAAAAAAAAMAAAAUAAEAAAAAAAMAAAAUAAIAAAAAAAMAAAAUAAMAAAAAAAMAAAAVAPz/AAAAAAMAAAAVAP3/AAAAAAMAAAAVAP7/AAAAAAMAAAAVAP//AAAAAAMAAAAVAAAAAAAAAAMAAAAVAAEAAAAAAAMAAAAVAAIAAAAAAAMAAAAVAAMAAAAAAAMAAAAWAPz/AAAAAAMAAAAWAP3/AAAAAAMAAAAWAP7/AAAAAAMAAAAWAP//AAAAAAMAAAAWAAAAAAAAAAMAAAAWAAEAAAAAAAMAAAAWAAIAAAAAAAMAAAAWAAMAAAAAAAMAAAAXAPz/AAAAAAMAAAAXAP3/AAAAAAMAAAAXAP7/AAAAAAMAAAAXAP//AAAAAAMAAAAXAAAAAAAAAAMAAAAXAAEAAAAAAAMAAAAXAAIAAAAAAAMAAAAXAAMAAAAAAAMAAAAYAPz/AAAAAAMAAAAYAP3/AAAAAAMAAAAYAP7/AAAAAAMAAAAYAP//AAAAAAMAAAAYAAAAAAAAAAMAAAAYAAEAAAAAAAMAAAAYAAIAAAAAAAMAAAAYAAMAAAAAAAMAAAAZAPz/AAAAAAMAAAAZAP3/AAAAAAMAAAAZAP7/AAAAAAMAAAAZAP//AAAAAAMAAAAZAAAAAAAAAAMAAAAZAAEAAAAAAAMAAAAZAAIAAAAAAAMAAAAZAAMAAAAAAAMAAAAaAPz/AAAAAAMAAAAaAP3/AAAAAAMAAAAaAP7/AAAAAAMAAAAaAP//AAAAAAMAAAAaAAAAAAAAAAMAAAAaAAEAAAAAAAMAAAAaAAIAAAAAAAMAAAAaAAMAAAAAAAMAAAAbAPz/AAAAAAMAAAAbAP3/AAAAAAMAAAAbAP7/AAAAAAMAAAAbAP//AAAAAAMAAAAbAAAAAAAAAAMAAAAbAAEAAAAAAAMAAAAbAAIAAAAAAAMAAAAbAAMAAAAAAAMAAAD6//r/AAAAAAMAAAD6//v/AAAAAAMAAAD6//z/AAAAAAMAAAD6//3/AAAAAAMAAAD6//7/AAAAAAMAAAD6////AAAAAAMAAAD6/wAAAAAAAAMAAAD6/wEAAAAAAAMAAAD6/wIAAAAAAAMAAAD6/wMAAAAAAAMAAAD6/wQAAAAAAAMAAAD7//r/AAAAAAMAAAD7//v/AAAAAAMAAAD7//z/AAAAAAMAAAD7//3/AAAAAAMAAAD7//7/AAAAAAMAAAD7////AAAAAAMAAAD7/wAAAAAAAAMAAAD7/wEAAAAAAAMAAAD7/wIAAAAAAAMAAAD7/wMAAAAAAAMAAAD7/wQAAAAAAAMAAAD8//r/AAAAAAMAAAD8//v/AAAAAAMAAAD8//z/AAAAAAMAAAD8//3/AAAAAAMAAAD8//7/AAAAAAMAAAD8////AAAAAAMAAAD8/wAAAAAAAAMAAAD8/wEAAAAAAAMAAAD8/wIAAAAAAAMAAAD8/wMAAAAAAAMAAAD8/wQAAAAAAAMAAAD9//r/AAAAAAMAAAD9//v/AAAAAAMAAAD9//z/AAAAAAMAAAD9//3/AAAAAAMAAAD9//7/AAAAAAMAAAD9////AAAAAAMAAAD9/wAAAAAAAAMAAAD9/wEAAAAAAAMAAAD9/wIAAAAAAAMAAAD9/wMAAAAAAAMAAAD9/wQAAAAAAAMAAAD+//r/AAAAAAMAAAD+//v/AAAAAAMAAAD+//z/AAAAAAMAAAD+//3/AAAAAAMAAAD+/wIAAAAAAAMAAAD+/wMAAAAAAAMAAAD+/wQAAAAAAAMAAAD///r/AAAAAAMAAAD///v/AAAAAAMAAAD///z/AAAAAAMAAAD///3/AAAAAAMAAAD//wIAAAAAAAMAAAD//wMAAAAAAAMAAAD//wQAAAAAAAMAAAAAAPr/AAAAAAMAAAAAAPv/AAAAAAMAAAAAAPz/AAAAAAMAAAAAAP3/AAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAABAPr/AAAAAAMAAAABAPv/AAAAAAMAAAABAPz/AAAAAAMAAAABAP3/AAAAAAMAAAABAAIAAAAAAAMAAAABAAMAAAAAAAMAAAABAAQAAAAAAAMAAAACAPr/AAAAAAMAAAACAPv/AAAAAAMAAAACAAQAAAAAAAMAAAADAPr/AAAAAAMAAAADAPv/AAAAAAMAAAADAAQAAAAAAAMAAAAEAPr/AAAAAAMAAAAEAPv/AAAAAAMAAAAEAAQAAAAAAAMAAAAFAPr/AAAAAAMAAAAFAPv/AAAAAAMAAAAFAAQAAAAAAAMAAAA=")
 
 [node name="SandTileMapLayer" parent="." instance=ExtResource("3_yjoqm")]
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." node_paths=PackedStringArray("progress_grid")]
-navigation_polygon = SubResource("NavigationPolygon_wuj7j")
-script = ExtResource("4_03p1f")
-progress_grid = NodePath("../ProgressGrid")
+tile_map_data = PackedByteArray("AAD/////AAABAAMAAAD//wAAAAABAAMAAAAAAP//AAABAAEAAAAAAAAAAAABAAEAAAD9////AAABAAMAAAD9/wAAAAABAAEAAAD+////AAABAAMAAAD+/wAAAAABAAEAAAABAP//AAABAAMAAAABAAAAAAABAAEAAAACAP//AAABAAMAAAACAAAAAAABAAEAAAD9//3/AAABAAAAAAD9//7/AAABAAMAAAD9/wEAAAABAAEAAAD9/wIAAAABAAIAAAD+//3/AAABAAAAAAD+//7/AAABAAMAAAD+/wEAAAABAAMAAAD+/wIAAAABAAIAAAD///3/AAABAAAAAAD///7/AAABAAMAAAD//wEAAAABAAMAAAD//wIAAAABAAIAAAAAAP3/AAABAAAAAAAAAP7/AAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAP3/AAABAAAAAAABAP7/AAABAAMAAAABAAEAAAABAAMAAAABAAIAAAABAAIAAAACAP3/AAABAAAAAAACAP7/AAABAAEAAAACAAEAAAABAAMAAAACAAIAAAABAAIAAAADAP3/AAACAAAAAAD8/wIAAAAAAAIAAAD8/wEAAAAAAAEAAAD8/wAAAAAAAAEAAAD8////AAAAAAEAAAD8//7/AAAAAAEAAAD8//3/AAAAAAAAAAADAAIAAAACAAIAAAADAAEAAAACAAEAAAADAAAAAAACAAEAAAADAP//AAACAAEAAAADAP7/AAACAAEAAAA=")
 
 [node name="SpecialHouseManager" parent="." instance=ExtResource("3_ri5hi")]
 
@@ -51,3 +60,95 @@ y_sort_enabled = true
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("selector") instance=ExtResource("7_0uold")]
 rotation = 0.0
 selector = NodePath("../Selector")
+std_rotation = 0.0
+std_pos = Vector2(0, 0)
+
+[node name="M" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(192, 128)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="M"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="H" type="HBoxContainer" parent="M/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="YouLost" type="Label" parent="M/Control/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.8
+theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
+theme_override_fonts/font = ExtResource("12_sqbnp")
+theme_override_font_sizes/font_size = 16
+text = "You Lost..."
+horizontal_alignment = 2
+
+[node name="ForNow" type="Label" parent="M/Control/H"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
+theme_override_fonts/font = ExtResource("12_sqbnp")
+theme_override_font_sizes/font_size = 8
+text = "for now"
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="M"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 6
+
+[node name="H" type="HBoxContainer" parent="M/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Score" type="Label" parent="M/MarginContainer/H"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
+theme_override_fonts/font = ExtResource("12_sqbnp")
+theme_override_font_sizes/font_size = 8
+text = "SCORE:
+67"
+horizontal_alignment = 1
+
+[node name="Highscore" type="Label" parent="M/MarginContainer/H"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
+theme_override_fonts/font = ExtResource("12_sqbnp")
+theme_override_font_sizes/font_size = 8
+text = "HIGHSCORE:
+67"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="M/MarginContainer/H"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
+theme_override_fonts/font = ExtResource("12_sqbnp")
+theme_override_font_sizes/font_size = 8
+text = "TIME:
+67"
+horizontal_alignment = 1
+
+[node name="DragScreen" parent="." instance=ExtResource("13_koukn")]

@@ -3,6 +3,8 @@ extends Node2D
 
 @onready var follow_camera: FollowCamera = $FollowCamera
 
+@onready var sunshine: Node2D = $Sunshine
+
 func _ready() -> void:
 	if GlobalVariables.first_time:
 		follow_camera.rotation = 0
@@ -12,3 +14,6 @@ func _ready() -> void:
 	else:
 		follow_camera.position.x = -384.0
 	follow_camera.move_to_home()
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(sunshine, "modulate", Color(1,1,1,1), 0.5)
