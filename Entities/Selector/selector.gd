@@ -44,6 +44,6 @@ func select(grid_object: GridObject):
 
 func deselect(grid_object: GridObject):
 	grid_object.deselect()
-	object_deselected.emit(grid_object)
 	if object_mover:
 		object_mover.object_deselected()
+	object_deselected.emit(grid_object)

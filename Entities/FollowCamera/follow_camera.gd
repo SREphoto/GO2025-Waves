@@ -19,9 +19,13 @@ func _ready() -> void:
 		selector.object_deselected.connect(on_object_deselected)
 
 func on_object_selected(object: GridObject) -> void:
-	object_pos = object.position
+	if not follow_object:
+		follow_object = object
+		object_pos = object.position
 
 func on_object_deselected(object: GridObject) -> void:
+	if object != follow_object:
+		return
 	await get_tree().process_frame
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -31,6 +35,7 @@ func on_object_deselected(object: GridObject) -> void:
 	await get_tree().create_timer(.25).timeout
 	
 	object.position = object_pos
+	follow_object = null
 
 func move_to_home() -> void:
 	var tween: Tween = create_tween()
