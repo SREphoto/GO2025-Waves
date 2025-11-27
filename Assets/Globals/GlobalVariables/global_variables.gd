@@ -23,6 +23,8 @@ var bosses_completed_now: int = 0:
 	set(value):
 		bosses_completed_now = clamp(value, 0, 15)
 
+var rounds_played: int = 0
+
 const GRID_SIZE = 32
 
 var money: int = 0

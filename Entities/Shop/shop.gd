@@ -12,12 +12,17 @@ extends CanvasLayer
 
 var active = true
 
+var multi_weights: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 1])
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 signal shop_entered
 signal shopping_done(house_res: HouseRescource)
 
 func _ready() -> void:
-	#enter()
-	pass
+	#Plus house more likely
+	if GlobalVariables.rounds_played > 0:
+		multi_weights[3] = GlobalVariables.rounds_played * 4
 
 func enter() -> void:
 	SoundManager.slot_audio_manager.play_slot_loop()
@@ -34,9 +39,12 @@ func exit() -> void:
 
 func _rand_houses() -> void:
 	# select a random special house
-	var rand_res_arr: Array[HouseRescource] = GlobalVariables.owned_multi_houses_array.duplicate_deep()
-	rand_res_arr.shuffle()
-	var rand_res: HouseRescource = rand_res_arr.pop_back()
+	var rand_res_arr: Array[HouseRescource] = GlobalVariables.owned_multi_houses_array.duplicate()
+	var rand_index : int = rng.rand_weighted(multi_weights)
+	for i in multi_weights.size():
+		if i != rand_index:
+			multi_weights[i] *= 2
+	var rand_res : HouseRescource = rand_res_arr[rand_index]
 	
 	for roll in house_rolls:
 		await get_tree().create_timer(0.5).timeout

@@ -11,8 +11,6 @@ extends CanvasLayer
 @onready var health_after_attack_bar: TextureProgressBar = $Control/HealthAfterAttackBar
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
-signal start_wave
-
 func connect_signal() -> void:
 	game_variables.connect("values_changed", refresh)
 

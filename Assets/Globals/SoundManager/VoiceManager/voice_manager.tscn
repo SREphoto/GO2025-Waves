@@ -61,11 +61,13 @@ script = ExtResource("1_ks1t5")
 stream = SubResource("AudioStreamRandomizer_ggt63")
 volume_db = -3.0
 pitch_scale = 1.8
+bus = &"Effects"
 
 [node name="MayorVoicePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_sxtlo")
-volume_db = 1.677
+volume_db = 5.0
 pitch_scale = 0.96
+bus = &"Effects"
 
 [node name="NormalVoicePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_bgu05")

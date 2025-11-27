@@ -16,6 +16,7 @@ var pressable: bool = false
 var mouse_pressed_pos: Vector2 = Vector2.INF
 
 func _ready() -> void:
+	GlobalVariables.rounds_played += 1
 	progress_grid.movement_done.connect(on_movement_done)
 
 func on_movement_done() -> void:
