@@ -10,6 +10,7 @@ extends Node2D
 var running = false
 
 func _ready() -> void:
+	MusicManager.switch_music("WIN")
 	hide_flags()
 	mayor.reset()
 	await get_tree().create_timer(1.0).timeout

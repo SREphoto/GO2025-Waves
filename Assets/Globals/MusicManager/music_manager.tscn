@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp3e7502x8fav"]
+[gd_scene load_steps=10 format=3 uid="uid://dp3e7502x8fav"]
 
 [ext_resource type="Script" uid="uid://bj5kjogayml4c" path="res://Assets/Globals/MusicManager/music_manager.gd" id="1_oijki"]
 [ext_resource type="AudioStream" uid="uid://dg6wfemir1nk2" path="res://Assets/Audio/Music/Tracks/MenuTrack.ogg" id="2_joeqp"]
@@ -7,9 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://bqrg4qomox30v" path="res://Assets/Audio/Music/Tracks/EndTrack.ogg" id="5_iou0w"]
 [ext_resource type="AudioStream" uid="uid://cqnv7apgq1js7" path="res://Assets/Audio/Music/Tracks/ShopTrack2.ogg" id="5_wx0e2"]
 [ext_resource type="AudioStream" uid="uid://c15te1epxvnut" path="res://Assets/Audio/Music/Tracks/LastRoundTrack.ogg" id="7_ei44j"]
+[ext_resource type="AudioStream" uid="uid://bc6vca3kkd1cd" path="res://Assets/Audio/Music/Tracks/WinTrack.ogg" id="8_iou0w"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_oijki"]
-clip_count = 6
+clip_count = 7
 clip_0/name = &"START"
 clip_0/stream = ExtResource("2_joeqp")
 clip_0/auto_advance = 0
@@ -28,6 +29,9 @@ clip_4/auto_advance = 0
 clip_5/name = &"ENDGAME"
 clip_5/stream = ExtResource("7_ei44j")
 clip_5/auto_advance = 0
+clip_6/name = &"WIN"
+clip_6/stream = ExtResource("8_iou0w")
+clip_6/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 1.0,
@@ -47,13 +51,31 @@ Vector2i(-1, 5): {
 "from_time": 0,
 "to_time": 1
 },
+Vector2i(-1, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
 Vector2i(0, 2): {
 "fade_beats": 1.0,
 "fade_mode": 4,
 "from_time": 0,
 "to_time": 1
 },
+Vector2i(0, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
 Vector2i(1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 6): {
 "fade_beats": 1.0,
 "fade_mode": 4,
 "from_time": 0,
@@ -71,6 +93,12 @@ Vector2i(2, 2): {
 "from_time": 0,
 "to_time": 1
 },
+Vector2i(2, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
 Vector2i(3, 2): {
 "fade_beats": 1.0,
 "fade_mode": 4,
@@ -83,7 +111,31 @@ Vector2i(3, 5): {
 "from_time": 0,
 "to_time": 1
 },
+Vector2i(3, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
 Vector2i(4, 2): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 6): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(6, 6): {
 "fade_beats": 1.0,
 "fade_mode": 4,
 "from_time": 0,
