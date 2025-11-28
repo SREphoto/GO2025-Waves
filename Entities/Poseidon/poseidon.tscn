@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://doafnko7l7prt" path="res://Entities/Poseidon/poseidon.gd" id="1_ku88i"]
 [ext_resource type="Texture2D" uid="uid://blcenqkl2n1wu" path="res://Entities/Poseidon/Turtle.png" id="2_3hu1p"]
-[ext_resource type="SpriteFrames" uid="uid://ctcb50xf5brer" path="res://Entities/Poseidon/poseidon_frames.tres" id="3_hmqgx"]
+[ext_resource type="SpriteFrames" uid="uid://dmqdmw07352g5" path="res://Entities/Poseidon/poseidon_frames.tres" id="3_hmqgx"]
 [ext_resource type="PackedScene" uid="uid://f3vy1pxarxxl" path="res://Entities/Explosion/explosion.tscn" id="4_hmqgx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hu1p"]
@@ -89,7 +89,7 @@ frame_progress = 0.35849848
 [node name="Poseidon" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -15)
 sprite_frames = ExtResource("3_hmqgx")
-animation = &"Angry1"
+animation = &"Angry2"
 autoplay = "Idle"
 
 [node name="Explosion" parent="." instance=ExtResource("4_hmqgx")]

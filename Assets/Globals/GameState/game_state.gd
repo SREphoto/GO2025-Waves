@@ -11,7 +11,7 @@ var last_round = false
 
 func _on_state_changed(value) -> void:
 	state = value
-	if last_round:
+	if last_round or GlobalVariables.hard_mode:
 		_change_state_last_round()
 	else:
 		_change_state_normal()
@@ -28,15 +28,15 @@ func _change_state_last_round() -> void:
 			MusicManager.ambience_player.play()
 			MusicManager.switch_music("ENDGAME")
 			MusicManager.switch_ambience("RAIN")
-			RainLayer.fade_in_rain()
+			RainLayer.fade_in_rain(200)
 		STATES.WAVE:
 			MusicManager.ambience_player.play()
 			MusicManager.switch_music("ENDGAME")
 			MusicManager.switch_ambience("THUNDER")
-			RainLayer.fade_in_rain()
+			RainLayer.fade_in_rain(200)
 		STATES.SHOP: # not possible in last round -> change to won (!?!)
 			MusicManager.ambience_player.stop()
-			MusicManager.switch_music("SHOP")
+			MusicManager.switch_music("ENDGAME")
 			MusicManager.switch_ambience("RAIN")
 		STATES.GAMEOVER:
 			MusicManager.ambience_player.stop()

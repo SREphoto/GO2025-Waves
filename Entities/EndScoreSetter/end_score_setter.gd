@@ -6,4 +6,6 @@ extends Node2D
 @export var time: Label
 
 func _ready() -> void:
-	score.text = "SCORE:\n" + str(GlobalVariables.moves_this_run)
+	score.text = "MOVES:\n" + str(GlobalVariables.moves_this_run)
+	highscore.text = "SCORE:\n" + str(GlobalVariables.moves_this_run)
+	time.text = "TIME:\n" + str(GlobalVariables.moves_this_run)

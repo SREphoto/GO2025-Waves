@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var houses: Node2D = $GridObjects/Houses
+@onready var cage: AnimatedSprite2D = $GridObjects/Cage
 
 @onready var click_catching_rect: ColorRect = $CanvasLayer/ClickCatchingRect
 @onready var mayor: MayorIcon = $CanvasLayer/Control/Mayor
@@ -27,6 +28,7 @@ func _ready() -> void:
 	mayor.reset()
 	if GlobalVariables.hard_mode:
 		youdidit.text = "You defeated Mayor Mini Man and saved Tidal Town from a serious gambling addiction!"
+		cage.play("mayor")
 		await follow_camera.move_to_win()
 		drag_screen.pressable = true
 	else:

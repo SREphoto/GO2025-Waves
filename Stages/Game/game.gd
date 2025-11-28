@@ -37,6 +37,8 @@ const last_round: int = 1
 var start_wave_active: bool = false
 
 func _ready() -> void:
+	if GlobalVariables.hard_mode:
+		set_hard_mode()
 	GlobalVariables.moves_this_run = 0
 	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
@@ -178,3 +180,8 @@ func get_water() -> WaterTileMapLayer:
 
 func get_nav_region() -> NavigationRegion:
 	return find_child("NavigationRegion")
+
+func set_hard_mode():
+	poseidon.animated_sprite.sprite_frames = preload("uid://dedfujj3y2b1s")
+	ui.king.play("mayor")
+	ui.king_fg.texture = preload("uid://xf4wvf2ff1cr")

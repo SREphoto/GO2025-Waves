@@ -168,6 +168,31 @@ const dialogue_boss = [
 	}
 ]
 
+const dialogue_hard_mode = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "angry",
+		"direction" : "right",
+		"text" : "Yes, that's right! I was the bad guy all along!",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : null,
+		"pointer_rotation" : null
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "angry",
+		"direction" : "right",
+		"text" : "Eat sand, boy...",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : null,
+		"pointer_rotation" : null
+	}
+]
+
 const dialogue_win = [
 	{
 		"speaker" : "Mayor",

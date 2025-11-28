@@ -13,6 +13,8 @@ extends CanvasLayer
 @onready var time_remaining: Label = $RoundUI/Sprite2D/TimeRemaining
 @onready var round_tracker: Sprite2D = $RoundUI/Sprite2D/RoundTracker
 
+@onready var king: AnimatedSprite2D = $GoalUI/BG/King
+@onready var king_fg: Sprite2D = $GoalUI/BG/King/KingFg
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 

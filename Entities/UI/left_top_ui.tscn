@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc65yqhwpcwxr"]
+[gd_scene load_steps=20 format=3 uid="uid://dc65yqhwpcwxr"]
 
 [ext_resource type="Texture2D" uid="uid://bujr7121kcsq3" path="res://Entities/UI/Assets/Top_BG.png" id="1_1b821"]
 [ext_resource type="Texture2D" uid="uid://dsu66dy7joevj" path="res://Entities/UI/Assets/King/King_FG.png" id="3_0a2xe"]
 [ext_resource type="Texture2D" uid="uid://eu3lloj2a5y3" path="res://Entities/UI/Assets/King/King.png" id="3_ko2ks"]
 [ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="4_0a2xe"]
+[ext_resource type="Texture2D" uid="uid://dp53hefmcxsdj" path="res://Entities/UI/Assets/King/Mayor_Poseidon.png" id="4_p7l8k"]
 [ext_resource type="Texture2D" uid="uid://dtpoc47y22uuf" path="res://Entities/UI/Assets/King/King_BG.png" id="5_2w40q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0a2xe"]
@@ -30,6 +31,30 @@ region = Rect2(144, 0, 36, 36)
 atlas = ExtResource("3_ko2ks")
 region = Rect2(180, 0, 36, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2t88"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv5s1"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u5n2"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u22ff"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h3rk"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u800o"]
+atlas = ExtResource("4_p7l8k")
+region = Rect2(180, 0, 36, 36)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_idygs"]
 animations = [{
 "frames": [{
@@ -54,6 +79,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2t88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv5s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u5n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u22ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h3rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u800o")
+}],
+"loop": true,
+"name": &"mayor",
+"speed": 5.0
 }]
 
 [node name="LeftTopUI" type="Control"]
@@ -76,8 +124,7 @@ position = Vector2(-28.000006, -12)
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_idygs")
 autoplay = "default"
-frame = 5
-frame_progress = 0.63354224
+frame_progress = 0.3652041
 
 [node name="KingFg" type="Sprite2D" parent="BG/King"]
 position = Vector2(28.000002, 0)
