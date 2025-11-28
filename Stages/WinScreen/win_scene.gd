@@ -28,6 +28,7 @@ func _ready() -> void:
 	if GlobalVariables.hard_mode:
 		youdidit.text = "You defeated Mayor Mini Man and saved Tidal Town from a serious gambling addiction!"
 		await follow_camera.move_to_win()
+		drag_screen.pressable = true
 	else:
 		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
 		await follow_camera.move_to_win()

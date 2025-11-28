@@ -124,11 +124,25 @@ func random_state_mark() -> void:
 		depth = 2
 	directions = []
 	
+	var dir : DIRECTIONS 
+	
+	#if GlobalVariables.hard_mode:
+		#for i in wave_count:
+			#dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+			#while directions.has(dir):
+				#dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+			#directions.append(dir)
+			#if i == 0:
+				#while dir == last_dirs[0]:
+					#dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
+	
 	for i in wave_count:
-		var dir : DIRECTIONS 
 		if i == 0:
 			var rand_off: int = (randi_range(1, 2) * 2) - 3 # -1 or +1
 			dir = posmod(last_dirs[0] + rand_off, DIRECTIONS.size()) as DIRECTIONS # new dir
+		elif GlobalVariables.hard_mode:
+			var rand_off: int = (randi_range(0, 1)) + 1 # 1 or 2
+			dir = posmod(directions[0] + rand_off, DIRECTIONS.size()) as DIRECTIONS # new dir
 		else:
 			var rand_off: int = (randi_range(0, 1) * 2) # 0 or 2
 			dir = posmod(last_dirs[0] + rand_off, DIRECTIONS.size()) as DIRECTIONS # new dir
@@ -136,18 +150,7 @@ func random_state_mark() -> void:
 				if dir == last_dirs[0] and directions[0] == last_dirs[1]:
 					dir = posmod(last_dirs[0] + 2, DIRECTIONS.size()) as DIRECTIONS
 		directions.append(dir)
-	#for i in wave_count:
-		#var dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-		#while directions.has(dir):
-			#dir = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-		#directions.append(dir)
-		#print(dir)
-		#if i == 0:
-			#while directions[0] == last_dir:
-				#directions[0] = randi_range(0, DIRECTIONS.size() - 1) as DIRECTIONS
-			#last_dir = directions[0]
 	last_dirs = directions.duplicate_deep()
-		
 	mark_wave.emit()
 	state = STATES.SEND
 

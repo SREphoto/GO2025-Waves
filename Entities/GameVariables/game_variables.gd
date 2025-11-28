@@ -195,7 +195,8 @@ func game_finished() -> void:
 	GlobalBoat.tween_boat()
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 4)
+	tween.tween_property(zoom_camera, "position:y", 320.0, 4)
+	tween.parallel().tween_property(zoom_camera, "position:x", 0, 3.8)
 	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.8)
 	
 	await tween.finished

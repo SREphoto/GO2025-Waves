@@ -27,7 +27,6 @@ const last_round: int = 1
 @onready var poseidon: Poseidon = $Poseidon
 @onready var little_guy_spawner: LittleGuySpawner = $LittleGuySpawner
 
-
 @onready var ui: UI = $UI
 @onready var shop: Shop = $Shop
 @onready var tutorial_ui: CanvasLayer = $TutorialUI

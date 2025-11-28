@@ -37,7 +37,6 @@ func _on_screen_dragged() -> void:
 	follow_camera.move_camera_end_to_home()
 
 func on_movement_done() -> void:
-	await get_tree().create_timer(1).timeout
 	drag_screen.pressable = true
 
 func set_nav_region(bounds: Vector4i) -> void:
