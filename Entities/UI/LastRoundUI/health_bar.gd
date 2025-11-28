@@ -11,6 +11,10 @@ extends CanvasLayer
 @onready var health_after_attack_bar: TextureProgressBar = $Control/HealthAfterAttackBar
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
+@onready var waves: Label = $Control/HealthBar/Waves
+@onready var time: Label = $Control/HealthBar/Time
+
+
 func connect_signal() -> void:
 	game_variables.connect("values_changed", refresh)
 
@@ -27,8 +31,11 @@ func initialize():
 func refresh():
 	health =  game_variables.current_goal
 	health_after_attack = health - game_variables.current_score
-	#var remaining_time: int = max(0, game_variables.remaining_time)
 	_set_health_bar()
+	
+	waves.text = "Waves: " + str(game_variables.remaining_waves)
+	var remaining_time: int = max(0, game_variables.remaining_time)
+	time.text = "Time: " + str(remaining_time)
 
 func _set_health_bar():
 	health_bar.value = health
