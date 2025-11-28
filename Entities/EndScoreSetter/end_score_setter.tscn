@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5g3dywnh6gbc"]
+
+[ext_resource type="Script" uid="uid://dx7n2wlmrkpv1" path="res://Entities/EndScoreSetter/end_score_setter.gd" id="1_nq7kc"]
+
+[node name="EndScoreSetter" type="Node2D"]
+script = ExtResource("1_nq7kc")

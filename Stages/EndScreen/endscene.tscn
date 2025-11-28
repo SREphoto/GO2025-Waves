@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ctnqj58d24fjc"]
+[gd_scene load_steps=16 format=4 uid="uid://ctnqj58d24fjc"]
 
 [ext_resource type="Script" uid="uid://ckncgnyusesgg" path="res://Stages/EndScreen/endscene.gd" id="1_wuj7j"]
 [ext_resource type="PackedScene" uid="uid://btpjeah0ck4vi" path="res://Entities/LittleGuy/little_guy.tscn" id="2_1htgg"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dt4cg0bwqqkk4" path="res://Entities/FollowCamera/follow_camera.tscn" id="7_0uold"]
 [ext_resource type="FontFile" uid="uid://chalt0d7iam58" path="res://Assets/Fonts/InternLight Font.ttf" id="12_sqbnp"]
 [ext_resource type="PackedScene" uid="uid://dqt5pbsf3ej5o" path="res://Entities/DragScreen/drag_screen.tscn" id="13_koukn"]
+[ext_resource type="PackedScene" uid="uid://c5g3dywnh6gbc" path="res://Entities/EndScoreSetter/end_score_setter.tscn" id="14_xd18e"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wuj7j"]
 vertices = PackedVector2Array(-90.828125, -25, -93.32031, -22.5, -93.02344, -62, -93.97656, 62, -93.421875, -9.59375, -90.828125, -7, 94, -62, -69.171875, -25, -66, -21.828125, 94, 62, -66, -10.171875, -69.171875, -7)
@@ -152,3 +153,8 @@ text = "TIME:
 horizontal_alignment = 1
 
 [node name="DragScreen" parent="." instance=ExtResource("13_koukn")]
+
+[node name="EndScoreSetter" parent="." node_paths=PackedStringArray("score", "highscore", "time") instance=ExtResource("14_xd18e")]
+score = NodePath("../M/MarginContainer/H/Score")
+highscore = NodePath("../M/MarginContainer/H/Highscore")
+time = NodePath("../M/MarginContainer/H/Time")

@@ -9,6 +9,10 @@ var viewport_size_y: int = 1080
 var zoom_to: float = 5.625
 
 func _ready() -> void:
+	if GlobalVariables.hard_mode:
+		offset = Vector2(0, -384)
+	else:
+		offset = Vector2(-384, 0)
 	sand_tile_map_layer.changed_grid_size.connect(_on_changed_grid_size)
 	if not Engine.is_editor_hint():
 		viewport_size_y = int(get_viewport_rect().size.y)

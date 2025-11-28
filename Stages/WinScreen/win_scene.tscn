@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://xft4hu2ih81x"]
+[gd_scene load_steps=48 format=4 uid="uid://xft4hu2ih81x"]
 
 [ext_resource type="Script" uid="uid://bkguto34naqsv" path="res://Stages/WinScreen/win_scene.gd" id="1_4dlqp"]
 [ext_resource type="Texture2D" uid="uid://dnurh1m0wj7mt" path="res://Stages/WinScreen/WinScreenGridObjects.png" id="1_c4owt"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://g1r6a8l8fr2s" path="res://Entities/TutorialUI/Mayor/major_icon.tscn" id="18_frf8e"]
 [ext_resource type="PackedScene" uid="uid://c3yqdng3kheet" path="res://Entities/TutorialUI/SpeechBubble/speech_bubble.tscn" id="19_xqg3i"]
 [ext_resource type="PackedScene" uid="uid://dqt5pbsf3ej5o" path="res://Entities/DragScreen/drag_screen.tscn" id="21_tp0x4"]
+[ext_resource type="Texture2D" uid="uid://bhpl7uar2nf4r" path="res://Stages/EndScreen/Assets/AnnotationsEnd.png" id="22_wppqi"]
+[ext_resource type="PackedScene" uid="uid://c5g3dywnh6gbc" path="res://Entities/EndScoreSetter/end_score_setter.tscn" id="23_b0ql4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4owt"]
 load_path = "res://.godot/imported/sand_tileset.png-3dc1482e0d44cb22a1f0096420a26ea2.ctex"
@@ -986,6 +988,15 @@ rotation = 0.0
 zoom = Vector2(4, 4)
 
 [node name="DragScreen" parent="." instance=ExtResource("21_tp0x4")]
+
+[node name="Annotations" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("22_wppqi")
+
+[node name="EndScoreSetter" parent="." node_paths=PackedStringArray("score", "highscore", "time") instance=ExtResource("23_b0ql4")]
+score = NodePath("../V/MarginContainer/H/Score")
+highscore = NodePath("../V/MarginContainer/H/Highscore")
+time = NodePath("../V/MarginContainer/H/Time")
 
 [editable path="GridObjects/Rock2"]
 [editable path="GridObjects/Rock3"]

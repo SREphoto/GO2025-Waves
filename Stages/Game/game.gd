@@ -33,6 +33,7 @@ const last_round: int = 5
 var start_wave_active: bool = false
 
 func _ready() -> void:
+	GlobalVariables.moves_this_run = 0
 	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
 	game_variables.wave_finished.connect(on_wave_finished)
@@ -87,6 +88,7 @@ func switch_game_state(value = next_game_state) -> void:
 
 func _game_state_shop() -> void:
 	current_round += 1
+	SoundManager.voice_manager.stop_voices()
 	ui.blend_out()
 	game_variables.active = false
 	game_variables.next_game()
@@ -123,6 +125,7 @@ func _game_state_paused() -> void:
 	switch_game_state()
 
 func _game_state_spawning() -> void:
+	SoundManager.voice_manager.start_voices()
 	house_manager.spawn_special_or_random_house(current_round)
 	next_game_state = GAME_STATES.SLIDING
 	if GlobalVariables.first_time == true:
@@ -130,6 +133,7 @@ func _game_state_spawning() -> void:
 	switch_game_state()
 
 func _game_state_sliding() -> void:
+	SoundManager.voice_manager.start_voices()
 	ui.blend_in()
 	game_variables.active = true
 	hoverer.active = true

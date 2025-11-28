@@ -10,11 +10,21 @@ extends Node2D
 @onready var follow_camera: FollowCamera = $FollowCamera
 @onready var drag_screen: DragScreen = $DragScreen
 
+@onready var youdidit: Label = $V/Youdidit
+@onready var hard_mode: Label = $V/HardMode
+
 var running = false
 
 func _ready() -> void:
+	hard_mode.visible = false
+	if not GlobalVariables.hard_mode_unlocked:
+		GlobalVariables.hard_mode_unlocked = true
+		hard_mode.visible = true
+	if GlobalVariables.hard_mode:
+		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
+	else:
+		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
 	drag_screen.dragged.connect(_on_screen_dragged)
-	GlobalVariables.hard_mode_unlocked = true
 	hide_flags()
 	mayor.reset()
 	await follow_camera.move_to_win()

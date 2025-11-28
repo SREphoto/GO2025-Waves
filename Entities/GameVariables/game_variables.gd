@@ -5,15 +5,16 @@ extends Node2D
 @export var sand_tile_map_layer: SandTileMapLayer
 @export var score_manager: ScoreManager
 @export var wave_manager: WaveManager
+@export var ui: UI
 @export var tutorial_ui: TutorialUI
 @export var game: Game
 @export var clock: Clock
 
-@export var all_goals: Array[int] 		= [10, 20, 46, 98, 160, 1200]
-@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
+@export var all_goals: Array[int] 		= [10, 20, 46, 98, 160, 800]
+@export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 5]
 
-@export var hard_mode_all_goals: Array[int] 		= [10, 20, 46, 98, 150, 1200]
-@export var hard_mode_all_round_waves: Array[int] = [2, 2, 2, 2, 2, 6]
+@export var hard_mode_all_goals: Array[int] 		= [14, 26, 49, 130, 220, 1000]
+@export var hard_mode_all_round_waves: Array[int] = [2, 2, 2, 2, 2, 5]
 
 @export var wave_time : int = 180:
 	set(value):
@@ -80,10 +81,6 @@ func on_wave_finished() -> void:
 	
 	_prepare_new_wave()
 	
-	if GlobalGameState.last_round:
-		if current_wave >= 3:
-			sand_tile_map_layer.decrease_grid_size()
-	
 	wave_finished.emit()
 
 func _prepare_new_wave():
@@ -105,6 +102,7 @@ func _won() -> void:
 	GlobalVariables.bosses_completed_now += 1
 
 func _lost() -> void:
+	GlobalVariables.moves_total += GlobalVariables.moves_this_run
 	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
 
 func next_game() -> void:
@@ -114,10 +112,14 @@ func next_game() -> void:
 		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
-	current_goal = all_goals[game.current_round]
-	remaining_waves = all_round_waves[game.current_round]
-	if GlobalVariables.first_time:
-		remaining_waves += 1
+	if GlobalVariables.hard_mode:
+		current_goal = hard_mode_all_goals[game.current_round]
+		remaining_waves = hard_mode_all_round_waves[game.current_round]
+	else:
+		current_goal = all_goals[game.current_round]
+		remaining_waves = all_round_waves[game.current_round]
+		if GlobalVariables.first_time:
+			remaining_waves += 1
 	values_changed.emit()
 
 func _house_counting() -> void:
@@ -127,8 +129,17 @@ func _house_counting() -> void:
 		for house in group:
 			SoundManager.rising_pop_player.play_rising()
 			await _count_house(house)
+	
 	values_changed.emit()
 	SoundManager.rising_pop_player.reset_pitch()
+	
+	if GlobalGameState.last_round:
+		if current_wave == 4:
+			sand_tile_map_layer.decrease_grid_size()
+		if current_goal == 0:
+			game_finished()
+			return
+	
 	counting_finished.emit(has_finished)
 
 func _count_house(house: House) -> void:
@@ -139,15 +150,22 @@ func _count_house(house: House) -> void:
 	await tween.finished
 
 func game_finished() -> void:
+	
+	GlobalVariables.moves_total += GlobalVariables.moves_this_run
+	
+	await  get_tree().create_timer(0.8).timeout
+	
+	ui.blend_out()
+	SoundManager.voice_manager.stop_voices()
 	MusicManager.switch_music("WIN")
 	RainLayer.fade_out_rain()
 	GlobalBoat.tween_boat()
 	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 3.8)
-	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.8)
-	await tween.finished
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(zoom_camera, "position", Vector2(0, 280.0), 3.5)
+	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.5)
+	tween.chain().set_ease(Tween.EASE_OUT).tween_property(zoom_camera, "position", Vector2(0.0, 320.0), 0.5)
 	
-	await get_tree().create_timer(0.4).timeout
+	await tween.finished
 	
 	SceneSwitcher.switch_game_to_win()

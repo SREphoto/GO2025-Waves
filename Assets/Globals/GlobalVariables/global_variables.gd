@@ -30,6 +30,9 @@ var rounds_played: int = 0
 
 const GRID_SIZE = 32
 
+var moves_total: int = 0
+var moves_this_run: int = 0
+
 var money: int = 0
 
 var first_time: bool = true

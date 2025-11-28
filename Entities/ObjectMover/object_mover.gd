@@ -78,7 +78,7 @@ func _expand_raycasts() -> void:
 func _ghost_push(dir: String) -> void:
 	var ray: CheckRay = shortest_rays.get(dir)
 	if ray.target_position.is_zero_approx():
-		_ghost_hide()
+		_ghost_reset()
 		return
 	else:
 		_ghost_show()
@@ -86,17 +86,17 @@ func _ghost_push(dir: String) -> void:
 	_tween_ghost_to_pos()
 
 func _ghost_reset() -> void:
-	_ghost_hide()
 	target_pos = global_position
 	_tween_ghost_to_pos()
+	_ghost_hide()
 
 func _ghost_show() -> void:
 	var tween = create_tween()
-	tween.tween_property(ghosts, "modulate:a", 1.0, 0.2)
+	tween.tween_property(ghosts, "modulate:a", 1.0, 0.1)
 
 func _ghost_hide() -> void:
 	var tween = create_tween()
-	tween.tween_property(ghosts, "modulate:a", 0.0, 0.2)
+	tween.tween_property(ghosts, "modulate:a", 0.0, 0.3)
 
 func _tween_ghost_to_pos() -> void:
 	var tween = create_tween()
@@ -106,10 +106,11 @@ func _input(_event: InputEvent) -> void:
 	if locked:
 		return
 	
-	var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
-	if last_mouse_dir != mouse_dir:
-		#if mouse_outside_of_object:
-		if _get_mouse_distance() > 8:
+	
+	if _get_mouse_distance() > 16:
+		var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
+		if last_mouse_dir != mouse_dir:
+			#if mouse_outside_of_object:
 			last_mouse_dir = mouse_dir
 			match mouse_dir:
 				Vector2i.LEFT:
@@ -121,9 +122,9 @@ func _input(_event: InputEvent) -> void:
 				Vector2i.DOWN:
 					current_dir_str = "Down"
 			_ghost_push(current_dir_str)
-		elif last_mouse_dir != Vector2i.ZERO:
-			last_mouse_dir = Vector2i.ZERO
-			_ghost_reset()
+	elif last_mouse_dir != Vector2i.ZERO:
+		last_mouse_dir = Vector2i.ZERO
+		_ghost_reset()
 
 func _get_vector_cardinal_dir(vec: Vector2) -> Vector2i:
 	var dir: Vector2 = vec - mouse_pressed_pos #(global_position + object_to_move.mid_pos)
@@ -142,12 +143,13 @@ func _get_mouse_distance() -> float:
 
 func object_deselected() -> void:
 	locked = true
-	if target_pos != Vector2.ZERO:
+	if target_pos != Vector2.ZERO and target_pos != global_position:
 		_move_grid_object()
 	else:
 		queue_free()
 
 func _move_grid_object() -> void:
+	GlobalVariables.moves_this_run += 1
 	var tween = create_tween()
 	SoundManager.swipe_house_player.play()
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(object_to_move, "global_position", target_pos, 0.2)
