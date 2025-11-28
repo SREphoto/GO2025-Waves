@@ -1,6 +1,7 @@
 class_name ExplosionGrid
 extends Node2D
 
+@export var house_manager: HouseManager
 @export var sand_tilemap_layer : SandTileMapLayer
 @export var poseidon : Poseidon
 
@@ -28,3 +29,6 @@ func explode_grid():
 			add_child(explosion)
 			explosion.position = global_pos
 			explosion.explode(0.0)
+			if house_manager.house_on_pos(pos):
+				var house: House = house_manager.get_house_on_pos(pos)
+				house.destroy()

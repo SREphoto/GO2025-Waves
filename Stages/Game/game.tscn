@@ -152,6 +152,7 @@ grow_vertical = 2
 [node name="Clock" parent="FXCanvas/Control" instance=ExtResource("19_887ua")]
 scale = Vector2(10, 10)
 
-[node name="ExplosionGrid" parent="." node_paths=PackedStringArray("sand_tilemap_layer", "poseidon") instance=ExtResource("20_jj230")]
+[node name="ExplosionGrid" parent="." node_paths=PackedStringArray("house_manager", "sand_tilemap_layer", "poseidon") instance=ExtResource("20_jj230")]
+house_manager = NodePath("../HouseManager")
 sand_tilemap_layer = NodePath("../SandTileMapLayer")
 poseidon = NodePath("../Poseidon")

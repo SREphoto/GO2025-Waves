@@ -95,7 +95,7 @@ func _game_state_shop() -> void:
 	game_variables.active = false
 	game_variables.next_game()
 	hoverer.active = false
-	if current_round > last_round:
+	if current_round > last_round or game_variables.lost:
 		return
 	shop.enter()
 	next_game_state = GAME_STATES.SLIDING

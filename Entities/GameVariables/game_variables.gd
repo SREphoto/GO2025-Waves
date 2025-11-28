@@ -39,6 +39,8 @@ var active: bool = true:
 
 var has_finished: bool = false
 
+var lost: bool = false
+
 signal values_changed
 signal counting_finished(won: bool)
 
@@ -76,9 +78,9 @@ func on_wave_finished() -> void:
 			current_wave = 0
 			_won()
 		else:
+			has_finished = true
 			current_wave = 0
 			_lost()
-			return
 	second_timer.stop()
 	
 	_house_counting()
@@ -106,33 +108,15 @@ func _won() -> void:
 	GlobalVariables.bosses_completed_now += 1
 
 func _lost() -> void:
-	SoundManager.voice_manager.stop_voices()
-	MusicManager.ambience_player.stop()
-	
-	RainLayer.fade_out()
-	
-	await ui.blend_out()
-	
-	MusicManager.switch_music("GAMEOVER")
-	
-	little_guy_spawner.panic()
-	explosion_grid.explode_grid()
-	await get_tree().create_timer(1.5).timeout
-	
-	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 2)
-	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(5.625, 5.625), 1.8)
-	
-	await tween.finished
-	
-	GlobalVariables.moves_total += GlobalVariables.moves_this_run
-	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
+	lost = true
 
 func next_game() -> void:
 	has_finished = false
 	if game.current_round == (game.last_round + 1):
 		game_finished()
+		return
+	if lost:
+		game_over()
 		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
@@ -172,6 +156,30 @@ func _count_house(house: House) -> void:
 	tween.tween_property(house, "scale", Vector2(1.1, 1.1), 0.1)
 	tween.tween_property(house, "scale", Vector2(1, 1), 0.1)
 	await tween.finished
+
+func game_over() -> void:
+	SoundManager.voice_manager.stop_voices()
+	MusicManager.ambience_player.stop()
+	
+	RainLayer.fade_out()
+	
+	await ui.blend_out()
+	
+	MusicManager.switch_music("GAMEOVER")
+	
+	little_guy_spawner.panic()
+	explosion_grid.explode_grid()
+	await get_tree().create_timer(1.5).timeout
+	
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 2)
+	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(5.625, 5.625), 1.8)
+	
+	await tween.finished
+	
+	GlobalVariables.moves_total += GlobalVariables.moves_this_run
+	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
 
 func game_finished() -> void:
 	
