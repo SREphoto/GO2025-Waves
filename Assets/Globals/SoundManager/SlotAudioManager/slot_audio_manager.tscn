@@ -30,7 +30,7 @@ bus = &"Effects"
 
 [node name="SlotLoopPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_cjkkt")
-volume_db = -13.0
+volume_db = -25.0
 pitch_scale = 0.9
 bus = &"Effects"
 
