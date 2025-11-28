@@ -16,6 +16,7 @@ extends Node2D
 var running = false
 
 func _ready() -> void:
+	MusicManager.switch_ambience("SEAGULLS")
 	hard_mode.visible = false
 	if not GlobalVariables.hard_mode_unlocked:
 		GlobalVariables.hard_mode_unlocked = true

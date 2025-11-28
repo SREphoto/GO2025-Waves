@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp3e7502x8fav"]
+[gd_scene load_steps=15 format=3 uid="uid://dp3e7502x8fav"]
 
 [ext_resource type="Script" uid="uid://bj5kjogayml4c" path="res://Assets/Globals/MusicManager/music_manager.gd" id="1_oijki"]
 [ext_resource type="AudioStream" uid="uid://dg6wfemir1nk2" path="res://Assets/Audio/Music/Tracks/MenuTrack.ogg" id="2_joeqp"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://cqnv7apgq1js7" path="res://Assets/Audio/Music/Tracks/ShopTrack2.ogg" id="5_wx0e2"]
 [ext_resource type="AudioStream" uid="uid://c15te1epxvnut" path="res://Assets/Audio/Music/Tracks/LastRoundTrack.ogg" id="7_ei44j"]
 [ext_resource type="AudioStream" uid="uid://bc6vca3kkd1cd" path="res://Assets/Audio/Music/Tracks/WinTrack.ogg" id="8_iou0w"]
+[ext_resource type="AudioStream" uid="uid://cio7erpid6233" path="res://Assets/Audio/Music/Ambience/AmbienceBeach.ogg" id="9_y2dre"]
+[ext_resource type="AudioStream" uid="uid://dq23qd5nmcbuu" path="res://Assets/Audio/Music/Ambience/AmbienceRain.ogg" id="10_7jrrx"]
+[ext_resource type="AudioStream" uid="uid://cnhap5aq2so7p" path="res://Assets/Audio/Music/Ambience/AmbienceSeagull.ogg" id="11_2hfc2"]
+[ext_resource type="AudioStream" uid="uid://gst5xurbiv3c" path="res://Assets/Audio/Music/Ambience/AmbienceThunder.ogg" id="12_mr0us"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_oijki"]
 clip_count = 7
@@ -143,11 +147,38 @@ Vector2i(6, 6): {
 }
 }
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_cktb6"]
+clip_count = 4
+clip_0/name = &"BEACH"
+clip_0/stream = ExtResource("9_y2dre")
+clip_0/auto_advance = 0
+clip_1/name = &"RAIN"
+clip_1/stream = ExtResource("10_7jrrx")
+clip_1/auto_advance = 0
+clip_2/name = &"THUNDER"
+clip_2/stream = ExtResource("12_mr0us")
+clip_2/auto_advance = 0
+clip_3/name = &"SEAGULLS"
+clip_3/stream = ExtResource("11_2hfc2")
+clip_3/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+}
+}
+
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_oijki")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_oijki")
-volume_db = -22.0
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_cktb6")
+volume_db = -8.0

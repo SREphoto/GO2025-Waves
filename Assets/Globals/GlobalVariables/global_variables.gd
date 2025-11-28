@@ -35,5 +35,5 @@ var moves_this_run: int = 0
 
 var money: int = 0
 
-var first_time: bool = true
-var first_time_multi: bool = true
+var first_time: bool = false
+var first_time_multi: bool = false
