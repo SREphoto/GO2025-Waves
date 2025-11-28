@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5tubgyxsf3es"]
+[gd_scene load_steps=13 format=3 uid="uid://c5tubgyxsf3es"]
 
 [ext_resource type="Script" uid="uid://brga5md48dwjw" path="res://Entities/UI/ui.gd" id="1_irfo3"]
 [ext_resource type="PackedScene" uid="uid://dc65yqhwpcwxr" path="res://Entities/UI/left_top_ui.tscn" id="1_y56jo"]
 [ext_resource type="PackedScene" uid="uid://bimqf8pw360of" path="res://Entities/UI/left_bottom_ui.tscn" id="3_irfo3"]
+[ext_resource type="Texture2D" uid="uid://dlncj518xksc2" path="res://Entities/UI/Assets/RoundMarkerCubed.png" id="4_lmmol"]
 [ext_resource type="Texture2D" uid="uid://s0my7jip2gjq" path="res://Entities/UI/Assets/UiFlagR.png" id="6_4ef74"]
 [ext_resource type="FontFile" uid="uid://c7ov6yg6gek8u" path="res://Entities/Flag/FlagFont.ttf" id="7_ffqlu"]
 [ext_resource type="Texture2D" uid="uid://dhqgeyfueuo1x" path="res://Entities/UI/Assets/UiFlagG.png" id="7_lmmol"]
@@ -42,6 +43,9 @@ mouse_filter = 1
 
 [node name="RoundUI" parent="." instance=ExtResource("3_irfo3")]
 mouse_filter = 1
+
+[node name="RoundTracker" parent="RoundUI/Sprite2D" index="1"]
+texture = ExtResource("4_lmmol")
 
 [node name="WavesLabel" parent="RoundUI/Sprite2D" index="2"]
 offset_top = -7.0

@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_changed_grid_size() -> void:
 	zoom_to = (viewport_size_y / ((sand_tile_map_layer.grid_size.y + 2) * GlobalVariables.GRID_SIZE))
 	if GlobalGameState.last_round:
-		zoom_to -= 0.4
+		zoom_to -= 0.6
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUINT).tween_property(self, "zoom", Vector2(zoom_to, zoom_to), 0.5)
 		

@@ -204,10 +204,16 @@ func game_finished() -> void:
 	GlobalBoat.tween_boat()
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(zoom_camera, "position:y", 320.0, 4)
+	tween.tween_property(zoom_camera, "position:y", 320.0, 4.0)
 	tween.parallel().tween_property(zoom_camera, "position:x", 0, 3.8)
 	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.8)
 	
 	await tween.finished
+	
+	var tween2: Tween = create_tween()
+	tween2.set_ease(Tween.EASE_IN)
+	tween2.tween_property(zoom_camera, "position:y", 280.0, 0.5)
+	
+	await tween2.finished
 	
 	SceneSwitcher.switch_game_to_win()

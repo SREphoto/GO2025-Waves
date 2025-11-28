@@ -166,6 +166,20 @@ const dialogue_boss = [
 	}
 ]
 
+const dialogue_hard_boss = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "angry",
+		"direction" : "right",
+		"text" : "The Mayor has gone mad! Stop him!!!",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : null,
+		"pointer_rotation" : null
+	}
+]
+
 const dialogue_hard_mode = [
 	{
 		"speaker" : "Mayor",

@@ -1063,7 +1063,7 @@ position = Vector2(-210, -100)
 text = "This is a testtext, please ignore"
 
 [node name="FollowCamera" parent="." instance=ExtResource("2_xqg3i")]
-position = Vector2(0, 320)
+position = Vector2(0, 280)
 rotation = 0.0
 zoom = Vector2(4, 4)
 

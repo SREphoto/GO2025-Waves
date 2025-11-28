@@ -75,7 +75,7 @@ func on_shopping_done(house_res: HouseRescource) -> void:
 	switch_game_state()
 	if GlobalGameState.last_round:
 		if GlobalVariables.hard_mode:
-			pass
+			tutorial_ui.dialogue_loop_tut(tutorial_ui.tutorial_dialogue.dialogue_hard_boss)
 		else:
 			tutorial_ui.dialogue_loop_tut(tutorial_ui.tutorial_dialogue.dialogue_boss)
 
