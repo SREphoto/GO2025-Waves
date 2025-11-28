@@ -47,8 +47,14 @@ func move_to_home() -> void:
 
 func move_to_win() -> void:
 	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN).tween_property(self, "position", Vector2(0.0, 280.0), 0.5)
-	tween.set_ease(Tween.EASE_OUT).tween_property(self, "position", Vector2(0.0, 0.0), 3.5)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", Vector2(0.0, 0.0), 4)
+	await tween.finished
+
+func move_to_end() -> void:
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", Vector2(0, 0.0), 2)
 	await tween.finished
 
 func move_camera_game_to_win() -> void:
@@ -81,7 +87,7 @@ func move_camera(object: GridObject) -> void:
 	match object.res.name:
 		"house_start":
 			var tween: Tween = create_tween()
-			tween.set_ease(Tween.EASE_OUT)
+			tween.set_ease(Tween.EASE_IN_OUT)
 			if object.position.x != object_pos.x:
 				GlobalVariables.hard_mode = false
 				tween.tween_property(self, "position", Vector2(640.0, 0), 0.5)
@@ -95,15 +101,18 @@ func move_camera(object: GridObject) -> void:
 			SceneSwitcher.switch_home_to_game()
 		"house_settings":
 			var tween: Tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(self, "position", Vector2(0, -560), 0.5)
 			tween.parallel().tween_property(self, "rotation", 0, 0.5)
 			MusicManager.switch_music("SHOP")
 		"house_upgrades":
 			var tween: Tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(self, "position", Vector2(0, 528), 0.5)
 			tween.parallel().tween_property(self, "rotation", 0, 0.5)
 		"house_back":
 			var tween: Tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(self, "position",std_pos, 0.5)
 			tween.parallel().tween_property(self, "rotation", deg_to_rad(std_rotation), 0.5)
 			tween.parallel().tween_property(self, "zoom", std_zoom, 0.5)

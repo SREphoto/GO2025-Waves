@@ -20,8 +20,6 @@ func _ready() -> void:
 	
 	last_stage_index = set_stage_last(GlobalVariables.bosses_completed_last)
 	set_progress_x(GlobalVariables.bosses_completed_max)
-	await get_tree().create_timer(1).timeout
-	move_to_stage(GlobalVariables.bosses_completed_now)
 	#set_comleted_stage(GlobalVariables.bosses_completed_now)
 
 ## How to call:

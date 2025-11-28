@@ -13,10 +13,25 @@ extends Node2D
 
 @onready var drag_screen: DragScreen = $DragScreen
 
+@onready var for_now: Label = $M/Control/H/ForNow
+
 func _ready() -> void:
 	drag_screen.dragged.connect(_on_screen_dragged)
 	GlobalVariables.rounds_played += 1
 	progress_grid.movement_done.connect(on_movement_done)
+	
+	if GlobalVariables.hard_mode:
+		for_now.text = "in hard mode"
+	else:
+		for_now.text = "for now"
+	
+	
+	follow_camera.position.y = 320
+	await follow_camera.move_to_end()
+	
+	progress_grid.move_to_stage(GlobalVariables.bosses_completed_now)
+	
+	RainLayer.fade_in_rain(200)
 
 func _on_screen_dragged() -> void:
 	follow_camera.move_camera_end_to_home()

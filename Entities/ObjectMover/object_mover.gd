@@ -106,8 +106,7 @@ func _input(_event: InputEvent) -> void:
 	if locked:
 		return
 	
-	
-	if _get_mouse_distance() > 16:
+	if _get_mouse_distance() > 8:
 		var mouse_dir: Vector2i = _get_vector_cardinal_dir(get_global_mouse_position())
 		if last_mouse_dir != mouse_dir:
 			#if mouse_outside_of_object:

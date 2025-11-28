@@ -116,7 +116,7 @@ func _game_state_paused() -> void:
 	GlobalGameState.state = GlobalGameState.STATES.GAMELOOP
 	
 	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN).tween_property(zoom_camera, "offset", Vector2(0,0), 0.25)
+	tween.set_ease(Tween.EASE_IN_OUT).tween_property(zoom_camera, "offset", Vector2(0,0), 0.25)
 	
 	var timer: Timer = Timer.new()
 	add_child(timer)

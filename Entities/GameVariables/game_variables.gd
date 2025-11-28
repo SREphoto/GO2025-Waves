@@ -103,6 +103,22 @@ func _won() -> void:
 	GlobalVariables.bosses_completed_now += 1
 
 func _lost() -> void:
+	SoundManager.voice_manager.stop_voices()
+	MusicManager.ambience_player.stop()
+	
+	RainLayer.fade_out()
+	
+	await ui.blend_out()
+	
+	MusicManager.switch_music("GAMEOVER")
+	
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 2)
+	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(5.625, 5.625), 1.8)
+	
+	await tween.finished
+	
 	GlobalVariables.moves_total += GlobalVariables.moves_this_run
 	GlobalGameState.state = GlobalGameState.STATES.GAMEOVER
 
@@ -163,10 +179,9 @@ func game_finished() -> void:
 	RainLayer.fade_out_rain()
 	GlobalBoat.tween_boat()
 	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(zoom_camera, "position", Vector2(0, 280.0), 3.5)
-	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.5)
-	tween.chain().set_ease(Tween.EASE_OUT).tween_property(zoom_camera, "position", Vector2(0.0, 320.0), 0.5)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(zoom_camera, "position", Vector2(0, 320.0), 4)
+	tween.parallel().tween_property(zoom_camera, "zoom", Vector2(4.0, 4.0), 3.8)
 	
 	await tween.finished
 	

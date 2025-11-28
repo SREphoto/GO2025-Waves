@@ -14,8 +14,8 @@ const HOUSE_ARRAY_RES_THREE = preload("uid://ccydnracsqhx3")
 const HOUSE_ARRAY_RES_FOUR = preload("uid://4ifk5bscputi")
 const HOUSE_ARRAY_RES_MULTI = preload("uid://tdk2guk68owq")
 
-var hard_mode_unlocked: bool = false
-var hard_mode: bool = false
+var hard_mode_unlocked: bool = true
+var hard_mode: bool = true
 
 var bosses_completed_max: int = 0
 var bosses_completed_last: int = 0:

@@ -755,17 +755,26 @@ theme_override_font_sizes/font_size = 32
 text = "CONGRATULATIONS"
 horizontal_alignment = 1
 
-[node name="Youdidit" type="Label" parent="V"]
+[node name="M" type="MarginContainer" parent="V"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="Youdidit" type="Label" parent="V/M"]
+custom_minimum_size = Vector2(255, 0)
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.7372549, 0.53333336, 0.38431373, 1)
 theme_override_fonts/font = ExtResource("1_f72oo")
 theme_override_font_sizes/font_size = 8
 text = "You defeated the King of the Sea and saved Tidal Town!"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="V"]
 layout_mode = 2
-theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="H" type="HBoxContainer" parent="V/MarginContainer"]

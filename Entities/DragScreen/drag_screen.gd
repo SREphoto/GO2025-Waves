@@ -1,7 +1,7 @@
 class_name DragScreen
 extends Node2D
 
-var pressable: bool = true
+var pressable: bool = false
 
 var mouse_pressed_pos: Vector2 = Vector2.INF
 

@@ -88,3 +88,4 @@ func blend_out() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.2)
 	health_bar.blend_out()
+	await tween.finished

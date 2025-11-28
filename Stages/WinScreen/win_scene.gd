@@ -10,7 +10,7 @@ extends Node2D
 @onready var follow_camera: FollowCamera = $FollowCamera
 @onready var drag_screen: DragScreen = $DragScreen
 
-@onready var youdidit: Label = $V/Youdidit
+@onready var youdidit: Label = $V/M/Youdidit
 @onready var hard_mode: Label = $V/HardMode
 
 var running = false
@@ -21,15 +21,17 @@ func _ready() -> void:
 	if not GlobalVariables.hard_mode_unlocked:
 		GlobalVariables.hard_mode_unlocked = true
 		hard_mode.visible = true
-	if GlobalVariables.hard_mode:
-		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
-	else:
-		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
+	
 	drag_screen.dragged.connect(_on_screen_dragged)
 	hide_flags()
 	mayor.reset()
-	await follow_camera.move_to_win()
-	dialogue_loop_tut(tutorial_dialogue.dialogue_win)
+	if GlobalVariables.hard_mode:
+		youdidit.text = "You defeated Mayor Mini Man and saved Tidal Town from a serious gambling addiction!"
+		await follow_camera.move_to_win()
+	else:
+		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
+		await follow_camera.move_to_win()
+		dialogue_loop_tut(tutorial_dialogue.dialogue_win)
 
 func _on_screen_dragged() -> void:
 	follow_camera.move_camera_win_to_home()
@@ -63,3 +65,4 @@ func dialogue_loop_tut(dialogue_arr : Array):
 	mayor.disappear()
 	click_catching_rect.visible = false
 	running = false
+	drag_screen.pressable = true
