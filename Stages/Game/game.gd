@@ -5,12 +5,15 @@ enum GAME_STATES {SHOP, PAUSED, SPAWNING, SLIDING, WAVES, COUNTING}
 var game_state: GAME_STATES
 var next_game_state: GAME_STATES
 
+signal boss_battle_started
+
 const last_round: int = 1
 @export var current_round: int = 0:
 	set(value):
 		current_round = value
 		if current_round == last_round:
 			GlobalGameState.last_round = true
+			boss_battle_started.emit()
 
 @onready var zoom_camera: ZoomCamera = $ZoomCamera
 @onready var sand_tile_map_layer: SandTileMapLayer = $SandTileMapLayer
@@ -66,6 +69,8 @@ func on_shopping_done(house_res: HouseRescource) -> void:
 	#GlobalVariables.first_time_multi = false
 	house_manager.spawn_specific_house(house_res)
 	switch_game_state()
+	if GlobalGameState.last_round:
+		tutorial_ui.dialogue_loop_tut(tutorial_ui.tutorial_dialogue.dialogue_boss)
 
 func switch_game_state(value = next_game_state) -> void:
 	game_state = value

@@ -96,6 +96,17 @@ var dialogue_tut = [
 		"speaker" : "Mayor",
 		"mood" : "normal",
 		"direction" : "right",
+		"text" : "Remember: Only the largest group per color counts!",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : Vector2(450, 171),
+		"pointer_rotation" : 25.0
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "normal",
+		"direction" : "right",
 		"text" : "You have 2 waves left to reach the goal. Good luck! Keep us save!",
 		"has_skip" : true,
 		"signal_listen" : null,
@@ -141,6 +152,20 @@ var dialogue_multi = [
 		"pointer" : null,
 		"pointer_rotation" : null
 	},
+]
+
+const dialogue_boss = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "angry",
+		"direction" : "right",
+		"text" : "He's tired now! Attack him!!!",
+		"has_skip" : true,
+		"signal_listen" : null,
+		"signal_emit" : null,
+		"pointer" : null,
+		"pointer_rotation" : null
+	}
 ]
 
 const dialogue_win = [
