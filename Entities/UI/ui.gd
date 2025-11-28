@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var round_current: Label = $RoundUI/Sprite2D/RoundCurrent
 @onready var waves_remaining: Label = $RoundUI/Sprite2D/WavesRemaining
 @onready var time_remaining: Label = $RoundUI/Sprite2D/TimeRemaining
+@onready var round_tracker: Sprite2D = $RoundUI/Sprite2D/RoundTracker
+
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
@@ -38,7 +40,8 @@ func _ready() -> void:
 func refresh():
 	goal.text = str(game_variables.current_goal)
 	round_current_int = (game.current_round + 1)
-	round_current.text = str(round_current_int)
+	round_current.text = "Round " + str(round_current_int) + " / 6"
+	round_tracker.frame = game.current_round
 	current_offering.text = str(game_variables.current_score)
 	waves_remaining.text = str(game_variables.remaining_waves)
 	var remaining_time: int = max(0, game_variables.remaining_time)

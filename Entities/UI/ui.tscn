@@ -43,6 +43,14 @@ mouse_filter = 1
 [node name="RoundUI" parent="." instance=ExtResource("3_irfo3")]
 mouse_filter = 1
 
+[node name="WavesLabel" parent="RoundUI/Sprite2D" index="2"]
+offset_top = -7.0
+offset_bottom = 17.0
+
+[node name="WavesRemaining" parent="RoundUI/Sprite2D" index="3"]
+offset_top = -7.0
+offset_bottom = 17.0
+
 [node name="TimeRemaining" parent="RoundUI/Sprite2D" index="5"]
 offset_left = -17.799988
 offset_right = 18.399998
@@ -113,6 +121,7 @@ theme_override_font_sizes/font_size = 64
 text = "1"
 
 [node name="HealthBar" parent="." instance=ExtResource("8_4ef74")]
+visible = false
 
 [connection signal="pressed" from="RoundUI/Sprite2D/SkipButton" to="." method="_on_skip_button_pressed"]
 [connection signal="pressed" from="HealthBar/Major/MajorAngry/SkipButton" to="." method="_on_skip_button_pressed"]
