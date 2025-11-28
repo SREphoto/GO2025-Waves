@@ -29,7 +29,7 @@ signal dict_value_changed
 
 func _ready() -> void:
 	initalize()
-	if GlobalVariables.hard_mode:
+	if GlobalVariables.hard_mode and GlobalVariables.hard_mode_first_round:
 		await get_tree().create_timer(0.5).timeout
 		dialogue_loop_tut(tutorial_dialogue.dialogue_hard_mode)
 		return

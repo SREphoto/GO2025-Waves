@@ -37,6 +37,8 @@ const last_round: int = 1
 var start_wave_active: bool = false
 
 func _ready() -> void:
+	GlobalVariables.time = 0
+	GlobalVariables.score = 0
 	if GlobalVariables.hard_mode:
 		set_hard_mode()
 	GlobalVariables.moves_this_run = 0
@@ -72,7 +74,10 @@ func on_shopping_done(house_res: HouseRescource) -> void:
 	house_manager.spawn_specific_house(house_res)
 	switch_game_state()
 	if GlobalGameState.last_round:
-		tutorial_ui.dialogue_loop_tut(tutorial_ui.tutorial_dialogue.dialogue_boss)
+		if GlobalVariables.hard_mode:
+			pass
+		else:
+			tutorial_ui.dialogue_loop_tut(tutorial_ui.tutorial_dialogue.dialogue_boss)
 
 func switch_game_state(value = next_game_state) -> void:
 	game_state = value
@@ -138,6 +143,8 @@ func _game_state_spawning() -> void:
 	next_game_state = GAME_STATES.SLIDING
 	if GlobalVariables.first_time == true:
 		GlobalVariables.first_time = false
+	if GlobalVariables.hard_mode_first_round == true:
+		GlobalVariables.hard_mode_first_round = false
 	switch_game_state()
 
 func _game_state_sliding() -> void:

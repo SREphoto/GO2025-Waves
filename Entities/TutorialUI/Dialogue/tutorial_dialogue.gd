@@ -89,7 +89,7 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(450, 171),
+		"pointer" : Vector2(380, 170),
 		"pointer_rotation" : 25.0
 	},
 	{
@@ -100,7 +100,7 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(450, 171),
+		"pointer" : Vector2(450, 410),
 		"pointer_rotation" : 25.0
 	},
 	{
@@ -111,12 +111,10 @@ var dialogue_tut = [
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
-		"pointer" : Vector2(1790, 300),
+		"pointer" : Vector2(1772, 315),
 		"pointer_rotation" : 120.0
 	},
 ]
-#Vector2(1810, 96)
-#Vector2(1810, 256)
 
 var dialogue_multi = [
 	{

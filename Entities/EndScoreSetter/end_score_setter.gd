@@ -7,5 +7,5 @@ extends Node2D
 
 func _ready() -> void:
 	score.text = "MOVES:\n" + str(GlobalVariables.moves_this_run)
-	highscore.text = "SCORE:\n" + str(GlobalVariables.moves_this_run)
-	time.text = "TIME:\n" + str(GlobalVariables.moves_this_run)
+	highscore.text = "SCORE:\n" + str(GlobalVariables.score)
+	time.text = "TIME:\n" + str(GlobalVariables.time)

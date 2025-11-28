@@ -136,21 +136,23 @@ hoverer = NodePath("../Hoverer")
 [node name="FXCanvas" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="FXCanvas"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = -40.0
 offset_top = -20.0
-offset_right = 20.0
 offset_bottom = 20.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 2
+size_flags_horizontal = 8
 
 [node name="Clock" parent="FXCanvas/Control" instance=ExtResource("19_887ua")]
-scale = Vector2(10, 10)
+position = Vector2(0, 100)
+scale = Vector2(5, 5)
 
 [node name="ExplosionGrid" parent="." node_paths=PackedStringArray("house_manager", "sand_tilemap_layer", "poseidon") instance=ExtResource("20_jj230")]
 house_manager = NodePath("../HouseManager")

@@ -65,6 +65,7 @@ func on_active(value: bool) -> void:
 func on_wave_finished() -> void:
 	current_wave += 1
 	current_goal -= current_score
+	GlobalVariables.score += current_score
 	current_score = 0
 	remaining_waves -= 1
 	# If higher score than needed
@@ -97,12 +98,19 @@ func on_score_changed() -> void:
 	values_changed.emit()
 
 func _on_second_passed() -> void:
+	GlobalVariables.time += 1
 	remaining_time -= 1
 	values_changed.emit()
-	if remaining_time == 60:
+	if remaining_time == 30:
 		clock.play_ticks()
-	if remaining_time < 0:
+	if remaining_time == 10:
+		clock.play_ticks()
+	if remaining_time <= 0:
 		no_time.emit()
+	elif remaining_time < 30:
+		if posmod(remaining_time, 10) == 0:
+			poseidon.poseidon_angry_play()
+	
 
 func _won() -> void:
 	GlobalVariables.bosses_completed_now += 1
@@ -144,6 +152,7 @@ func _house_counting() -> void:
 	if GlobalGameState.last_round:
 		if current_wave == 4:
 			sand_tile_map_layer.decrease_grid_size()
+			await get_tree().create_timer(1.0).timeout
 		if current_goal == 0:
 			game_finished()
 			return

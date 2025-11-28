@@ -43,6 +43,12 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			await get_tree().create_timer(1.0).timeout
 			angry = false
 
+func poseidon_angry_play() -> void:
+	SoundManager.voice_manager.poseidon_voice_player.play()
+	angry = true
+	await get_tree().create_timer(1.0).timeout
+	angry = false
+
 func _animate():
 	if attacking:
 		if not is_animating:
