@@ -61,6 +61,12 @@ Vector2i(-1, 6): {
 "from_time": 0,
 "to_time": 1
 },
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
 Vector2i(0, 2): {
 "fade_beats": 1.0,
 "fade_mode": 4,
@@ -182,3 +188,13 @@ bus = &"Music"
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_cktb6")
 volume_db = -8.0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="SpeedIslandPlayer" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("3_ei44j")
+volume_db = -20.0
+
+[node name="SpeedEndgamePlayer" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("7_ei44j")
+volume_db = -20.0

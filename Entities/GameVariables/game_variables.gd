@@ -20,7 +20,7 @@ extends Node2D
 
 @onready var explosion_grid: ExplosionGrid = $"../ExplosionGrid"
 
-@export var wave_time : int = 180:
+@export var wave_time : int = 120:
 	set(value):
 		wave_time = value
 		remaining_time = wave_time
@@ -101,9 +101,13 @@ func _on_second_passed() -> void:
 	GlobalVariables.time += 1
 	remaining_time -= 1
 	values_changed.emit()
+	if remaining_time == 60:
+		MusicManager.speed_up(1.2)
 	if remaining_time == 30:
+		MusicManager.speed_up(1.5)
 		clock.play_ticks()
 	if remaining_time == 10:
+		MusicManager.speed_up(2.0)
 		clock.play_ticks()
 	if remaining_time <= 0:
 		no_time.emit()
