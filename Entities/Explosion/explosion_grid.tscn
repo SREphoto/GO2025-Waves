@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bset2khtgq5wy"]
+
+[ext_resource type="Script" uid="uid://b70v7f0p6y8av" path="res://Entities/Explosion/explosion_grid.gd" id="1_od82v"]
+
+[node name="ExplosionGrid" type="Node2D"]
+script = ExtResource("1_od82v")

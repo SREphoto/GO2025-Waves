@@ -25,6 +25,8 @@ const last_round: int = 1
 @onready var game_variables: GameVariables = $GameVariables
 
 @onready var poseidon: Poseidon = $Poseidon
+@onready var little_guy_spawner: LittleGuySpawner = $LittleGuySpawner
+
 
 @onready var ui: UI = $UI
 @onready var shop: Shop = $Shop

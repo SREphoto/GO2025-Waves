@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bupik54utcvkp"]
+[gd_scene load_steps=26 format=3 uid="uid://bupik54utcvkp"]
 
 [ext_resource type="Script" uid="uid://dhty223thegdw" path="res://Assets/Globals/SoundManager/sound_manager.gd" id="1_viyf2"]
 [ext_resource type="AudioStream" uid="uid://yaqal4271jjd" path="res://Assets/Audio/SFX/count_pop/count_pop_1.mp3" id="2_syb5k"]
@@ -61,6 +61,11 @@ stream_4/stream = ExtResource("12_rjqgb")
 stream_5/stream = ExtResource("13_6i81l")
 stream_6/stream = ExtResource("14_1jx5u")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_20vlx"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("16_20vlx")
+
 [node name="sound_manager" type="Node"]
 script = ExtResource("1_viyf2")
 
@@ -99,7 +104,9 @@ pitch_scale = 1.1
 bus = &"Effects"
 
 [node name="ExplosionPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_20vlx")
+stream = SubResource("AudioStreamRandomizer_20vlx")
+volume_db = -12.0
+max_polyphony = 10
 
 [node name="VoiceManager" parent="." instance=ExtResource("9_3gsjt")]
 

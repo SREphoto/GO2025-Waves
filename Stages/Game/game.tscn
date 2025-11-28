@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cxkp8l2y2mw4"]
+[gd_scene load_steps=21 format=4 uid="uid://cxkp8l2y2mw4"]
 
 [ext_resource type="Script" uid="uid://bk8gi0hs2mbum" path="res://Stages/Game/game.gd" id="1_2dnh2"]
 [ext_resource type="PackedScene" uid="uid://chmd6hqbtkfm2" path="res://Entities/GameVariables/game_variables.tscn" id="2_vu8u8"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bpcls6g0vs82v" path="res://Entities/Shop/shop.tscn" id="18_2h0h4"]
 [ext_resource type="PackedScene" uid="uid://cb27vdad5164i" path="res://Entities/TutorialUI/tutorial_ui.tscn" id="18_u0h8m"]
 [ext_resource type="PackedScene" uid="uid://hi7vbn7omq07" path="res://Entities/Clock/clock.tscn" id="19_887ua"]
+[ext_resource type="PackedScene" uid="uid://bset2khtgq5wy" path="res://Entities/Explosion/explosion_grid.tscn" id="20_jj230"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_2dnh2")
@@ -150,3 +151,7 @@ grow_vertical = 2
 
 [node name="Clock" parent="FXCanvas/Control" instance=ExtResource("19_887ua")]
 scale = Vector2(10, 10)
+
+[node name="ExplosionGrid" parent="." node_paths=PackedStringArray("sand_tilemap_layer", "poseidon") instance=ExtResource("20_jj230")]
+sand_tilemap_layer = NodePath("../SandTileMapLayer")
+poseidon = NodePath("../Poseidon")

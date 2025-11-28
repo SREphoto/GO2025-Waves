@@ -10,12 +10,15 @@ extends Node2D
 @export var game: Game
 @export var clock: Clock
 @export var poseidon : Poseidon
+@onready var little_guy_spawner: LittleGuySpawner = $"../LittleGuySpawner"
 
 @export var all_goals: Array[int] 		= [10, 20, 46, 98, 160, 800]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 5]
 
 @export var hard_mode_all_goals: Array[int] 		= [14, 26, 49, 130, 220, 1000]
 @export var hard_mode_all_round_waves: Array[int] = [2, 2, 2, 2, 2, 5]
+
+@onready var explosion_grid: ExplosionGrid = $"../ExplosionGrid"
 
 @export var wave_time : int = 180:
 	set(value):
@@ -111,6 +114,10 @@ func _lost() -> void:
 	await ui.blend_out()
 	
 	MusicManager.switch_music("GAMEOVER")
+	
+	little_guy_spawner.panic()
+	explosion_grid.explode_grid()
+	await get_tree().create_timer(1.5).timeout
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
