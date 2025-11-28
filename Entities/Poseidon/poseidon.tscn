@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=3 uid="uid://cabe3uwecdiry"]
+[gd_scene load_steps=53 format=3 uid="uid://cabe3uwecdiry"]
 
 [ext_resource type="Texture2D" uid="uid://dvt66q5my43bn" path="res://Entities/Poseidon/Poseidon.png" id="1_i74po"]
 [ext_resource type="Script" uid="uid://doafnko7l7prt" path="res://Entities/Poseidon/poseidon.gd" id="1_ku88i"]
 [ext_resource type="Texture2D" uid="uid://blcenqkl2n1wu" path="res://Entities/Poseidon/Turtle.png" id="2_3hu1p"]
+[ext_resource type="PackedScene" uid="uid://f3vy1pxarxxl" path="res://Entities/Explosion/explosion.tscn" id="4_hmqgx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hu1p"]
 radius = 23.0
@@ -402,3 +403,5 @@ animation = &"Angry2"
 autoplay = "Idle"
 frame = 5
 frame_progress = 1.0
+
+[node name="Explosion" parent="." instance=ExtResource("4_hmqgx")]

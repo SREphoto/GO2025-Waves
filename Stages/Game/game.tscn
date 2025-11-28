@@ -23,7 +23,7 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_2dnh2")
 
-[node name="GameVariables" parent="." node_paths=PackedStringArray("zoom_camera", "sand_tile_map_layer", "score_manager", "wave_manager", "ui", "tutorial_ui", "game", "clock") instance=ExtResource("2_vu8u8")]
+[node name="GameVariables" parent="." node_paths=PackedStringArray("zoom_camera", "sand_tile_map_layer", "score_manager", "wave_manager", "ui", "tutorial_ui", "game", "clock", "poseidon") instance=ExtResource("2_vu8u8")]
 zoom_camera = NodePath("../ZoomCamera")
 sand_tile_map_layer = NodePath("../SandTileMapLayer")
 score_manager = NodePath("../ScoreManager")
@@ -32,6 +32,7 @@ ui = NodePath("../UI")
 tutorial_ui = NodePath("../TutorialUI")
 game = NodePath("..")
 clock = NodePath("../FXCanvas/Control/Clock")
+poseidon = NodePath("../Poseidon")
 
 [node name="ZoomCamera" parent="." node_paths=PackedStringArray("sand_tile_map_layer") instance=ExtResource("3_d3rtp")]
 offset = Vector2(-384, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bupik54utcvkp"]
+[gd_scene load_steps=25 format=3 uid="uid://bupik54utcvkp"]
 
 [ext_resource type="Script" uid="uid://dhty223thegdw" path="res://Assets/Globals/SoundManager/sound_manager.gd" id="1_viyf2"]
 [ext_resource type="AudioStream" uid="uid://yaqal4271jjd" path="res://Assets/Audio/SFX/count_pop/count_pop_1.mp3" id="2_syb5k"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bcxr2hstde0am" path="res://Assets/Audio/SFX/click/click5.mp3" id="12_rjqgb"]
 [ext_resource type="AudioStream" uid="uid://dv6tiuhq6265v" path="res://Assets/Audio/SFX/click/click6.mp3" id="13_6i81l"]
 [ext_resource type="AudioStream" uid="uid://bfjs3giprmiq2" path="res://Assets/Audio/SFX/click/click7.mp3" id="14_1jx5u"]
+[ext_resource type="AudioStream" uid="uid://7jd6nl2m4vkd" path="res://Assets/Audio/SFX/explosion.mp3" id="16_20vlx"]
 [ext_resource type="PackedScene" uid="uid://bhydqi1n25j7y" path="res://Assets/Globals/SoundManager/SlotAudioManager/slot_audio_manager.tscn" id="17_7vald"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kxaji"]
@@ -96,6 +97,9 @@ stream = SubResource("AudioStreamRandomizer_7vald")
 volume_db = -10.0
 pitch_scale = 1.1
 bus = &"Effects"
+
+[node name="ExplosionPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_20vlx")
 
 [node name="VoiceManager" parent="." instance=ExtResource("9_3gsjt")]
 

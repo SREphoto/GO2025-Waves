@@ -9,6 +9,7 @@ extends Node2D
 @export var tutorial_ui: TutorialUI
 @export var game: Game
 @export var clock: Clock
+@export var poseidon : Poseidon
 
 @export var all_goals: Array[int] 		= [10, 20, 46, 98, 160, 800]
 @export var all_round_waves: Array[int] = [2, 2, 2, 2, 2, 5]
@@ -153,8 +154,9 @@ func game_finished() -> void:
 	
 	GlobalVariables.moves_total += GlobalVariables.moves_this_run
 	
-	await  get_tree().create_timer(0.8).timeout
-	
+	await get_tree().create_timer(0.4).timeout
+	poseidon.explode()
+	await get_tree().create_timer(1.2).timeout
 	ui.blend_out()
 	SoundManager.voice_manager.stop_voices()
 	MusicManager.switch_music("WIN")

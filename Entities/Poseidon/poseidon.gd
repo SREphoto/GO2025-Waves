@@ -3,7 +3,9 @@ extends StaticBody2D
 
 @export var sand_tile_map_layer: SandTileMapLayer
 
+@onready var turtle: AnimatedSprite2D = $Turtle
 @onready var animated_sprite: AnimatedSprite2D = $Poseidon
+@onready var explosion: Explosion = $Explosion
 
 var angry = false
 var attacking = false
@@ -60,3 +62,10 @@ func _animate():
 		if animated_sprite.animation != "Idle":
 			animated_sprite.play("Idle")
 		is_animating = false
+
+func explode():
+	explosion.explode()
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(turtle, "self_modulate", Color(1.0,1.0,1.0,0.0), 0.8)
+	tween.tween_property(animated_sprite, "self_modulate", Color(1.0,1.0,1.0,0.0), 0.8)

@@ -8,6 +8,8 @@ extends Node
 @onready var change_slider_player: AudioStreamPlayer = $ChangeSliderPlayer
 @onready var ui_click_player: AudioStreamPlayer = $UiClickPlayer
 
+@onready var explosion_player: AudioStreamPlayer = $ExplosionPlayer
+
 @onready var voice_manager: VoiceManager = $VoiceManager
 
 @onready var slot_audio_manager: SlotAudioManager = $SlotAudioManager
