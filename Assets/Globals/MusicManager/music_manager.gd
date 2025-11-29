@@ -33,7 +33,6 @@ func speed_up(value: float = 1.2):
 	if music_player.playing:
 		position = music_player.get_playback_position()
 	
-	print(current_clip)
 	match current_clip:
 		"GAMELOOP":
 			_fade_out(music_player)
@@ -55,7 +54,8 @@ func _fade_in(player: AudioStreamPlayer, duration: float = 0.05):
 	var tween := create_tween()
 	tween.tween_property(player, "volume_db", -20.0, duration)
 
-func _fade_out(player: AudioStreamPlayer, duration: float = 0.5):
-	var tween := create_tween()
-	tween.tween_property(player, "volume_db", -80.0, duration)
-	tween.tween_callback(player.stop)
+func _fade_out(player: AudioStreamPlayer, _duration: float = 0.01):
+	player.volume_db = -80
+	#var tween := create_tween()
+	#tween.tween_property(player, "volume_db", -80.0, duration)
+	#tween.tween_callback(player.stop)

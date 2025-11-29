@@ -27,6 +27,7 @@ func _input(event: InputEvent) -> void:
 			drag_valid = _clicked_knob(event.position)
 			
 			if drag_valid:
+				MouseManager.set_grab()
 				dragging = true
 				drag_start_y = event.position.y
 				pull_player.pause()
@@ -34,6 +35,7 @@ func _input(event: InputEvent) -> void:
 			# Mouse released
 			if dragging:
 				_finish_drag()
+			MouseManager.set_hover()
 			dragging = false
 			drag_valid = false
 	# apply drag

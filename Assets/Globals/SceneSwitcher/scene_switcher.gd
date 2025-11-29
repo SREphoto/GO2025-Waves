@@ -18,5 +18,8 @@ func switch_home_to_game() -> void:
 	get_tree().change_scene_to_packed(GAME)
 
 func switch_end_to_home() -> void:
-	GlobalVariables.bosses_completed_last = GlobalVariables.bosses_completed_now
+	if GlobalVariables.hard_mode:
+		GlobalVariables.hard_bosses_completed_last = GlobalVariables.hard_bosses_completed_now
+	else:
+		GlobalVariables.bosses_completed_last = GlobalVariables.bosses_completed_now
 	get_tree().change_scene_to_packed(HOMEPAGE)

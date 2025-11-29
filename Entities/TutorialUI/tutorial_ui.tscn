@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://g1r6a8l8fr2s" path="res://Entities/TutorialUI/Mayor/major_icon.tscn" id="3_w6mpw"]
 [ext_resource type="PackedScene" uid="uid://6n407x31u6sf" path="res://Entities/TutorialUI/Dialogue/tutorial_dialogue.tscn" id="4_w6mpw"]
 [ext_resource type="Texture2D" uid="uid://c1q5um5me87iq" path="res://Entities/TutorialUI/Assets/Pointer.png" id="5_ppawp"]
-[ext_resource type="Script" uid="uid://by5fya253w4uo" path="res://Entities/TutorialUI/pointer_sprite.gd" id="6_roj1m"]
+[ext_resource type="Script" path="res://Entities/TutorialUI/pointer_sprite.gd" id="6_roj1m"]
 
 [node name="TutorialUI" type="CanvasLayer"]
 script = ExtResource("1_itko2")

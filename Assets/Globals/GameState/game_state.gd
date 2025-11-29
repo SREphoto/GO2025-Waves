@@ -23,6 +23,7 @@ func _change_state_last_round() -> void:
 			SceneSwitcher.switch_end_to_home()
 			MusicManager.ambience_player.stop()
 			MusicManager.switch_music("START")
+			RainLayer.fade_out_rain()
 		STATES.GAMELOOP:
 			SoundManager.voice_manager.start_voices()
 			MusicManager.ambience_player.play()
@@ -43,7 +44,6 @@ func _change_state_last_round() -> void:
 			SceneSwitcher.switch_game_to_end(game_scene)
 			SoundManager.voice_manager.stop_voices()
 			MusicManager.switch_music("GAMEOVER")
-			RainLayer.fade_in_rain(200)
 
 func _change_state_normal() -> void:
 	match state:

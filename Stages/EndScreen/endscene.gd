@@ -20,16 +20,20 @@ func _ready() -> void:
 	GlobalVariables.rounds_played += 1
 	progress_grid.movement_done.connect(on_movement_done)
 	
+	var bosses_now: int = 0
+	
 	if GlobalVariables.hard_mode:
 		for_now.text = "in hard mode"
+		bosses_now = GlobalVariables.hard_bosses_completed_now
 	else:
 		for_now.text = "for now"
+		bosses_now = GlobalVariables.bosses_completed_now
 	
 	
 	follow_camera.position.y = 320
 	await follow_camera.move_to_end()
 	
-	progress_grid.move_to_stage(GlobalVariables.bosses_completed_now)
+	progress_grid.move_to_stage(bosses_now)
 	
 	RainLayer.fade_in_rain(200)
 

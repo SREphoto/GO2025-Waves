@@ -75,3 +75,11 @@ func explode():
 	tween.set_parallel(true)
 	tween.tween_property(turtle, "self_modulate", Color(1.0,1.0,1.0,0.0), 0.8)
 	tween.tween_property(animated_sprite, "self_modulate", Color(1.0,1.0,1.0,0.0), 0.8)
+
+
+func _on_mouse_entered() -> void:
+	MouseManager.set_point()
+
+
+func _on_mouse_exited() -> void:
+	MouseManager.set_hover()

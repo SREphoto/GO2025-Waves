@@ -18,8 +18,17 @@ func _ready() -> void:
 		if child is Node2D:
 			stage_markers.append(child)
 	
-	last_stage_index = set_stage_last(GlobalVariables.bosses_completed_last)
-	set_progress_x(GlobalVariables.bosses_completed_max)
+	var bosses_last: int = 0
+	var bosses_max: int = 0
+	if GlobalVariables.hard_mode:
+		bosses_last = GlobalVariables.hard_bosses_completed_last
+		bosses_max = GlobalVariables.hard_bosses_completed_max
+	else:
+		bosses_last = GlobalVariables.bosses_completed_last
+		bosses_max = GlobalVariables.bosses_completed_max
+	
+	last_stage_index = set_stage_last(bosses_last)
+	set_progress_x(bosses_max)
 	#set_comleted_stage(GlobalVariables.bosses_completed_now)
 
 ## How to call:

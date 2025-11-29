@@ -57,3 +57,11 @@ func type_text_by_character(delay: float = 0.02):
 func _on_skip_button_pressed() -> void:
 	SoundManager.ui_click_player.play()
 	skip_pressed.emit()
+
+
+func _on_skip_button_mouse_entered() -> void:
+	MouseManager.set_point()
+
+
+func _on_skip_button_mouse_exited() -> void:
+	MouseManager.set_hover()

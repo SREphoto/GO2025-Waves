@@ -96,9 +96,11 @@ func squish(dir : String):
 		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
 
 func select():
+	MouseManager.set_grab()
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.05, 0.95), 0.1)
 
 func deselect():
+	MouseManager.set_hover()
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)

@@ -194,6 +194,7 @@ volume_db = -8.0
 [node name="SpeedIslandPlayer" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("3_ei44j")
 volume_db = -20.0
+parameters/looping = true
 
 [node name="SpeedEndgamePlayer" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("7_ei44j")

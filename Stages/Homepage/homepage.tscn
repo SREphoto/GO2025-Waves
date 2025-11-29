@@ -136,7 +136,8 @@ house_manager = NodePath("../SpecialHouseManager")
 start_house_pos = Array[Vector2i]([Vector2i(-1, -2), Vector2i(0, -1), Vector2i(-1, -17)])
 start_house_res = Array[ExtResource("7_ihi7c")]([ExtResource("9_auknt"), ExtResource("8_uje2r"), ExtResource("11_pq1y0")])
 
-[node name="Selector" parent="." instance=ExtResource("9_dvcl3")]
+[node name="Selector" parent="." node_paths=PackedStringArray("follow_camera") instance=ExtResource("9_dvcl3")]
+follow_camera = NodePath("../FollowCamera")
 
 [node name="ObjectGrid" type="Node2D" parent="."]
 unique_name_in_owner = true

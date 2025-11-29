@@ -20,7 +20,7 @@ extends Node2D
 
 @onready var explosion_grid: ExplosionGrid = $"../ExplosionGrid"
 
-@export var wave_time : int = 40:
+@export var wave_time : int = 180:
 	set(value):
 		wave_time = value
 		remaining_time = wave_time
@@ -117,7 +117,10 @@ func _on_second_passed() -> void:
 	
 
 func _won() -> void:
-	GlobalVariables.bosses_completed_now += 1
+	if GlobalVariables.hard_mode:
+		GlobalVariables.hard_bosses_completed_now += 1
+	else:
+		GlobalVariables.bosses_completed_now += 1
 
 func _lost() -> void:
 	lost = true

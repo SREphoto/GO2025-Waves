@@ -93,3 +93,6 @@ animation = &"Angry2"
 autoplay = "Idle"
 
 [node name="Explosion" parent="." instance=ExtResource("4_hmqgx")]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

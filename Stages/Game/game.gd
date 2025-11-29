@@ -34,15 +34,22 @@ const last_round: int = 5
 @onready var shop: Shop = $Shop
 @onready var tutorial_ui: CanvasLayer = $TutorialUI
 
-var start_wave_active: bool = false
+var start_wave_active: bool = false:
+	set(value):
+		start_wave_active = value
+		ui.skip_button.disabled = not start_wave_active
+		ui.boss_skip_button.disabled = not start_wave_active
 
 func _ready() -> void:
+	start_wave_active = false
 	GlobalVariables.time = 0
 	GlobalVariables.score = 0
 	if GlobalVariables.hard_mode:
 		set_hard_mode()
+		GlobalVariables.hard_bosses_completed_now = 0
+	else:
+		GlobalVariables.bosses_completed_now = 0
 	GlobalVariables.moves_this_run = 0
-	GlobalVariables.bosses_completed_now = 0
 	GlobalGameState.game_scene = self
 	game_variables.wave_finished.connect(on_wave_finished)
 	game_variables.counting_finished.connect(on_counting_finished)

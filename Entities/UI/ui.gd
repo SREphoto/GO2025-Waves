@@ -24,6 +24,9 @@ extends CanvasLayer
 
 @onready var health_bar: HealthBarUI = $HealthBar
 
+@onready var skip_button: TextureButton = $RoundUI/Sprite2D/SkipButton
+@onready var boss_skip_button: TextureButton = $HealthBar/Major/MajorAngry/SkipButton
+
 var round_current_int: int = 0:
 	set(value):
 		if round_current_int != value:
@@ -94,3 +97,9 @@ func blend_out() -> void:
 	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.2)
 	health_bar.blend_out()
 	await tween.finished
+
+func _on_skip_button_mouse_entered() -> void:
+	MouseManager.set_point()
+
+func _on_skip_button_mouse_exited() -> void:
+	MouseManager.set_hover()

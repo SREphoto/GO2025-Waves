@@ -28,6 +28,8 @@ const CHECK_RAY = preload("uid://cf7275hbjmdnq")
 
 signal object_move_finished()
 
+signal object_moved(house: House, dir: Vector2i)
+
 func set_object_to_move(value) -> void:
 	object_to_move = value
 	global_position = object_to_move.position
@@ -143,6 +145,7 @@ func _get_mouse_distance() -> float:
 func object_deselected() -> void:
 	locked = true
 	if target_pos != Vector2.ZERO and target_pos != global_position:
+		object_moved.emit(object_to_move, last_mouse_dir)
 		_move_grid_object()
 	else:
 		queue_free()

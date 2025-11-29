@@ -1,7 +1,7 @@
 class_name Selector
 extends Node2D
 
-
+@export var follow_camera: FollowCamera
 @export var score_manager: ScoreManager
 @export var navigation_region: NavigationRegion
 
@@ -41,6 +41,8 @@ func select(grid_object: GridObject):
 			object_mover.object_move_finished.connect(score_manager.on_object_move_finished)
 		if navigation_region:
 			object_mover.object_move_finished.connect(navigation_region.on_object_move_finished)
+		if follow_camera:
+			object_mover.object_moved.connect(follow_camera.object_moved)
 
 func deselect(grid_object: GridObject):
 	grid_object.deselect()

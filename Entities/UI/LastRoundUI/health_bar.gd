@@ -55,3 +55,7 @@ func hard_mode():
 	$Poseidon/PoseidonAngry.play("hard_mode")
 	$Major/MajorAngry.play("hard_mode")
 	$Control/HealthAfterAttackBar/BossName.text = "THE MAYOR"
+
+
+func _on_skip_button_mouse_entered() -> void:
+	pass # Replace with function body.
