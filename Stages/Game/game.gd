@@ -7,7 +7,7 @@ var next_game_state: GAME_STATES
 
 signal boss_battle_started
 
-const last_round: int = 1
+const last_round: int = 5
 @export var current_round: int = 0:
 	set(value):
 		current_round = value
@@ -143,7 +143,8 @@ func _game_state_spawning() -> void:
 	next_game_state = GAME_STATES.SLIDING
 	if GlobalVariables.first_time == true:
 		GlobalVariables.first_time = false
-	if GlobalVariables.hard_mode_first_round == true:
+	# make sure it shows once!
+	if GlobalVariables.hard_mode_first_round == true and GlobalVariables.hard_mode:
 		GlobalVariables.hard_mode_first_round = false
 	switch_game_state()
 
@@ -189,6 +190,7 @@ func get_nav_region() -> NavigationRegion:
 	return find_child("NavigationRegion")
 
 func set_hard_mode():
+	ui.health_bar.hard_mode()
 	poseidon.animated_sprite.sprite_frames = preload("uid://dedfujj3y2b1s")
 	ui.king.play("mayor")
 	ui.king_fg.texture = preload("uid://xf4wvf2ff1cr")

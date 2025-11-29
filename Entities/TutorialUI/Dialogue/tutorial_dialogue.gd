@@ -171,7 +171,7 @@ const dialogue_hard_boss = [
 		"speaker" : "Mayor",
 		"mood" : "angry",
 		"direction" : "right",
-		"text" : "The Mayor has gone mad! Stop him!!!",
+		"text" : "Prepare to die, once and for all!",
 		"has_skip" : true,
 		"signal_listen" : null,
 		"signal_emit" : null,
@@ -239,6 +239,23 @@ const dialogue_win = [
 		"mood" : "happy",
 		"direction" : "right",
 		"text" : "And finally: Thanks for playing!",
+		"has_skip" : true,
+	},
+]
+
+const dialogue_win_hard = [
+	{
+		"speaker" : "Mayor",
+		"mood" : "cry",
+		"direction" : "right",
+		"text" : "I can't believe you defeated me too...",
+		"has_skip" : true,
+	},
+	{
+		"speaker" : "Mayor",
+		"mood" : "cry",
+		"direction" : "right",
+		"text" : "Thanks for playing!",
 		"has_skip" : true,
 	},
 ]

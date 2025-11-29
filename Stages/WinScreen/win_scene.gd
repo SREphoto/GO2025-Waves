@@ -31,6 +31,7 @@ func _ready() -> void:
 		cage.play("mayor")
 		await follow_camera.move_to_win()
 		drag_screen.pressable = true
+		dialogue_loop_tut(tutorial_dialogue.dialogue_win_hard)
 	else:
 		youdidit.text = "You defeated the King of the Sea and saved Tidal Town!"
 		await follow_camera.move_to_win()

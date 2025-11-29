@@ -14,6 +14,8 @@ extends CanvasLayer
 @onready var waves: Label = $Control/HealthBar/Waves
 @onready var time: Label = $Control/HealthBar/Time
 
+func _ready() -> void:
+	pass
 
 func connect_signal() -> void:
 	game_variables.connect("values_changed", refresh)
@@ -48,3 +50,8 @@ func blend_in() -> void:
 func blend_out() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(canvas_modulate, "color", Color(1, 1, 1, 0), 0.8)
+
+func hard_mode():
+	$Poseidon/PoseidonAngry.play("hard_mode")
+	$Major/MajorAngry.play("hard_mode")
+	$Control/HealthAfterAttackBar/BossName.text = "THE MAYOR"
