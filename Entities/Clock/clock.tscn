@@ -127,4 +127,4 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wxbfv")
-volume_db = -5.0
+volume_db = -50.0

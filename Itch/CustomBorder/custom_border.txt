@@ -1,4 +1,11 @@
+Game Frame
 #wrapper .game_frame {
+ margin-top: -20px;
  outline: 4px solid #c5966f;     
  outline-offset: -4px;           
+}
+
+Screenshots
+#wrapper .screenshot_list img {
+ outline: 4px solid #c5966f;
 }
