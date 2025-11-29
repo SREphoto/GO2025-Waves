@@ -2,11 +2,11 @@ extends Node
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var ambience_player: AudioStreamPlayer = $AmbiencePlayer
-@onready var speed_island_player: AudioStreamPlayer = $Node/SpeedIslandPlayer
-@onready var speed_endgame_player: AudioStreamPlayer = $Node/SpeedEndgamePlayer
+@onready var speed_island_player: AudioStreamPlayer2D = $Node/SpeedIslandPlayer
+@onready var speed_endgame_player: AudioStreamPlayer2D = $Node/SpeedEndgamePlayer
 
 var current_clip = "START"
-var current_player : AudioStreamPlayer = null
+var current_player = null
 
 func _ready() -> void:
 	current_player = speed_island_player

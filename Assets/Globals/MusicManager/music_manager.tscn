@@ -191,11 +191,13 @@ volume_db = -8.0
 
 [node name="Node" type="Node" parent="."]
 
-[node name="SpeedIslandPlayer" type="AudioStreamPlayer" parent="Node"]
+[node name="SpeedIslandPlayer" type="AudioStreamPlayer2D" parent="Node"]
 stream = ExtResource("3_ei44j")
 volume_db = -20.0
+bus = &"Music"
 parameters/looping = true
 
-[node name="SpeedEndgamePlayer" type="AudioStreamPlayer" parent="Node"]
+[node name="SpeedEndgamePlayer" type="AudioStreamPlayer2D" parent="Node"]
 stream = ExtResource("7_ei44j")
 volume_db = -20.0
+bus = &"Music"
