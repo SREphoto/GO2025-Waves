@@ -27,6 +27,7 @@ SceneSwitcher="*res://Assets/Globals/SceneSwitcher/scene_switcher.tscn"
 GlobalVariables="*res://Assets/Globals/GlobalVariables/global_variables.tscn"
 SoundManager="*res://Assets/Globals/SoundManager/sound_manager.tscn"
 GlobalBoat="*res://Assets/Globals/GlobalBoat/global_boat.tscn"
+MouseManager="*res://Assets/Globals/MouseManager/mouse_manager.tscn"
 
 [display]
 
