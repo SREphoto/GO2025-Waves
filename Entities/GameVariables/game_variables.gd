@@ -127,11 +127,11 @@ func _lost() -> void:
 
 func next_game() -> void:
 	has_finished = false
-	if game.current_round == (game.last_round + 1):
-		game_finished()
-		return
 	if lost:
 		game_over()
+		return
+	if game.current_round == (game.last_round + 1):
+		game_finished()
 		return
 	if posmod(game.current_round, 2) == 1:
 		sand_tile_map_layer.increase_grid_size()
