@@ -31,11 +31,11 @@ var bosses_completed_now: int = 0:
 var hard_bosses_completed_max: int = 0
 var hard_bosses_completed_last: int = 0:
 	set(value):
-		bosses_completed_last = value
-		bosses_completed_max = max(bosses_completed_max, bosses_completed_last)
+		hard_bosses_completed_last = value
+		hard_bosses_completed_max = max(hard_bosses_completed_max, hard_bosses_completed_last)
 var hard_bosses_completed_now: int = 0:
 	set(value):
-		bosses_completed_now = clamp(value, 0, 5)
+		hard_bosses_completed_now = clamp(value, 0, 5)
 
 var rounds_played: int = 0
 
